@@ -3,7 +3,6 @@ import styled, { css } from 'styled-components';
 // reusable css styling for all headings
 const StyledGeneralHeading = css`
   line-height: 1em;
-  color: ${({ type, themeToggler }) => themeToggler[type].color};
   font-weight: ${(props) => props.weight};
   font-size: ${(props) => props.size};
 `;
@@ -16,19 +15,23 @@ const StyledHeadingFlex = css`
 export const StyledHeading1 = styled.h1`
   ${StyledGeneralHeading}
   ${StyledHeadingFlex}
+  color: ${({ theme }) => theme.text.color};
 `;
 
 export const StyledHeading2 = styled.h2`
   ${StyledGeneralHeading}
   ${StyledHeadingFlex}
+  color: ${({ theme }) => theme.subtext.color};
 `;
 
 export const StyledHeading3 = styled.h3`
   ${StyledGeneralHeading}
+  color: ${({ theme }) => theme.subtext.color};
 `;
 export const StyledParagraph = styled.p`
   ${StyledGeneralHeading}
   line-height: 1.7em;
+  color: ${({ theme }) => theme.subtext.color};
 `;
 
 // default props
