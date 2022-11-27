@@ -1,5 +1,6 @@
 // ref: https://codesandbox.io/s/react-textarea-auto-height-s96b2?file=/src/App.js
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useLayoutEffect, useRef } from 'react';
+import { useChange } from './useChange';
 
 export const useResizeInput = (
   initalValue = '',
@@ -9,7 +10,7 @@ export const useResizeInput = (
   }
 ) => {
   const ref = useRef(null);
-  const [value, setValue] = useState(initalValue);
+  const [value, onChange] = useChange(initalValue);
 
   // resize layout
   useLayoutEffect(() => {
@@ -20,9 +21,6 @@ export const useResizeInput = (
       resizeInfo.minSize
     )}px`;
   }, [value]);
-
-  // hanlde event functions
-  const onChange = (event) => setValue(event.target.value);
 
   return [ref, onChange, value];
 };

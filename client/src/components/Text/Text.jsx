@@ -3,6 +3,8 @@
 import { StyledHeading1, StyledHeading2, StyledHeading3, StyledParagraph } from './Text.styled';
 
 function Text({ type, text, ...props }) {
+  // for general props of all components rendering conditionally
+  // for optional props only
   let generalPropsList = {
     ...props
   };

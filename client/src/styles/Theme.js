@@ -11,7 +11,7 @@ const lightTheme = {
   input: {
     backgroundColor: 'var(--input_background_light)',
     color: 'var(--subtext_color_light)',
-    borderColor: 'var(--text_placeholder_light)'
+    outlineColor: 'var(--primary_color_light)'
   },
   subText: {
     color: 'var(--subtext_color_light)'
@@ -39,7 +39,7 @@ const darkTheme = {
   input: {
     backgroundColor: 'var(--input_background_dark)',
     color: 'var(--subtext_color_dark)',
-    borderColor: 'var(--text_placeholder_dark)'
+    outlineColor: 'var(--primary_color_dark)'
   },
   subText: {
     color: 'var(--subtext_color_dark)'

@@ -7,7 +7,7 @@ function Home({ themeToggler }) {
   return (
     <div>
       <Text type="h1" text="Nihao Hello" size="3em" />
-      <Input />
+      <Input type="text" placeholder="Hello" />
       <Button onClick={themeToggler}>Click</Button>
     </div>
   );
