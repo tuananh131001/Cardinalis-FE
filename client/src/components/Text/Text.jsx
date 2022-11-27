@@ -9,7 +9,6 @@ function Text({ type, text, ...props }) {
 
   switch (type) {
     case 'h1':
-    case 'text':
       return <StyledHeading1 {...generalPropsList}>{text}</StyledHeading1>;
     case 'h2':
       return <StyledHeading2 {...generalPropsList}>{text}</StyledHeading2>;

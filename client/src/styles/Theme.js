@@ -9,7 +9,9 @@ const lightTheme = {
     color: 'var(--text_color_light)'
   },
   input: {
-    backgroundColor: 'var(--input_background_light)'
+    backgroundColor: 'var(--input_background_light)',
+    color: 'var(--subtext_color_light)',
+    borderColor: 'var(--text_placeholder_light)'
   },
   subText: {
     color: 'var(--subtext_color_light)'
@@ -35,7 +37,9 @@ const darkTheme = {
     color: 'var(--text_color_dark)'
   },
   input: {
-    backgroundColor: 'var(--input_background_dark)'
+    backgroundColor: 'var(--input_background_dark)',
+    color: 'var(--subtext_color_dark)',
+    borderColor: 'var(--text_placeholder_dark)'
   },
   subText: {
     color: 'var(--subtext_color_dark)'
