@@ -1,6 +1,6 @@
-/* eslint-disable react/prop-types */
 // ref: https://stackoverflow.com/questions/57945969/conditional-rendering-of-components-with-same-props-in-reactjs
 import { StyledHeading1, StyledHeading2, StyledHeading3, StyledParagraph } from './Text.styled';
+import PropTypes from 'prop-types';
 
 function Text({ type, text, ...props }) {
   // for general props of all components rendering conditionally
@@ -20,5 +20,11 @@ function Text({ type, text, ...props }) {
       return <StyledParagraph {...generalPropsList}>{text}</StyledParagraph>;
   }
 }
+
+Text.propTypes = {
+  type: PropTypes.string,
+  text: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
+};
 
 export default Text;

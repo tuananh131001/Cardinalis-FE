@@ -1,9 +1,9 @@
-/* eslint-disable react/prop-types */
 import { useResizeInput } from '@/hooks/useResizeInput';
 import { useChange } from '@/hooks/useChange';
-import { StyledTextArea, StyledInput } from './Input.styled';
+import { StyledTextArea, StyledInput } from '@/components/Input/Input.styled';
+import PropTypes from 'prop-types';
 
-function Input({ type, placeholder, ...props }) {
+function Input({ type, placeholder, cols, ...props }) {
   let [textareaRef, onChange, inputValue] = [null];
   // for general props of all components rendering conditionally
   // for optional props only
@@ -22,15 +22,22 @@ function Input({ type, placeholder, ...props }) {
       return (
         <StyledTextArea
           {...generalPropsList}
-          cols={props.cols || '30'}
+          cols={cols || 30}
           ref={textareaRef}
           onChange={onChange}
           value={inputValue}></StyledTextArea>
       );
     case 'text':
       [inputValue, onChange] = useChange('');
-      return <StyledInput {...generalPropsList} onChange={onChange} />
+      return <StyledInput {...generalPropsList} onChange={onChange} />;
   }
 }
+
+Input.propTypes = {
+  type: PropTypes.string,
+  placeholder: PropTypes.string,
+  cols: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
+};
 
 export default Input;

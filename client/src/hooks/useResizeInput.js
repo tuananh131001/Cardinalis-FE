@@ -1,6 +1,6 @@
 // ref: https://codesandbox.io/s/react-textarea-auto-height-s96b2?file=/src/App.js
 import { useLayoutEffect, useRef } from 'react';
-import { useChange } from './useChange';
+import { useChange } from '@/hooks/useChange';
 
 export const useResizeInput = (
   initalValue = '',
