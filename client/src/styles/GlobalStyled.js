@@ -30,6 +30,8 @@ box-sizing:border-box;
   --input_background_dark:#EDEDEE;
   --button_text_dark:#000;
   --card_background_dark:#3B353B;  
+
+  --font-family: 'Open Sans';
 }
 
 #root{
@@ -38,7 +40,7 @@ box-sizing:border-box;
   min-height:100vh;
   width:100%;
   background-color:${({ theme }) => theme.body.backgroundColor};
-  font-family: 'Open Sans', sans-serif;
+  font-family: var(--font-family), sans-serif;
   }
 `;
 
