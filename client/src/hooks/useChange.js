@@ -5,6 +5,8 @@ export const useChange = ({ initialValue = '' }) => {
 
   // event functions
   const onChange = (event) => setValue(event.target.value);
+  // toggle
+  const toggle = () => setValue(!value);
 
-  return [value, onChange];
+  return [value, onChange, toggle];
 };

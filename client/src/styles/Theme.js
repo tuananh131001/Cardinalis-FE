@@ -8,7 +8,7 @@ const lightTheme = {
   text: {
     color: 'var(--text_color_light)'
   },
-  input: {
+  homeInput: {
     backgroundColor: 'var(--input_background_light)',
     color: 'var(--subtext_color_light)'
   },
@@ -39,7 +39,7 @@ const darkTheme = {
   text: {
     color: 'var(--text_color_dark)'
   },
-  input: {
+  homeInput: {
     backgroundColor: 'var(--input_background_dark)',
     color: 'var(--subtext_color_dark)'
   },

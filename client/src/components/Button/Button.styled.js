@@ -23,6 +23,7 @@ export const StyledIconButton = styled.button`
   flex: 0 0;
   ${StyledGeneralButton}
   border: none;
+  background-color: transparent;
 `;
 
 // Default Props

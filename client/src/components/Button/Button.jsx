@@ -3,14 +3,14 @@ import StyledButton from '@/components/Button/Button.styled';
 import PropTypes from 'prop-types';
 import { StyledIconButton } from './Button.styled';
 
-function Button({ type = 'primary', children, onClick, ...props }) {
+function Button({ buttonType = 'primary', children, onClick, ...props }) {
   // for general props of all components rendering conditionally
   // for optional props only
   let generalPropsList = {
     onClick: onClick,
     ...props
   };
-  switch (type) {
+  switch (buttonType) {
     case 'primary':
       return <StyledButton {...generalPropsList}>{children}</StyledButton>;
     case 'icon':
@@ -19,7 +19,7 @@ function Button({ type = 'primary', children, onClick, ...props }) {
 }
 
 Button.propTypes = {
-  type: PropTypes.string,
+  buttonType: PropTypes.string,
   children: PropTypes.node,
   onClick: PropTypes.any,
   props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))

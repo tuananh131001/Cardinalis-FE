@@ -40,11 +40,9 @@ export const StyledInputContainer = styled.div`
   justify-content: ${(props) => props.jc};
   padding: ${(props) => props.padding};
   ${StyledGeneralInput}
-  & input {
-    ${StyledGeneralInput}
-  }
 `;
 export const StyledInputIcon = styled.input`
+  ${StyledGeneralInput}
   border: none;
   background-color: inherit;
   outline: none;
@@ -61,10 +59,6 @@ export const StyledTextArea = styled.textarea`
 export const StyledInput = styled.input`
   ${StyledGeneralInput}
   padding: ${(props) => props.padding};
-
-  /* &:focus {
-    outline: ${({ theme }) => theme.input.outlineColor};
-  } */
 `;
 
 // Default Props

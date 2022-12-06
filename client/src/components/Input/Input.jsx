@@ -1,16 +1,21 @@
+// https://stackoverflow.com/questions/62935533/how-to-fix-react-forwardrefmenu-material-ui
 import { useResizeInput } from '@/hooks/useResizeInput';
 import { useChange } from '@/hooks/useChange';
 import { StyledTextArea, StyledInput } from '@/components/Input/Input.styled';
 import { StyledInputContainer, StyledInputIcon } from './Input.styled';
 import PropTypes from 'prop-types';
 import Button from '@/components/Button/Button';
+import { forwardRef } from 'react';
 
-function Input({ type, inputName, inputType = 'text', cols, onClick, children, ...props }) {
+export const Input = forwardRef(function Input(
+  { inputType, inputName, type = 'text', cols, onClick, children, ...props },
+  ref
+) {
   /**
    * @description - This component for input and textarea
-   * @param {string} type - type of input element - normal input | special input textarea | special input with icon
-   * @param {string} inputName - name of input: for choosing "login" or "home" input
-   * @param {string} inputType - type of input: text | password | email | number
+   * @param {string} inputType - type of input element - normal input | special input textarea | special input with icon
+   * @param {string} inputName - name of input: for choosing "loginInput" or "homeInput" input
+   * @param {string} type - type of input: text | password | email | number
    * @param {string} cols - number of cols for textarea
    * @param {function} onClick - function for onClick event
    * @param {string} children - icon for input
@@ -21,12 +26,12 @@ function Input({ type, inputName, inputType = 'text', cols, onClick, children, .
   // for optional props only
   let generalPropsList = {
     inputName: inputName,
-    type: inputType,
+    type: type,
     ...props
   };
   // const buttonPropsList = {
 
-  switch (type) {
+  switch (inputType) {
     case 'textarea':
       // 32 số tạm thời chưa bít
       [textareaRef, onChange, inputValue] = useResizeInput('', {
@@ -43,28 +48,26 @@ function Input({ type, inputName, inputType = 'text', cols, onClick, children, .
       );
     case 'text':
       [inputValue, onChange] = useChange('');
-      return <StyledInput {...generalPropsList} onChange={onChange} />;
+      return <StyledInput {...generalPropsList} onChange={onChange} ref={ref} />;
     case 'textIcon':
       [inputValue, onChange] = useChange('');
       return (
         <StyledInputContainer {...generalPropsList}>
-          <StyledInputIcon {...generalPropsList} />
-          <Button type="icon" onClick={onClick}>
+          <StyledInputIcon {...generalPropsList} ref={ref} />
+          <Button buttonType="icon" onClick={onClick}>
             {children}
           </Button>
         </StyledInputContainer>
       );
   }
-}
+});
 
 Input.propTypes = {
+  inputType: PropTypes.string,
+  inputName: PropTypes.string,
   type: PropTypes.string,
   cols: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onClick: PropTypes.func,
   children: PropTypes.element,
-  inputName: PropTypes.string,
-  inputType: PropTypes.string,
   props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
 };
-
-export default Input;
