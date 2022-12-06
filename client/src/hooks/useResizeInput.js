@@ -10,7 +10,7 @@ export const useResizeInput = (
   }
 ) => {
   const ref = useRef(null);
-  const [value, onChange] = useChange(initalValue);
+  const { value, onChange } = useChange(initalValue);
 
   // resize layout
   useLayoutEffect(() => {

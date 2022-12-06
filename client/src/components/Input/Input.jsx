@@ -1,6 +1,5 @@
 // https://stackoverflow.com/questions/62935533/how-to-fix-react-forwardrefmenu-material-ui
 import { useResizeInput } from '@/hooks/useResizeInput';
-import { useChange } from '@/hooks/useChange';
 import { StyledTextArea, StyledInput } from '@/components/Input/Input.styled';
 import { StyledInputContainer, StyledInputIcon } from './Input.styled';
 import PropTypes from 'prop-types';
@@ -47,10 +46,8 @@ export const Input = forwardRef(function Input(
           value={inputValue}></StyledTextArea>
       );
     case 'text':
-      [inputValue, onChange] = useChange('');
       return <StyledInput {...generalPropsList} onChange={onChange} ref={ref} />;
     case 'textIcon':
-      [inputValue, onChange] = useChange('');
       return (
         <StyledInputContainer {...generalPropsList}>
           <StyledInputIcon {...generalPropsList} ref={ref} />

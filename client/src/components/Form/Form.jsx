@@ -6,6 +6,10 @@ import { chooseInputSchema } from '@/helpers/HandlingInput';
 import PropTypes from 'prop-types';
 import { Input } from '@/components/Input/Input';
 import { AiOutlineCloseCircle } from 'react-icons/ai';
+import { FaEye } from 'react-icons/fa';
+import { RiEyeCloseFill } from 'react-icons/ri';
+import { useChange } from '@/hooks/useChange';
+import StyledButton from '@/components/Button/Button.styled';
 
 export const Form = ({ type }) => {
   /**
@@ -20,7 +24,8 @@ export const Form = ({ type }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    setValue
   } = useForm({
     // integration btw yup and form to make it work
     resolver: yupResolver(schema)
@@ -32,6 +37,13 @@ export const Form = ({ type }) => {
     console.log(data);
   };
 
+  // click remove all input
+  const onClickRemoveAll = (event, inputName) => {
+    // prevent submit action
+    event.preventDefault();
+    setValue(inputName, '');
+  };
+  const { value: hidePassword, onToggle: togglePassword } = useChange(true);
 
   return (
     <form action="" onSubmit={handleSubmit(onSubmitClick)}>
@@ -42,17 +54,19 @@ export const Form = ({ type }) => {
             inputType="textIcon"
             inputName="loginInput"
             placeholder="Enter Email..."
-            {...register('emailInput')}>
+            {...register('emailInput')}
+            onClick={(event) => onClickRemoveAll(event, 'emailInput')}>
             <AiOutlineCloseCircle />
           </Input>
           <p>{errors.emailInput?.message ?? <EmptySpace />}</p>
           <Input
-            type="password"
+            type={hidePassword ? 'password' : 'text'}
             inputType="textIcon"
             inputName="loginInput"
             placeholder="Enter Password..."
+            onClick={togglePassword}
             {...register('passwordInput')}>
-            <AiOutlineCloseCircle />
+            {hidePassword ? <FaEye /> : <RiEyeCloseFill />}
           </Input>
           <p>{errors.passwordInput?.message ?? <EmptySpace />}</p>
         </>
@@ -92,7 +106,7 @@ export const Form = ({ type }) => {
           <p>{errors.confirmPasswordInput?.message ?? <EmptySpace />}</p>
         </>
       )}
-      <button type="submit">Submit</button>
+      <StyledButton type="submit">Submit</StyledButton>
     </form>
   );
 };
