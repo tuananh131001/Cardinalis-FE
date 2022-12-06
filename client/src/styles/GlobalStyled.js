@@ -16,7 +16,10 @@ box-sizing:border-box;
   --subtext_color_light: #626C7A;
   --subtext2_color_light:#46515C;
   --text_color_light:#323337;
+
   --input_background_light:#EDEDEE;
+  --input_color_border: #676767;
+
   --button_text_light:#fff;
   --card_background_light:#FEFAF7;
   /* Dark theme */
@@ -27,7 +30,10 @@ box-sizing:border-box;
   --subtext_color_dark: #CED9E9;
   --subtext2_color_dark:#CED9E9;
   --text_color_dark:#F7F9FF;
+
   --input_background_dark:#EDEDEE;
+  --input_color_border_dark: #DC6C14;
+  
   --button_text_dark:#000;
   --card_background_dark:#3B353B;  
 

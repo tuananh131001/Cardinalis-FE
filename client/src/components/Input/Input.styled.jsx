@@ -1,18 +1,20 @@
 import styled, { css } from 'styled-components';
-import { BORDER_RADIUS_SECONDARY } from '@/styles/Constant';
+import { BORDER_RADIUS_INPUT } from '@/styles/Constant';
 
 // Reusable CSS
 const StyledGeneralInput = css`
   /* border */
   border-radius: ${(props) => props.borderRadius};
-  border: none;
+  border: ${({ theme, inputName }) => `1px solid ${theme[inputName].borderColor}` ?? 'none'};
   /* font */
   font-family: var(--font-family);
   font-size: ${(props) => props.size};
   font-weight: ${(props) => props.weight};
   /* color */
-  color: ${({ theme }) => theme.input.color};
-  background-color: ${({ theme }) => theme.input.backgroundColor};
+  color: ${({ theme, inputName }) => theme[inputName].color};
+  background-color: ${({ theme, inputName }) => theme[inputName].backgroundColor ?? 'transparent'};
+  /* size */
+  height: ${(props) => props.height};
 
   /* placeholder */
   &::placeholder {
@@ -31,6 +33,23 @@ const StyledGeneralInput = css`
 `;
 
 // Styled Components
+// Input that has icon
+export const StyledInputContainer = styled.div`
+  display: flex;
+  align-items: ${(props) => props.ai};
+  justify-content: ${(props) => props.jc};
+  padding: ${(props) => props.padding};
+  ${StyledGeneralInput}
+  & input {
+    ${StyledGeneralInput}
+  }
+`;
+export const StyledInputIcon = styled.input`
+  border: none;
+  background-color: inherit;
+  outline: none;
+`;
+// Textarea input
 export const StyledTextArea = styled.textarea`
   ${StyledGeneralInput}
   resize: none;
@@ -38,6 +57,7 @@ export const StyledTextArea = styled.textarea`
   line-height: 1em;
   padding: ${(props) => props.padding};
 `;
+// Normal input
 export const StyledInput = styled.input`
   ${StyledGeneralInput}
   padding: ${(props) => props.padding};
@@ -48,15 +68,25 @@ export const StyledInput = styled.input`
 `;
 
 // Default Props
-StyledTextArea.defaultProps = {
+const generalDefaultProps = {
+  inputName: 'input', // or loginInput if it's in login page
+  borderRadius: BORDER_RADIUS_INPUT,
   weight: 500,
-  size: 'clamp(0.8rem, 0.76rem + 0.19999999999999996vw, 1rem)',
-  borderRadius: BORDER_RADIUS_SECONDARY,
+  size: 'clam(0.8rem, 0.76rem + 0.19999999999999996vw, 1rem)'
+};
+StyledInputContainer.defaultProps = {
+  ...generalDefaultProps,
+  padding: '0.7em 0.8em',
+  height: '3.75em',
+  ai: 'center',
+  jc: 'space-between'
+};
+StyledTextArea.defaultProps = {
+  ...generalDefaultProps,
   padding: '0.9em 0.8em 2em'
 };
 StyledInput.defaultProps = {
-  weight: 500,
-  size: 'clamp(0.8rem, 0.76rem + 0.19999999999999996vw, 1rem)',
-  borderRadius: BORDER_RADIUS_SECONDARY,
-  padding: '0.7em 0.8em'
+  ...generalDefaultProps,
+  padding: '0.7em 0.8em',
+  height: '3.75em'
 };

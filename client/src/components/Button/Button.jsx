@@ -1,23 +1,28 @@
 import React from 'react';
-import ButtonStyled from '@/components/Button/Button.styled';
+import StyledButton from '@/components/Button/Button.styled';
 import PropTypes from 'prop-types';
+import { StyledIconButton } from './Button.styled';
 
-function Button({ direction, gap, jc, ai, wrap, children, onClick }) {
-  return (
-    <ButtonStyled onClick={onClick} gap={gap} jc={jc} ai={ai} wrap={wrap} direction={direction}>
-      {children}
-    </ButtonStyled>
-  );
+function Button({ type = 'primary', children, onClick, ...props }) {
+  // for general props of all components rendering conditionally
+  // for optional props only
+  let generalPropsList = {
+    onClick: onClick,
+    ...props
+  };
+  switch (type) {
+    case 'primary':
+      return <StyledButton {...generalPropsList}>{children}</StyledButton>;
+    case 'icon':
+      return <StyledIconButton {...generalPropsList}>{children}</StyledIconButton>;
+  }
 }
 
 Button.propTypes = {
-  direction: PropTypes.string,
-  gap: PropTypes.string,
-  jc: PropTypes.string,
-  ai: PropTypes.string,
-  wrap: PropTypes.string,
+  type: PropTypes.string,
   children: PropTypes.node,
-  onClick: PropTypes.any
+  onClick: PropTypes.any,
+  props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
 };
 
 export default Button;

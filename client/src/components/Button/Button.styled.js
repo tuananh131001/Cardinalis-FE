@@ -1,13 +1,43 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-const ButtonStyled = styled.button`
+// General reusable buttons styles
+const StyledGeneralButton = css`
   display: flex;
-  flex-direction: ${({ direction }) => direction || 'row'};
-  gap: ${({ gap }) => gap || '0'};
-  justify-content: ${({ jc }) => jc || 'center'};
-  align-items: ${({ ai }) => ai || 'center'};
-  flex-wrap: ${({ wrap }) => wrap || 'nowrap'};
-  background-color: ${({ theme }) => theme.button.backgroundColor};
+  flex-direction: ${({ direction }) => direction};
+  gap: ${({ gap }) => gap};
+  justify-content: ${({ jc }) => jc};
+  align-items: ${({ ai }) => ai};
+  flex-wrap: ${({ wrap }) => wrap};
+  &:hover {
+    cursor: pointer;
+    opacity: 0.7;
+  }
 `;
 
-export default ButtonStyled;
+// Styled Componeny
+const StyledButton = styled.button`
+  ${StyledGeneralButton}
+  background-color: ${({ theme }) => theme.button.backgroundColor};
+`;
+export const StyledIconButton = styled.button`
+  flex: 0 0;
+  ${StyledGeneralButton}
+  border: none;
+`;
+
+// Default Props
+const generalDefaultProps = {
+  direction: 'row',
+  gap: '0',
+  jc: 'center',
+  ai: 'center',
+  wrap: 'nowrap'
+};
+StyledButton.defaultProps = {
+  ...generalDefaultProps
+};
+StyledIconButton.defaultProps = {
+  ...generalDefaultProps
+};
+
+export default StyledButton;

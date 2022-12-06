@@ -10,8 +10,11 @@ const lightTheme = {
   },
   input: {
     backgroundColor: 'var(--input_background_light)',
+    color: 'var(--subtext_color_light)'
+  },
+  loginInput: {
     color: 'var(--subtext_color_light)',
-    outlineColor: 'var(--primary_color_light)'
+    borderColor: 'var(--input_color_border)'
   },
   subText: {
     color: 'var(--subtext_color_light)'
@@ -38,8 +41,11 @@ const darkTheme = {
   },
   input: {
     backgroundColor: 'var(--input_background_dark)',
+    color: 'var(--subtext_color_dark)'
+  },
+  loginInput: {
     color: 'var(--subtext_color_dark)',
-    outlineColor: 'var(--primary_color_dark)'
+    borderColor: 'var(--input_color_border_dark)'
   },
   subText: {
     color: 'var(--subtext_color_dark)'
