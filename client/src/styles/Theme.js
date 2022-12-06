@@ -1,6 +1,12 @@
 const lightTheme = {
-  button: {
-    backgroundColor: 'var(--button_text_light)'
+  primaryButton: {
+    backgroundColor: 'var(--primary_button_background_light)',
+    color: 'var(--primary_button_text_light)'
+  },
+  secondaryButton: {
+    backgroundColor: 'var(--secondary_button_background_light)',
+    color: 'var(--secondary_button_text_light)',
+    borderColor: 'var(--secondary_button_border_light)'
   },
   body: {
     backgroundColor: 'var(--background-color_light)'
@@ -30,8 +36,14 @@ const lightTheme = {
 };
 
 const darkTheme = {
-  button: {
-    backgroundColor: 'var(--button_text_dark)'
+  primaryButton: {
+    backgroundColor: 'var(--primary_button_background_dark)',
+    color: 'var(--primary_button_text_dark)'
+  },
+  secondaryButton: {
+    backgroundColor: 'var(--secondary_button_background_dark)',
+    color: 'var(--secondary_button_text_dark)',
+    borderColor: 'var(--secondary_button_border_dark)'
   },
   body: {
     backgroundColor: 'var(--background-color_dark)'

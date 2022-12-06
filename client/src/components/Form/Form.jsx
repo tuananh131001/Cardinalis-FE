@@ -10,6 +10,7 @@ import { FaEye } from 'react-icons/fa';
 import { RiEyeCloseFill } from 'react-icons/ri';
 import { useChange } from '@/hooks/useChange';
 import StyledButton from '@/components/Button/Button.styled';
+import { StyledForm } from './Form.styled';
 
 export const Form = ({ type }) => {
   /**
@@ -46,7 +47,7 @@ export const Form = ({ type }) => {
   const { value: hidePassword, onToggle: togglePassword } = useChange(true);
 
   return (
-    <form action="" onSubmit={handleSubmit(onSubmitClick)}>
+    <StyledForm action="" onSubmit={handleSubmit(onSubmitClick)}>
       {type == 'login' ? (
         <>
           <Input
@@ -106,8 +107,10 @@ export const Form = ({ type }) => {
           <p>{errors.confirmPasswordInput?.message ?? <EmptySpace />}</p>
         </>
       )}
-      <StyledButton type="submit">Submit</StyledButton>
-    </form>
+      <StyledButton type="submit" buttonThemeName="primaryButton">
+        Submit
+      </StyledButton>
+    </StyledForm>
   );
 };
 

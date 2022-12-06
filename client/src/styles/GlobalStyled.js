@@ -20,10 +20,15 @@ box-sizing:border-box;
   --input_background_light:#EDEDEE;
   --input_color_border: #676767;
 
-  --button_text_light:#fff;
+  --primary_button_background_light:#DC6C14;
+  --primary_button_text_light:#FFFFFF;
+  --secondary_button_background_light: transparent;
+  --secondary_button_text_light: #0F1419;
+  --secondary_button_border_light: #CFD9DE;
   --card_background_light:#FEFAF7;
+
   /* Dark theme */
-  --primary_color_dark: #D2AA6A;
+  --primary_color_dark: #DC6C14;
   --secondary_color_dark: #A7CCE3;
   --text_placeholder_dark:#7A7A81;
   --background-color_dark: #1E1B1E;
@@ -34,7 +39,11 @@ box-sizing:border-box;
   --input_background_dark:#EDEDEE;
   --input_color_border_dark: #DC6C14;
   
-  --button_text_dark:#000;
+  --primary_button_background_dark:#DC6C14;
+  --primary_button_text_dark:#FFFFFF;
+  --secondary_button_background_dark: transparent;
+  --secondary_button_text_dark: #FFFFFF;
+  --secondary_button_border_dark: #536471;
   --card_background_dark:#3B353B;  
 
   --font-family: 'Open Sans';
@@ -47,6 +56,9 @@ box-sizing:border-box;
   width:100%;
   background-color:${({ theme }) => theme.body.backgroundColor};
   font-family: var(--font-family), sans-serif;
+  }
+  .app {
+    width: 100%;
   }
 `;
 

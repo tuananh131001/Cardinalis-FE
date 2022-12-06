@@ -17,7 +17,7 @@ function Home({ themeToggler }) {
       <Input inputType="textIcon" inputName="homeInput" placeholder="Hello" onClick={click}>
         <FaBeer />
       </Input>
-      <Button onClick={themeToggler}>Click</Button>
+      <Button onClick={themeToggler} buttonThemeName="secondaryButton">Click</Button>
     </div>
   );
 }

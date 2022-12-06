@@ -15,6 +15,7 @@ const StyledGeneralInput = css`
   background-color: ${({ theme, inputName }) => theme[inputName].backgroundColor ?? 'transparent'};
   /* size */
   height: ${(props) => props.height};
+  width: ${(props) => props.width};
 
   /* placeholder */
   &::placeholder {
@@ -39,6 +40,7 @@ export const StyledInputContainer = styled.div`
   align-items: ${(props) => props.ai};
   justify-content: ${(props) => props.jc};
   padding: ${(props) => props.padding};
+  width: ${(props) => props.width};
   ${StyledGeneralInput}
 `;
 export const StyledInputIcon = styled.input`
@@ -46,6 +48,7 @@ export const StyledInputIcon = styled.input`
   border: none;
   background-color: inherit;
   outline: none;
+  flex: 1;
 `;
 // Textarea input
 export const StyledTextArea = styled.textarea`
@@ -66,14 +69,16 @@ const generalDefaultProps = {
   inputName: 'input', // or loginInput if it's in login page
   borderRadius: BORDER_RADIUS_INPUT,
   weight: 500,
-  size: 'clam(0.8rem, 0.76rem + 0.19999999999999996vw, 1rem)'
+  size: 'clam(0.8rem, 0.76rem + 0.19999999999999996vw, 1rem)',
+  width: '100%'
 };
 StyledInputContainer.defaultProps = {
   ...generalDefaultProps,
   padding: '0.7em 0.8em',
   height: '3.75em',
   ai: 'center',
-  jc: 'space-between'
+  jc: 'space-between',
+  width: '100%'
 };
 StyledTextArea.defaultProps = {
   ...generalDefaultProps,
