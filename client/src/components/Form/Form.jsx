@@ -5,12 +5,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { chooseInputSchema } from '@/helpers/HandlingInput';
 import PropTypes from 'prop-types';
 import { Input } from '@/components/Input/Input';
-import { AiOutlineCloseCircle } from 'react-icons/ai';
 import { FaEye } from 'react-icons/fa';
 import { RiEyeCloseFill } from 'react-icons/ri';
 import { useChange } from '@/hooks/useChange';
 import StyledButton from '@/components/Button/Button.styled';
 import { StyledForm } from './Form.styled';
+import Text from '@/components/Text/Text';
 
 export const Form = ({ type }) => {
   /**
@@ -25,8 +25,7 @@ export const Form = ({ type }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    setValue
+    formState: { errors }
   } = useForm({
     // integration btw yup and form to make it work
     resolver: yupResolver(schema)
@@ -38,12 +37,6 @@ export const Form = ({ type }) => {
     console.log(data);
   };
 
-  // click remove all input
-  const onClickRemoveAll = (event, inputName) => {
-    // prevent submit action
-    event.preventDefault();
-    setValue(inputName, '');
-  };
   const { value: hidePassword, onToggle: togglePassword } = useChange(true);
 
   return (
@@ -51,60 +44,57 @@ export const Form = ({ type }) => {
       {type == 'login' ? (
         <>
           <Input
-            type="email"
+            type="text"
             inputType="textIcon"
-            inputName="loginInput"
+            inputThemeName="loginInput"
             placeholder="Enter Email..."
             {...register('emailInput')}
-            onClick={(event) => onClickRemoveAll(event, 'emailInput')}>
-            <AiOutlineCloseCircle />
-          </Input>
-          <p>{errors.emailInput?.message ?? <EmptySpace />}</p>
+          />
+          <ErrorText errors={errors.emailInput?.message} />
           <Input
             type={hidePassword ? 'password' : 'text'}
             inputType="textIcon"
-            inputName="loginInput"
+            inputThemeName="loginInput"
             placeholder="Enter Password..."
             onClick={togglePassword}
             {...register('passwordInput')}>
             {hidePassword ? <FaEye /> : <RiEyeCloseFill />}
           </Input>
-          <p>{errors.passwordInput?.message ?? <EmptySpace />}</p>
+          <ErrorText errors={errors.passwordInput?.message} />
         </>
       ) : (
         <>
           <Input
             type="text"
             inputType="text"
-            inputName="loginInput"
+            inputThemeName="loginInput"
             placeholder="Enter Email..."
             {...register('emailInput')}
           />
-          <p>{errors.emailInput?.message ?? <EmptySpace />}</p>
+          <ErrorText errors={errors.emailInput?.message} />
           <Input
-            type="tel"
             inputType="text"
-            inputName="loginInput"
+            inputThemeName="loginInput"
             placeholder="Enter Phone Number..."
             {...register('phoneInput')}
           />
-          <p>{errors.phoneInput?.message ?? <EmptySpace />}</p>
+          <ErrorText errors={errors.phoneInput?.message} />
           <Input
             type="password"
             inputType="text"
-            inputName="loginInput"
+            inputThemeName="loginInput"
             placeholder="Enter Password..."
             {...register('passwordInput')}
           />
-          <p>{errors.passwordInput?.message ?? <EmptySpace />}</p>
+          <ErrorText errors={errors.passwordInput?.message} />
           <Input
             type="password"
             inputType="text"
-            inputName="loginInput"
+            inputThemeName="loginInput"
             placeholder="Confirm Password"
             {...register('confirmPasswordInput')}
           />
-          <p>{errors.confirmPasswordInput?.message ?? <EmptySpace />}</p>
+          <ErrorText errors={errors.confirmPasswordInput?.message} />
         </>
       )}
       <StyledButton type="submit" buttonThemeName="primaryButton">
@@ -114,13 +104,23 @@ export const Form = ({ type }) => {
   );
 };
 
-function EmptySpace() {
-  return <span>&nbsp;&nbsp;</span>;
+function ErrorText({ errors }) {
+  return (
+    <Text
+      type="p"
+      align="left"
+      textThemeName="errorText"
+      text={errors ?? <span>&nbsp;&nbsp;</span>}
+    />
+  );
 }
 
 Form.propTypes = {
   type: PropTypes.string,
   onSubmit: PropTypes.func
+};
+ErrorText.propTypes = {
+  errors: PropTypes.string
 };
 
 export default Form;

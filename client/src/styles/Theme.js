@@ -11,6 +11,9 @@ const lightTheme = {
   body: {
     backgroundColor: 'var(--background-color_light)'
   },
+  errorText: {
+    color: 'var(--error_text_light)'
+  },
   text: {
     color: 'var(--text_color_light)'
   },
@@ -47,6 +50,9 @@ const darkTheme = {
   },
   body: {
     backgroundColor: 'var(--background-color_dark)'
+  },
+  errorText: {
+    color: 'var(--error_text_dark)'
   },
   text: {
     color: 'var(--text_color_dark)'

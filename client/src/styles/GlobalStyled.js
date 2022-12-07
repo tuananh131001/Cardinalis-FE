@@ -16,15 +16,18 @@ box-sizing:border-box;
   --subtext_color_light: #626C7A;
   --subtext2_color_light:#46515C;
   --text_color_light:#323337;
+  --error_text_light: #c61124;
 
   --input_background_light:#EDEDEE;
   --input_color_border: #676767;
 
   --primary_button_background_light:#DC6C14;
   --primary_button_text_light:#FFFFFF;
-  --secondary_button_background_light: transparent;
-  --secondary_button_text_light: #0F1419;
-  --secondary_button_border_light: #CFD9DE;
+  --secondary_button_background_light: #0F1419;
+  --secondary_button_text_light: #fff;
+  --third_button_background_light: transparent;
+  --third_button_text_light: #0F1419;
+  --third_button_border_light: #CFD9DE;
   --card_background_light:#FEFAF7;
 
   /* Dark theme */
@@ -35,15 +38,18 @@ box-sizing:border-box;
   --subtext_color_dark: #CED9E9;
   --subtext2_color_dark:#CED9E9;
   --text_color_dark:#F7F9FF;
+  --error_text_dark: #f98a68;
 
   --input_background_dark:#EDEDEE;
   --input_color_border_dark: #DC6C14;
   
   --primary_button_background_dark:#DC6C14;
   --primary_button_text_dark:#FFFFFF;
-  --secondary_button_background_dark: transparent;
-  --secondary_button_text_dark: #FFFFFF;
-  --secondary_button_border_dark: #536471;
+  --secondary_button_background_dark: #EFF3F4;
+  --secondary_button_text_dark: #0F1419;
+  --third_button_background_dark: transparent;
+  --third_button_text_dark: #FFFFFF;
+  --third_button_border_dark: #536471;
   --card_background_dark:#3B353B;  
 
   --font-family: 'Open Sans';

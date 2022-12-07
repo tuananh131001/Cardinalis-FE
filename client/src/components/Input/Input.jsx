@@ -7,13 +7,13 @@ import Button from '@/components/Button/Button';
 import { forwardRef } from 'react';
 
 export const Input = forwardRef(function Input(
-  { inputType, inputName, type = 'text', cols, onClick, children, ...props },
+  { inputType, inputThemeName, type = 'text', cols, onClick, children, ...props },
   ref
 ) {
   /**
    * @description - This component for input and textarea
    * @param {string} inputType - type of input element - normal input | special input textarea | special input with icon
-   * @param {string} inputName - name of input: for choosing "loginInput" or "homeInput" input
+   * @param {string} inputThemeName - name of input: for choosing "loginInput" or "homeInput" input
    * @param {string} type - type of input: text | password | email | number
    * @param {string} cols - number of cols for textarea
    * @param {function} onClick - function for onClick event
@@ -24,7 +24,7 @@ export const Input = forwardRef(function Input(
   // for general props of all components rendering conditionally
   // for optional props only
   let generalPropsList = {
-    inputName: inputName,
+    inputThemeName: inputThemeName,
     type: type,
     ...props
   };
@@ -61,7 +61,7 @@ export const Input = forwardRef(function Input(
 
 Input.propTypes = {
   inputType: PropTypes.string,
-  inputName: PropTypes.string,
+  inputThemeName: PropTypes.string,
   type: PropTypes.string,
   cols: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onClick: PropTypes.func,

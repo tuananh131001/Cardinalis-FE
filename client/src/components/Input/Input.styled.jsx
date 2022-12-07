@@ -5,14 +5,16 @@ import { BORDER_RADIUS_INPUT } from '@/styles/Constant';
 const StyledGeneralInput = css`
   /* border */
   border-radius: ${(props) => props.borderRadius};
-  border: ${({ theme, inputName }) => `1px solid ${theme[inputName].borderColor}` ?? 'none'};
+  border: ${({ theme, inputThemeName }) =>
+    `1px solid ${theme[inputThemeName].borderColor}` ?? 'none'};
   /* font */
   font-family: var(--font-family);
   font-size: ${(props) => props.size};
   font-weight: ${(props) => props.weight};
   /* color */
-  color: ${({ theme, inputName }) => theme[inputName].color};
-  background-color: ${({ theme, inputName }) => theme[inputName].backgroundColor ?? 'transparent'};
+  color: ${({ theme, inputThemeName }) => theme[inputThemeName].color};
+  background-color: ${({ theme, inputThemeName }) =>
+    theme[inputThemeName].backgroundColor ?? 'transparent'};
   /* size */
   height: ${(props) => props.height};
   width: ${(props) => props.width};
@@ -66,7 +68,7 @@ export const StyledInput = styled.input`
 
 // Default Props
 const generalDefaultProps = {
-  inputName: 'input', // or loginInput if it's in login page
+  inputThemeName: 'input', // or loginInput if it's in login page
   borderRadius: BORDER_RADIUS_INPUT,
   weight: 500,
   size: 'clam(0.8rem, 0.76rem + 0.19999999999999996vw, 1rem)',

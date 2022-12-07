@@ -2,10 +2,19 @@
 import { StyledHeading1, StyledHeading2, StyledHeading3, StyledParagraph } from './Text.styled';
 import PropTypes from 'prop-types';
 
-function Text({ type, text, ...props }) {
+function Text({ type, text, textThemeName, ...props }) {
+  /**
+   * @description - This component for text
+   * @param {string} type - type of text: h1 | h2 | h3 | p
+   * @param {string} text - text to display
+   * @param {string} textThemeName - name of theme for text
+   * @param {[string]} props - props for styled component
+   */
   // for general props of all components rendering conditionally
   // for optional props only
   let generalPropsList = {
+    type: type,
+    textThemeName: textThemeName,
     ...props
   };
 
@@ -24,6 +33,7 @@ function Text({ type, text, ...props }) {
 Text.propTypes = {
   type: PropTypes.string,
   text: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  textThemeName: PropTypes.string,
   props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
 };
 
