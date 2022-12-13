@@ -8,6 +8,7 @@ export const StyledForm = styled.form`
   align-items: ${({ ai }) => ai};
   flex-wrap: ${({ wrap }) => wrap};
   width: ${({ width }) => width};
+  grid-area: ${({ gridArea }) => gridArea};
 `;
 
 // Default Props
@@ -17,5 +18,6 @@ StyledForm.defaultProps = {
   jc: 'center',
   ai: 'center',
   wrap: 'nowrap',
-  width: '60%'
+  width: '100%',
+  gridArea: 'unset'
 };

@@ -7,3 +7,5 @@
 # Name
 - Styled + Component
     ex: StyledButton, StyledInput, etc
+# Folder Instruction
+- Containers: for storing simple containers without any specific requiring styles (add background color, color, etc)
