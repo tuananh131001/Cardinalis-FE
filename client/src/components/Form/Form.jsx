@@ -12,7 +12,7 @@ import StyledButton from '@/components/Button/Button.styled';
 import { StyledForm } from './Form.styled';
 import Text from '@/components/Text/Text';
 
-export const Form = ({ type }) => {
+export const Form = ({ type, ...props }) => {
   /**
    * @description - This component for form with validation
    * @param {string} type - type of form: login | register
@@ -40,7 +40,7 @@ export const Form = ({ type }) => {
   const { value: hidePassword, onToggle: togglePassword } = useChange(true);
 
   return (
-    <StyledForm action="" onSubmit={handleSubmit(onSubmitClick)}>
+    <StyledForm action="" onSubmit={handleSubmit(onSubmitClick)} {...props}>
       {type == 'login' ? (
         <>
           <Input
@@ -109,7 +109,7 @@ function ErrorText({ errors }) {
     <Text
       type="p"
       align="left"
-      textThemeName="errorText"
+      textthemename="errorText"
       text={errors ?? <span>&nbsp;&nbsp;</span>}
     />
   );

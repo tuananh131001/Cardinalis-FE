@@ -9,6 +9,7 @@ const StyledGeneralHeading = css`
   text-align: ${(props) => props.align};
   width: 100%;
   padding: ${(props) => props.padding};
+  grid-area: ${(props) => props.gridarea};
 `;
 const StyledHeadingFlex = css`
   display: flex;
@@ -19,27 +20,27 @@ const StyledHeadingFlex = css`
 export const StyledHeading1 = styled.h1`
   ${StyledGeneralHeading}
   ${StyledHeadingFlex}
-  color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? theme.text.color};
+  color: ${({ theme, textthemename }) => theme[textthemename]?.color ?? theme.text.color};
 `;
 
 export const StyledHeading2 = styled.h2`
   ${StyledGeneralHeading}
   ${StyledHeadingFlex}
-  color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? theme.subtext.color};
+  color: ${({ theme, textthemename }) => theme[textthemename]?.color ?? theme.subtext.color};
 `;
 
 export const StyledHeading3 = styled.h3`
   ${StyledGeneralHeading}
-  color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? theme.subtext.color};
+  color: ${({ theme, textthemename }) => theme[textthemename]?.color ?? theme.subtext.color};
 `;
 export const StyledParagraph = styled.p`
   ${StyledGeneralHeading}
   line-height: 1.7em;
-  color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? theme.subtext.color};
+  color: ${({ theme, textthemename }) => theme[textthemename]?.color ?? theme.subtext.color};
 `;
 export const StyledNavLink = styled(Link)`
   ${StyledGeneralHeading}
-  color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? theme.primaryColor};
+  color: ${({ theme, textthemename }) => theme[textthemename]?.color ?? theme.primaryColor};
   text-decoration: none;
   &:hover {
     filter: brightness(110%) contrast(1.7);
@@ -49,7 +50,8 @@ export const StyledNavLink = styled(Link)`
 // default props
 const generalDefaultProps = {
   align: 'center',
-  padding: '0'
+  padding: '0',
+  gridarea: 'unset'
 };
 StyledHeading1.defaultProps = {
   ...generalDefaultProps,

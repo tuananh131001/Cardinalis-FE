@@ -14,10 +14,7 @@ export const StyledPage = styled.div`
 `;
 StyledPage.defaultProps = {
   display: 'grid',
-  gridTemplateAreas: `
-    nav . .
-    form image text
-  `,
+  gridTemplateAreas: 'none',
   padding: '0 1em',
   direction: 'row',
   gap: '1em',

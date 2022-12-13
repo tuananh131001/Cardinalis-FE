@@ -9,19 +9,19 @@ import {
 import PropTypes from 'prop-types';
 import uuid from 'react-uuid';
 
-function Text({ type, text, textThemeName, to, ...props }) {
+function Text({ type, text, textthemename, to, ...props }) {
   /**
    * @description - This component for text
    * @param {string} type - type of text: h1 | h2 | h3 | p
    * @param {string | [string | object]} text - text to display
-   * @param {string} textThemeName - name of theme for text
+   * @param {string} textthemename - name of theme for text
    * @param {string} to - link to navigate
    * @param {[string]} props - props for styled component
    */
   // for general props of all components rendering conditionally
   // for optional props only
   let generalPropsList = {
-    textThemeName: textThemeName,
+    textthemename: textthemename,
     ...props
   };
 
@@ -66,7 +66,7 @@ Text.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.object]))
   ]),
-  textThemeName: PropTypes.string,
+  textthemename: PropTypes.string,
   to: PropTypes.string,
   props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
 };
