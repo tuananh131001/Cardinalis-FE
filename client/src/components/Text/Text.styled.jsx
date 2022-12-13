@@ -21,17 +21,17 @@ export const StyledHeading1 = styled.h1`
 export const StyledHeading2 = styled.h2`
   ${StyledGeneralHeading}
   ${StyledHeadingFlex}
-  color: ${({ theme }) => theme.subtext.color};
+  color: ${({ theme }) => theme.subText.color};
 `;
 
 export const StyledHeading3 = styled.h3`
   ${StyledGeneralHeading}
-  color: ${({ theme }) => theme.subtext.color};
+  color: ${({ theme }) => theme.subText.color};
 `;
 export const StyledParagraph = styled.p`
   ${StyledGeneralHeading}
   line-height: 1.7em;
-  color: ${({ theme }) => theme.subtext.color};
+  color: ${({ theme }) => theme.subText.color};
 `;
 
 // default props
