@@ -17,14 +17,14 @@ export const AuthenText = ({ ...props }) => {
     <VerticalLeftContainer {...props}>
       <Text
         type="h3"
-        textthemename="headingText1"
+        textThemeName="headingText1"
         text="Register to access our service"
         {...additionalTextStyle(isMobile)}
       />
       {!isMobile && (
         <Text
           type="span"
-          textthemename="paragraphText"
+          textThemeName="paragraphText"
           text={[
             'If you already had an account you can',
             { text: ' login here', type: 'link', to: `/${LOGIN_PATH}` }
@@ -39,8 +39,8 @@ export const AuthenText = ({ ...props }) => {
 export const AuthenNav = ({ ...props }) => {
   return (
     <HorizontalBetweenContainer {...props}>
-      <Text type="link" to={`/${LOGIN_PATH}`} text="Register" />
-      <Text type="link" to={`/${REGISTER_PATH}`} text="Sign In" />
+      <Text type="link" to={`/${REGISTER_PATH}`} text="Register" />
+      <Text type="link" to={`/${LOGIN_PATH}`} text="Sign In" />
     </HorizontalBetweenContainer>
   );
 };

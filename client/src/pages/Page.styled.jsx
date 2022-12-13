@@ -11,6 +11,7 @@ export const StyledPage = styled.div`
   grid-template-areas: ${({ gridTemplateAreas }) => gridTemplateAreas};
   /* size */
   padding: ${(props) => props.padding};
+  min-height: ${(props) => props.minHeight};
 `;
 StyledPage.defaultProps = {
   display: 'grid',
@@ -20,5 +21,6 @@ StyledPage.defaultProps = {
   gap: '1em',
   jc: 'center',
   ai: 'center',
-  wrap: 'nowrap'
+  wrap: 'nowrap',
+  minHeight: '100vh'
 };

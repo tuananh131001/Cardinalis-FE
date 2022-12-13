@@ -30,39 +30,22 @@ export const displayErrorMessage = (type, errorType, ...args) => {
   }
 };
 export const chooseInputSchema = (type) => {
-  const phoneRegex =
-    /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
   if (type == 'login') {
     return yup.object().shape({
-      emailInput: yup
+      email: yup
         .string()
         .email(displayErrorMessage('email', 'email'))
         .required(displayErrorMessage('email', 'required')),
-      passwordInput: yup
-        .string()
-        .min(4, displayErrorMessage('password', 'min', 4))
-        .max(20, displayErrorMessage('password', 'max', 20))
-        .required(displayErrorMessage('password', 'required'))
+      password: yup.string().required(displayErrorMessage('password', 'required'))
     });
   } else {
     return yup.object().shape({
-      emailInput: yup
+      email: yup
         .string()
         .email(displayErrorMessage('email', 'email'))
         .required(displayErrorMessage('email', 'required')),
-      phoneInput: yup
-        .string()
-        .matches(phoneRegex, displayErrorMessage('phone', 'matches'))
-        .required(displayErrorMessage('phone', 'required')),
-      passwordInput: yup
-        .string()
-        .min(4, displayErrorMessage('password', 'min', 4))
-        .max(20, displayErrorMessage('password', 'max', 20))
-        .required(displayErrorMessage('password', 'required')),
-      confirmPasswordInput: yup
-        .string()
-        .oneOf([yup.ref('passwordInput'), null], displayErrorMessage('confirmPassword', 'oneOf'))
-        .required(displayErrorMessage('confirmPassword', 'required'))
+      username: yup.string().required(displayErrorMessage('email', 'required')),
+      password: yup.string().required(displayErrorMessage('password', 'required')),
     });
   }
 };

@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 const userApi = axios.create({
-  baseURL: 'http://localhost:5050/user/'
+  baseURL: 'http://localhost:9002'
 });
 
-const registerUser = (user) => userApi.post('register', user).then((res) => res.data);
+const registerUser = (user) => userApi.post('/user/register', user).then((res) => res.data);
 
 const signUp = ({ username, password }) => userApi.post('signIn', { username, password });
 

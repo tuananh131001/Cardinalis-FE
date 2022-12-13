@@ -20,27 +20,27 @@ const StyledHeadingFlex = css`
 export const StyledHeading1 = styled.h1`
   ${StyledGeneralHeading}
   ${StyledHeadingFlex}
-  color: ${({ theme, textthemename }) => theme[textthemename]?.color ?? theme.text.color};
+  color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? theme.text.color};
 `;
 
 export const StyledHeading2 = styled.h2`
   ${StyledGeneralHeading}
   ${StyledHeadingFlex}
-  color: ${({ theme, textthemename }) => theme[textthemename]?.color ?? theme.subtext.color};
+  color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? theme.subtext.color};
 `;
 
 export const StyledHeading3 = styled.h3`
   ${StyledGeneralHeading}
-  color: ${({ theme, textthemename }) => theme[textthemename]?.color ?? theme.subtext.color};
+  color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? theme.subtext.color};
 `;
 export const StyledParagraph = styled.p`
   ${StyledGeneralHeading}
   line-height: 1.7em;
-  color: ${({ theme, textthemename }) => theme[textthemename]?.color ?? theme.subtext.color};
+  color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? theme.subtext.color};
 `;
 export const StyledNavLink = styled(Link)`
   ${StyledGeneralHeading}
-  color: ${({ theme, textthemename }) => theme[textthemename]?.color ?? theme.primaryColor};
+  color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? theme.primaryColor};
   text-decoration: none;
   &:hover {
     filter: brightness(110%) contrast(1.7);

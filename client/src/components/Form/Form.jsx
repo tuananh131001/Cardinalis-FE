@@ -11,6 +11,7 @@ import { useChange } from '@/hooks/useChange';
 import StyledButton from '@/components/Button/Button.styled';
 import { StyledForm } from './Form.styled';
 import Text from '@/components/Text/Text';
+import { useRegister } from '@/hooks/useUser';
 
 export const Form = ({ type, ...props }) => {
   /**
@@ -19,7 +20,7 @@ export const Form = ({ type, ...props }) => {
    * @param {function} onSubmit - function for onSubmit event
    */
   const schema = chooseInputSchema(type);
-
+  const { mutate } = useRegister();
   // register for react hook form know which one needs validation -> pass as attributes inside object
   // formState handle errors from yup
   const {
@@ -35,12 +36,13 @@ export const Form = ({ type, ...props }) => {
   const onSubmitClick = (data) => {
     console.log('sdn');
     console.log(data);
+    mutate(data);
   };
 
   const { value: hidePassword, onToggle: togglePassword } = useChange(true);
 
   return (
-    <StyledForm action="" onSubmit={handleSubmit(onSubmitClick)} {...props}>
+    <StyledForm onSubmit={handleSubmit(onSubmitClick)} {...props}>
       {type == 'login' ? (
         <>
           <Input
@@ -48,19 +50,19 @@ export const Form = ({ type, ...props }) => {
             inputType="textIcon"
             inputThemeName="loginInput"
             placeholder="Enter Email..."
-            {...register('emailInput')}
+            {...register('email')}
           />
-          <ErrorText errors={errors.emailInput?.message} />
+          <ErrorText errors={errors.email?.message} />
           <Input
             type={hidePassword ? 'password' : 'text'}
             inputType="textIcon"
             inputThemeName="loginInput"
             placeholder="Enter Password..."
             onClick={togglePassword}
-            {...register('passwordInput')}>
+            {...register('password')}>
             {hidePassword ? <FaEye /> : <RiEyeCloseFill />}
           </Input>
-          <ErrorText errors={errors.passwordInput?.message} />
+          <ErrorText errors={errors.password?.message} />
         </>
       ) : (
         <>
@@ -69,32 +71,31 @@ export const Form = ({ type, ...props }) => {
             inputType="text"
             inputThemeName="loginInput"
             placeholder="Enter Email..."
-            {...register('emailInput')}
+            {...register('email')}
           />
-          <ErrorText errors={errors.emailInput?.message} />
+          <ErrorText errors={errors.email?.message} />
           <Input
             inputType="text"
             inputThemeName="loginInput"
-            placeholder="Enter Phone Number..."
-            {...register('phoneInput')}
+            placeholder="Enter Username..."
+            {...register('username')}
           />
-          <ErrorText errors={errors.phoneInput?.message} />
+          <ErrorText errors={errors.username?.message} />
           <Input
             type="password"
             inputType="text"
             inputThemeName="loginInput"
             placeholder="Enter Password..."
-            {...register('passwordInput')}
+            {...register('password')}
           />
-          <ErrorText errors={errors.passwordInput?.message} />
+          <ErrorText errors={errors.password?.message} />
           <Input
             type="password"
             inputType="text"
             inputThemeName="loginInput"
             placeholder="Confirm Password"
-            {...register('confirmPasswordInput')}
           />
-          <ErrorText errors={errors.confirmPasswordInput?.message} />
+          <ErrorText errors={errors.confirmpassword?.message} />
         </>
       )}
       <StyledButton type="submit" buttonThemeName="primaryButton">
@@ -109,7 +110,7 @@ function ErrorText({ errors }) {
     <Text
       type="p"
       align="left"
-      textthemename="errorText"
+      textThemeName="errorText"
       text={errors ?? <span>&nbsp;&nbsp;</span>}
     />
   );

@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "jsx": "preserve",
+    "target": "ES6",
     "baseUrl": "./src",
     "paths": {
       "@/*": ["./src/*"]
