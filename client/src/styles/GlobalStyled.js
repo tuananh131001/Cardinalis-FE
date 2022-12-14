@@ -67,6 +67,7 @@ box-sizing:border-box;
 
   --font-family: 'Open Sans';
 
+  --font-size-ssm: clamp(0.64rem, 0.05vw + 0.63rem, 0.67rem);
   --font-size-sm: clamp(0.8rem, 0.17vw + 0.76rem, 0.89rem);
   --font-size-base: clamp(1rem, 0.34vw + 0.91rem, 1.19rem);
   --font-size-md: clamp(1.25rem, 0.61vw + 1.1rem, 1.58rem);

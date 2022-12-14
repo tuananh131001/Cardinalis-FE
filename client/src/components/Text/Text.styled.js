@@ -1,15 +1,14 @@
 import styled, { css } from 'styled-components';
-import { Link } from 'react-router-dom';
 
 // reusable css styling for all headings
 const StyledGeneralHeading = css`
   line-height: 1em;
   font-weight: ${(props) => props.weight};
   font-size: ${(props) => props.size};
-  text-align: ${(props) => props.align};
+  text-align: ${({ txtAlign }) => txtAlign};
   width: 100%;
   padding: ${(props) => props.padding};
-  grid-area: ${(props) => props.gridarea};
+  grid-area: ${(props) => props.gridArea};
 `;
 const StyledHeadingFlex = css`
   display: flex;
@@ -33,26 +32,27 @@ export const StyledHeading3 = styled.h3`
   ${StyledGeneralHeading}
   color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? theme.subtext.color};
 `;
+export const StyledHeading4 = styled.h4`
+  ${StyledGeneralHeading}
+  color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? theme.subtext.color};
+`;
 export const StyledParagraph = styled.p`
   ${StyledGeneralHeading}
   line-height: 1.7em;
   color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? theme.subtext.color};
 `;
-export const StyledNavLink = styled(Link)`
+export const StyledCaption = styled.p`
   ${StyledGeneralHeading}
-  color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? theme.primaryColor};
-  text-decoration: none;
-  &:hover {
-    filter: brightness(110%) contrast(1.7);
-  }
+  color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? theme.subtext.color};
 `;
 
 // default props
 const generalDefaultProps = {
-  align: 'center',
+  txtAlign: 'center',
   padding: '0',
-  gridarea: 'unset'
+  gridArea: 'unset'
 };
+
 StyledHeading1.defaultProps = {
   ...generalDefaultProps,
   weight: 700,
@@ -71,13 +71,21 @@ StyledHeading3.defaultProps = {
   // size: 'clamp(1rem, 0.8rem + 1vw, 2rem)',
   size: 'var(--font-size-xl)'
 };
+StyledHeading4.defaultProps = {
+  ...generalDefaultProps,
+  weight: 600,
+  // size: 'clamp(1rem, 0.8rem + 1vw, 2rem)',
+  size: 'var(--font-size-lg)'
+};
 StyledParagraph.defaultProps = {
   ...generalDefaultProps,
   weight: 400,
   // size: 'clamp(0.8rem, 0.76rem + 0.19999999999999996vw, 1rem)'
   size: 'var(--font-size-base)'
 };
-StyledNavLink.defaultProps = {
+StyledCaption.defaultProps = {
   ...generalDefaultProps,
-  size: 'var(--font-size-base)'
+  weight: 400,
+  // size: 'clamp(0.8rem, 0.76rem + 0.19999999999999996vw, 1rem)'
+  size: 'var(--font-size-sm)'
 };

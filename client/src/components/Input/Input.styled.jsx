@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { BORDER_RADIUS_INPUT } from '@/styles/Constant';
 
 // Reusable CSS
 const StyledGeneralInput = css`
@@ -69,7 +68,7 @@ export const StyledInput = styled.input`
 // Default Props
 const generalDefaultProps = {
   inputThemeName: 'input', // or loginInput if it's in login page
-  borderRadius: BORDER_RADIUS_INPUT,
+  borderRadius: '10px',
   weight: 500,
   size: 'clam(0.8rem, 0.76rem + 0.19999999999999996vw, 1rem)',
   width: '100%'

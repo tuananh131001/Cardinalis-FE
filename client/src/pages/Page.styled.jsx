@@ -8,7 +8,7 @@ export const StyledPage = styled.div`
   justify-content: ${({ jc }) => jc};
   align-items: ${({ ai }) => ai};
   flex-wrap: ${({ wrap }) => wrap};
-  grid-template-areas: ${({ gridTemplateAreas }) => gridTemplateAreas};
+  grid-template: ${({ gridTemplateAreas }) => gridTemplateAreas};
   /* size */
   padding: ${(props) => props.padding};
   min-height: ${(props) => props.minHeight};
@@ -16,9 +16,9 @@ export const StyledPage = styled.div`
 StyledPage.defaultProps = {
   display: 'grid',
   gridTemplateAreas: 'none',
-  padding: '0 1em',
-  direction: 'row',
-  gap: '1em',
+  padding: '5em 6em',
+  direction: 'none',
+  gap: '0em 1em',
   jc: 'center',
   ai: 'center',
   wrap: 'nowrap',

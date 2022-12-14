@@ -2,33 +2,55 @@ import styled from 'styled-components';
 import { css } from 'styled-components';
 
 const generalContainerStyle = css`
+  justify-content: ${(props) => props.jc};
+  align-items: ${(props) => props.ai};
   gap: ${(props) => props.gap};
-  width: ${(props) => props.width};
   grid-area: ${(props) => props.gridArea};
+  align-self: ${({ alignSelf }) => alignSelf};
+  /* size */
+  padding: ${(props) => props.padding};
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
 `;
-
-export const VerticalLeftContainer = styled.div`
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-direction: column;
+export const FlexContainer = styled.div`
   ${generalContainerStyle}
+  display: flex;
+  flex-direction: ${(props) => props.fd};
+  flex-wrap: ${(props) => props.fw};
 `;
-export const HorizontalBetweenContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+export const GridContainer = styled.div`
   ${generalContainerStyle}
+  display: grid;
+  grid-template: ${(props) => props.gridTemplateAreas};
+`;
+export const InlineContainer = styled.div`
+  text-align: ${(props) => props.txtAlign};
+  ${generalContainerStyle}
+  & > * {
+    display: inline;
+  }
 `;
 
 const generalDefaultProps = {
-  gap: '0',
   width: '100%',
-  gridArea: 'unset'
+  height: 'auto',
+  jc: 'center',
+  ai: 'center',
+  gap: '0px',
+  gridArea: 'none',
+  alignSelf: 'unset',
+  padding: '0px'
 };
-VerticalLeftContainer.defaultProps = {
-  ...generalDefaultProps
+FlexContainer.defaultProps = {
+  ...generalDefaultProps,
+  fd: 'row',
+  fw: 'nowrap'
 };
-HorizontalBetweenContainer.defaultProps = {
-  ...generalDefaultProps
+GridContainer.defaultProps = {
+  ...generalDefaultProps,
+  gridTemplateAreas: 'none'
+};
+InlineContainer.defaultProps = {
+  ...generalDefaultProps,
+  txtAlign: 'normal'
 };

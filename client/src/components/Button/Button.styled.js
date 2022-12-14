@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { BORDER_RADIUS_LOGIN_BUTTON } from '@/styles/Constant';
 
 // General reusable buttons styles
 const StyledGeneralButton = css`
@@ -16,9 +15,11 @@ const StyledGeneralButton = css`
   width: ${({ width }) => width};
   padding: ${({ padding }) => padding};
   /* font */
+  font-size: ${({ fontSize }) => fontSize};
   font-weight: ${({ fontWeight }) => fontWeight};
   text-transform: ${({ textTransform }) => textTransform};
-  letter-spacing: 1.2;
+  letter-spacing: 2;
+  line-height: 1.3;
 
   &:hover {
     cursor: pointer;
@@ -40,6 +41,11 @@ export const StyledIconButton = styled.button`
   border: none;
   background-color: transparent;
 `;
+export const StyledLink = styled.button`
+  ${StyledGeneralButton}
+  background-color: transparent;
+  color: ${({ theme, buttonThemeName }) => theme[buttonThemeName]?.color ?? theme.primaryColor};
+`;
 
 // Default Props
 const generalDefaultProps = {
@@ -48,10 +54,11 @@ const generalDefaultProps = {
   jc: 'center',
   ai: 'center',
   wrap: 'nowrap',
-  borderRadius: BORDER_RADIUS_LOGIN_BUTTON,
+  borderRadius: '10px',
   width: '100%',
-  fontWeight: 500,
-  textTransform: 'uppercase'
+  fontWeight: 600,
+  textTransform: 'uppercase',
+  fontSize: 'var(--font-size-sm)'
 };
 StyledButton.defaultProps = {
   ...generalDefaultProps,
@@ -60,6 +67,9 @@ StyledButton.defaultProps = {
 StyledIconButton.defaultProps = {
   ...generalDefaultProps,
   padding: '0.5em'
+};
+StyledLink.defaultProps = {
+  ...generalDefaultProps
 };
 
 export default StyledButton;
