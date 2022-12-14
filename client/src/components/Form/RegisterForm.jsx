@@ -17,7 +17,8 @@ export const RegisterForm = ({ ...props }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
+    reset
   } = useForm({
     // integration btw yup and form to make it work
     resolver: yupResolver(schema)
@@ -25,7 +26,7 @@ export const RegisterForm = ({ ...props }) => {
 
   // submit function
   const onSubmitClick = (data) => {
-    mutate(data);
+    mutate(data, { onSuccess: () => reset() });
   };
 
   return (

@@ -1,11 +1,11 @@
 import { StyledPage } from './Page.styled';
 import useMediaQuery from '@/hooks/useMediaQuery';
-import { MOBILE_QUERY, TABLET_QUERY, DESKTOP_QUERY } from '@/styles/Constant';
+import { MOBILE_QUERY, TABLET_QUERY, DESKTOP_QUERY } from '@/assets/Constant';
 import RegisterText from '@/components/Sections/RegisterSections/RegisterText';
 import AuthenNav from '@/components/Sections/NavSection/AuthenNav';
 import RegisterForm from '@/components/Form/RegisterForm';
 import RegisterImage from '@/components/Sections/RegisterSections/RegisterImage';
-import { SMALL_MOBILE_QUERY } from '@/styles/Constant';
+import { SMALL_MOBILE_QUERY } from '@/assets/Constant';
 
 function Register() {
   const responsiveCondition = {
@@ -18,7 +18,7 @@ function Register() {
     <StyledPage
       gridTemplateAreas={renderPropsResponsive('gridTemplateAreas', responsiveCondition)}
       padding={renderPropsResponsive('padding', responsiveCondition)}>
-      <AuthenNav gridArea="nav" />
+      <AuthenNav gridArea="nav" currentTab="register" />
       <RegisterForm gridArea="form" />
       <RegisterImage gridArea="image" />
       <RegisterText gridArea="text" />

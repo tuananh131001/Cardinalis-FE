@@ -9,6 +9,7 @@ const StyledGeneralHeading = css`
   width: 100%;
   padding: ${(props) => props.padding};
   grid-area: ${(props) => props.gridArea};
+  line-height: 1.1;
 `;
 const StyledHeadingFlex = css`
   display: flex;

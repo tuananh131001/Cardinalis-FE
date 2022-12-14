@@ -1,7 +1,8 @@
 import Image from '@/components/Image/Image';
 import useMediaQuery from '@/hooks/useMediaQuery';
-import { MOBILE_QUERY, TABLET_QUERY, DESKTOP_QUERY } from '@/styles/Constant';
+import { MOBILE_QUERY, TABLET_QUERY, DESKTOP_QUERY } from '@/assets/Constant';
 import PropTypes from 'prop-types';
+import useTheme from '@/hooks/useTheme';
 
 const renderPropsResponsive = (propsName, queries) => {
   switch (propsName) {
@@ -16,6 +17,7 @@ const renderPropsResponsive = (propsName, queries) => {
 };
 
 function RegisterImage({ ...props }) {
+  const [theme] = useTheme();
   const responsiveCondition = {
     mobile: useMediaQuery(MOBILE_QUERY),
     tablet: useMediaQuery(TABLET_QUERY),
@@ -24,6 +26,7 @@ function RegisterImage({ ...props }) {
   return (
     <Image
       {...props}
+      themeName={theme}
       src="./icon.png"
       width={renderPropsResponsive('width', responsiveCondition)}
       alt="Icon Display"
