@@ -6,6 +6,13 @@ import AuthenNav from '@/components/Sections/NavSection/AuthenNav';
 import RegisterForm from '@/components/Form/RegisterForm';
 import RegisterImage from '@/components/Sections/RegisterSections/RegisterImage';
 import { SMALL_MOBILE_QUERY } from '@/assets/Constant';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import { forwardRef, useState } from 'react';
+
+const Alert = forwardRef(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
 
 function Register() {
   const responsiveCondition = {
@@ -13,6 +20,19 @@ function Register() {
     mobile: useMediaQuery(MOBILE_QUERY),
     tablet: useMediaQuery(TABLET_QUERY),
     desktop: useMediaQuery(DESKTOP_QUERY)
+  };
+  const [open, setOpen] = useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
   };
   return (
     <StyledPage
@@ -22,6 +42,11 @@ function Register() {
       <RegisterForm gridArea="form" />
       <RegisterImage gridArea="image" />
       <RegisterText gridArea="text" />
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+          This is a success message!
+        </Alert>
+      </Snackbar>
     </StyledPage>
   );
 }
