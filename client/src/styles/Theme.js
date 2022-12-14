@@ -35,6 +35,7 @@ const lightTheme = {
   },
   loginInput: {
     color: 'var(--subtext_color_light)',
+    backgroundColor: 'var(--input_background_light)',
     borderColor: 'var(--input_color_border)'
   },
   card: {
@@ -81,6 +82,7 @@ const darkTheme = {
   },
   loginInput: {
     color: 'var(--subtext_color_dark)',
+    backgroundColor: 'var(--input_background_dark)',
     borderColor: 'var(--input_color_border_dark)'
   },
   card: {

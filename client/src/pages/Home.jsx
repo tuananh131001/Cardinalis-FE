@@ -5,7 +5,9 @@ import Button from '@/components/Button/Button';
 function Home({ themeToggler }) {
   return (
     <div>
-      <Button onClick={themeToggler} buttonThemeName="secondaryButton">Click</Button>
+      <Button onClick={themeToggler} buttonThemeName="secondaryButton">
+        Click
+      </Button>
     </div>
   );
 }

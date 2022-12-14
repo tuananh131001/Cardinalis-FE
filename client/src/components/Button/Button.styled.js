@@ -10,10 +10,12 @@ const StyledGeneralButton = css`
   justify-content: ${({ jc }) => jc};
   align-items: ${({ ai }) => ai};
   flex-wrap: ${({ wrap }) => wrap};
-  /* border */
+  grid-area: ${({ gridArea }) => gridArea};
+  /* border + size */
   border: none;
   border-radius: ${({ borderRadius }) => borderRadius};
   width: ${({ width }) => width};
+  height: ${({ height }) => height};
   padding: ${({ padding }) => padding};
   /* font */
   font-size: ${({ fontSize }) => fontSize};
@@ -21,7 +23,6 @@ const StyledGeneralButton = css`
   text-transform: ${({ textTransform }) => textTransform};
   letter-spacing: 2;
   line-height: 1.3;
-
   &:hover {
     cursor: pointer;
     opacity: 0.7;
@@ -41,12 +42,20 @@ export const StyledIconButton = styled.button`
   ${StyledGeneralButton}
   border: none;
   background-color: transparent;
+  &:hover {
+    opacity: 1;
+    filter: brightness(140%) contrast(110%);
+  }
 `;
 export const StyledLink = styled.button`
   ${StyledGeneralButton}
   background-color: transparent;
   color: ${({ theme, buttonThemeName }) => theme[buttonThemeName]?.color ?? theme.primaryColor};
   transform: ${({ transform }) => transform};
+  &:hover {
+    opacity: 1;
+    filter: brightness(140%) contrast(110%);
+  }
   ${({ pseudoAfter }) =>
     pseudoAfter == 1 &&
     // có thể có after block kiểu style khác nên pseudoAfter == 1
@@ -79,9 +88,11 @@ const generalDefaultProps = {
   wrap: 'nowrap',
   borderRadius: '10px',
   width: '100%',
+  height: "auto",
   fontWeight: 600,
   textTransform: 'uppercase',
-  fontSize: 'var(--font-size-sm)'
+  fontSize: 'var(--font-size-sm)',
+  gridArea: 'unset'
 };
 StyledButton.defaultProps = {
   ...generalDefaultProps,

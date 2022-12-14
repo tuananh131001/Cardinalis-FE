@@ -9,12 +9,15 @@ import { SMALL_MOBILE_QUERY } from '@/assets/Constant';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import { forwardRef, useState } from 'react';
+import { BsFillMoonStarsFill, BsFillSunFill } from 'react-icons/bs';
+import Button from '@/components/Button/Button';
+import useTheme from '@/hooks/useTheme';
 
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-function Register() {
+function Register({theme, themeToggler}) {
   const responsiveCondition = {
     smallMobile: useMediaQuery(SMALL_MOBILE_QUERY),
     mobile: useMediaQuery(MOBILE_QUERY),
@@ -40,8 +43,12 @@ function Register() {
       padding={renderPropsResponsive('padding', responsiveCondition)}>
       <AuthenNav gridArea="nav" currentTab="register" />
       <RegisterForm gridArea="form" />
-      <RegisterImage gridArea="image" />
+      <RegisterImage gridArea="image" theme={theme}/>
       <RegisterText gridArea="text" />
+      <Button gridArea="theme" buttonType="link" fontSize="var(--font-size-lg)" jc="flex-end"
+        onClick={themeToggler}>
+        {theme == "lightTheme" ? <BsFillSunFill /> : <BsFillMoonStarsFill />}
+      </Button>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
           This is a success message!
@@ -56,6 +63,7 @@ const renderPropsResponsive = (propsName, queries) => {
     case 'gridTemplateAreas':
       if (queries.mobile)
         return `
+      "theme"
       "text"
       "image"
       "nav"
@@ -63,13 +71,13 @@ const renderPropsResponsive = (propsName, queries) => {
       `;
       else if (queries.desktop)
         return `
-      "nav . ." 0.1fr
+      "nav . theme" 0.1fr
       "form image text" 1.5fr /
       1fr 1fr 1fr
       `;
       else
         return `
-      "nav ." 0.1fr
+      "nav theme" 0.1fr
       "form image" 1fr
       "form text" 1fr /
       1fr 1fr

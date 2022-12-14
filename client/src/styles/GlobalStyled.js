@@ -51,7 +51,7 @@ box-sizing:border-box;
   --error_text_dark: #f98a68;
 
   /* input color */
-  --input_background_dark:#EDEDEE;
+  --input_background_dark: #3A3841;
   --input_color_border_dark: #DC6C14;
   
   /* button */

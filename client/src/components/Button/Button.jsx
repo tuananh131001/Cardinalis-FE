@@ -1,11 +1,11 @@
 import React from 'react';
 import StyledButton from '@/components/Button/Button.styled';
 import PropTypes from 'prop-types';
-import { StyledIconButton, StyledLink } from './Button.styled';
+import { StyledLink } from './Button.styled';
 
 function Button({ buttonType = 'primary', children, onClick, ...props }) {
   /**
-   * @param {string} buttonType - type of button: primary | icon | link
+   * @param {string} buttonType - type of button: primary | link
    * @param {string} buttonThemeName - name of theme for button: "primaryButton" | "secondaryButton" | "tertiaryButton"
    */
   let generalPropsList = {
@@ -15,8 +15,6 @@ function Button({ buttonType = 'primary', children, onClick, ...props }) {
   switch (buttonType) {
     case 'primary':
       return <StyledButton {...generalPropsList}>{children}</StyledButton>;
-    case 'icon':
-      return <StyledIconButton {...generalPropsList}>{children}</StyledIconButton>;
     case 'link':
       return <StyledLink {...generalPropsList}>{children}</StyledLink>;
   }

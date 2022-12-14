@@ -22,7 +22,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home themeToggler={themeToggler} />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route
+            path="/register"
+            element={<Register theme={theme} themeToggler={themeToggler} />}
+          />
           <Route path={`/${FORTGOT_PASSWORD_PATH}`} element={<ForgotPassword />} />
           <Route path="*" element={<StyledHeading1>Page Not Exist</StyledHeading1>} />
         </Routes>

@@ -20,13 +20,12 @@ const renderPropsResponsive = (propsName, queries) => {
     case 'buttonSize':
       if (queries.mobile) return 'var(--font-size-base)';
       else return 'var(--font-size-sm)';
-
   }
 };
 const displayCurrentTab = (tabCompare, currentTab) => {
   return {
     pseudoAfterWidth: tabCompare == currentTab ? '100%' : '0',
-    transform: tabCompare == currentTab ? 'scale(1.03)' : 'scale(1)',
+    transform: tabCompare == currentTab ? 'scale(1.03)' : 'scale(1)'
   };
 };
 function AuthenNav({ currentTab = 'register', ...props }) {
