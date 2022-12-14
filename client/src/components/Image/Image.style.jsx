@@ -6,11 +6,15 @@ export const StyledImage = styled.img`
   border-radius: ${(props) => props.borderRadius};
   object-fit: ${(props) => props.objectFit};
   grid-area: ${(props) => props.gridArea};
+  align-self: ${({ alignSelf }) => alignSelf};
+  justify-self: ${({ justifySelf }) => justifySelf};
 `;
 StyledImage.defaultProps = {
   width: '100%',
   height: 'auto',
   borderRadius: '0',
   objectFit: 'cover',
-  gridArea: 'unset'
+  gridArea: 'unset',
+  alignSelf: 'center',
+  justifySelf: 'center'
 };
