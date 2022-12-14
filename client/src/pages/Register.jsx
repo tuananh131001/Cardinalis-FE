@@ -11,13 +11,13 @@ import MuiAlert from '@mui/material/Alert';
 import { forwardRef, useState } from 'react';
 import { BsFillMoonStarsFill, BsFillSunFill } from 'react-icons/bs';
 import Button from '@/components/Button/Button';
-import useTheme from '@/hooks/useTheme';
+import PropTypes from 'prop-types';
 
 const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-function Register({theme, themeToggler}) {
+function Register({ theme, themeToggler }) {
   const responsiveCondition = {
     smallMobile: useMediaQuery(SMALL_MOBILE_QUERY),
     mobile: useMediaQuery(MOBILE_QUERY),
@@ -26,9 +26,9 @@ function Register({theme, themeToggler}) {
   };
   const [open, setOpen] = useState(false);
 
-  const handleClick = () => {
-    setOpen(true);
-  };
+  // const handleClick = () => {
+  //   setOpen(true);
+  // };
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -43,11 +43,15 @@ function Register({theme, themeToggler}) {
       padding={renderPropsResponsive('padding', responsiveCondition)}>
       <AuthenNav gridArea="nav" currentTab="register" />
       <RegisterForm gridArea="form" />
-      <RegisterImage gridArea="image" theme={theme}/>
+      <RegisterImage gridArea="image" theme={theme} />
       <RegisterText gridArea="text" />
-      <Button gridArea="theme" buttonType="link" fontSize="var(--font-size-lg)" jc="flex-end"
+      <Button
+        gridArea="theme"
+        buttonType="link"
+        fontSize="var(--font-size-lg)"
+        jc="flex-end"
         onClick={themeToggler}>
-        {theme == "lightTheme" ? <BsFillSunFill /> : <BsFillMoonStarsFill />}
+        {theme == 'lightTheme' ? <BsFillSunFill /> : <BsFillMoonStarsFill />}
       </Button>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
@@ -88,6 +92,10 @@ const renderPropsResponsive = (propsName, queries) => {
       else if (queries.desktop) return '5em 5.3em';
       else return '2em 3em';
   }
+};
+Register.propTypes = {
+  theme: PropTypes.string,
+  themeToggler: PropTypes.func
 };
 
 export default Register;
