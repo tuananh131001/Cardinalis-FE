@@ -2,12 +2,12 @@
 // https://ishadeed.com/article/learn-css-centering/
 import Text from '@/components/Text/Text';
 import useMediaQuery from '@/hooks/useMediaQuery';
-import { MOBILE_QUERY } from '@/styles/Constant';
+import { MOBILE_QUERY } from '@/assets/Constant';
 import { FlexContainer } from '@/components/Container/Container.styled';
-import { LOGIN_PATH } from '@/styles/Constant';
+import { LOGIN_PATH } from '@/assets/Constant';
 import PropTypes from 'prop-types';
-import { DESKTOP_QUERY } from '@/styles/Constant';
-import { TABLET_QUERY } from '@/styles/Constant';
+import { DESKTOP_QUERY } from '@/assets/Constant';
+import { TABLET_QUERY } from '@/assets/Constant';
 import { InlineContainer } from '@/components/Container/Container.styled';
 import Button from '@/components/Button/Button';
 import { useNavigate } from 'react-router-dom';
@@ -33,6 +33,7 @@ function RegisterText({ ...props }) {
     <FlexContainer
       fd="column"
       alignSelf={renderPropsResponsive('alignSelf', responsiveCondition)}
+      gap="0.7em"
       {...props}>
       <Text
         type={responsiveCondition.mobile ? 'h3' : 'h4'}

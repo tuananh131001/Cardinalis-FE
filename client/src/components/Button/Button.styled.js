@@ -1,3 +1,4 @@
+// https://stackoverflow.com/questions/66372725/conditionally-show-after-pseudo-element-react-and-styled-components
 import styled, { css } from 'styled-components';
 
 // General reusable buttons styles
@@ -45,6 +46,28 @@ export const StyledLink = styled.button`
   ${StyledGeneralButton}
   background-color: transparent;
   color: ${({ theme, buttonThemeName }) => theme[buttonThemeName]?.color ?? theme.primaryColor};
+  transform: ${({ transform }) => transform};
+  ${({ pseudoAfter }) =>
+    pseudoAfter == 1 &&
+    // có thể có after block kiểu style khác nên pseudoAfter == 1
+    css`
+      position: relative;
+      &:after {
+        content: '';
+        display: block;
+        width: ${({ pseudoAfterWidth }) => pseudoAfterWidth};
+        height: 3px;
+        border-radius: 3px;
+        background: ${({ theme, buttonThemeName }) =>
+          theme[buttonThemeName]?.color ?? theme.primaryColor};
+        transition: width 0.3s;
+        position: absolute;
+        bottom: -7px;
+      }
+      &:hover:after {
+        width: 105%;
+      }
+    `}
 `;
 
 // Default Props
@@ -69,7 +92,9 @@ StyledIconButton.defaultProps = {
   padding: '0.5em'
 };
 StyledLink.defaultProps = {
-  ...generalDefaultProps
+  ...generalDefaultProps,
+  pseudoAfterWidth: '0',
+  transform: 'translateY(0)'
 };
 
 export default StyledButton;

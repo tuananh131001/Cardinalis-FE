@@ -7,7 +7,7 @@ import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '@/styles/Theme';
 import { StyledHeading1 } from '@/components/Text/Text.styled';
 import Register from '@/pages/Register';
-import { FORTGOT_PASSWORD_PATH } from '@/styles/Constant';
+import { FORTGOT_PASSWORD_PATH } from '@/assets/Constant';
 import ForgotPassword from '@/pages/ForgotPassword';
 // import Text from './components/Text/Text';
 
