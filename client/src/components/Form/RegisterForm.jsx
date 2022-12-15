@@ -10,9 +10,12 @@ import { StyledForm } from './Form.styled';
 import { useRegister } from '@/hooks/useUser';
 import { ErrorText } from '@/components/Text/ErrorText';
 import CustomizedSnackbars from '@/components/Snackbar/Snackbar';
+import { displayRequestError } from '@/helpers/DisplayRequestError';
+import { useNavigate } from 'react-router-dom';
 
 export const RegisterForm = ({ ...props }) => {
   const schema = chooseInputSchema('register');
+  const navigate = useNavigate();
 
   const {
     register,
@@ -22,12 +25,15 @@ export const RegisterForm = ({ ...props }) => {
   } = useForm({
     resolver: yupResolver(schema)
   });
-  const { mutate, isError } = useRegister(reset);
+  const { mutate, isError, error, isSuccess } = useRegister(reset);
 
   // submit function
   const onSubmitClick = (data) => {
     delete data.confirmPassword;
     mutate(data);
+    if (isSuccess) {
+      navigate('/login', { replace: true });
+    }
   };
 
   return (
@@ -66,7 +72,8 @@ export const RegisterForm = ({ ...props }) => {
       <StyledButton type="submit" buttonThemeName="primaryButton">
         Submit
       </StyledButton>
-      {isError && <CustomizedSnackbars type="error" message="Something went wrong" />}
+      {isError && <CustomizedSnackbars type="error" message={displayRequestError(error)} />}
+      {isSuccess && <CustomizedSnackbars type="success" message="Register Success" />}
     </StyledForm>
   );
 };
