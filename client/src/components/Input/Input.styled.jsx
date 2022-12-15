@@ -1,18 +1,22 @@
 import styled, { css } from 'styled-components';
-import { BORDER_RADIUS_SECONDARY } from '@/styles/Constant';
 
 // Reusable CSS
 const StyledGeneralInput = css`
   /* border */
   border-radius: ${(props) => props.borderRadius};
-  border: none;
+  border: ${({ theme, inputThemeName }) =>
+    `1px solid ${theme[inputThemeName].borderColor}` ?? 'none'};
   /* font */
   font-family: var(--font-family);
   font-size: ${(props) => props.size};
   font-weight: ${(props) => props.weight};
   /* color */
-  color: ${({ theme }) => theme.input.color};
-  background-color: ${({ theme }) => theme.input.backgroundColor};
+  color: ${({ theme, inputThemeName }) => theme[inputThemeName].color};
+  background-color: ${({ theme, inputThemeName }) =>
+    theme[inputThemeName].backgroundColor ?? 'transparent'};
+  /* size */
+  height: ${(props) => props.height};
+  width: ${(props) => props.width};
 
   /* placeholder */
   &::placeholder {
@@ -31,6 +35,23 @@ const StyledGeneralInput = css`
 `;
 
 // Styled Components
+// Input that has icon
+export const StyledInputContainer = styled.div`
+  display: flex;
+  align-items: ${(props) => props.ai};
+  justify-content: ${(props) => props.jc};
+  padding: ${(props) => props.padding};
+  width: ${(props) => props.width};
+  ${StyledGeneralInput}
+`;
+export const StyledInputIcon = styled.input`
+  ${StyledGeneralInput}
+  border: none;
+  background-color: inherit;
+  outline: none;
+  flex: 1;
+`;
+// Textarea input
 export const StyledTextArea = styled.textarea`
   ${StyledGeneralInput}
   resize: none;
@@ -38,25 +59,34 @@ export const StyledTextArea = styled.textarea`
   line-height: 1em;
   padding: ${(props) => props.padding};
 `;
+// Normal input
 export const StyledInput = styled.input`
   ${StyledGeneralInput}
   padding: ${(props) => props.padding};
-
-  /* &:focus {
-    outline: ${({ theme }) => theme.input.outlineColor};
-  } */
 `;
 
 // Default Props
-StyledTextArea.defaultProps = {
+const generalDefaultProps = {
+  inputThemeName: 'input', // or loginInput if it's in login page
+  borderRadius: '10px',
   weight: 500,
-  size: 'clamp(0.8rem, 0.76rem + 0.19999999999999996vw, 1rem)',
-  borderRadius: BORDER_RADIUS_SECONDARY,
+  size: 'clam(0.8rem, 0.76rem + 0.19999999999999996vw, 1rem)',
+  width: '100%'
+};
+StyledInputContainer.defaultProps = {
+  ...generalDefaultProps,
+  padding: '0.7em 0.8em',
+  height: '3.75em',
+  ai: 'center',
+  jc: 'space-between',
+  width: '100%'
+};
+StyledTextArea.defaultProps = {
+  ...generalDefaultProps,
   padding: '0.9em 0.8em 2em'
 };
 StyledInput.defaultProps = {
-  weight: 500,
-  size: 'clamp(0.8rem, 0.76rem + 0.19999999999999996vw, 1rem)',
-  borderRadius: BORDER_RADIUS_SECONDARY,
-  padding: '0.7em 0.8em'
+  ...generalDefaultProps,
+  padding: '0.7em 0.8em',
+  height: '3.75em'
 };

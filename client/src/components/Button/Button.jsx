@@ -1,23 +1,30 @@
 import React from 'react';
-import ButtonStyled from '@/components/Button/Button.styled';
+import StyledButton from '@/components/Button/Button.styled';
 import PropTypes from 'prop-types';
+import { StyledLink } from './Button.styled';
 
-function Button({ direction, gap, jc, ai, wrap, children, onClick }) {
-  return (
-    <ButtonStyled onClick={onClick} gap={gap} jc={jc} ai={ai} wrap={wrap} direction={direction}>
-      {children}
-    </ButtonStyled>
-  );
+function Button({ buttonType = 'primary', children, onClick, ...props }) {
+  /**
+   * @param {string} buttonType - type of button: primary | link
+   * @param {string} buttonThemeName - name of theme for button: "primaryButton" | "secondaryButton" | "tertiaryButton"
+   */
+  let generalPropsList = {
+    onClick: onClick,
+    ...props
+  };
+  switch (buttonType) {
+    case 'primary':
+      return <StyledButton {...generalPropsList}>{children}</StyledButton>;
+    case 'link':
+      return <StyledLink {...generalPropsList}>{children}</StyledLink>;
+  }
 }
 
 Button.propTypes = {
-  direction: PropTypes.string,
-  gap: PropTypes.string,
-  jc: PropTypes.string,
-  ai: PropTypes.string,
-  wrap: PropTypes.string,
+  buttonType: PropTypes.string,
   children: PropTypes.node,
-  onClick: PropTypes.any
+  onClick: PropTypes.any,
+  props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
 };
 
 export default Button;

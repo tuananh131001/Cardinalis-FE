@@ -1,14 +1,21 @@
 // ref: https://stackoverflow.com/questions/57945969/conditional-rendering-of-components-with-same-props-in-reactjs
-import { StyledHeading1, StyledHeading2, StyledHeading3, StyledParagraph } from './Text.styled';
+import {
+  StyledCaption,
+  StyledHeading1,
+  StyledHeading2,
+  StyledHeading3,
+  StyledHeading4,
+  StyledParagraph
+} from './Text.styled';
 import PropTypes from 'prop-types';
 
 function Text({ type, text, ...props }) {
   // for general props of all components rendering conditionally
   // for optional props only
-  let generalPropsList = {
-    ...props
-  };
-
+  // let generalPropsList = {
+  //   ...props
+  // };
+  const generalPropsList = Object.assign({}, props);
   switch (type) {
     case 'h1':
       return <StyledHeading1 {...generalPropsList}>{text}</StyledHeading1>;
@@ -16,15 +23,23 @@ function Text({ type, text, ...props }) {
       return <StyledHeading2 {...generalPropsList}>{text}</StyledHeading2>;
     case 'h3':
       return <StyledHeading3 {...generalPropsList}>{text}</StyledHeading3>;
+    case 'h4':
+      return <StyledHeading4 {...generalPropsList}>{text}</StyledHeading4>;
     case 'p':
       return <StyledParagraph {...generalPropsList}>{text}</StyledParagraph>;
+    case 'caption':
+      return <StyledCaption {...generalPropsList}>{text}</StyledCaption>;
   }
 }
 
 Text.propTypes = {
   type: PropTypes.string,
-  text: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-  props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
+  text: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.object]))
+  ]),
+  to: PropTypes.string
 };
 
 export default Text;
