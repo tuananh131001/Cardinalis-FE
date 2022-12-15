@@ -26,7 +26,9 @@ export const RegisterForm = ({ ...props }) => {
 
   // submit function
   const onSubmitClick = (data) => {
-    mutate(data, { onSuccess: () => reset() });
+    // destructing: remove confirmPassword from data
+    const {confirmPassword, ...newData} = data;
+    mutate(newData, { onSuccess: () => reset() });
   };
 
   return (
@@ -59,8 +61,9 @@ export const RegisterForm = ({ ...props }) => {
         inputType="text"
         inputThemeName="loginInput"
         placeholder="Confirm Password"
+        {...register('confirmPassword')}
       />
-      <ErrorText errors={errors.confirmpassword?.message} />
+      <ErrorText errors={errors.confirmPassword?.message} />
       <StyledButton type="submit" buttonThemeName="primaryButton">
         Submit
       </StyledButton>

@@ -46,6 +46,7 @@ export const chooseInputSchema = (type) => {
         .required(displayErrorMessage('email', 'required')),
       username: yup.string().required(displayErrorMessage('email', 'required')),
       password: yup.string().required(displayErrorMessage('password', 'required')),
+      confirmPassword: yup.string().oneOf([yup.ref('password'), null], displayErrorMessage('confirmPassword', 'oneOf'))
     });
   }
 };
