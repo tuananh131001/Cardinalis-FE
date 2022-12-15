@@ -7,6 +7,7 @@ export function ErrorText({ errors }) {
       type="caption"
       txtAlign="left"
       textThemeName="errorText"
+      padding="0 0 0.7em 1em"
       text={errors ?? <span>&nbsp;&nbsp;</span>}
     />
   );

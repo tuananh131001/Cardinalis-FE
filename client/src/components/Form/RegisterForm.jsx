@@ -9,10 +9,10 @@ import StyledButton from '@/components/Button/Button.styled';
 import { StyledForm } from './Form.styled';
 import { useRegister } from '@/hooks/useUser';
 import { ErrorText } from '@/components/Text/ErrorText';
+import CustomizedSnackbars from '@/components/Snackbar/Snackbar';
 
 export const RegisterForm = ({ ...props }) => {
   const schema = chooseInputSchema('register');
-  const { mutate } = useRegister();
 
   const {
     register,
@@ -22,11 +22,12 @@ export const RegisterForm = ({ ...props }) => {
   } = useForm({
     resolver: yupResolver(schema)
   });
+  const { mutate, isError } = useRegister(reset);
 
   // submit function
   const onSubmitClick = (data) => {
     delete data.confirmPassword;
-    mutate(data, { onSuccess: () => reset() });
+    mutate(data);
   };
 
   return (
@@ -65,6 +66,7 @@ export const RegisterForm = ({ ...props }) => {
       <StyledButton type="submit" buttonThemeName="primaryButton">
         Submit
       </StyledButton>
+      {isError && <CustomizedSnackbars type="error" message="Something went wrong" />}
     </StyledForm>
   );
 };

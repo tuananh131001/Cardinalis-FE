@@ -88,7 +88,7 @@ const generalDefaultProps = {
   wrap: 'nowrap',
   borderRadius: '10px',
   width: '100%',
-  height: "auto",
+  height: 'auto',
   fontWeight: 600,
   textTransform: 'uppercase',
   fontSize: 'var(--font-size-sm)',
@@ -105,7 +105,8 @@ StyledIconButton.defaultProps = {
 StyledLink.defaultProps = {
   ...generalDefaultProps,
   pseudoAfterWidth: '0',
-  transform: 'translateY(0)'
+  transform: 'translateY(0)',
+  padding: '0'
 };
 
 export default StyledButton;

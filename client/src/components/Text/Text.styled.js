@@ -88,5 +88,5 @@ StyledCaption.defaultProps = {
   ...generalDefaultProps,
   weight: 400,
   // size: 'clamp(0.8rem, 0.76rem + 0.19999999999999996vw, 1rem)'
-  size: 'var(--font-size-sm)'
+  size: 'var(--font-size-ssm)'
 };

@@ -6,16 +6,8 @@ import AuthenNav from '@/components/Sections/NavSection/AuthenNav';
 import RegisterForm from '@/components/Form/RegisterForm';
 import RegisterImage from '@/components/Sections/RegisterSections/RegisterImage';
 import { SMALL_MOBILE_QUERY } from '@/assets/Constant';
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
-import { forwardRef, useState } from 'react';
-import { BsFillMoonStarsFill, BsFillSunFill } from 'react-icons/bs';
-import Button from '@/components/Button/Button';
 import PropTypes from 'prop-types';
-
-const Alert = forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
+import AuthenSwitchTheme from '@/components/Sections/NavSection/AuthenSwitchTheme';
 
 function Register({ theme, themeToggler }) {
   const responsiveCondition = {
@@ -23,19 +15,6 @@ function Register({ theme, themeToggler }) {
     mobile: useMediaQuery(MOBILE_QUERY),
     tablet: useMediaQuery(TABLET_QUERY),
     desktop: useMediaQuery(DESKTOP_QUERY)
-  };
-  const [open, setOpen] = useState(false);
-
-  // const handleClick = () => {
-  //   setOpen(true);
-  // };
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-
-    setOpen(false);
   };
   return (
     <StyledPage
@@ -45,19 +24,7 @@ function Register({ theme, themeToggler }) {
       <RegisterForm gridArea="form" />
       <RegisterImage gridArea="image" theme={theme} />
       <RegisterText gridArea="text" />
-      <Button
-        gridArea="theme"
-        buttonType="link"
-        fontSize="var(--font-size-lg)"
-        jc="flex-end"
-        onClick={themeToggler}>
-        {theme == 'lightTheme' ? <BsFillSunFill /> : <BsFillMoonStarsFill />}
-      </Button>
-      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-          This is a success message!
-        </Alert>
-      </Snackbar>
+      <AuthenSwitchTheme gridArea="theme" theme={theme} themeToggler={themeToggler} />
     </StyledPage>
   );
 }
