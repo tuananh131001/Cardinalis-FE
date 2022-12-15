@@ -32,10 +32,7 @@ export const displayErrorMessage = (type, errorType, ...args) => {
 export const chooseInputSchema = (type) => {
   if (type == 'login') {
     return yup.object().shape({
-      email: yup
-        .string()
-        .email(displayErrorMessage('email', 'email'))
-        .required(displayErrorMessage('email', 'required')),
+      username: yup.string().required(displayErrorMessage('email', 'required')),
       password: yup.string().required(displayErrorMessage('password', 'required'))
     });
   } else {
