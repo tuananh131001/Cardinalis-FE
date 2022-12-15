@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { registerUser, signUp, updateProfile } from '@/api/User';
+import { registerUser, signIn, updateProfile } from '@/api/User';
 
 const useRegister = () =>
   useMutation({
@@ -8,11 +8,15 @@ const useRegister = () =>
     onError: (error, data) => console.log(error, data)
   });
 
-const useSignUp = () =>
+const useSignIn = (reset) =>
   useMutation({
-    mutationFn: (user) => signUp(user),
-    onSuccess: (data) => console.log(data),
-    onError: (error) => console.log(error)
+    mutationFn: (user) => signIn(user),
+    onSuccess: () => {
+      reset();
+    },
+    onError: (error) => {
+      console.log(error);
+    }
   });
 
 const useUpdateProfile = () => {
@@ -25,4 +29,4 @@ const useUpdateProfile = () => {
   });
 };
 
-export { useSignUp, useRegister, useUpdateProfile };
+export { useSignIn, useRegister, useUpdateProfile };

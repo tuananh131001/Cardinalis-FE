@@ -20,15 +20,13 @@ export const RegisterForm = ({ ...props }) => {
     formState: { errors },
     reset
   } = useForm({
-    // integration btw yup and form to make it work
     resolver: yupResolver(schema)
   });
 
   // submit function
   const onSubmitClick = (data) => {
-    // destructing: remove confirmPassword from data
-    const { confirmPassword, ...newData } = data;
-    mutate(newData, { onSuccess: () => reset() });
+    delete data.confirmPassword;
+    mutate(data, { onSuccess: () => reset() });
   };
 
   return (
