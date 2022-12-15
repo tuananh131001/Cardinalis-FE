@@ -8,6 +8,7 @@ function Home({ themeToggler }) {
       <Button onClick={themeToggler} buttonThemeName="secondaryButton">
         Click
       </Button>
+      <h1>HOME NE </h1>
     </div>
   );
 }
