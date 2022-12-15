@@ -5,7 +5,7 @@ const useRegister = () =>
   useMutation({
     mutationFn: (user) => registerUser(user),
     onSuccess: (data) => console.log(data),
-    onError: (error) => console.log(error)
+    onError: (error, data) => console.log(error, data)
   });
 
 const useSignUp = () =>

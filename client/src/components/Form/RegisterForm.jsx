@@ -27,7 +27,7 @@ export const RegisterForm = ({ ...props }) => {
   // submit function
   const onSubmitClick = (data) => {
     // destructing: remove confirmPassword from data
-    const {confirmPassword, ...newData} = data;
+    const { confirmPassword, ...newData } = data;
     mutate(newData, { onSuccess: () => reset() });
   };
 
