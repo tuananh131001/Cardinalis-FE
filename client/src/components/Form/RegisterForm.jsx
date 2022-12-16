@@ -10,7 +10,6 @@ import { StyledForm } from './Form.styled';
 import { useRegister } from '@/hooks/useUser';
 import { ErrorText } from '@/components/Text/ErrorText';
 import CustomizedSnackbars from '@/components/Snackbar/Snackbar';
-import { displayRequestError } from '@/helpers/DisplayRequestError';
 import { useNavigate } from 'react-router-dom';
 
 export const RegisterForm = ({ ...props }) => {
