@@ -25,7 +25,7 @@ export const RegisterForm = ({ ...props }) => {
   } = useForm({
     resolver: yupResolver(schema)
   });
-  const { mutate, isError, error, isSuccess } = useRegister(reset);
+  const { mutate, isError, isSuccess } = useRegister(reset);
 
   // submit function
   const onSubmitClick = (data) => {
@@ -72,8 +72,7 @@ export const RegisterForm = ({ ...props }) => {
       <StyledButton type="submit" buttonThemeName="primaryButton">
         Submit
       </StyledButton>
-      {isError && <CustomizedSnackbars type="error" message={displayRequestError(error)} />}
-      {isSuccess && <CustomizedSnackbars type="success" message="Register Success" />}
+      {isError && <CustomizedSnackbars type="error" message="Something went wrong" />}
     </StyledForm>
   );
 };
