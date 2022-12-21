@@ -31,12 +31,14 @@ function LoginForm({ ...props }) {
     resolver: yupResolver(schema)
   });
   const { value: hidePassword, onToggle: togglePassword } = useChange(true);
-  const { mutate, isError } = useSignIn(reset);
+  const { mutate, isError, isSuccess } = useSignIn(reset);
 
   // submit function
   const onSubmitClick = (data) => {
     mutate(data);
-    navigate('/', { replace: true });
+    if (isSuccess) {
+      navigate('/', { replace: true });
+    }
   };
 
   return (
