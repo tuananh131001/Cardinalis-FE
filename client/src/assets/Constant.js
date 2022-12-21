@@ -4,5 +4,5 @@ export const TABLET_QUERY = '(min-width: 766px)';
 export const DESKTOP_QUERY = '(min-width: 1040px)';
 
 export const FORGOT_PASSWORD_PATH = 'forgot-password';
-export const LOGIN_PATH = 'login';
+export const LOGIN_PATH = '';
 export const REGISTER_PATH = 'register';
