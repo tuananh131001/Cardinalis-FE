@@ -70,7 +70,7 @@ const generalDefaultProps = {
   inputThemeName: 'input', // or loginInput if it's in login page
   borderRadius: '10px',
   weight: 500,
-  size: 'clam(0.8rem, 0.76rem + 0.19999999999999996vw, 1rem)',
+  size: 'var(--font-size-sm)',
   width: '100%'
 };
 StyledInputContainer.defaultProps = {

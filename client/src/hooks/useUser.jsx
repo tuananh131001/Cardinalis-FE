@@ -1,10 +1,13 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { registerUser, signIn, updateProfile } from '@/api/User';
 
-const useRegister = () =>
+const useRegister = (reset) =>
   useMutation({
     mutationFn: (user) => registerUser(user),
-    onSuccess: (data) => console.log(data),
+    onSuccess: (data) => {
+      console.log(data);
+      reset();
+    },
     onError: (error, data) => console.log(error, data)
   });
 

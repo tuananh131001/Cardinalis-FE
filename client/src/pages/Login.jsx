@@ -7,9 +7,8 @@ import LoginText from '@/components/Sections/LoginSection/LoginText';
 import AuthenNav from '@/components/Sections/NavSection/AuthenNav';
 import RegisterImage from '@/components/Sections/RegisterSections/RegisterImage';
 import { SMALL_MOBILE_QUERY } from '@/assets/Constant';
-import { BsFillMoonStarsFill, BsFillSunFill } from 'react-icons/bs';
-import Button from '@/components/Button/Button';
 import PropTypes from 'prop-types'; // import { useDispatch } from 'react-redux';
+import AuthenSwitchTheme from '@/components/Sections/NavSection/AuthenSwitchTheme';
 
 function Login({ theme, themeToggler }) {
   // const dispatch = useDispatch();
@@ -30,14 +29,7 @@ function Login({ theme, themeToggler }) {
       <LoginText gridArea="text" />
       <RegisterImage gridArea="image" theme={theme} />
       <LoginForm gridArea="form" />
-      <Button
-        gridArea="theme"
-        buttonType="link"
-        fontSize="var(--font-size-lg)"
-        jc="flex-end"
-        onClick={themeToggler}>
-        {theme == 'lightTheme' ? <BsFillSunFill /> : <BsFillMoonStarsFill />}
-      </Button>
+      <AuthenSwitchTheme gridArea="theme" theme={theme} themeToggler={themeToggler} />
     </StyledPage>
   );
 }
@@ -62,8 +54,8 @@ const renderPropsResponsive = (propsName, queries) => {
       else
         return `
       "nav theme" 0.1fr
-      "form image" 1fr
-      "form text" 1fr /
+      "image form" 1fr
+      "text form" 1fr /
       1fr 1fr
       `;
     case 'padding':
