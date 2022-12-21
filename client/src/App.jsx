@@ -20,8 +20,8 @@ function App() {
       <ThemeProvider theme={themeMode}>
         <GlobalStyled />
         <Routes>
-          <Route path="/" element={<Home themeToggler={themeToggler} />} />
-          <Route path="/login" element={<Login theme={theme} themeToggler={themeToggler} />} />
+          <Route path="/" element={<Login theme={theme} themeToggler={themeToggler} />} />
+          <Route path="/home" element={<Home theme={theme} themeToggler={themeToggler} />} />
           <Route
             path="/register"
             element={<Register theme={theme} themeToggler={themeToggler} />}
