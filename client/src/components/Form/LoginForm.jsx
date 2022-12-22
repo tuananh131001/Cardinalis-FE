@@ -31,13 +31,16 @@ function LoginForm({ ...props }) {
     resolver: yupResolver(schema)
   });
   const { value: hidePassword, onToggle: togglePassword } = useChange(true);
-  const { mutate, isError, error } = useSignIn(reset);
+  const { mutate, isError, error, isSuccess } = useSignIn(reset);
 
   // submit function
   const onSubmitClick = (data) => {
     mutate(data);
-    navigate('/home', { replace: true });
   };
+
+  if (isSuccess) {
+    navigate('/home', { replace: true });
+  }
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmitClick)} {...props}>
