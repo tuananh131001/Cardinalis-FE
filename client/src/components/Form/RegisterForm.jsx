@@ -23,14 +23,11 @@ export const RegisterForm = ({ ...props }) => {
     resolver: yupResolver(schema)
   });
   const { mutate, isError, isSuccess, error } = useRegister(reset);
-  if (isError) {
-    console.log('huy');
-    console.log(error);
-  }
+
 
   // submit function
   const onSubmitClick = (data) => {
-    delete data.confirmPassword;
+    // delete data.confirmPassword;
     mutate(data);
   };
 
