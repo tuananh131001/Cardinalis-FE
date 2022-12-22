@@ -31,13 +31,13 @@ function LoginForm({ ...props }) {
     resolver: yupResolver(schema)
   });
   const { value: hidePassword, onToggle: togglePassword } = useChange(true);
-  const { mutate, isError, isSuccess } = useSignIn(reset);
+  const { mutate, isError, isSuccess, error } = useSignIn(reset);
 
   // submit function
   const onSubmitClick = (data) => {
     mutate(data);
     if (isSuccess) {
-      navigate('/', { replace: true });
+      navigate('/home', { replace: true });
     }
   };
 
@@ -63,7 +63,12 @@ function LoginForm({ ...props }) {
       <StyledButton type="submit" buttonThemeName="primaryButton">
         Submit
       </StyledButton>
-      {isError && <CustomizedSnackbars type="error" message="Something went wrong" />}
+      {isError && (
+        <CustomizedSnackbars
+          type="error"
+          message={error?.response?.data?.errors_message ?? 'Internal Server Error'}
+        />
+      )}
     </StyledForm>
   );
 }

@@ -10,9 +10,8 @@ const registerUser = (user) => userApi.post(REGISTER_ENDPOINT, user).then((res) 
 
 const signIn = ({ username, password }) =>
   userApi.post(LOGIN_ENDPOINT, { username, password }).then((res) => {
-    const token = res.data.token;
+    const token = res?.data?.data?.token;
     const user = jwt_decode(token);
-    console.log(token);
     console.log(user);
   });
 

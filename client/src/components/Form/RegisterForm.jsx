@@ -10,11 +10,9 @@ import { StyledForm } from './Form.styled';
 import { useRegister } from '@/hooks/useUser';
 import { ErrorText } from '@/components/Text/ErrorText';
 import CustomizedSnackbars from '@/components/Snackbar/Snackbar';
-import { useNavigate } from 'react-router-dom';
 
 export const RegisterForm = ({ ...props }) => {
   const schema = chooseInputSchema('register');
-  const navigate = useNavigate();
 
   const {
     register,
@@ -24,15 +22,16 @@ export const RegisterForm = ({ ...props }) => {
   } = useForm({
     resolver: yupResolver(schema)
   });
-  const { mutate, isError, isSuccess } = useRegister(reset);
+  const { mutate, isError, isSuccess, error } = useRegister(reset);
+  if (isError) {
+    console.log('huy');
+    console.log(error);
+  }
 
   // submit function
   const onSubmitClick = (data) => {
     delete data.confirmPassword;
     mutate(data);
-    if (isSuccess) {
-      navigate('/login', { replace: true });
-    }
   };
 
   return (
@@ -71,7 +70,13 @@ export const RegisterForm = ({ ...props }) => {
       <StyledButton type="submit" buttonThemeName="primaryButton">
         Submit
       </StyledButton>
-      {isError && <CustomizedSnackbars type="error" message="Something went wrong" />}
+      {isSuccess && <CustomizedSnackbars type="success" message="Register successfully" />}
+      {isError && (
+        <CustomizedSnackbars
+          type="error"
+          message={error?.response?.data?.message ?? 'Internal Server Error'}
+        />
+      )}
     </StyledForm>
   );
 };
