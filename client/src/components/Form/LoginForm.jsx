@@ -31,13 +31,16 @@ function LoginForm({ ...props }) {
     resolver: yupResolver(schema)
   });
   const { value: hidePassword, onToggle: togglePassword } = useChange(true);
-  const { mutate, isError } = useSignIn(reset);
+  const { mutate, isError, error, isSuccess } = useSignIn(reset);
 
   // submit function
   const onSubmitClick = (data) => {
     mutate(data);
-    navigate('/', { replace: true });
   };
+
+  if (isSuccess) {
+    navigate('/home', { replace: true });
+  }
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmitClick)} {...props}>
@@ -61,7 +64,12 @@ function LoginForm({ ...props }) {
       <StyledButton type="submit" buttonThemeName="primaryButton">
         Submit
       </StyledButton>
-      {isError && <CustomizedSnackbars type="error" message="Something went wrong" />}
+      {isError && (
+        <CustomizedSnackbars
+          type="error"
+          message={error?.response?.data?.errors_message ?? 'Internal Server Error'}
+        />
+      )}
     </StyledForm>
   );
 }

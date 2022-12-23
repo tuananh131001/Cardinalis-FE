@@ -7,7 +7,7 @@ import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '@/styles/Theme';
 import { StyledHeading1 } from '@/components/Text/Text.styled';
 import Register from '@/pages/Register';
-import { FORTGOT_PASSWORD_PATH } from '@/assets/Constant';
+import { FORGOT_PASSWORD_PATH } from '@/assets/Constant';
 import ForgotPassword from '@/pages/ForgotPassword';
 // import Text from './components/Text/Text';
 
@@ -20,13 +20,13 @@ function App() {
       <ThemeProvider theme={themeMode}>
         <GlobalStyled />
         <Routes>
-          <Route path="/" element={<Home themeToggler={themeToggler} />} />
-          <Route path="/login" element={<Login theme={theme} themeToggler={themeToggler} />} />
+          <Route path="/" element={<Login theme={theme} themeToggler={themeToggler} />} />
+          <Route path="/home" element={<Home theme={theme} themeToggler={themeToggler} />} />
           <Route
             path="/register"
             element={<Register theme={theme} themeToggler={themeToggler} />}
           />
-          <Route path={`/${FORTGOT_PASSWORD_PATH}`} element={<ForgotPassword />} />
+          <Route path={`/${FORGOT_PASSWORD_PATH}`} element={<ForgotPassword />} />
           <Route path="*" element={<StyledHeading1>Page Not Exist</StyledHeading1>} />
         </Routes>
       </ThemeProvider>
