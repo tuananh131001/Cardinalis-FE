@@ -11,6 +11,7 @@ const generalContainerStyle = css`
   padding: ${(props) => props.padding};
   width: ${(props) => props.width};
   height: ${(props) => props.height};
+  min-height: ${(props) => props.minHeight};
 `;
 export const FlexContainer = styled.div`
   ${generalContainerStyle}
@@ -39,7 +40,8 @@ const generalDefaultProps = {
   gap: '0px',
   gridArea: 'none',
   alignSelf: 'unset',
-  padding: '0px'
+  padding: '0px',
+  minHeight: '0px'
 };
 FlexContainer.defaultProps = {
   ...generalDefaultProps,

@@ -24,7 +24,6 @@ export const RegisterForm = ({ ...props }) => {
   });
   const { mutate, isError, isSuccess, error } = useRegister(reset);
 
-
   // submit function
   const onSubmitClick = (data) => {
     // delete data.confirmPassword;

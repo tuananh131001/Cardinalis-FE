@@ -1,8 +1,6 @@
 import { FlexContainer } from '@/components/Container/Container.styled';
 import { LOGIN_PATH, REGISTER_PATH } from '@/assets/Constant';
 import PropTypes from 'prop-types';
-import useMediaQuery from '@/hooks/useMediaQuery';
-import { MOBILE_QUERY, TABLET_QUERY, DESKTOP_QUERY, SMALL_MOBILE_QUERY } from '@/assets/Constant';
 import { useNavigate } from 'react-router-dom';
 import Button from '@/components/Button/Button';
 
@@ -28,14 +26,8 @@ const displayCurrentTab = (tabCompare, currentTab) => {
     transform: tabCompare == currentTab ? 'scale(1.02)' : 'scale(1)'
   };
 };
-function AuthenNav({ currentTab = 'register', ...props }) {
+function AuthenNav({ currentTab = 'register', responsiveCondition, ...props }) {
   const navigate = useNavigate();
-  const responsiveCondition = {
-    smallMobile: useMediaQuery(SMALL_MOBILE_QUERY),
-    mobile: useMediaQuery(MOBILE_QUERY),
-    tablet: useMediaQuery(TABLET_QUERY),
-    desktop: useMediaQuery(DESKTOP_QUERY)
-  };
   return (
     <FlexContainer
       {...props}
@@ -47,7 +39,7 @@ function AuthenNav({ currentTab = 'register', ...props }) {
         fontSize={renderPropsResponsive('buttonSize', responsiveCondition)}
         onClick={() => navigate(`/${REGISTER_PATH}`)}
         pseudoAfter={1}
-        {...displayCurrentTab('register', currentTab, responsiveCondition)}>
+        {...displayCurrentTab(REGISTER_PATH, currentTab, responsiveCondition)}>
         Register
       </Button>
       <Button
@@ -55,7 +47,7 @@ function AuthenNav({ currentTab = 'register', ...props }) {
         fontSize={renderPropsResponsive('buttonSize', responsiveCondition)}
         onClick={() => navigate(`/${LOGIN_PATH}`)}
         pseudoAfter={1}
-        {...displayCurrentTab('login', currentTab, responsiveCondition)}>
+        {...displayCurrentTab(LOGIN_PATH, currentTab, responsiveCondition)}>
         Login
       </Button>
     </FlexContainer>
@@ -64,6 +56,7 @@ function AuthenNav({ currentTab = 'register', ...props }) {
 
 AuthenNav.propTypes = {
   currentTab: PropTypes.string,
+  responsiveCondition: PropTypes.object,
   props: PropTypes.arrayOf(PropTypes.string, PropTypes.number)
 };
 export default AuthenNav;

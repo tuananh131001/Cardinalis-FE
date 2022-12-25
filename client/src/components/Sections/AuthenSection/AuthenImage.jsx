@@ -1,6 +1,4 @@
 import Image from '@/components/Image/Image';
-import useMediaQuery from '@/hooks/useMediaQuery';
-import { MOBILE_QUERY, TABLET_QUERY, DESKTOP_QUERY } from '@/assets/Constant';
 import PropTypes from 'prop-types';
 
 const renderPropsResponsive = (propsName, queries) => {
@@ -15,12 +13,7 @@ const renderPropsResponsive = (propsName, queries) => {
   }
 };
 
-function RegisterImage({ theme, ...props }) {
-  const responsiveCondition = {
-    mobile: useMediaQuery(MOBILE_QUERY),
-    tablet: useMediaQuery(TABLET_QUERY),
-    desktop: useMediaQuery(DESKTOP_QUERY)
-  };
+function AuthenImage({ theme, responsiveCondition, ...props }) {
   return (
     <Image
       {...props}
@@ -32,8 +25,9 @@ function RegisterImage({ theme, ...props }) {
     />
   );
 }
-RegisterImage.propTypes = {
+AuthenImage.propTypes = {
   theme: PropTypes.string,
+  responsiveCondition: PropTypes.object,
   props: PropTypes.arrayOf(PropTypes.string)
 };
-export default RegisterImage;
+export default AuthenImage;
