@@ -12,6 +12,7 @@ import { RiEyeCloseFill } from 'react-icons/ri';
 import { useSignIn } from '@/hooks/useUser';
 import { useNavigate } from 'react-router-dom';
 import CustomizedSnackbars from '@/components/Snackbar/Snackbar';
+import { HOME_PATH } from '@/assets/Constant';
 
 function LoginForm({ ...props }) {
   const schema = chooseInputSchema('login');
@@ -39,7 +40,7 @@ function LoginForm({ ...props }) {
   };
 
   if (isSuccess) {
-    navigate('/home', { replace: true });
+    navigate(`/${HOME_PATH}`, { replace: true });
   }
 
   return (
