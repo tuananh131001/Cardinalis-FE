@@ -8,6 +8,7 @@ import RegisterImage from '@/components/Sections/RegisterSections/RegisterImage'
 import { SMALL_MOBILE_QUERY } from '@/assets/Constant';
 import PropTypes from 'prop-types';
 import AuthenSwitchTheme from '@/components/Sections/NavSection/AuthenSwitchTheme';
+import { PageAnimation } from '@/styles/AnimationConstant';
 
 function Register({ theme, themeToggler }) {
   const responsiveCondition = {
@@ -18,6 +19,10 @@ function Register({ theme, themeToggler }) {
   };
   return (
     <StyledPage
+      variants={PageAnimation}
+      initial="initial"
+      animate="animate"
+      exit="exit"
       gridTemplateAreas={renderPropsResponsive('gridTemplateAreas', responsiveCondition)}
       padding={renderPropsResponsive('padding', responsiveCondition)}>
       <AuthenNav gridArea="nav" currentTab="register" />

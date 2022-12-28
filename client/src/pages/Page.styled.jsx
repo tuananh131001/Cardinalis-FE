@@ -1,6 +1,7 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
-export const StyledPage = styled.div`
+export const StyledPage = styled(motion.div)`
   /* position */
   display: ${({ display }) => display};
   flex-direction: ${({ direction }) => direction};

@@ -12,7 +12,8 @@ import { RiEyeCloseFill } from 'react-icons/ri';
 import { useSignIn } from '@/hooks/useUser';
 import { useNavigate } from 'react-router-dom';
 import CustomizedSnackbars from '@/components/Snackbar/Snackbar';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { login } from '@/features/userSlice';
 function LoginForm({ ...props }) {
   const schema = chooseInputSchema('login');
   const navigate = useNavigate();
@@ -20,7 +21,8 @@ function LoginForm({ ...props }) {
     username: '',
     password: ''
   };
-
+  const user = useSelector((state) => state.user);
+  console.log(user);
   const {
     register,
     handleSubmit,
@@ -31,16 +33,25 @@ function LoginForm({ ...props }) {
     resolver: yupResolver(schema)
   });
   const { value: hidePassword, onToggle: togglePassword } = useChange(true);
-  const { mutate, isError, error, isSuccess } = useSignIn(reset);
+  const { mutate, isError, error } = useSignIn(reset);
+  const dispatch = useDispatch();
 
   // submit function
   const onSubmitClick = (data) => {
-    mutate(data);
+    mutate(data, {
+      onSuccess: () => {
+        const userToken = localStorage.getItem('userToken');
+        const authData = {
+          user: {
+            username: data.username
+          },
+          userToken: userToken
+        };
+        dispatch(login(authData));
+        navigate('/home', { replace: true });
+      }
+    });
   };
-
-  if (isSuccess) {
-    navigate('/home', { replace: true });
-  }
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmitClick)} {...props}>
