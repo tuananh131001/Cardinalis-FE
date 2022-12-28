@@ -84,6 +84,7 @@ box-sizing:border-box;
   width:100%;
   background-color:${({ theme }) => theme.body.backgroundColor};
   font-family: var(--font-family), sans-serif;
+  transition: background 0.3s linear;
   }
   .app {
     width: 100%;

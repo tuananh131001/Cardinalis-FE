@@ -2,14 +2,15 @@ import GlobalStyled from '@/styles/GlobalStyled';
 import { Route, Routes } from 'react-router-dom';
 import Home from '@/pages/Home';
 import Login from '@/pages/Login';
+import Register from '@/pages/Register';
+
 import useTheme from '@/hooks/useTheme';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '@/styles/Theme';
-import { StyledHeading1 } from '@/components/Text/Text.styled';
-import Register from '@/pages/Register';
+import ProtectedRoutes from '@/routes/ProtectedRoutes';
 import { FORGOT_PASSWORD_PATH } from '@/assets/Constant';
 import ForgotPassword from '@/pages/ForgotPassword';
-// import Text from './components/Text/Text';
+import { AnimatePresence } from 'framer-motion';
 
 function App() {
   const [theme, themeToggler] = useTheme();
@@ -19,16 +20,25 @@ function App() {
     <div className="app">
       <ThemeProvider theme={themeMode}>
         <GlobalStyled />
-        <Routes>
-          <Route path="/" element={<Login theme={theme} themeToggler={themeToggler} />} />
-          <Route path="/home" element={<Home theme={theme} themeToggler={themeToggler} />} />
-          <Route
-            path="/register"
-            element={<Register theme={theme} themeToggler={themeToggler} />}
-          />
-          <Route path={`/${FORGOT_PASSWORD_PATH}`} element={<ForgotPassword />} />
-          <Route path="*" element={<StyledHeading1>Page Not Exist</StyledHeading1>} />
-        </Routes>
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<Login theme={theme} themeToggler={themeToggler} />} />
+            <Route
+              path="/home"
+              element={
+                <ProtectedRoutes>
+                  <Home theme={theme} themeToggler={themeToggler} />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/register"
+              element={<Register theme={theme} themeToggler={themeToggler} />}
+            />
+            <Route path={`/${FORGOT_PASSWORD_PATH}`} element={<ForgotPassword />} />
+            <Route path="*" element={<h1>Not found</h1>} />
+          </Routes>
+        </AnimatePresence>
       </ThemeProvider>
     </div>
   );

@@ -9,6 +9,7 @@ import RegisterImage from '@/components/Sections/RegisterSections/RegisterImage'
 import { SMALL_MOBILE_QUERY } from '@/assets/Constant';
 import PropTypes from 'prop-types'; // import { useDispatch } from 'react-redux';
 import AuthenSwitchTheme from '@/components/Sections/NavSection/AuthenSwitchTheme';
+import { PageAnimation } from '@/styles/AnimationConstant';
 
 function Login({ theme, themeToggler }) {
   // const dispatch = useDispatch();
@@ -23,6 +24,10 @@ function Login({ theme, themeToggler }) {
   };
   return (
     <StyledPage
+      variants={PageAnimation}
+      initial="initial"
+      animate="animate"
+      exit="exit"
       gridTemplateAreas={renderPropsResponsive('gridTemplateAreas', responsiveCondition)}
       padding={renderPropsResponsive('padding', responsiveCondition)}>
       <AuthenNav gridArea="nav" currentTab="login" />
