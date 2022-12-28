@@ -68,8 +68,8 @@ export const findGridTemplateAreas = (type, queries) => {
 export const renderPropsResponsive = (propsName, queries) => {
   switch (propsName) {
     case 'padding':
-      if (queries.smallMobile) return '5em 1em';
-      else if (queries.mobile) return '6em';
+      if (queries.smallMobile) return '3em 1em';
+      else if (queries.mobile) return '3em 7em';
       else if (queries.desktop) return '5em 5.3em';
       else return '2em 3em';
   }

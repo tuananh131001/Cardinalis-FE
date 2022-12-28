@@ -14,14 +14,14 @@ const generalContainerStyle = css`
   min-height: ${(props) => props.minHeight};
 `;
 export const FlexContainer = styled.div`
-  ${generalContainerStyle}
   display: flex;
+  ${generalContainerStyle}
   flex-direction: ${(props) => props.fd};
   flex-wrap: ${(props) => props.fw};
 `;
 export const GridContainer = styled.div`
-  ${generalContainerStyle}
   display: grid;
+  ${generalContainerStyle}
   grid-template: ${(props) => props.gridTemplateAreas};
 `;
 export const InlineContainer = styled.div`

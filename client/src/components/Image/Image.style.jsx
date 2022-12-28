@@ -4,6 +4,7 @@ export const StyledImage = styled.img`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   border-radius: ${(props) => props.borderRadius};
+  margin: ${(props) => props.margin};
   object-fit: ${(props) => props.objectFit};
   grid-area: ${(props) => props.gridArea};
   align-self: ${({ alignSelf }) => alignSelf};
@@ -21,6 +22,7 @@ StyledImage.defaultProps = {
   width: '100%',
   height: 'auto',
   borderRadius: '0',
+  margin: '0',
   objectFit: 'cover',
   gridArea: 'unset',
   alignSelf: 'center',

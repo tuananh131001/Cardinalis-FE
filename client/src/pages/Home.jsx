@@ -1,20 +1,19 @@
 import PropTypes from 'prop-types';
-import React from 'react';
-import Button from '@/components/Button/Button';
+import MainNav from '@/components/Sections/NavSection/MainNav';
+import { HOME_PATH } from '@/assets/Constant';
 
-function Home({ themeToggler }) {
+function Home() {
   return (
     <div>
-      <Button onClick={themeToggler} buttonThemeName="secondaryButton">
-        Click
-      </Button>
       <h1>HOME NE </h1>
+      <MainNav currentTab={HOME_PATH} />
     </div>
   );
 }
 
 Home.propTypes = {
-  themeToggler: PropTypes.func
+  themeToggler: PropTypes.func,
+  theme: PropTypes.string
 };
 
 export default Home;

@@ -10,7 +10,7 @@ const lightTheme = {
   secondaryButton: {
     backgroundColor: 'var(--secondary_button_background_light)',
     color: 'var(--secondary_button_text_light)',
-    borderColor: 'var(--secondary_button_border_light)'
+    hoverBckColor: 'var(--secondary_button_background_hover_light)'
   },
   // Text
   errorText: {
@@ -57,7 +57,7 @@ const darkTheme = {
   secondaryButton: {
     backgroundColor: 'var(--secondary_button_background_dark)',
     color: 'var(--secondary_button_text_dark)',
-    borderColor: 'var(--secondary_button_border_dark)'
+    hoverBckColor: 'var(--secondary_button_background_hover_dark)'
   },
   // Text
   errorText: {

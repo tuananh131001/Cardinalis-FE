@@ -10,6 +10,10 @@ import { StyledHeading1 } from '@/components/Text/Text.styled';
 import { FORGOT_PASSWORD_PATH } from '@/assets/Constant';
 import ForgotPassword from '@/pages/ForgotPassword';
 import Authentication from '@/pages/Authentication';
+import Explore from '@/pages/Explore';
+import Profile from '@/pages/Profile';
+import Bookmarks from '@/pages/Bookmarks';
+import Settings from '@/pages/Settings';
 // import Text from './components/Text/Text';
 
 function App() {
@@ -29,6 +33,19 @@ function App() {
             />
           </Route>
           <Route path="/home" element={<Home theme={theme} themeToggler={themeToggler} />} />
+          <Route path="/explore" element={<Explore theme={theme} themeToggler={themeToggler} />} />
+          <Route
+            path="/bookmarks"
+            element={<Bookmarks theme={theme} themeToggler={themeToggler} />}
+          />
+          <Route
+            path="/:username"
+            element={<Profile theme={theme} themeToggler={themeToggler} />}
+          />
+          <Route
+            path="/settings"
+            element={<Settings theme={theme} themeToggler={themeToggler} />}
+          />
           <Route path={`/${FORGOT_PASSWORD_PATH}`} element={<ForgotPassword />} />
           <Route path="*" element={<StyledHeading1>Page Not Exist</StyledHeading1>} />
         </Routes>

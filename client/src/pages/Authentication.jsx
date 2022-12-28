@@ -12,7 +12,7 @@ import {
   findDisplayText,
   findGridTemplateAreas,
   renderPropsResponsive
-} from 'helpers/AuthenticationDisplay';
+} from '@/helpers/AuthenticationDisplay';
 
 const Authentication = ({ theme, themeToggler }) => {
   const location = useLocation();

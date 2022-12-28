@@ -23,13 +23,15 @@ const StyledGeneralButton = css`
   text-transform: ${({ textTransform }) => textTransform};
   letter-spacing: 2;
   line-height: 1.3;
+  transform: ${({ transform }) => transform};
   &:hover {
     cursor: pointer;
     opacity: 0.7;
   }
 `;
 
-// Styled Componeny
+// Styled Component
+// Button with background and shape
 const StyledButton = styled.button`
   ${StyledGeneralButton}
   background-color: ${({ theme, buttonThemeName }) => theme[buttonThemeName].backgroundColor};
@@ -37,6 +39,7 @@ const StyledButton = styled.button`
   border: ${({ theme, buttonThemeName }) =>
     `2px solid ${theme[buttonThemeName].borderColor}` ?? 'none'};
 `;
+// Styled Icon Button
 export const StyledIconButton = styled.button`
   flex: 0 0;
   ${StyledGeneralButton}
@@ -47,6 +50,7 @@ export const StyledIconButton = styled.button`
     filter: brightness(140%) contrast(110%);
   }
 `;
+// Styled Link
 export const StyledLink = styled.button`
   ${StyledGeneralButton}
   background-color: transparent;
@@ -56,27 +60,53 @@ export const StyledLink = styled.button`
     opacity: 1;
     filter: brightness(140%) contrast(110%);
   }
-  ${({ pseudoAfter }) =>
-    pseudoAfter == 1 &&
-    // có thể có after block kiểu style khác nên pseudoAfter == 1
-    css`
-      position: relative;
-      &:after {
-        content: '';
-        display: block;
-        width: ${({ pseudoAfterWidth }) => pseudoAfterWidth};
-        height: 3px;
-        border-radius: 3px;
-        background: ${({ theme, buttonThemeName }) =>
-          theme[buttonThemeName]?.color ?? theme.primaryColor};
-        transition: width 0.3s;
-        position: absolute;
-        bottom: -7px;
-      }
-      &:hover:after {
-        width: 105%;
-      }
-    `}
+  ${({ pseudoAfter }) => {
+    switch (pseudoAfter) {
+      case 1:
+        // có thể có after block kiểu style khác nên pseudoAfter == 1
+        // 1 for login and register nav
+        return css`
+          position: relative;
+          &:after {
+            content: '';
+            display: block;
+            width: ${({ pseudoAfterWidth }) => pseudoAfterWidth};
+            height: 3px;
+            border-radius: 3px;
+            background: ${({ theme, buttonThemeName }) =>
+              theme[buttonThemeName]?.color ?? theme.primaryColor};
+            transition: width 0.3s;
+            position: absolute;
+            bottom: -7px;
+          }
+          &:hover:after {
+            width: 105%;
+          }
+        `;
+      case 2:
+        // 2 for nav element hover effect in home nav
+        return css`
+          position: relative;
+          &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            border-radius: ${({ pseudoAfterBorderRadius }) => pseudoAfterBorderRadius};
+            background: transparent;
+            transition: background 0.3s;
+          }
+          &:hover:after {
+            background: ${({ theme, buttonThemeName }) => theme[buttonThemeName].hoverBckColor};
+          }
+        `;
+    }
+  }}
 `;
 
 // Default Props
@@ -92,7 +122,8 @@ const generalDefaultProps = {
   fontWeight: 600,
   textTransform: 'uppercase',
   fontSize: 'var(--font-size-sm)',
-  gridArea: 'unset'
+  gridArea: 'unset',
+  transform: 'none'
 };
 StyledButton.defaultProps = {
   ...generalDefaultProps,
@@ -105,6 +136,7 @@ StyledIconButton.defaultProps = {
 StyledLink.defaultProps = {
   ...generalDefaultProps,
   pseudoAfterWidth: '0',
+  pseudoAfterBorderRadius: '0',
   transform: 'translateY(0)',
   padding: '0'
 };

@@ -24,16 +24,21 @@ box-sizing:border-box;
 
   /* input color */
   --input_background_light:#EDEDEE;
-  --input_color_border: #676767;
+  --input_color_border: #626577;
 
   /* button color */
+  /* primary button */
   --primary_button_background_light:#DC6C14;
   --primary_button_text_light:#FFFFFF;
-  --secondary_button_background_light: #0F1419;
-  --secondary_button_text_light: #fff;
+  /* secondary button */
+  --secondary_button_text_light: #0F1419;
+  --secondary_button_background_light: #fff;
+  --secondary_button_background_hover_light: #918E8B;
+  /* third button */
   --third_button_background_light: transparent;
   --third_button_text_light: #0F1419;
   --third_button_border_light: #CFD9DE;
+
   --card_background_light:#FEFAF7;
   /* --------------------- End Light theme --------------------- */
 
@@ -55,10 +60,14 @@ box-sizing:border-box;
   --input_color_border_dark: #DC6C14;
   
   /* button */
+  /* primary button */
   --primary_button_background_dark:#DC6C14;
   --primary_button_text_dark:#FFFFFF;
+  /* secondary button */
   --secondary_button_background_dark: #EFF3F4;
   --secondary_button_text_dark: #0F1419;
+  --secondary_button_background_hover_dark: #3B353B;
+  /* third button */
   --third_button_background_dark: transparent;
   --third_button_text_dark: #FFFFFF;
   --third_button_border_dark: #536471;
