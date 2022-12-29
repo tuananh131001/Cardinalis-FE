@@ -19,6 +19,7 @@ import {
   SETTINGS_PATH
 } from '@/assets/Constant';
 import Button from '@/components/Button/Button';
+import { useLocation } from 'react-router-dom';
 
 const horizontalSpace = '1.7em';
 const displayCurrentTab = (tabCompare, currentTab, type) => {
@@ -51,14 +52,26 @@ const findNavigateButtonProps = (tabCompare, currentTab, navigate) => {
   return {
     horizontalPadding: horizontalSpace,
     icon: displayCurrentTab(tabCompare, currentTab, 'icon'),
+    buttonThemeName: 'thirdButton',
     ...displayCurrentTab(tabCompare, currentTab, 'props'),
-    onClick: () => navigate(`/${tabCompare}`)
+    onClick: () => {
+      navigate(`/${tabCompare}`);
+    }
   };
 };
-const MainNav = ({ theme, currentTab, ...props }) => {
+const MainNav = ({ theme, ...props }) => {
+  const currentTab = /[^/]*$/.exec(useLocation().pathname)[0];
   const navigate = useNavigate();
   return (
-    <FlexContainer fd="column" ai="flex-start" jc="flex-start" gap="1.5em" width="100%" {...props}>
+    <FlexContainer
+      fd="column"
+      ai="flex-start"
+      jc="flex-start"
+      gap="1.5em"
+      width="100%"
+      position="sticky"
+      top="0"
+      {...props}>
       <NavImage theme={theme} horizontalMargin={horizontalSpace} />
       {/* Navigate button */}
       <NavButton {...findNavigateButtonProps(HOME_PATH, currentTab, navigate)} text="Home" />
@@ -90,7 +103,6 @@ const MainNav = ({ theme, currentTab, ...props }) => {
 
 MainNav.propTypes = {
   theme: PropTypes.string,
-  currentTab: PropTypes.string,
   props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
 };
 

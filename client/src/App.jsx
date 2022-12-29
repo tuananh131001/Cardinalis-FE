@@ -14,6 +14,10 @@ import Explore from '@/pages/Explore';
 import Profile from '@/pages/Profile';
 import Bookmarks from '@/pages/Bookmarks';
 import Settings from '@/pages/Settings';
+import Main from '@/pages/Main';
+import ProtectedRoutes from '@/routes/ProtectedRoutes';
+import { AnimatePresence } from 'framer-motion';
+
 // import Text from './components/Text/Text';
 
 function App() {
@@ -24,31 +28,28 @@ function App() {
     <div className="app">
       <ThemeProvider theme={themeMode}>
         <GlobalStyled />
-        <Routes>
-          <Route element={<Authentication theme={theme} themeToggler={themeToggler} />}>
-            <Route path="/" element={<Login theme={theme} themeToggler={themeToggler} />} />
-            <Route
-              path="/register"
-              element={<Register theme={theme} themeToggler={themeToggler} />}
-            />
-          </Route>
-          <Route path="/home" element={<Home theme={theme} themeToggler={themeToggler} />} />
-          <Route path="/explore" element={<Explore theme={theme} themeToggler={themeToggler} />} />
-          <Route
-            path="/bookmarks"
-            element={<Bookmarks theme={theme} themeToggler={themeToggler} />}
-          />
-          <Route
-            path="/:username"
-            element={<Profile theme={theme} themeToggler={themeToggler} />}
-          />
-          <Route
-            path="/settings"
-            element={<Settings theme={theme} themeToggler={themeToggler} />}
-          />
-          <Route path={`/${FORGOT_PASSWORD_PATH}`} element={<ForgotPassword />} />
-          <Route path="*" element={<StyledHeading1>Page Not Exist</StyledHeading1>} />
-        </Routes>
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            {/* Authentication */}
+            <Route element={<Authentication theme={theme} themeToggler={themeToggler} />}>
+              <Route path="/" element={<Login theme={theme} themeToggler={themeToggler} />} />
+              <Route
+                path="/register"
+                element={<Register theme={theme} themeToggler={themeToggler} />}
+              />
+            </Route>
+            {/* Main */}
+            <Route element={<Main theme={theme} themeToggler={themeToggler} />}>
+              <Route path="/home" element={<Home />} />
+              <Route path="/explore" element={<Explore />} />
+              <Route path="/bookmarks" element={<Bookmarks />} />
+              <Route path="/:username" element={<Profile />} />
+              <Route path="/settings" element={<Settings />} />
+            </Route>
+            <Route path={`/${FORGOT_PASSWORD_PATH}`} element={<ForgotPassword />} />
+            <Route path="*" element={<StyledHeading1>Page Not Exist</StyledHeading1>} />
+          </Routes>
+        </AnimatePresence>
       </ThemeProvider>
     </div>
   );

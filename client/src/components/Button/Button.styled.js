@@ -95,7 +95,8 @@ export const StyledLink = styled.button`
             height: 100%;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%)
+              ${({ pseudoAfterTransform }) => pseudoAfterTransform && pseudoAfterTransform};
             z-index: -1;
             border-radius: ${({ pseudoAfterBorderRadius }) => pseudoAfterBorderRadius};
             background: transparent;
@@ -137,6 +138,7 @@ StyledLink.defaultProps = {
   ...generalDefaultProps,
   pseudoAfterWidth: '0',
   pseudoAfterBorderRadius: '0',
+  pseudoAfterTransform: 'scale(1)',
   transform: 'translateY(0)',
   padding: '0'
 };

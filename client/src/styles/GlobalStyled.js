@@ -38,6 +38,10 @@ box-sizing:border-box;
   --third_button_background_light: transparent;
   --third_button_text_light: #0F1419;
   --third_button_border_light: #CFD9DE;
+  --third_button_background_hover_light: #918E8B;
+
+  // Pseudo
+  --primary_pseudo_background_light: var(--background-color_light);
 
   --card_background_light:#FEFAF7;
   /* --------------------- End Light theme --------------------- */
@@ -62,15 +66,20 @@ box-sizing:border-box;
   /* button */
   /* primary button */
   --primary_button_background_dark:#DC6C14;
-  --primary_button_text_dark:#FFFFFF;
+  --primary_button_text_dark:#F7F9FF;
   /* secondary button */
   --secondary_button_background_dark: #EFF3F4;
   --secondary_button_text_dark: #0F1419;
   --secondary_button_background_hover_dark: #3B353B;
   /* third button */
   --third_button_background_dark: transparent;
-  --third_button_text_dark: #FFFFFF;
+  --third_button_text_dark: #F7F9FF;
   --third_button_border_dark: #536471;
+  --third_button_background_hover_dark: #3B353B;
+
+  // Pseudo
+  --primary_pseudo_background_dark: var(--background-color_dark);
+
   --card_background_dark:#3B353B;  
   /* --------------------- End Dark theme --------------------- */
 
@@ -93,6 +102,7 @@ box-sizing:border-box;
   width:100%;
   background-color:${({ theme }) => theme.body.backgroundColor};
   font-family: var(--font-family), sans-serif;
+  transition: background 0.3s linear;
   }
   .app {
     width: 100%;

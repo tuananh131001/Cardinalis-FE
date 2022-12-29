@@ -12,6 +12,37 @@ const generalContainerStyle = css`
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   min-height: ${(props) => props.minHeight};
+
+  /* position */
+  ${(props) =>
+    props.position &&
+    css`
+      position: ${props.position};
+      top: ${props.top};
+      left: ${props.left};
+      z-index: ${props.zIndex};
+    `}
+  ${({ pseudoAfter }) => {
+    switch (pseudoAfter) {
+      case '1':
+        return css`
+          &::after {
+            content: '';
+            display: block;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background-color: ${({ theme }) => theme.primaryPseudo.backgroundColor};
+            opacity: 0.7;
+            backdrop-filter: blur(10px) brightness(120%);
+            -webkit-backdrop-filter: blur(10px) brightness(120%);
+            z-index: -1;
+          }
+        `;
+    }
+  }}
 `;
 export const FlexContainer = styled.div`
   display: flex;
@@ -33,6 +64,10 @@ export const InlineContainer = styled.div`
 `;
 
 const generalDefaultProps = {
+  position: 'relative',
+  top: 'unset',
+  left: 'unset',
+  zIndex: 'unset',
   width: '100%',
   height: 'auto',
   jc: 'center',

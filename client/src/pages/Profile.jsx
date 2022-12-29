@@ -1,54 +1,57 @@
-import { PROFILE_PATH } from '@/assets/Constant';
-import MainNav from '@/components/Sections/NavSection/MainNav';
-import { StyledPage } from './Page.styled';
+import { FlexContainer } from '@/components/Container/Container.styled';
+import BackSection from '@/components/Sections/GeneralSection/BackSection';
+import BackProfile from '@/components/Sections/ProfileSection/BackProfile';
 import PropTypes from 'prop-types';
-import useMediaQuery from '@/hooks/useMediaQuery';
-import { SMALL_MOBILE_QUERY, MOBILE_QUERY, TABLET_QUERY, DESKTOP_QUERY } from '@/assets/Constant';
+import { useOutletContext } from 'react-router-dom';
 
 // Remember to use useMemo to prevent unnecessary re-rendering if have performance issue
-const Profile = ({ user }) => {
-  const responsiveCondition = {
-    smallMobile: useMediaQuery(SMALL_MOBILE_QUERY),
-    mobile: useMediaQuery(MOBILE_QUERY),
-    tablet: useMediaQuery(TABLET_QUERY),
-    desktop: useMediaQuery(DESKTOP_QUERY)
-  };
+const Profile = ({ ...props }) => {
   // determine the type of authentication page and the gridTemplateAreas
   // const { gridTemplateAreas, displayedText } = useMemo(() => {
   //   const gridTemplateAreas = findGridTemplateAreas(responsiveCondition);
 
   //   return { gridTemplateAreas, displayedText };
   // }, [responsiveCondition]);
+  const { horizontalSpaces } = useOutletContext();
   return (
-    <StyledPage gridTemplateAreas={findGridTemplateAreas(responsiveCondition)} >
-      <MainNav currentTab={PROFILE_PATH} gridArea="nav" />
-      
-    </StyledPage>
+    <FlexContainer fd="column" ai="flex-start" {...props}>
+      <BackSection
+        horizontalSpaces={horizontalSpaces}
+        content={<BackProfile name="Hello" numTweets={1_000_001_000_000_000_000_000_000} />}
+      />
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+      <h1>Hello</h1>
+    </FlexContainer>
   );
-};
-
-const findGridTemplateAreas = (queries) => {
-  if (queries.mobile)
-    return `
-    "theme"
-    "text"
-    "image"
-    "nav"
-    "form"
-    `;
-  else if (queries.desktop)
-    return `
-    "nav back theme" auto
-    "nav image text" auto /
-    0.5fr 2fr 0.5fr
-    `;
-  else
-    return `
-    "nav theme" 0.1fr
-    "form image" 1fr
-    "form text" 1fr /
-    1fr 1fr
-    `;
 };
 
 Profile.propTypes = {

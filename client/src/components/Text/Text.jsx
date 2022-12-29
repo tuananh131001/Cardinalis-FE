@@ -9,13 +9,16 @@ import {
 } from './Text.styled';
 import PropTypes from 'prop-types';
 
-function Text({ type, text, ...props }) {
+function Text({ type, text, textThemeName, ...props }) {
   // for general props of all components rendering conditionally
   // for optional props only
   // let generalPropsList = {
   //   ...props
   // };
-  const generalPropsList = Object.assign({}, props);
+  const generalPropsList = {
+    textThemeName: textThemeName,
+    ...props
+  };
   switch (type) {
     case 'h1':
       return <StyledHeading1 {...generalPropsList}>{text}</StyledHeading1>;
@@ -39,6 +42,7 @@ Text.propTypes = {
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.object]))
   ]),
+  textThemeName: PropTypes.string,
   to: PropTypes.string
 };
 

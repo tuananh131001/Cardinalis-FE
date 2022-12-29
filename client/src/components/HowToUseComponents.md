@@ -1,6 +1,8 @@
 # To Do Lists
 - [ ] In Home path: if not login -> navigate to Login Path
 - [ ] Display Profile path using username (in App, MainNav, Profile, Constant.js)
+- [ ] Tweet page (Have back button)
+- [ ] Home, Explore, Bookmarks, Settings -> Tweets, Profile, Trend, 
 # Props passed through Components and through Styled Components
 ## Inside Components: ({a, b, c, ...props})
 - a, b, c

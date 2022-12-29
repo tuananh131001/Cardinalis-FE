@@ -13,6 +13,7 @@ import {
   findGridTemplateAreas,
   renderPropsResponsive
 } from '@/helpers/AuthenticationDisplay';
+import { PageAnimation } from '@/styles/AnimationConstant';
 
 const Authentication = ({ theme, themeToggler }) => {
   const location = useLocation();
@@ -33,13 +34,19 @@ const Authentication = ({ theme, themeToggler }) => {
 
   return (
     <StyledPage
+      variants={PageAnimation}
+      initial="initial"
+      animate="animate"
+      exit="exit"
       gridTemplateAreas={gridTemplateAreas}
       padding={renderPropsResponsive('padding', responsiveCondition)}>
       <AuthenNav gridArea="nav" currentTab={type} responsiveCondition={responsiveCondition} />
       <AuthenImage gridArea="image" theme={theme} responsiveCondition={responsiveCondition} />
       <AuthenSwitchTheme gridArea="theme" theme={theme} themeToggler={themeToggler} />
       <AuthenText gridArea="text" {...displayedText} responsiveCondition={responsiveCondition} />
-      <Outlet gridArea="form" />
+      <div style={{ gridArea: 'form' }}>
+        <Outlet />
+      </div>
     </StyledPage>
   );
 };

@@ -12,6 +12,16 @@ const lightTheme = {
     color: 'var(--secondary_button_text_light)',
     hoverBckColor: 'var(--secondary_button_background_hover_light)'
   },
+  thirdButton: {
+    backgroundColor: 'var(--third_button_background_light)',
+    color: 'var(--third_button_text_light)',
+    borderColor: 'var(--third_button_border_light)',
+    hoverBckColor: 'var(--third_button_background_hover_light)'
+  },
+  // Pseudo
+  primaryPseudo: {
+    backgroundColor: 'var(--primary_pseudo_background_light)',
+  },
   // Text
   errorText: {
     color: 'var(--error_text_light)'
@@ -58,6 +68,16 @@ const darkTheme = {
     backgroundColor: 'var(--secondary_button_background_dark)',
     color: 'var(--secondary_button_text_dark)',
     hoverBckColor: 'var(--secondary_button_background_hover_dark)'
+  },
+  thirdButton: {
+    backgroundColor: 'var(--third_button_background_dark)',
+    color: 'var(--third_button_text_dark)',
+    borderColor: 'var(--third_button_border_dark)',
+    hoverBckColor: 'var(--third_button_background_hover_dark)'
+  },
+  // Pseudo
+  primaryPseudo: {
+    backgroundColor: 'var(--primary_pseudo_background_dark)',
   },
   // Text
   errorText: {
