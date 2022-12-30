@@ -3,6 +3,7 @@ import Text from '@/components/Text/Text';
 import { displayCountNumber } from '@/helpers/HandleDisplayInfo';
 import PropTypes from 'prop-types';
 
+// If performance is an issue, consider using React.memo to displayCountNumber
 const BackProfile = ({ name, numTweets = 3 }) => {
   return (
     <FlexContainer fd="column">

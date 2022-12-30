@@ -10,6 +10,10 @@ const StyledGeneralHeading = css`
   padding: ${(props) => props.padding};
   grid-area: ${(props) => props.gridArea};
   line-height: 1.1;
+  display: ${({ display }) => display};
+  gap: ${({ gap }) => gap};
+  justify-content: ${({ jc }) => jc};
+  align-items: ${({ ai }) => ai};
 `;
 const StyledHeadingFlex = css`
   display: flex;
@@ -42,6 +46,19 @@ export const StyledParagraph = styled.p`
   line-height: 1.7em;
   color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? theme.subtext.color};
 `;
+export const StyledParagraph2 = styled.p`
+  ${StyledGeneralHeading}
+  color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? theme.subtext.color};
+`;
+export const StyledParagraph3 = styled.p`
+  ${StyledGeneralHeading}
+  color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? theme.subtext.color};
+`;
+export const StyledCallout = styled.p`
+  ${StyledGeneralHeading}
+  line-height: 1.3em;
+  color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? theme.subtext.color};
+`;
 export const StyledCaption = styled.p`
   ${StyledGeneralHeading}
   color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? theme.subtext.color};
@@ -51,7 +68,11 @@ export const StyledCaption = styled.p`
 const generalDefaultProps = {
   txtAlign: 'center',
   padding: '0',
-  gridArea: 'unset'
+  gridArea: 'unset',
+  display: 'flex',
+  gap: '0',
+  jc: 'auto',
+  ai: 'auto'
 };
 
 StyledHeading1.defaultProps = {
@@ -84,9 +105,23 @@ StyledParagraph.defaultProps = {
   // size: 'clamp(0.8rem, 0.76rem + 0.19999999999999996vw, 1rem)'
   size: 'var(--font-size-base)'
 };
+StyledParagraph2.defaultProps = {
+  ...generalDefaultProps,
+  weight: 400,
+  size: 'calc(var(--font-size-base) - 2px)'
+};
+StyledParagraph3.defaultProps = {
+  ...generalDefaultProps,
+  weight: 400,
+  size: 'calc(var(--font-size-base) - 3px)'
+};
+StyledCallout.defaultProps = {
+  ...generalDefaultProps,
+  weight: 400,
+  size: 'var(--font-size-sm)'
+};
 StyledCaption.defaultProps = {
   ...generalDefaultProps,
   weight: 400,
-  // size: 'clamp(0.8rem, 0.76rem + 0.19999999999999996vw, 1rem)'
   size: 'var(--font-size-ssm)'
 };

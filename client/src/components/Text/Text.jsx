@@ -1,11 +1,14 @@
 // ref: https://stackoverflow.com/questions/57945969/conditional-rendering-of-components-with-same-props-in-reactjs
 import {
+  StyledCallout,
   StyledCaption,
   StyledHeading1,
   StyledHeading2,
   StyledHeading3,
   StyledHeading4,
-  StyledParagraph
+  StyledParagraph,
+  StyledParagraph2,
+  StyledParagraph3
 } from './Text.styled';
 import PropTypes from 'prop-types';
 
@@ -30,6 +33,12 @@ function Text({ type, text, textThemeName, ...props }) {
       return <StyledHeading4 {...generalPropsList}>{text}</StyledHeading4>;
     case 'p':
       return <StyledParagraph {...generalPropsList}>{text}</StyledParagraph>;
+    case 'p2':
+      return <StyledParagraph2 {...generalPropsList}>{text}</StyledParagraph2>;
+    case 'p3':
+      return <StyledParagraph3 {...generalPropsList}>{text}</StyledParagraph3>;
+    case 'callout':
+      return <StyledCallout {...generalPropsList}>{text}</StyledCallout>;
     case 'caption':
       return <StyledCaption {...generalPropsList}>{text}</StyledCaption>;
   }

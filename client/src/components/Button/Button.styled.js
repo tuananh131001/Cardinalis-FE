@@ -62,6 +62,7 @@ export const StyledLink = styled.button`
   &:hover {
     opacity: 1;
     filter: brightness(140%) contrast(110%);
+    text-decoration: ${({ textDecoration }) => textDecoration};
   }
   ${({ pseudoAfter }) => {
     switch (pseudoAfter) {
@@ -146,7 +147,8 @@ StyledLink.defaultProps = {
   pseudoAfterBorderRadius: '0',
   pseudoAfterTransform: 'scale(1)',
   transform: 'translateY(0)',
-  padding: '0'
+  padding: '0',
+  textDecoration: 'none'
 };
 
 export default StyledButton;
