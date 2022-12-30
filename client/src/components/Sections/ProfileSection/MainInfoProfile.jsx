@@ -7,6 +7,7 @@ import { ImCalendar } from 'react-icons/im';
 import ShortInfoProfile from './ShortInfoProfile';
 import { EditButtonProfile, FollowButtonProfile } from './ButtonProfile';
 import PropTypes from 'prop-types';
+import { displayDate } from '@/helpers/HandleDisplayInfo';
 
 const defaultUser = {
   name: 'Hello',
@@ -18,7 +19,7 @@ const defaultUser = {
   numTweets: 1_00,
   followers: 3,
   following: 4,
-  createdAt: '2021-06-02T21:33:45.249967'
+  createdAt: '2021-11-02T21:33:45.249967'
 };
 const avatarSize = '9em';
 const bckHeight = '14em';
@@ -50,11 +51,11 @@ const MainInfoProfile = ({ user = defaultUser }) => {
         padding={`1em ${horizontalSpaces}`}
       />
       <SubHeaderProfile
-        text={[<ImCalendar key={0} />, 'Joined 2021']}
-        padding={`0.4em ${horizontalSpaces}`}
+        text={[<ImCalendar key={0} />, `Joined ${displayDate(user.createdAt)}`]}
+        padding={`0.5em ${horizontalSpaces}`}
       />
 
-      <FlexContainer gap="2em" jc="flex-start" padding={`0.4em ${horizontalSpaces}`}>
+      <FlexContainer gap="2em" jc="flex-start" padding={`0.5em ${horizontalSpaces}`}>
         <FollowButtonProfile count={user.following} text="Following" />
         <FollowButtonProfile count={user.followers} text="Followers" />
       </FlexContainer>

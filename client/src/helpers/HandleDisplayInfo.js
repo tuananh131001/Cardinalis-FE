@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { pluralRules, irregularRules } from './HandlePlural';
 
 const sanitizeWord = (word, replaceRules = irregularRules, regexRules = pluralRules) => {
@@ -63,3 +64,7 @@ export const displayCountNumber = (count, prefix) => {
   }
   return `${count} ${prefix.charAt(0).toUpperCase() + prefix.slice(1)}`;
 };
+
+export const displayDate = (date) => {
+  return moment(date).format('MMMM YYYY');
+}
