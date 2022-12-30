@@ -1,6 +1,6 @@
 import { pluralRules, irregularRules } from './HandlePlural';
 
-export const sanitizeWord = (word, replaceRules = irregularRules, regexRules = pluralRules) => {
+const sanitizeWord = (word, replaceRules = irregularRules, regexRules = pluralRules) => {
   // if word is irregular, return the irregular form
   const token = word.toLowerCase();
   if (replaceRules[token]) {
@@ -40,18 +40,19 @@ export const displayCountNumber = (count, prefix) => {
       // if second digit is 0, only show one decimal place
       if (secondDigit === 0 && firstDigit !== 0) {
         fixedNum = 1;
-      // if all digits are 0, show no decimal places
+        // if all digits are 0, show no decimal places
       } else if (secondDigit === 0 && firstDigit === 0) {
         fixedNum = 0;
-      // 
+        // if first digit is nonzero or second digit is nonzero, show two decimal places
       } else {
         fixedNum = 2;
       }
 
+      // If number is not overflow (< E+21)
       if (suffixes[exp - 1]) {
         count = wholeNumDecimal.toFixed(fixedNum) + suffixes[exp - 1];
-      } else {
         // if over E+21, just show E+n
+      } else {
         const maxSuffixLength = suffixes.length;
         count =
           wholeNumDecimal.toFixed(fixedNum) +
