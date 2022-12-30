@@ -17,11 +17,13 @@ import Settings from '@/pages/Settings';
 import Main from '@/pages/Main';
 import ProtectedRoutes from '@/routes/ProtectedRoutes';
 import { AnimatePresence } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
 
 // import Text from './components/Text/Text';
 
 function App() {
   const [theme, themeToggler] = useTheme();
+  const location = useLocation();
   const themeMode = theme === 'lightTheme' ? lightTheme : darkTheme;
 
   return (
