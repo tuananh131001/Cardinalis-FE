@@ -1,5 +1,5 @@
 import GlobalStyled from '@/styles/GlobalStyled';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import Home from '@/pages/Home';
 import Login from '@/pages/Login';
 import Register from '@/pages/Register';
@@ -14,6 +14,7 @@ import { AnimatePresence } from 'framer-motion';
 
 function App() {
   const [theme, themeToggler] = useTheme();
+  const location = useLocation();
   const themeMode = theme === 'lightTheme' ? lightTheme : darkTheme;
 
   return (
