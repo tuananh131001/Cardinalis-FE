@@ -8,6 +8,7 @@ const NavButton = ({
   children,
   onClick,
   horizontalPadding,
+  pseudoAfter = 2,
   buttonThemeName = 'secondaryButton',
   ...props
 }) => {
@@ -19,9 +20,9 @@ const NavButton = ({
       buttonThemeName={buttonThemeName}
       onClick={onClick}
       padding={`0.7em ${horizontalPadding}`}
+      pseudoAfter={pseudoAfter}
       pseudoAfterBorderRadius={horizontalPadding}
       width="auto"
-      pseudoAfter={2}
       {...props}>
       {icon && <NavElementIcon>{icon}</NavElementIcon>}
       {text}
@@ -36,6 +37,7 @@ NavButton.propTypes = {
   onClick: PropTypes.func,
   horizontalPadding: PropTypes.string,
   buttonThemeName: PropTypes.string,
+  pseudoAfter: PropTypes.number,
   props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
 };
 

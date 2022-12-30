@@ -7,11 +7,24 @@ const generalContainerStyle = css`
   gap: ${(props) => props.gap};
   grid-area: ${(props) => props.gridArea};
   align-self: ${({ alignSelf }) => alignSelf};
+  overflow: ${(props) => props.overflow};
   /* size */
   padding: ${(props) => props.padding};
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   min-height: ${(props) => props.minHeight};
+
+  /* overflow scrollbar */
+  ${({ isHideScrollBar }) =>
+    isHideScrollBar &&
+    css`
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+      /* Hide scrollbar for Chrome, Safari and Opera */
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    `}
 
   /* position */
   ${(props) =>
@@ -64,6 +77,7 @@ export const InlineContainer = styled.div`
 `;
 
 const generalDefaultProps = {
+  overflow: 'auto',
   position: 'relative',
   top: 'unset',
   left: 'unset',
@@ -76,7 +90,8 @@ const generalDefaultProps = {
   gridArea: 'none',
   alignSelf: 'unset',
   padding: '0px',
-  minHeight: '0px'
+  minHeight: '0px',
+  isHideScrollBar: false
 };
 FlexContainer.defaultProps = {
   ...generalDefaultProps,

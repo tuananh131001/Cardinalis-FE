@@ -1,14 +1,36 @@
 import styled, { css } from 'styled-components';
 
+// Special:
+// Border color style: 3 ways to set border color (in order of priority):
+// 1. props.borderColor (Ex: red, blue, pink)
+// 2. props.theme[props.borderColor].borderColor (Ex: props.theme.card.borderColor)
+// 3. props.theme.mainBackgroundColor (final options)
+
 export const StyledImage = styled.img`
+  /* size */
   width: ${(props) => props.width};
   height: ${(props) => props.height};
   border-radius: ${(props) => props.borderRadius};
-  margin: ${(props) => props.margin};
+  aspect-ratio: ${({ aspectRatio }) => aspectRatio};
   object-fit: ${(props) => props.objectFit};
-  grid-area: ${(props) => props.gridArea};
+  margin: ${(props) => props.margin};
+  /* position */
   align-self: ${({ alignSelf }) => alignSelf};
   justify-self: ${({ justifySelf }) => justifySelf};
+  position: ${({ position }) => position};
+  top: ${({ top }) => top};
+  left: ${({ left }) => left};
+  /* others */
+  grid-area: ${(props) => props.gridArea};
+  /* border */
+  border: ${(props) =>
+    props.borderWidth +
+    ' ' +
+    props.borderStyle +
+    ' ' +
+    (props.borderColor ??
+      props.theme[props.borderColor]?.borderColor ??
+      props.theme.mainBackgroundColor)};
   ${({ themeName }) =>
     themeName == 'darkTheme' &&
     css`
@@ -26,5 +48,11 @@ StyledImage.defaultProps = {
   objectFit: 'cover',
   gridArea: 'unset',
   alignSelf: 'center',
-  justifySelf: 'center'
+  justifySelf: 'center',
+  aspectRatio: 'unset',
+  position: 'auto',
+  top: 'unset',
+  left: 'unset',
+  borderWidth: '0',
+  borderStyle: 'none'
 };

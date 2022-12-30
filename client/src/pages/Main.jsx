@@ -14,13 +14,13 @@ export const renderPropsResponsive = (propsName, queries, type = 'element') => {
       case 'horizontalPadding':
         if (queries.smallMobile) return '0.5e,';
         else if (queries.mobile) return '0.5em';
-        else if (queries.desktop) return '1.5em';
+        else if (queries.desktop) return '1.2em';
         else return '1em';
     }
   }
 };
 
-const Main = ({ theme, themeToggler }) => {
+const Main = ({ theme }) => {
   const responsiveCondition = {
     smallMobile: useMediaQuery(SMALL_MOBILE_QUERY),
     mobile: useMediaQuery(MOBILE_QUERY),
@@ -36,13 +36,10 @@ const Main = ({ theme, themeToggler }) => {
   return (
     <StyledPage
       gridTemplateAreas={findGridTemplateAreas(responsiveCondition)}
-      padding="0 6em"
+      padding="0 3em"
       ai="flex-start">
       <MainNav theme={theme} currentTab={currentTab} changeTab={changeTab} gridArea="nav" />
-      <div style={{ gridArea: 'main' }}>
-        <Outlet context={horizontalSpaces} />
-      </div>
-      <MainNav currentTab={currentTab} changeTab={changeTab} gridArea="side" />
+      <Outlet context={{ horizontalSpaces }} />
     </StyledPage>
   );
 };

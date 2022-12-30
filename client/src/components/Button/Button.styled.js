@@ -38,6 +38,10 @@ const StyledButton = styled.button`
   color: ${({ theme, buttonThemeName }) => theme[buttonThemeName].color};
   border: ${({ theme, buttonThemeName }) =>
     `2px solid ${theme[buttonThemeName].borderColor}` ?? 'none'};
+  &:hover {
+    opacity: 1;
+    background-color: ${({ theme, buttonThemeName }) => theme[buttonThemeName].hoverBckColor};
+  }
 `;
 // Styled Icon Button
 export const StyledIconButton = styled.button`
@@ -55,7 +59,6 @@ export const StyledLink = styled.button`
   ${StyledGeneralButton}
   background-color: transparent;
   color: ${({ theme, buttonThemeName }) => theme[buttonThemeName]?.color ?? theme.primaryColor};
-  transform: ${({ transform }) => transform};
   &:hover {
     opacity: 1;
     filter: brightness(140%) contrast(110%);
@@ -87,6 +90,10 @@ export const StyledLink = styled.button`
         // 2 for nav element hover effect in home nav
         return css`
           position: relative;
+          &:hover {
+            opacity: 1;
+            filter: none;
+          }
           &:after {
             content: '';
             display: block;
@@ -100,7 +107,6 @@ export const StyledLink = styled.button`
             z-index: -1;
             border-radius: ${({ pseudoAfterBorderRadius }) => pseudoAfterBorderRadius};
             background: transparent;
-            transition: background 0.3s;
           }
           &:hover:after {
             background: ${({ theme, buttonThemeName }) => theme[buttonThemeName].hoverBckColor};

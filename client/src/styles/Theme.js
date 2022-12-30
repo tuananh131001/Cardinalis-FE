@@ -20,7 +20,7 @@ const lightTheme = {
   },
   // Pseudo
   primaryPseudo: {
-    backgroundColor: 'var(--primary_pseudo_background_light)',
+    backgroundColor: 'var(--primary_pseudo_background_light)'
   },
   // Text
   errorText: {
@@ -52,7 +52,8 @@ const lightTheme = {
     backgroundColor: 'var(--card_background_light)'
   },
   primaryColor: 'var(--primary_color_light)',
-  secondaryColor: 'var(--secondary_color_light)'
+  secondaryColor: 'var(--secondary_color_light)',
+  mainBackgroundColor: 'var(--background-color_light)'
 };
 
 const darkTheme = {
@@ -77,7 +78,7 @@ const darkTheme = {
   },
   // Pseudo
   primaryPseudo: {
-    backgroundColor: 'var(--primary_pseudo_background_dark)',
+    backgroundColor: 'var(--primary_pseudo_background_dark)'
   },
   // Text
   errorText: {
@@ -109,7 +110,8 @@ const darkTheme = {
     backgroundColor: 'var(--card_background_dark)'
   },
   primaryColor: 'var(--primary_color_dark)',
-  secondaryColor: 'var(--secondary_color_dark)'
+  secondaryColor: 'var(--secondary_color_dark)',
+  mainBackgroundColor: 'var(--background-color_dark)'
 };
 
 export { lightTheme, darkTheme };

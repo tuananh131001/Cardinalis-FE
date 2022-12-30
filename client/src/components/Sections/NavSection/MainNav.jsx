@@ -53,6 +53,7 @@ const findNavigateButtonProps = (tabCompare, currentTab, navigate) => {
     horizontalPadding: horizontalSpace,
     icon: displayCurrentTab(tabCompare, currentTab, 'icon'),
     buttonThemeName: 'thirdButton',
+    pseudoAfter: currentTab == tabCompare ? 0 : 2,
     ...displayCurrentTab(tabCompare, currentTab, 'props'),
     onClick: () => {
       navigate(`/${tabCompare}`);

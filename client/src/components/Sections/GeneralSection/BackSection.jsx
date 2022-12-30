@@ -12,7 +12,7 @@ import { useChange } from '@/hooks/useChange';
 const BackSection = ({
   backDestination = -1,
   content = 'hello',
-  horizontalPadding = 0,
+  horizontalSpaces = 0,
   ...props
 }) => {
   const navigate = useNavigate();
@@ -42,7 +42,7 @@ const BackSection = ({
       {...props}
       jc="flex-start"
       gap="0.7em"
-      padding={`1em ${horizontalPadding}`}
+      padding={`1em ${horizontalSpaces}`}
       position={isScrolling ? 'sticky' : 'relative'}
       top="0"
       left="0"
@@ -79,6 +79,6 @@ const BackSection = ({
 BackSection.propTypes = {
   backDestination: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-  horizontalPadding: PropTypes.string
+  horizontalSpaces: PropTypes.string
 };
 export default BackSection;

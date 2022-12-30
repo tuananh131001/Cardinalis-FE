@@ -33,12 +33,12 @@ box-sizing:border-box;
   /* secondary button */
   --secondary_button_text_light: #0F1419;
   --secondary_button_background_light: #fff;
-  --secondary_button_background_hover_light: #918E8B;
+  --secondary_button_background_hover_light: #B8BDC4;
   /* third button */
   --third_button_background_light: transparent;
   --third_button_text_light: #0F1419;
   --third_button_border_light: #CFD9DE;
-  --third_button_background_hover_light: #918E8B;
+  --third_button_background_hover_light: #e6e6e6;
 
   // Pseudo
   --primary_pseudo_background_light: var(--background-color_light);
