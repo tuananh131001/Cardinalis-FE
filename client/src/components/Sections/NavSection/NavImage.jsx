@@ -1,10 +1,12 @@
+// https://bobbyhadz.com/blog/react-import-image
 import Image from '@/components/Image/Image';
 import PropTypes from 'prop-types';
+import Icon from '@/assets/images/icon.png';
 
 const NavImage = ({ theme, horizontalMargin }) => {
   return (
     <Image
-      src="./icon.png"
+      src={Icon}
       alt="Small Icon"
       themeName={theme}
       width="5em"

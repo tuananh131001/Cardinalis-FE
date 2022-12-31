@@ -17,7 +17,13 @@ import Settings from '@/pages/Settings';
 import Main from '@/pages/Main';
 import ProtectedRoutes from '@/routes/ProtectedRoutes';
 import { AnimatePresence } from 'framer-motion';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom/dist/index';
+import {
+  PROFILE_TWEET_PATH,
+  PROFILE_REPLIES_PATH,
+  PROFILE_MEDIA_PATH,
+  PROFILE_LIKE_PATH
+} from '@/assets/Constant';
 
 // import Text from './components/Text/Text';
 
@@ -45,7 +51,12 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/explore" element={<Explore />} />
               <Route path="/bookmarks" element={<Bookmarks />} />
-              <Route path="/:username" element={<Profile />} />
+              <Route element={<Profile />}>
+                <Route path={`/profile/${PROFILE_TWEET_PATH}`} element={<h1>Home</h1>} />
+                <Route path={`/profile/${PROFILE_REPLIES_PATH}`} element={<h1>with_replies</h1>} />
+                <Route path={`/profile/${PROFILE_MEDIA_PATH}`} element={<h1>with_replies</h1>} />
+                <Route path={`/profile/${PROFILE_LIKE_PATH}`} element={<h1>with_replies</h1>} />
+              </Route>
               <Route path="/settings" element={<Settings />} />
             </Route>
             <Route path={`/${FORGOT_PASSWORD_PATH}`} element={<ForgotPassword />} />

@@ -6,7 +6,7 @@ import { SMALL_MOBILE_QUERY, MOBILE_QUERY, TABLET_QUERY, DESKTOP_QUERY } from '@
 import { HOME_PATH } from '@/assets/Constant';
 import { useChange } from '@/hooks/useChange';
 import { Outlet } from 'react-router-dom';
-import { useMemo } from 'react';
+// import { useMemo } from 'react';
 
 export const renderPropsResponsive = (propsName, queries, type = 'element') => {
   if (type == 'element') {
@@ -27,11 +27,11 @@ const Main = ({ theme }) => {
     tablet: useMediaQuery(TABLET_QUERY),
     desktop: useMediaQuery(DESKTOP_QUERY)
   };
-  const { horizontalSpaces } = useMemo(() => {
-    const horizontalSpaces = renderPropsResponsive('horizontalPadding', responsiveCondition);
+  // const { horizontalSpaces } = useMemo(() => {
+  //   const horizontalSpaces = renderPropsResponsive('horizontalPadding', responsiveCondition);
 
-    return { horizontalSpaces };
-  }, [location, responsiveCondition]);
+  //   return { horizontalSpaces };
+  // }, [location, responsiveCondition]);
   const { value: currentTab, onSetNewValue: changeTab } = useChange(HOME_PATH);
   return (
     <StyledPage
@@ -39,7 +39,7 @@ const Main = ({ theme }) => {
       padding="0 3em"
       ai="flex-start">
       <MainNav theme={theme} currentTab={currentTab} changeTab={changeTab} gridArea="nav" />
-      <Outlet context={{ horizontalSpaces }} />
+      <Outlet />
     </StyledPage>
   );
 };

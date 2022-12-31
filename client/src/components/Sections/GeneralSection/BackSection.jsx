@@ -55,9 +55,9 @@ const BackSection = ({
         width="fit-content"
         jc="flex-start"
         buttonThemeName="thirdButton"
-        pseudoAfter={2}
-        pseudoAfterBorderRadius="50%"
-        pseudoAfterTransform="scale(1.5)">
+        hoverType={2}
+        borderRadius="50%"
+        padding="0.3em">
         {<HiArrowSmLeft />}
       </Button>
       {typeof content === 'string' ? (

@@ -44,7 +44,7 @@ const displayCurrentTab = (tabCompare, currentTab, type) => {
   } else {
     return {
       fontWeight: tabCompare == currentTab ? '800' : '600',
-      transform: tabCompare == currentTab ? 'scale(1.07)' : 'scale(1)'
+      fontSize: tabCompare == currentTab ? 'calc(var(--font-size-sm) + 2px)' : 'var(--font-size-sm)'
     };
   }
 };
@@ -53,7 +53,6 @@ const findNavigateButtonProps = (tabCompare, currentTab, navigate) => {
     horizontalPadding: horizontalSpace,
     icon: displayCurrentTab(tabCompare, currentTab, 'icon'),
     buttonThemeName: 'thirdButton',
-    pseudoAfter: currentTab == tabCompare ? 0 : 2,
     ...displayCurrentTab(tabCompare, currentTab, 'props'),
     onClick: () => {
       navigate(`/${tabCompare}`);

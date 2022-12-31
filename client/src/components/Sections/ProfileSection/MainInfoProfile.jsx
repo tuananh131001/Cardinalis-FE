@@ -1,6 +1,5 @@
 import Avatar from '@/components/Image/Avatar';
 import { FlexContainer, InlineContainer } from '@/components/Container/Container.styled';
-import { useOutletContext } from 'react-router-dom';
 import Image from '@/components/Image/Image';
 import { SubHeaderProfile } from './TextProfile';
 import { ImCalendar } from 'react-icons/im';
@@ -9,22 +8,9 @@ import { EditButtonProfile, FollowButtonProfile } from './ButtonProfile';
 import PropTypes from 'prop-types';
 import { displayDate } from '@/helpers/HandleDisplayInfo';
 
-const defaultUser = {
-  name: 'Hello',
-  username: 'Matsuri',
-  avatar:
-    'https://images.unsplash.com/photo-1633531008092-055a03a8ea0e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-  background:
-    'https://images.unsplash.com/photo-1610296669228-602fa827fc1f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1550&q=80',
-  numTweets: 1_00,
-  followers: 3,
-  following: 4,
-  createdAt: '2021-11-02T21:33:45.249967'
-};
 const avatarSize = '9em';
 const bckHeight = '14em';
-const MainInfoProfile = ({ user = defaultUser }) => {
-  const { horizontalSpaces } = useOutletContext();
+const MainInfoProfile = ({ horizontalSpaces, user }) => {
   return (
     <FlexContainer fd="column" isHideScrollBar={true}>
       <InlineContainer height={bckHeight} width="100%" overflow="hidden">
@@ -63,6 +49,7 @@ const MainInfoProfile = ({ user = defaultUser }) => {
   );
 };
 MainInfoProfile.propTypes = {
+  horizontalSpaces: PropTypes.string,
   user: PropTypes.object
 };
 

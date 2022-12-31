@@ -11,3 +11,9 @@ export const EXPLORE_PATH = 'explore';
 export const BOOKMARK_PATH = 'bookmarks';
 export const PROFILE_PATH = 'profile'; // check lai sau
 export const SETTINGS_PATH = 'settings';
+
+// inside Profile
+export const PROFILE_TWEET_PATH = '';
+export const PROFILE_REPLIES_PATH = 'with_replies';
+export const PROFILE_MEDIA_PATH = 'media';
+export const PROFILE_LIKE_PATH = 'likes';

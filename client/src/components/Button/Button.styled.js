@@ -26,7 +26,6 @@ const StyledGeneralButton = css`
   transform: ${({ transform }) => transform};
   &:hover {
     cursor: pointer;
-    opacity: 0.7;
   }
 `;
 
@@ -39,7 +38,7 @@ const StyledButton = styled.button`
   border: ${({ theme, buttonThemeName }) =>
     `2px solid ${theme[buttonThemeName].borderColor}` ?? 'none'};
   &:hover {
-    opacity: 1;
+    filter: brightness(90%);
     background-color: ${({ theme, buttonThemeName }) => theme[buttonThemeName].hoverBckColor};
   }
 `;
@@ -50,7 +49,6 @@ export const StyledIconButton = styled.button`
   border: none;
   background-color: transparent;
   &:hover {
-    opacity: 1;
     filter: brightness(140%) contrast(110%);
   }
 `;
@@ -59,11 +57,25 @@ export const StyledLink = styled.button`
   ${StyledGeneralButton}
   background-color: transparent;
   color: ${({ theme, buttonThemeName }) => theme[buttonThemeName]?.color ?? theme.primaryColor};
-  &:hover {
-    opacity: 1;
-    filter: brightness(140%) contrast(110%);
-    text-decoration: ${({ textDecoration }) => textDecoration};
-  }
+
+  ${({ hoverType }) => {
+    switch (hoverType) {
+      case 1:
+        return css`
+          &:hover {
+            filter: brightness(140%) contrast(110%);
+            text-decoration: ${({ textDecoration }) => textDecoration};
+          }
+        `;
+      case 2:
+        return css`
+          &:hover {
+            filter: none;
+            background: ${({ theme, buttonThemeName }) => theme[buttonThemeName].hoverBckColor};
+          }
+        `;
+    }
+  }}
   ${({ pseudoAfter }) => {
     switch (pseudoAfter) {
       case 1:
@@ -74,43 +86,20 @@ export const StyledLink = styled.button`
           &:after {
             content: '';
             display: block;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%)
+              ${({ pseudoAfterTransform }) => pseudoAfterTransform && pseudoAfterTransform};
             width: ${({ pseudoAfterWidth }) => pseudoAfterWidth};
-            height: 3px;
+            height: 4px;
             border-radius: 3px;
             background: ${({ theme, buttonThemeName }) =>
-              theme[buttonThemeName]?.color ?? theme.primaryColor};
+              theme[buttonThemeName]?.hoverColor ?? theme.primaryColor};
             transition: width 0.3s;
-            position: absolute;
-            bottom: -7px;
           }
           &:hover:after {
-            width: 105%;
-          }
-        `;
-      case 2:
-        // 2 for nav element hover effect in home nav
-        return css`
-          position: relative;
-          &:hover {
-            opacity: 1;
-            filter: none;
-          }
-          &:after {
-            content: '';
-            display: block;
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%)
-              ${({ pseudoAfterTransform }) => pseudoAfterTransform && pseudoAfterTransform};
-            z-index: -1;
-            border-radius: ${({ pseudoAfterBorderRadius }) => pseudoAfterBorderRadius};
-            background: transparent;
-          }
-          &:hover:after {
-            background: ${({ theme, buttonThemeName }) => theme[buttonThemeName].hoverBckColor};
+            width: ${({ hoverPseudoAfterWidth }) => hoverPseudoAfterWidth};
           }
         `;
     }
@@ -146,9 +135,12 @@ StyledLink.defaultProps = {
   pseudoAfterWidth: '0',
   pseudoAfterBorderRadius: '0',
   pseudoAfterTransform: 'scale(1)',
+  hoverPseudoAfterWidth: '103%',
+  hoverTransform: 'none',
   transform: 'translateY(0)',
   padding: '0',
-  textDecoration: 'none'
+  textDecoration: 'none',
+  hoverType: 1
 };
 
 export default StyledButton;
