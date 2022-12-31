@@ -27,6 +27,7 @@ function AuthenText({ mainText, subText, linkText, linkPath, responsiveCondition
       alignSelf={renderPropsResponsive('alignSelf', responsiveCondition)}
       gap="0.7em"
       minHeight={renderPropsResponsive('minHeight', responsiveCondition)}
+      overflow="visible"
       {...props}>
       <Text
         type={responsiveCondition.mobile ? 'h3' : 'h4'}

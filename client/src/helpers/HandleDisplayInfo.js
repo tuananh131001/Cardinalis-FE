@@ -67,4 +67,4 @@ export const displayCountNumber = (count, prefix) => {
 
 export const displayDate = (date) => {
   return moment(date).format('MMMM YYYY');
-}
+};

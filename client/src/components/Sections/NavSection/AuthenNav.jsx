@@ -12,7 +12,7 @@ const renderPropsResponsive = (propsName, queries) => {
       else return '70%';
     case 'padding':
       if (queries.smallMobile) return '2em 3em';
-      if (queries.mobile) return '2em 5em';
+      if (queries.mobile) return '2em 0';
       else if (queries.desktop) return '1em';
       else return '1em';
     case 'buttonSize':
@@ -23,7 +23,7 @@ const renderPropsResponsive = (propsName, queries) => {
 const displayCurrentTab = (tabCompare, currentTab) => {
   return {
     pseudoAfterWidth: tabCompare == currentTab ? '100%' : '0',
-    transform: tabCompare == currentTab ? 'scale(1.02)' : 'scale(1)'
+    transform: tabCompare == currentTab ? 'scale(1.01)' : 'scale(1)'
   };
 };
 function AuthenNav({ currentTab = 'register', responsiveCondition, ...props }) {
@@ -31,12 +31,14 @@ function AuthenNav({ currentTab = 'register', responsiveCondition, ...props }) {
   return (
     <FlexContainer
       {...props}
-      gap="2em"
+      gap="1.5em"
       width={renderPropsResponsive('width', responsiveCondition)}
-      padding={renderPropsResponsive('padding', responsiveCondition)}>
+      padding={renderPropsResponsive('padding', responsiveCondition)}
+      overflow="visible">
       <Button
         buttonType="link"
         fontSize={renderPropsResponsive('buttonSize', responsiveCondition)}
+        padding="0.7em 0"
         onClick={() => navigate(`/${REGISTER_PATH}`)}
         pseudoAfter={1}
         {...displayCurrentTab(REGISTER_PATH, currentTab, responsiveCondition)}>
@@ -44,6 +46,7 @@ function AuthenNav({ currentTab = 'register', responsiveCondition, ...props }) {
       </Button>
       <Button
         buttonType="link"
+        padding="0.7em 0"
         fontSize={renderPropsResponsive('buttonSize', responsiveCondition)}
         onClick={() => navigate(`/${LOGIN_PATH}`)}
         pseudoAfter={1}

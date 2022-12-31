@@ -1,5 +1,6 @@
 import Image from '@/components/Image/Image';
 import PropTypes from 'prop-types';
+import Icon from '@/assets/images/icon.png';
 
 const renderPropsResponsive = (propsName, queries) => {
   switch (propsName) {
@@ -18,7 +19,7 @@ function AuthenImage({ theme, responsiveCondition, ...props }) {
     <Image
       {...props}
       themeName={theme}
-      src="./icon.png"
+      src={Icon}
       width={renderPropsResponsive('width', responsiveCondition)}
       alt="Icon Display"
       alignSelf={renderPropsResponsive('alignSelf', responsiveCondition)}
