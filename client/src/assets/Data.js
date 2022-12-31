@@ -12,5 +12,7 @@ export const defaultUser = {
 };
 export const tweet = {
   id: 1,
-  content: 'This is a tweet'
+  username: 'Matsuri',
+  content: 'This is a tweet',
+  createdAt: '2021-11-02T21:33:45.249967'
 };

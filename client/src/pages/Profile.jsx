@@ -8,10 +8,12 @@ import PropTypes from 'prop-types';
 import { Outlet, Link } from 'react-router-dom';
 import TweetSection from '@/components/Sections/GeneralSection/TweetSection';
 import { defaultUser } from '@/assets/Data';
+import { useParams } from 'react-router-dom';
 
 const horizontalSpaces = '2em';
 // Remember to use useMemo to prevent unnecessary re-rendering if have performance issue
 const Profile = ({ user = defaultUser, ...props }) => {
+  const { username } = useParams();
   return (
     <>
       {/* Main Side */}
@@ -23,7 +25,7 @@ const Profile = ({ user = defaultUser, ...props }) => {
         <MainInfoProfile horizontalSpaces={horizontalSpaces} user={user} />
         <Link to="/tweets">Tweets</Link>
         <Link to={`/${PROFILE_REPLIES_PATH}`}>Tweets and Relies</Link>
-        <ProfileNav />
+        <ProfileNav user={user} />
         <Outlet />
         <TweetSection />
       </FlexContainer>

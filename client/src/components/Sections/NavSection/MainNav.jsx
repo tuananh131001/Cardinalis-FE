@@ -11,15 +11,10 @@ import {
 } from 'react-icons/ai';
 import { IoBookmarkOutline, IoBookmark, IoPersonOutline, IoPerson } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
-import {
-  HOME_PATH,
-  EXPLORE_PATH,
-  BOOKMARK_PATH,
-  PROFILE_PATH,
-  SETTINGS_PATH
-} from '@/assets/Constant';
+import { HOME_PATH, EXPLORE_PATH, BOOKMARK_PATH, SETTINGS_PATH } from '@/assets/Constant';
 import Button from '@/components/Button/Button';
 import { useLocation } from 'react-router-dom';
+import { defaultUser } from '@/assets/Data';
 
 const horizontalSpace = '1.7em';
 const displayCurrentTab = (tabCompare, currentTab, type) => {
@@ -27,19 +22,20 @@ const displayCurrentTab = (tabCompare, currentTab, type) => {
   if (type == 'icon') {
     switch (tabCompare) {
       case HOME_PATH:
-        return currentTab == HOME_PATH ? <AiFillHome /> : <AiOutlineHome />;
+        return currentTab == tabCompare ? <AiFillHome /> : <AiOutlineHome />;
       case EXPLORE_PATH:
-        return currentTab == EXPLORE_PATH ? (
+        return currentTab == tabCompare ? (
           <AiOutlineNumber strokeWidth="35" />
         ) : (
           <AiOutlineNumber />
         );
       case BOOKMARK_PATH:
-        return currentTab == BOOKMARK_PATH ? <IoBookmark /> : <IoBookmarkOutline />;
-      case PROFILE_PATH:
-        return currentTab == PROFILE_PATH ? <IoPerson /> : <IoPersonOutline />;
+        return currentTab == tabCompare ? <IoBookmark /> : <IoBookmarkOutline />;
       case SETTINGS_PATH:
-        return currentTab == SETTINGS_PATH ? <AiFillSetting /> : <AiOutlineSetting />;
+        return currentTab == tabCompare ? <AiFillSetting /> : <AiOutlineSetting />;
+      default:
+        // PROFILE
+        return currentTab == tabCompare ? <IoPerson /> : <IoPersonOutline />;
     }
   } else {
     return {
@@ -59,7 +55,7 @@ const findNavigateButtonProps = (tabCompare, currentTab, navigate) => {
     }
   };
 };
-const MainNav = ({ theme, ...props }) => {
+const MainNav = ({ user = defaultUser, theme, ...props }) => {
   const currentTab = /[^/]*$/.exec(useLocation().pathname)[0];
   const navigate = useNavigate();
   return (
@@ -80,7 +76,7 @@ const MainNav = ({ theme, ...props }) => {
         {...findNavigateButtonProps(BOOKMARK_PATH, currentTab, navigate)}
         text="Bookmarks"
       />
-      <NavButton {...findNavigateButtonProps(PROFILE_PATH, currentTab, navigate)} text="Profile" />
+      <NavButton {...findNavigateButtonProps(user.username, currentTab, navigate)} text="Profile" />
       <NavButton
         {...findNavigateButtonProps(SETTINGS_PATH, currentTab, navigate)}
         text="Settings"
@@ -102,6 +98,7 @@ const MainNav = ({ theme, ...props }) => {
 };
 
 MainNav.propTypes = {
+  user: PropTypes.object,
   theme: PropTypes.string,
   props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
 };

@@ -52,10 +52,10 @@ function App() {
               <Route path="/explore" element={<Explore />} />
               <Route path="/bookmarks" element={<Bookmarks />} />
               <Route element={<Profile />}>
-                <Route path={`/profile/${PROFILE_TWEET_PATH}`} element={<h1>Home</h1>} />
-                <Route path={`/profile/${PROFILE_REPLIES_PATH}`} element={<h1>with_replies</h1>} />
-                <Route path={`/profile/${PROFILE_MEDIA_PATH}`} element={<h1>with_replies</h1>} />
-                <Route path={`/profile/${PROFILE_LIKE_PATH}`} element={<h1>with_replies</h1>} />
+                <Route path={`/:username/${PROFILE_TWEET_PATH}`} element={<h1>Home</h1>} />
+                <Route path={`/:username/${PROFILE_REPLIES_PATH}`} element={<h1>with_replies</h1>} />
+                <Route path={`/:username/${PROFILE_MEDIA_PATH}`} element={<h1>with_replies</h1>} />
+                <Route path={`/:username/${PROFILE_LIKE_PATH}`} element={<h1>with_replies</h1>} />
               </Route>
               <Route path="/settings" element={<Settings />} />
             </Route>
