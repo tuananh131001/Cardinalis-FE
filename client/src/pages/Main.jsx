@@ -36,7 +36,8 @@ const Main = ({ theme }) => {
   return (
     <StyledPage
       gridTemplateAreas={findGridTemplateAreas(responsiveCondition)}
-      padding="0 3em"
+      padding="0 10em"
+      gap="7em"
       ai="flex-start">
       <MainNav theme={theme} currentTab={currentTab} changeTab={changeTab} gridArea="nav" />
       <Outlet />
@@ -47,17 +48,17 @@ const findGridTemplateAreas = (queries) => {
   if (queries.mobile)
     return `
       "main"
-      "side"
+      "nav" auto 
       `;
   else if (queries.desktop)
     return `
-      "nav main side" auto /
-      0.5fr 2fr 0.5fr
+      "nav main" auto /
+      auto 2.5fr
       `;
   else
     return `
       "nav main" auto
-      "nav side" auto /
+      "nav main" auto /
       1fr 1fr
       `;
 };

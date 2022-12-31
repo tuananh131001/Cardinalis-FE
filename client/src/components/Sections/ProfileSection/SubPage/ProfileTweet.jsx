@@ -1,16 +1,16 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { FlexContainer } from '@/components/Container/Container.styled'
+import React from 'react';
+// import PropTypes from 'prop-types';
+import { FlexContainer } from '@/components/Container/Container.styled';
 import TweetSection from '@/components/Sections/TweetSection/TweetSection';
 
-const ProfileTweet = props => {
+const ProfileTweet = () => {
   return (
     <FlexContainer fd="column">
       <TweetSection />
     </FlexContainer>
-  )
-}
+  );
+};
 
-ProfileTweet.propTypes = {}
+ProfileTweet.propTypes = {};
 
-export default ProfileTweet
+export default ProfileTweet;

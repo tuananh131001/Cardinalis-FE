@@ -14,27 +14,17 @@ const horizontalSpaces = '2em';
 const Profile = ({ user = defaultUser, ...props }) => {
   // const { username } = useParams(); // ????????????????
   return (
-    <>
-      {/* Main Side */}
-      <FlexContainer fd="column" ai="flex-start" gridArea="main" {...props} width="100%">
-        <BackSection
-          horizontalSpaces={horizontalSpaces}
-          content={<BackProfile name={user.name} numTweets={user.numTweets} />}
-        />
-        <MainInfoProfile horizontalSpaces={horizontalSpaces} user={user} />
-        <Link to="/tweets">Tweets</Link>
-        <Link to={`/${PROFILE_REPLIES_PATH}`}>Tweets and Relies</Link>
-        <ProfileNav user={user} />
-        <Outlet />
-      </FlexContainer>
-
-      {/* Right side */}
+    <FlexContainer fd="column" ai="flex-start" gridArea="main" {...props} width="100%">
       <BackSection
-        gridArea="side"
         horizontalSpaces={horizontalSpaces}
-        content={<BackProfile name="Hello" numTweets={1_000_001_000_000_000_000_000_000} />}
+        content={<BackProfile name={user.name} numTweets={user.numTweets} />}
       />
-    </>
+      <MainInfoProfile horizontalSpaces={horizontalSpaces} user={user} />
+      <Link to="/tweets">Tweets</Link>
+      <Link to={`/${PROFILE_REPLIES_PATH}`}>Tweets and Relies</Link>
+      <ProfileNav user={user} />
+      <Outlet />
+    </FlexContainer>
   );
 };
 
