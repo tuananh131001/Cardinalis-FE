@@ -73,6 +73,14 @@ export const StyledCaption = styled.p`
   color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? theme.subtext.color};
   ${({ isActive }) => isActive && ActiveStyling}
 `;
+export const StyledTextLink = styled.a`
+  ${StyledGeneralHeading}
+  color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? theme.subtext.color};
+  ${({ isActive }) => isActive && ActiveStyling}
+  &:hover {
+    filter: brightness(1.2);
+  }
+`;
 
 // default props
 const generalDefaultProps = {

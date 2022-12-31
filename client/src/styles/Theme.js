@@ -43,6 +43,9 @@ const lightTheme = {
     backgroundColor: 'var(--primary_pseudo_background_light)'
   },
   // Text
+  primaryText: {
+    color: 'var(--primary_color_light)'
+  },
   errorText: {
     color: 'var(--error_text_light)'
   },
@@ -121,6 +124,9 @@ const darkTheme = {
     backgroundColor: 'var(--primary_pseudo_background_dark)'
   },
   // Text
+  primaryText: {
+    color: 'var(--primary_color_dark)'
+  },
   errorText: {
     color: 'var(--error_text_dark)'
   },

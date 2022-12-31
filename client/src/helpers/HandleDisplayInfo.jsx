@@ -1,5 +1,7 @@
 import moment from 'moment';
 import { pluralRules, irregularRules } from './HandlePlural';
+import uuid from 'react-uuid';
+import { StyledTextLink } from '@/components/Text/Text.styled';
 
 const sanitizeWord = (word, replaceRules = irregularRules, regexRules = pluralRules) => {
   // if word is irregular, return the irregular form
@@ -69,24 +71,28 @@ export const displayCountNumber = (count, prefix = '') => {
 };
 
 export const displayInlineLink = (content) => {
-  const regex =
-    /(?:(http | https):\/\/)?[\w.-]+(?:\.[\w\\.-]+)+[\w\-\\._~:/?#[\]@!\\$&'\\(\\)\\*\\+,;=.]+/gim;
+  const regex = /(https?:\/\/[^\s]+)/g;
+  // /https?:\/\/(?:www\.|[a-zA-Z]{2}\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\\+.~#?&//=]+)/g
   const lines = content.split(regex);
-  console.log(lines);
 
   return (
-    <ul>
-      {lines.map((line, index) => {
+    <span>
+      {lines.map((line) => {
         if (line.match(regex)) {
           return (
-            <li key={index}>
-              <a href={line}>{line}</a>
-            </li>
+            <StyledTextLink
+              key={uuid()}
+              href={line}
+              target="_blank"
+              rel="noopener noreferrer"
+              textThemeName="primaryText">
+              {line}
+            </StyledTextLink>
           );
         }
-        return <li key={index}>{line}</li>;
+        return line;
       })}
-    </ul>
+    </span>
   );
 };
 

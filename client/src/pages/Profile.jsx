@@ -6,7 +6,6 @@ import ProfileNav from '@/components/Sections/ProfileSection/ProfileNav';
 import { PROFILE_REPLIES_PATH } from '@/assets/Constant';
 import PropTypes from 'prop-types';
 import { Outlet, Link } from 'react-router-dom';
-import TweetSection from '@/components/Sections/TweetSection/TweetSection';
 import { defaultUser } from '@/assets/Data';
 // import { useParams } from 'react-router-dom';
 
@@ -27,9 +26,6 @@ const Profile = ({ user = defaultUser, ...props }) => {
         <Link to={`/${PROFILE_REPLIES_PATH}`}>Tweets and Relies</Link>
         <ProfileNav user={user} />
         <Outlet />
-        <TweetSection />
-        <TweetSection />
-        <TweetSection />
       </FlexContainer>
 
       {/* Right side */}

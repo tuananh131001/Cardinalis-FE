@@ -5,19 +5,23 @@ import Avatar from '@/components/Image/Avatar';
 import Text from '@/components/Text/Text';
 import { defaultTweet, defaultUser } from '@/assets/Data';
 import { displayDuration, displayInlineLink } from '@/helpers/HandleDisplayInfo';
-import { MdPushPin } from 'react-icons/md';
-import Icon from '@/components/Image/Icon';
 import { TweetButtons } from './TweetButtons';
+import TweetCaption from './TweetCaption';
 
 const tabSpaces = '\u00A0\u00A0';
-const TweetSection = ({ tweet = defaultTweet, isPinned = true, ...props }) => {
+const TweetSection = ({ tweet = defaultTweet, isPinned = false, isRetweeted = true, ...props }) => {
+  // isPinned: if this tweet is pinned, isRetweeted: if this tweet is retweeted from any other post
   // get user by username here (change later)
   const user = defaultUser;
+  const displayCaption = () => {
+    if (isPinned) return <TweetCaption displayType="pinned" />;
+    else if (isRetweeted) return <TweetCaption displayType="retweeted" />;
+  };
   return (
     <GridContainer
       {...props}
       gridTemplateAreas={`
-      "pinnedIcon pinned ." auto
+      "captionIcon caption ." auto
     "avatar name subInfo" auto
     "avatar content content" auto
     ". buttons buttons"  auto /
@@ -26,20 +30,7 @@ const TweetSection = ({ tweet = defaultTweet, isPinned = true, ...props }) => {
       gap="0.1em 0.7em"
       width="100%"
       jc="flex-start">
-      {isPinned && (
-        <>
-          <Icon gridArea="pinnedIcon" iconThemeName="subText" justifySelf="flex-end">
-            {<MdPushPin />}
-          </Icon>
-          <Text
-            type="callout"
-            textThemeName="subText"
-            text="Pinned Tweet"
-            gridArea="pinned"
-            weight="700"
-          />
-        </>
-      )}
+      {displayCaption()}
       <Avatar size="5em" gridArea="avatar" src={user.avatar} alignSelf="flex-start" />
       <Text
         type="p"
@@ -62,11 +53,17 @@ const TweetSection = ({ tweet = defaultTweet, isPinned = true, ...props }) => {
         lineHeight="1.5em"
         gridArea="content"
       />
+      {/* {displayInlineLink(tweet.content)} */}
       <TweetButtons tweet={tweet} gridArea="buttons" />
     </GridContainer>
   );
 };
 
-TweetSection.propTypes = {};
+TweetSection.propTypes = {
+  tweet: PropTypes.object,
+  isPinned: PropTypes.bool,
+  isRetweeted: PropTypes.bool,
+  props: PropTypes.arrayOf(PropTypes.string)
+};
 
 export default TweetSection;

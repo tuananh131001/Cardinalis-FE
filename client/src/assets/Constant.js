@@ -10,7 +10,6 @@ export const HOME_PATH = 'home';
 export const EXPLORE_PATH = 'explore';
 export const BOOKMARK_PATH = 'bookmarks';
 export const PROFILE_PATH = 'profile'; // check lai sau
-export const SETTINGS_PATH = 'settings';
 
 // inside Profile
 export const PROFILE_TWEET_PATH = '';

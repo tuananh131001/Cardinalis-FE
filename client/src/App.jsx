@@ -13,7 +13,6 @@ import Authentication from '@/pages/Authentication';
 import Explore from '@/pages/Explore';
 import Profile from '@/pages/Profile';
 import Bookmarks from '@/pages/Bookmarks';
-import Settings from '@/pages/Settings';
 import Main from '@/pages/Main';
 import ProtectedRoutes from '@/routes/ProtectedRoutes';
 import { AnimatePresence } from 'framer-motion';
@@ -24,6 +23,7 @@ import {
   PROFILE_MEDIA_PATH,
   PROFILE_LIKE_PATH
 } from '@/assets/Constant';
+import ProfileTweet from '@/components/Sections/ProfileSection/SubPage/ProfileTweet';
 
 // import Text from './components/Text/Text';
 
@@ -52,12 +52,14 @@ function App() {
               <Route path="/explore" element={<Explore />} />
               <Route path="/bookmarks" element={<Bookmarks />} />
               <Route element={<Profile />}>
-                <Route path={`/:username/${PROFILE_TWEET_PATH}`} element={<h1>Home</h1>} />
-                <Route path={`/:username/${PROFILE_REPLIES_PATH}`} element={<h1>with_replies</h1>} />
+                <Route path={`/:username/${PROFILE_TWEET_PATH}`} element={<ProfileTweet />} />
+                <Route
+                  path={`/:username/${PROFILE_REPLIES_PATH}`}
+                  element={<h1>with_replies</h1>}
+                />
                 <Route path={`/:username/${PROFILE_MEDIA_PATH}`} element={<h1>with_replies</h1>} />
                 <Route path={`/:username/${PROFILE_LIKE_PATH}`} element={<h1>with_replies</h1>} />
               </Route>
-              <Route path="/settings" element={<Settings />} />
             </Route>
             <Route path={`/${FORGOT_PASSWORD_PATH}`} element={<ForgotPassword />} />
             <Route path="*" element={<StyledHeading1>Page Not Exist</StyledHeading1>} />

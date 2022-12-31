@@ -8,7 +8,8 @@ import {
   StyledHeading4,
   StyledParagraph,
   StyledParagraph2,
-  StyledParagraph3
+  StyledParagraph3,
+  StyledTextLink
 } from './Text.styled';
 import PropTypes from 'prop-types';
 
@@ -41,6 +42,8 @@ function Text({ type, text, textThemeName, ...props }) {
       return <StyledCallout {...generalPropsList}>{text}</StyledCallout>;
     case 'caption':
       return <StyledCaption {...generalPropsList}>{text}</StyledCaption>;
+    case 'a':
+      return <StyledTextLink {...generalPropsList}>{text}</StyledTextLink>;
   }
 }
 

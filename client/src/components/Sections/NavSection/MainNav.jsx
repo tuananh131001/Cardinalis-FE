@@ -2,16 +2,10 @@ import { FlexContainer } from '@/components/Container/Container.styled';
 import NavImage from './NavImage';
 import NavButton from './NavButton';
 import PropTypes from 'prop-types';
-import {
-  AiOutlineNumber,
-  AiOutlineSetting,
-  AiFillSetting,
-  AiOutlineHome,
-  AiFillHome
-} from 'react-icons/ai';
+import { AiOutlineNumber, AiOutlineHome, AiFillHome } from 'react-icons/ai';
 import { IoBookmarkOutline, IoBookmark, IoPersonOutline, IoPerson } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
-import { HOME_PATH, EXPLORE_PATH, BOOKMARK_PATH, SETTINGS_PATH } from '@/assets/Constant';
+import { HOME_PATH, EXPLORE_PATH, BOOKMARK_PATH } from '@/assets/Constant';
 import Button from '@/components/Button/Button';
 import { useLocation } from 'react-router-dom';
 import { defaultUser } from '@/assets/Data';
@@ -31,8 +25,6 @@ const displayCurrentTab = (tabCompare, currentTab, type) => {
         );
       case BOOKMARK_PATH:
         return currentTab == tabCompare ? <IoBookmark /> : <IoBookmarkOutline />;
-      case SETTINGS_PATH:
-        return currentTab == tabCompare ? <AiFillSetting /> : <AiOutlineSetting />;
       default:
         // PROFILE
         return currentTab == tabCompare ? <IoPerson /> : <IoPersonOutline />;
@@ -77,10 +69,6 @@ const MainNav = ({ user = defaultUser, theme, ...props }) => {
         text="Bookmarks"
       />
       <NavButton {...findNavigateButtonProps(user.username, currentTab, navigate)} text="Profile" />
-      <NavButton
-        {...findNavigateButtonProps(SETTINGS_PATH, currentTab, navigate)}
-        text="Settings"
-      />
       {/* Tweet button */}
       <Button
         buttonThemeName="primaryButton"
