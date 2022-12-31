@@ -21,7 +21,10 @@ const sanitizeWord = (word, replaceRules = irregularRules, regexRules = pluralRu
     }
   }
 };
-export const displayCountNumber = (count, prefix) => {
+export const displayCountNumber = (count, prefix = '') => {
+  if (prefix === '') {
+    return `${count}`;
+  }
   const suffixes = ['k', 'M', 'G', 'T', 'P', 'E'];
   var exp,
     firstDigit,
@@ -65,6 +68,36 @@ export const displayCountNumber = (count, prefix) => {
   return `${count} ${prefix.charAt(0).toUpperCase() + prefix.slice(1)}`;
 };
 
+export const displayInlineLink = (content) => {
+  const regex =
+    /(?:(http | https):\/\/)?[\w.-]+(?:\.[\w\\.-]+)+[\w\-\\._~:/?#[\]@!\\$&'\\(\\)\\*\\+,;=.]+/gim;
+  const lines = content.split(regex);
+  console.log(lines);
+
+  return (
+    <ul>
+      {lines.map((line, index) => {
+        if (line.match(regex)) {
+          return (
+            <li key={index}>
+              <a href={line}>{line}</a>
+            </li>
+          );
+        }
+        return <li key={index}>{line}</li>;
+      })}
+    </ul>
+  );
+};
+
 export const displayDate = (date) => {
   return moment(date).format('MMMM YYYY');
+};
+export const displayDuration = (date) => {
+  if (moment(date).format('YYYY') !== moment().format('YYYY')) {
+    return moment(date).format('MMM DD, YYYY');
+  } else if (moment().diff(moment(date), 'weeks') > 1) {
+    return moment(date).format('MMM DD');
+  }
+  return moment(date).fromNow(true);
 };

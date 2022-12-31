@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 // If performance is an issue, consider using React.memo to displayCountNumber
 const BackProfile = ({ name, numTweets = 3 }) => {
   return (
-    <FlexContainer fd="column">
+    <FlexContainer fd="column" overflow="visible">
       <Text
         type="p"
         textThemeName="paragraphText"
@@ -16,8 +16,8 @@ const BackProfile = ({ name, numTweets = 3 }) => {
         weight="700"
       />
       <Text
-        type="p"
-        textThemeName="paragraphText"
+        type="p2"
+        textThemeName="subText"
         text={displayCountNumber(numTweets, 'Tweet')}
         txtAlign="left"
         width="100%"

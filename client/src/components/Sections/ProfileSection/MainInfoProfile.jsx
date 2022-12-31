@@ -23,7 +23,7 @@ const MainInfoProfile = ({ horizontalSpaces, user }) => {
         jc="flex-end"
         padding={`0 ${horizontalSpaces}`}>
         <Avatar
-          avatar={user.avatar}
+          src={user.avatar}
           size={avatarSize}
           position="absolute"
           left={horizontalSpaces}

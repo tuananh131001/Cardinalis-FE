@@ -15,6 +15,7 @@ const StyledGeneralButton = css`
   border: none;
   border-radius: ${({ borderRadius }) => borderRadius};
   width: ${({ width }) => width};
+  aspect-ratio: ${({ aspectRatio }) => aspectRatio};
   height: ${({ height }) => height};
   padding: ${({ padding }) => padding};
   /* font */
@@ -61,6 +62,7 @@ export const StyledLink = styled.button`
   ${({ hoverType }) => {
     switch (hoverType) {
       case 1:
+        // only change color in text
         return css`
           &:hover {
             filter: brightness(140%) contrast(110%);
@@ -68,11 +70,26 @@ export const StyledLink = styled.button`
           }
         `;
       case 2:
+        // have background color when hovering
         return css`
           &:hover {
             filter: none;
             background: ${({ theme, buttonThemeName }) => theme[buttonThemeName].hoverBckColor};
           }
+        `;
+      case 3:
+        // have background and text color when hovering
+        return css`
+          &:hover {
+            filter: none;
+            background: ${({ theme, buttonThemeName }) => theme[buttonThemeName].hoverBckColor};
+            color: ${({ theme, buttonThemeName }) => theme[buttonThemeName].hoverColor};
+          }
+          ${({ isActive }) =>
+            isActive &&
+            css`
+              color: ${({ theme, buttonThemeName }) => theme[buttonThemeName].activeColor};
+            `}
         `;
     }
   }}
@@ -120,7 +137,8 @@ const generalDefaultProps = {
   textTransform: 'uppercase',
   fontSize: 'var(--font-size-sm)',
   gridArea: 'unset',
-  transform: 'none'
+  transform: 'none',
+  aspectRatio: 'unset'
 };
 StyledButton.defaultProps = {
   ...generalDefaultProps,

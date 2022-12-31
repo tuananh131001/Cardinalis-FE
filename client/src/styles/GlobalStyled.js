@@ -39,6 +39,23 @@ box-sizing:border-box;
   --third_button_text_light: #0F1419;
   --third_button_border_light: #CFD9DE;
   --third_button_background_hover_light: #e6e6e6;
+  /* forth button */
+  --forth_button_background_light: transparent;
+  --forth_button_background_hover_light: #fac8a1;
+  --forth_button_text_light: #626C7A;
+  --forth_button_text_active_light: #DC6C14;
+  --forth_button_text_hover_light: #DC6C14;
+  /* retweet */
+  --retweet_color_light: #626C7A;
+  --retweet_color_active_light: #00bb7d;
+  --retweet_color_hover_light: #00bb7d;
+  --retweet_background_hover_light: #dcf1ea;
+  /* favorite */
+  --favorite_color_light: #626C7A;
+  --favorite_color_active_light: #f91980;
+  --favorite_color_hover_light: #f91980;
+  --favorite_background_hover_light: #ffe7f3;
+
 
   // Pseudo
   --primary_pseudo_background_light: var(--background-color_light);
@@ -76,6 +93,22 @@ box-sizing:border-box;
   --third_button_text_dark: #F7F9FF;
   --third_button_border_dark: #536471;
   --third_button_background_hover_dark: #3B353B;
+  /* forth button */
+  --forth_button_background_dark: transparent;
+  --forth_button_background_hover_dark: #3B353B;
+  --forth_button_text_dark: #F7F9FF;
+  --forth_button_text_active_dark: #DC6C14;
+  --forth_button_text_hover_dark: #DC6C14;
+  /* retweet */
+  --retweet_color_dark: #F7F9FF;
+  --retweet_color_active_dark: #00bb7d;
+  --retweet_color_hover_dark: #00bb7d;
+  --retweet_background_hover_dark: #071B15;
+  /* favorite */
+  --favorite_color_dark: #F7F9FF;
+  --favorite_color_active_dark: #f91980;
+  --favorite_color_hover_dark: #f91980;
+  --favorite_background_hover_dark: #200814;
 
   // Pseudo
   --primary_pseudo_background_dark: var(--background-color_dark);

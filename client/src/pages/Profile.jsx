@@ -6,14 +6,14 @@ import ProfileNav from '@/components/Sections/ProfileSection/ProfileNav';
 import { PROFILE_REPLIES_PATH } from '@/assets/Constant';
 import PropTypes from 'prop-types';
 import { Outlet, Link } from 'react-router-dom';
-import TweetSection from '@/components/Sections/GeneralSection/TweetSection';
+import TweetSection from '@/components/Sections/TweetSection/TweetSection';
 import { defaultUser } from '@/assets/Data';
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 
 const horizontalSpaces = '2em';
 // Remember to use useMemo to prevent unnecessary re-rendering if have performance issue
 const Profile = ({ user = defaultUser, ...props }) => {
-  const { username } = useParams();
+  // const { username } = useParams(); // ????????????????
   return (
     <>
       {/* Main Side */}
@@ -27,6 +27,8 @@ const Profile = ({ user = defaultUser, ...props }) => {
         <Link to={`/${PROFILE_REPLIES_PATH}`}>Tweets and Relies</Link>
         <ProfileNav user={user} />
         <Outlet />
+        <TweetSection />
+        <TweetSection />
         <TweetSection />
       </FlexContainer>
 

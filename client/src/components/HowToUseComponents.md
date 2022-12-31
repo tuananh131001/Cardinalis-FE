@@ -1,5 +1,6 @@
 # To Do Lists
-- [ ] Display Profile path using username (in App, MainNav, Profile, Constant.js)
+- [x] Display Profile path using username (in App, MainNav, Profile, Constant.js)
+- [ ] Do I need to use username from useParam to get user info (MainNav, Profile)
 - [ ] Tweet page (Have back button)
 - [ ] Home, Explore, Bookmarks, Settings -> Tweets, Profile, Trend, 
 - [ ] change defaultUser to dynamic user (in Profile, MainNav)

@@ -18,6 +18,26 @@ const lightTheme = {
     borderColor: 'var(--third_button_border_light)',
     hoverBckColor: 'var(--third_button_background_hover_light)'
   },
+  forthButton: {
+    color: 'var(--forth_button_text_light)',
+    hoverColor: 'var(--forth_button_text_hover_light)',
+    activeColor: 'var(--forth_button_text_active_light)',
+    hoverBckColor: 'var(--forth_button_background_hover_light)'
+  },
+  // Retweet
+  retweetButton: {
+    color: 'var(--retweet_color_light)',
+    hoverColor: 'var(--retweet_color_hover_light)',
+    activeColor: 'var(--retweet_color_active_light)',
+    hoverBckColor: 'var(--retweet_background_hover_light)'
+  },
+  // Favorite
+  favoriteButton: {
+    color: 'var(--favorite_color_light)',
+    hoverColor: 'var(--favorite_color_hover_light)',
+    activeColor: 'var(--favorite_color_active_light)',
+    hoverBckColor: 'var(--favorite_background_hover_light)'
+  },
   // Pseudo
   primaryPseudo: {
     backgroundColor: 'var(--primary_pseudo_background_light)'
@@ -75,6 +95,26 @@ const darkTheme = {
     color: 'var(--third_button_text_dark)',
     borderColor: 'var(--third_button_border_dark)',
     hoverBckColor: 'var(--third_button_background_hover_dark)'
+  },
+  forthButton: {
+    color: 'var(--forth_button_text_dark)',
+    hoverColor: 'var(--forth_button_text_hover_dark)',
+    activeColor: 'var(--forth_button_text_active_dark)',
+    hoverBckColor: 'var(--forth_button_background_hover_dark)'
+  },
+  // Retweet
+  retweetButton: {
+    color: 'var(--retweet_color_dark)',
+    hoverColor: 'var(--retweet_color_hover_dark)',
+    activeColor: 'var(--retweet_color_active_dark)',
+    hoverBckColor: 'var(--retweet_background_hover_dark)'
+  },
+  // Favorite
+  favoriteButton: {
+    color: 'var(--favorite_color_dark)',
+    hoverColor: 'var(--favorite_color_hover_dark)',
+    activeColor: 'var(--favorite_color_active_dark)',
+    hoverBckColor: 'var(--favorite_background_hover_dark)'
   },
   // Pseudo
   primaryPseudo: {

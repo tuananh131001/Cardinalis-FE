@@ -1,11 +1,11 @@
 import Image from './Image';
 import PropTypes from 'prop-types';
 
-const Avatar = ({ avatar, size, ...props }) => {
+const Avatar = ({ src, size, ...props }) => {
   return (
     <Image
       {...props}
-      src={avatar}
+      src={src}
       alt="Profile Avatar"
       borderRadius="100%"
       width={size}
@@ -17,7 +17,7 @@ const Avatar = ({ avatar, size, ...props }) => {
 };
 
 Avatar.propTypes = {
-  avatar: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
   size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
 };
