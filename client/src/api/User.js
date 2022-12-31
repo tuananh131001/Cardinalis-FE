@@ -1,5 +1,13 @@
 import axios from 'axios';
-import { API_ORIGIN, LOGIN_ENDPOINT, USER_ENDPOINT, REGISTER_ENDPOINT } from '@/assets/constantEnv';
+import {
+  API_ORIGIN,
+  LOGIN_ENDPOINT,
+  USER_ENDPOINT,
+  REGISTER_ENDPOINT,
+  GET_USER_ENDPOINT
+} from '@/assets/constantEnv';
+const token = localStorage.getItem('userToken');
+console.log(token);
 const userApi = axios.create({
   baseURL: API_ORIGIN
 });
@@ -16,4 +24,14 @@ const signIn = ({ username, password }) =>
 const updateProfile = ({ data, id }) =>
   userApi.put(USER_ENDPOINT, { data, id }).then((res) => res.data);
 
-export { registerUser, signIn, updateProfile };
+const getUserInfo = (username) => {
+  return userApi
+    .get(`${GET_USER_ENDPOINT}${username}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('userToken')}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((res) => res.data);
+};
+export { registerUser, signIn, updateProfile, getUserInfo };
