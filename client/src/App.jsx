@@ -3,8 +3,6 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import Home from '@/pages/Home';
 import Register from '@/pages/Register';
 import Login from '@/pages/Login';
-import Register from '@/pages/Register';
-
 import useTheme from '@/hooks/useTheme';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '@/styles/Theme';
@@ -18,7 +16,6 @@ import Bookmarks from '@/pages/Bookmarks';
 import Main from '@/pages/Main';
 import ProtectedRoutes from '@/routes/ProtectedRoutes';
 import { AnimatePresence } from 'framer-motion';
-import { useLocation } from 'react-router-dom/dist/index';
 import {
   PROFILE_TWEET_PATH,
   PROFILE_REPLIES_PATH,
