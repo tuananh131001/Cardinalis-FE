@@ -1,5 +1,15 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { registerUser, signIn, updateProfile } from '@/api/User';
+import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
+import {
+  registerUser,
+  signIn,
+  updateProfile,
+  getUserInfo,
+  searchUsers,
+  getUserFollowers,
+  getUserFollowing,
+  followUser,
+  unfollowUser
+} from '@/api/User';
 
 const useRegister = (reset) =>
   useMutation({
@@ -24,12 +34,73 @@ const useSignIn = (reset) =>
 
 const useUpdateProfile = () => {
   const queryClient = useQueryClient();
-
   return useMutation({
     mutationFn: (user) => updateProfile(user),
-    onSuccess: (data) => queryClient.setQueryData(['todo', { id: data.id }], data),
+    onSuccess: (data) => queryClient.setQueryData(['user', { id: data.id }], data),
     onError: (error) => console.log(error)
   });
 };
 
-export { useSignIn, useRegister, useUpdateProfile };
+const useFollowUser = (users) => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (users) => followUser(users),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['followers', users.followingId]);
+    }
+  });
+};
+
+const useUnfollowUser = (users) => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (users) => unfollowUser(users),
+    onSuccess: () => {
+      queryClient.invalidateQueries(['followers', users.followingId]);
+    }
+  });
+};
+
+const useGetUserInfo = (username) => {
+  return useQuery({
+    queryKey: ['user', username],
+    queryFn: () => getUserInfo(username),
+    enabled: Boolean(username)
+  });
+};
+
+const useSearchUsers = (username) => {
+  return useQuery({
+    queryKey: ['search', username],
+    queryFn: () => searchUsers(username),
+    enabled: Boolean(username)
+  });
+};
+
+const useGetUserFollowers = (userId) => {
+  return useQuery({
+    queryKey: ['followers', userId],
+    queryFn: () => getUserFollowers(userId),
+    enabled: Boolean(userId)
+  });
+};
+
+const useGetUserFollowing = (userId) => {
+  return useQuery({
+    queryKey: ['following', userId],
+    queryFn: () => getUserFollowing(userId),
+    enabled: Boolean(userId)
+  });
+};
+
+export {
+  useSignIn,
+  useRegister,
+  useUpdateProfile,
+  useGetUserInfo,
+  useSearchUsers,
+  useGetUserFollowing,
+  useGetUserFollowers,
+  useFollowUser,
+  useUnfollowUser
+};

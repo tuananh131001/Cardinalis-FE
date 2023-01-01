@@ -1,8 +1,10 @@
 import GlobalStyled from '@/styles/GlobalStyled';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import Home from '@/pages/Home';
 import Register from '@/pages/Register';
 import Login from '@/pages/Login';
+import Register from '@/pages/Register';
+
 import useTheme from '@/hooks/useTheme';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '@/styles/Theme';
