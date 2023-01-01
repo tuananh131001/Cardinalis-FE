@@ -4,13 +4,24 @@ import {
   LOGIN_ENDPOINT,
   USER_ENDPOINT,
   REGISTER_ENDPOINT,
-  GET_USER_ENDPOINT
+  GET_USER_ENDPOINT,
+  USER_FOLLOW_ENDPOINT,
+  USER_FOLLOWING_ENDPOINT,
+  USER_FOLLOWERS_ENDPOINT,
+  USER_SEARCH_ENDPOINT
 } from '@/assets/constantEnv';
 const token = localStorage.getItem('userToken');
 console.log(token);
 const userApi = axios.create({
   baseURL: API_ORIGIN
 });
+
+const headerConfig = {
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('userToken')}`,
+    'Content-Type': 'application/json'
+  }
+};
 
 const registerUser = (user) => userApi.post(REGISTER_ENDPOINT, user).then((res) => res.data);
 
@@ -34,4 +45,36 @@ const getUserInfo = (username) => {
     })
     .then((res) => res.data);
 };
-export { registerUser, signIn, updateProfile, getUserInfo };
+
+const followUser = (users) =>
+  userApi.post(USER_FOLLOW_ENDPOINT, users, { headers: headerConfig }).then((res) => res.data);
+
+const unfollowUser = (users) =>
+  userApi.delete(USER_FOLLOW_ENDPOINT, users, { headers: headerConfig }).then((res) => res.data);
+
+const getUserFollowers = (id) =>
+  userApi
+    .get(`${USER_FOLLOW_ENDPOINT}${id}${USER_FOLLOWERS_ENDPOINT}`, { headers: headerConfig })
+    .then((res) => res.data);
+
+const getUserFollowing = (id) =>
+  userApi
+    .get(`${USER_FOLLOW_ENDPOINT}${id}${USER_FOLLOWING_ENDPOINT}`, { headers: headerConfig })
+    .then((res) => res.data);
+
+const searchUsers = (username) =>
+  userApi
+    .get(`${USER_SEARCH_ENDPOINT}?username=${username}`, { headers: headerConfig })
+    .then((res) => res.data);
+
+export {
+  registerUser,
+  signIn,
+  updateProfile,
+  getUserInfo,
+  searchUsers,
+  getUserFollowers,
+  getUserFollowing,
+  followUser,
+  unfollowUser
+};
