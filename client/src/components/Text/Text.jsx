@@ -6,6 +6,7 @@ import {
   StyledHeading2,
   StyledHeading3,
   StyledHeading4,
+  StyledLabel,
   StyledParagraph,
   StyledParagraph2,
   StyledParagraph3,
@@ -44,6 +45,8 @@ function Text({ type, text, textThemeName, ...props }) {
       return <StyledCaption {...generalPropsList}>{text}</StyledCaption>;
     case 'a':
       return <StyledTextLink {...generalPropsList}>{text}</StyledTextLink>;
+    case 'label':
+      return <StyledLabel {...generalPropsList}>{text}</StyledLabel>;
   }
 }
 

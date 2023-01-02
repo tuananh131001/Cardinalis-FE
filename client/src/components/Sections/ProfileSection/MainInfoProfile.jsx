@@ -1,6 +1,5 @@
 import Avatar from '@/components/Image/Avatar';
 import { FlexContainer, InlineContainer } from '@/components/Container/Container.styled';
-import Image from '@/components/Image/Image';
 import { SubHeaderProfile } from './TextProfile';
 import { ImCalendar } from 'react-icons/im';
 import ShortInfoProfile from './ShortInfoProfile';
@@ -10,6 +9,7 @@ import { displayDate } from '@/helpers/HandleDisplayInfo';
 import CustomModal from '@/components/Modals/CustomModal';
 import { useChange } from '@/hooks/useChange';
 import UpdateProfileForm from '@/components/Form/UpdateProfileForm';
+import ImageProfile from './ImageProfile';
 
 const avatarSize = '9em';
 const bckHeight = '14em';
@@ -23,22 +23,7 @@ const MainInfoProfile = ({ user }) => {
       gap="0.5em"
       position="relative"
       padding={`calc(${bckHeight} + ${containerGap}) var(--horizontal-spaces) 0`}>
-      <InlineContainer
-        position="absolute"
-        top="0"
-        left="0"
-        height={bckHeight}
-        width="100%"
-        overflow="visible">
-        <Image src={user.background} alt="Profile Background" width="100%" height={bckHeight} />
-        <Avatar
-          src={user.avatar}
-          size={avatarSize}
-          position="absolute"
-          left="var(--horizontal-spaces)"
-          bottom={`calc(-${avatarSize} / 2)`}
-        />
-      </InlineContainer>
+      <ImageProfile user={user} bckHeight={bckHeight} avatarSize={avatarSize} />
       <EditButtonProfile onClick={handleOpen} />
       <ShortInfoProfile name={user.name} username={user.username} padding="1em 0" />
       <SubHeaderProfile text={[<ImCalendar key={0} />, `Joined ${displayDate(user.createdAt)}`]} />
@@ -49,7 +34,7 @@ const MainInfoProfile = ({ user }) => {
       </FlexContainer>
 
       <CustomModal isOpen={isOpen} handleClose={handleClose}>
-        {<UpdateProfileForm user={user} />}
+        {<UpdateProfileForm user={user} isInModal={true} />}
       </CustomModal>
     </FlexContainer>
   );

@@ -81,6 +81,12 @@ export const StyledTextLink = styled.a`
     filter: brightness(1.2);
   }
 `;
+export const StyledLabel = styled.label`
+  ${StyledGeneralHeading}
+  color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? 'inherit'};
+  font-family: var(--font-family);
+  ${({ isActive }) => isActive && ActiveStyling}
+`;
 
 // default props
 const generalDefaultProps = {
@@ -147,5 +153,11 @@ StyledCaption.defaultProps = {
   ...generalDefaultProps,
   weight: 400,
   size: 'var(--font-size-ssm)',
+  lineHeight: '1em'
+};
+StyledLabel.defaultProps = {
+  ...generalDefaultProps,
+  weight: 400,
+  size: 'var(--font-size-base)',
   lineHeight: '1em'
 };

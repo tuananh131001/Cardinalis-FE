@@ -2,9 +2,7 @@ import moment from 'moment';
 import { pluralRules, irregularRules } from './HandlePlural';
 import uuid from 'react-uuid';
 import { StyledTextLink } from '@/components/Text/Text.styled';
-
-const urlRegex = /(https?:\/\/[^\s]+)/g;
-// /https?:\/\/(?:www\.|[a-zA-Z]{2}\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\\+.~#?&//=]+)/g
+import { urlRegex } from '@/assets/Constant';
 
 const sanitizeWord = (word, replaceRules = irregularRules, regexRules = pluralRules) => {
   // if word is irregular, return the irregular form

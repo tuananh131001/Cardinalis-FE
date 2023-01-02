@@ -15,3 +15,7 @@ export const PROFILE_PATH = 'profile'; // check lai sau
 export const PROFILE_TWEET_PATH = '';
 export const PROFILE_REPLIES_PATH = 'with_replies';
 export const PROFILE_MEDIA_PATH = 'media';
+
+// Regex
+export const urlRegex = /(https?:\/\/[^\s]+)/g;
+// /https?:\/\/(?:www\.|[a-zA-Z]{2}\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\\+.~#?&//=]+)/g

@@ -36,7 +36,7 @@ const StyledGeneralInput = css`
 
 // Styled Components
 // Input that has icon
-export const StyledInputContainer = styled.div`
+export const StyledInputContainer = styled.label`
   display: flex;
   align-items: ${(props) => props.ai};
   justify-content: ${(props) => props.jc};
@@ -45,9 +45,12 @@ export const StyledInputContainer = styled.div`
   ${StyledGeneralInput}
 `;
 export const StyledInputIcon = styled.input`
-  ${StyledGeneralInput}
   border: none;
   background-color: inherit;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
   outline: none;
   flex: 1;
 `;
@@ -56,13 +59,20 @@ export const StyledTextArea = styled.textarea`
   ${StyledGeneralInput}
   resize: none;
   overflow: hidden;
-  line-height: 1em;
+  line-height: 1.5em;
   padding: ${(props) => props.padding};
 `;
 // Normal input
 export const StyledInput = styled.input`
   ${StyledGeneralInput}
   padding: ${(props) => props.padding};
+`;
+// For File Input
+export const StyledFileInputContainer = styled.label`
+  display: block;
+  height: ${(props) => props.height};
+  overflow: hidden;
+  position: relative;
 `;
 
 // Default Props

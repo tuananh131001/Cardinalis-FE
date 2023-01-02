@@ -1,22 +1,26 @@
 // https://stackoverflow.com/questions/62935533/how-to-fix-react-forwardrefmenu-material-ui
 import { useResizeInput } from '@/hooks/useResizeInput';
-import { StyledTextArea, StyledInput } from '@/components/Input/Input.styled';
-import { StyledInputContainer, StyledInputIcon } from './Input.styled';
+import {
+  StyledInputContainer,
+  StyledInputIcon,
+  StyledFileInputContainer,
+  StyledTextArea,
+  StyledInput
+} from './Input.styled';
 import PropTypes from 'prop-types';
 import Button from '@/components/Button/Button';
 import { forwardRef } from 'react';
 
 export const Input = forwardRef(function Input(
-  { inputType, inputThemeName, type = 'text', cols, onClick, children, ...props },
+  { inputType, inputThemeName, type = 'text', cols, onClick, children, isDisplay = true, ...props },
   ref
 ) {
   /**
-   * @description - This component for input and textarea
    * @param {string} inputType - type of input element - normal input | special input textarea | special input with icon
    * @param {string} inputThemeName - name of input: for choosing "loginInput" or "homeInput" input
    * @param {string} type - type of input: text | password | email | number
    * @param {string} cols - number of cols for textarea
-   * @param {function} onClick - function for onClick event
+   * @param {function} onClick - function for external onClick event
    */
   let [textareaRef, onChange, inputValue] = [null];
   // for general props of all components rendering conditionally
@@ -54,6 +58,21 @@ export const Input = forwardRef(function Input(
           </Button>
         </StyledInputContainer>
       );
+    case 'image':
+      return (
+        <StyledFileInputContainer {...generalPropsList}>
+          <StyledInput
+            {...generalPropsList}
+            onChange={onChange}
+            accept="image/*"
+            ref={ref}
+            multiple
+            type="file"
+            style={{ display: !isDisplay && 'none' }}
+          />
+          {children}
+        </StyledFileInputContainer>
+      );
   }
 });
 
@@ -63,6 +82,7 @@ Input.propTypes = {
   type: PropTypes.string,
   cols: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onClick: PropTypes.func,
+  isDisplay: PropTypes.bool,
   children: PropTypes.element,
   props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
 };

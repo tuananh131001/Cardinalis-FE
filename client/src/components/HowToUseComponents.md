@@ -6,7 +6,8 @@
 - [ ] change defaultUser to dynamic user (in Profile, MainNav, TweetSection)
 - [ ] change defaultReply
 - [ ] change defaultTweetList to dynamic tweet (tweetlist in ProfileSubpage)
-- [ ] Is Pinned Tweet in back or fronend??????
+- [ ] Restyle date of birth input later
+- [X] Is Pinned Tweet in back or fronend??????
 # Props passed through Components and through Styled Components
 ## Inside Components: ({a, b, c, ...props})
 - a, b, c
