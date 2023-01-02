@@ -35,7 +35,7 @@ export const chooseInputSchema = (type) => {
       username: yup.string().required(displayErrorMessage('email', 'required')),
       password: yup.string().required(displayErrorMessage('password', 'required'))
     });
-  } else {
+  } else if (type == 'register') {
     return yup.object().shape({
       email: yup
         .string()
@@ -47,6 +47,13 @@ export const chooseInputSchema = (type) => {
         .string()
         .oneOf([yup.ref('password'), null], displayErrorMessage('confirmPassword', 'oneOf'))
         .required(displayErrorMessage('confirmPassword', 'required'))
+    });
+  } else {
+    return yup.object().shape({
+      name: yup.string().required(displayErrorMessage('name', 'required')),
+      bio: yup.string().required(displayErrorMessage('bio', 'required')),
+      location: yup.string().required(displayErrorMessage('location', 'required')),
+      website: yup.string().required(displayErrorMessage('website', 'required'))
     });
   }
 };

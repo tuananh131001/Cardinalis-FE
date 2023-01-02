@@ -59,6 +59,8 @@ box-sizing:border-box;
 
   // Pseudo
   --primary_pseudo_background_light: var(--background-color_light);
+  --primary_pseudo_shadow_light: rgba(203, 200, 198, 0.7);
+  /* --primary_pseudo_background_light: #0F1419; */
 
   --card_background_light:#FEFAF7;
   /* --------------------- End Light theme --------------------- */
@@ -112,6 +114,8 @@ box-sizing:border-box;
 
   // Pseudo
   --primary_pseudo_background_dark: var(--background-color_dark);
+  /* --primary_pseudo_background_dark: #3B353B; */
+  --primary_pseudo_shadow_dark: rgba(53,50,53,0.7);
 
   --card_background_dark:#3B353B;  
   /* --------------------- End Dark theme --------------------- */
@@ -126,6 +130,12 @@ box-sizing:border-box;
   --font-size-xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
   --font-size-xxl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
   --font-size-xxxl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
+
+  /* padding */
+  --horizontal-spaces: 2em;
+  @media screen and (max-width: 768px) {
+    --horizontal-spaces: 0.5em;
+  }
 }
 
 #root{

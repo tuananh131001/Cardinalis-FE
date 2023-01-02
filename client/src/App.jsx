@@ -16,13 +16,8 @@ import Bookmarks from '@/pages/Bookmarks';
 import Main from '@/pages/Main';
 import ProtectedRoutes from '@/routes/ProtectedRoutes';
 import { AnimatePresence } from 'framer-motion';
-import {
-  PROFILE_TWEET_PATH,
-  PROFILE_REPLIES_PATH,
-  PROFILE_MEDIA_PATH,
-  PROFILE_LIKE_PATH
-} from '@/assets/Constant';
-import ProfileTweet from '@/components/Sections/ProfileSection/SubPage/ProfileTweet';
+import { PROFILE_TWEET_PATH, PROFILE_REPLIES_PATH, PROFILE_MEDIA_PATH } from '@/assets/Constant';
+import ProfileSubpage from '@/components/Sections/ProfileSection/ProfileSubpage';
 
 // import Text from './components/Text/Text';
 
@@ -51,13 +46,18 @@ function App() {
               <Route path="/explore" element={<Explore />} />
               <Route path="/bookmarks" element={<Bookmarks />} />
               <Route element={<Profile />}>
-                <Route path={`/:username/${PROFILE_TWEET_PATH}`} element={<ProfileTweet />} />
+                <Route
+                  path={`/:username/${PROFILE_TWEET_PATH}`}
+                  element={<ProfileSubpage type="tweets" />}
+                />
                 <Route
                   path={`/:username/${PROFILE_REPLIES_PATH}`}
-                  element={<h1>with_replies</h1>}
+                  element={<ProfileSubpage type="tweetsAndReplies" />}
                 />
-                <Route path={`/:username/${PROFILE_MEDIA_PATH}`} element={<h1>with_replies</h1>} />
-                <Route path={`/:username/${PROFILE_LIKE_PATH}`} element={<h1>with_replies</h1>} />
+                <Route
+                  path={`/:username/${PROFILE_MEDIA_PATH}`}
+                  element={<ProfileSubpage type="media" />}
+                />
               </Route>
             </Route>
             <Route path={`/${FORGOT_PASSWORD_PATH}`} element={<ForgotPassword />} />

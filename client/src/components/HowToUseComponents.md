@@ -3,7 +3,10 @@
 - [ ] Do I need to use username from useParam to get user info (MainNav, Profile)
 - [ ] Tweet page (Have back button)
 - [ ] Home, Explore, Bookmarks, Settings -> Tweets, Profile, Trend, 
-- [ ] change defaultUser to dynamic user (in Profile, MainNav)
+- [ ] change defaultUser to dynamic user (in Profile, MainNav, TweetSection)
+- [ ] change defaultReply
+- [ ] change defaultTweetList to dynamic tweet (tweetlist in ProfileSubpage)
+- [ ] Is Pinned Tweet in back or fronend??????
 # Props passed through Components and through Styled Components
 ## Inside Components: ({a, b, c, ...props})
 - a, b, c

@@ -20,7 +20,7 @@ export const renderPropsResponsive = (propsName, queries, type = 'element') => {
   }
 };
 
-const Main = ({ theme }) => {
+const Main = ({ theme, themeToggler }) => {
   const responsiveCondition = {
     smallMobile: useMediaQuery(SMALL_MOBILE_QUERY),
     mobile: useMediaQuery(MOBILE_QUERY),
@@ -40,7 +40,7 @@ const Main = ({ theme }) => {
       gap="7em"
       ai="flex-start">
       <MainNav theme={theme} currentTab={currentTab} changeTab={changeTab} gridArea="nav" />
-      <Outlet />
+      <Outlet context={{ theme, themeToggler }} />
     </StyledPage>
   );
 };

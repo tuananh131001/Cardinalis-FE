@@ -3,15 +3,10 @@ import React from 'react';
 import { FlexContainer } from '@/components/Container/Container.styled';
 import { NavButtonProfile } from './ButtonProfile';
 import { useNavigate, useLocation } from 'react-router-dom';
-import {
-  PROFILE_TWEET_PATH,
-  PROFILE_REPLIES_PATH,
-  PROFILE_MEDIA_PATH,
-  PROFILE_LIKE_PATH
-} from '@/assets/Constant';
+import { PROFILE_TWEET_PATH, PROFILE_REPLIES_PATH, PROFILE_MEDIA_PATH } from '@/assets/Constant';
 import PropTypes from 'prop-types';
 
-const ProfileNav = ({ user }) => {
+const ProfileNav = ({ user, ...props }) => {
   const navigate = useNavigate();
   const location = /[^/]*$/.exec(useLocation().pathname)[0];
   const changePath = (path) => {
@@ -20,19 +15,16 @@ const ProfileNav = ({ user }) => {
       case 'tweets':
         navigate(`/${defaultPath + PROFILE_TWEET_PATH}`);
         break;
-      case 'replies':
+      case 'tweetsAndReplies':
         navigate(`/${defaultPath + PROFILE_REPLIES_PATH}`);
         break;
       case 'media':
         navigate(`/${defaultPath + PROFILE_MEDIA_PATH}`);
         break;
-      case 'likes':
-        navigate(`/${defaultPath + PROFILE_LIKE_PATH}`);
-        break;
     }
   };
   return (
-    <FlexContainer overflow="visible">
+    <FlexContainer overflow="visible" {...props}>
       <NavButtonProfile
         text={'Tweets'}
         isCurrentTab={location == PROFILE_TWEET_PATH}
@@ -41,23 +33,19 @@ const ProfileNav = ({ user }) => {
       <NavButtonProfile
         text={'Tweets & replies'}
         isCurrentTab={location == PROFILE_REPLIES_PATH}
-        onClick={() => changePath('replies')}
+        onClick={() => changePath('tweetsAndReplies')}
       />
       <NavButtonProfile
         text={'Media'}
         isCurrentTab={location == PROFILE_MEDIA_PATH}
         onClick={() => changePath('media')}
       />
-      <NavButtonProfile
-        text={'Likes'}
-        isCurrentTab={location == PROFILE_LIKE_PATH}
-        onClick={() => changePath('likes')}
-      />
     </FlexContainer>
   );
 };
 
 ProfileNav.propTypes = {
-  user: PropTypes.object
+  user: PropTypes.object,
+  props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
 };
 export default ProfileNav;

@@ -8,11 +8,14 @@ import Button from '@/components/Button/Button';
 import Text from '@/components/Text/Text';
 import { useCallback, useEffect } from 'react';
 import { useChange } from '@/hooks/useChange';
+import AuthenSwitchTheme from '../NavSection/AuthenSwitchTheme';
 
-const BackSection = ({
+const HeaderSection = ({
+  haveBackButton = true,
   backDestination = -1,
   content = 'hello',
-  horizontalSpaces = 0,
+  theme,
+  themeToggler,
   ...props
 }) => {
   const navigate = useNavigate();
@@ -34,6 +37,7 @@ const BackSection = ({
     };
   }, [handleNavigation]);
 
+  // click navigate back
   const onClick = () => {
     navigate(backDestination, { replace: true });
   };
@@ -42,24 +46,26 @@ const BackSection = ({
       {...props}
       jc="flex-start"
       gap="0.7em"
-      padding={`1em ${horizontalSpaces}`}
+      padding={`1em var(--horizontal-spaces)`}
       position={isScrolling ? 'sticky' : 'relative'}
       top="0"
       left="0"
       zIndex="1"
       pseudoAfter={isScrolling ? '1' : 'none'}>
-      <Button
-        buttonType="link"
-        onClick={onClick}
-        fontSize="var(--font-size-md)"
-        width="fit-content"
-        jc="flex-start"
-        buttonThemeName="thirdButton"
-        hoverType={2}
-        borderRadius="50%"
-        padding="0.3em">
-        {<HiArrowSmLeft />}
-      </Button>
+      {haveBackButton && (
+        <Button
+          buttonType="link"
+          onClick={onClick}
+          fontSize="var(--font-size-md)"
+          width="fit-content"
+          jc="flex-start"
+          buttonThemeName="thirdButton"
+          hoverType={2}
+          borderRadius="50%"
+          padding="0.3em">
+          {<HiArrowSmLeft />}
+        </Button>
+      )}
       {typeof content === 'string' ? (
         <Text
           type="p"
@@ -72,13 +78,17 @@ const BackSection = ({
       ) : (
         content
       )}
+      <AuthenSwitchTheme theme={theme} themeToggler={themeToggler} />
     </FlexContainer>
   );
 };
 
-BackSection.propTypes = {
+HeaderSection.propTypes = {
+  haveBackButton: PropTypes.bool,
   backDestination: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  theme: PropTypes.string,
+  themeToggler: PropTypes.func,
   horizontalSpaces: PropTypes.string
 };
-export default BackSection;
+export default HeaderSection;

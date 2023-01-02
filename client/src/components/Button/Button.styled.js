@@ -4,6 +4,8 @@ import styled, { css } from 'styled-components';
 // General reusable buttons styles
 const StyledGeneralButton = css`
   /* position */
+  justify-self: ${({ justifySelf }) => justifySelf};
+  align-self: ${({ alignSelf }) => alignSelf};
   display: flex;
   flex-direction: ${({ direction }) => direction};
   gap: ${({ gap }) => gap};
@@ -49,6 +51,7 @@ export const StyledIconButton = styled.button`
   ${StyledGeneralButton}
   border: none;
   background-color: transparent;
+  color: inherit;
   &:hover {
     filter: brightness(140%) contrast(110%);
   }
@@ -125,6 +128,8 @@ export const StyledLink = styled.button`
 
 // Default Props
 const generalDefaultProps = {
+  justifySelf: 'unset',
+  alignSelf: 'unset',
   direction: 'row',
   gap: '0',
   jc: 'center',

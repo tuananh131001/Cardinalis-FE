@@ -17,8 +17,6 @@ export const Input = forwardRef(function Input(
    * @param {string} type - type of input: text | password | email | number
    * @param {string} cols - number of cols for textarea
    * @param {function} onClick - function for onClick event
-   * @param {string} children - icon for input
-   * @param {[string | number]} props - other props for styled components
    */
   let [textareaRef, onChange, inputValue] = [null];
   // for general props of all components rendering conditionally

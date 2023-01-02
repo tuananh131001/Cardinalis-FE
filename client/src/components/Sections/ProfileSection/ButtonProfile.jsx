@@ -6,6 +6,7 @@ import { CaptionProfile } from './TextProfile';
 export const EditButtonProfile = ({ onClick }) => {
   return (
     <Button
+      alignSelf="flex-end"
       buttonType="primary"
       buttonThemeName="thirdButton"
       borderRadius="30%/110%"

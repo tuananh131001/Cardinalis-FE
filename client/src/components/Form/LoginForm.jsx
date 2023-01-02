@@ -71,7 +71,7 @@ function LoginForm({ ...props }) {
       <ErrorText errors={errors.username?.message} />
       <Input
         type={hidePassword ? 'password' : 'text'}
-        inputType="text"
+        inputType="textIcon"
         inputThemeName="loginInput"
         placeholder="Enter password..."
         onClick={togglePassword}

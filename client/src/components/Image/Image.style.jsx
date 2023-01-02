@@ -20,6 +20,8 @@ export const StyledImage = styled.img`
   position: ${({ position }) => position};
   top: ${({ top }) => top};
   left: ${({ left }) => left};
+  bottom: ${({ bottom }) => bottom};
+  right: ${({ right }) => right};
   /* others */
   grid-area: ${(props) => props.gridArea};
   /* border */
@@ -52,6 +54,8 @@ StyledImage.defaultProps = {
   aspectRatio: 'unset',
   position: 'auto',
   top: 'unset',
+  bottom: 'unset',
+  right: 'unset',
   left: 'unset',
   borderWidth: '0',
   borderStyle: 'none'

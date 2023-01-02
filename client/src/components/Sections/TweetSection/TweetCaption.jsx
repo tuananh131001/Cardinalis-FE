@@ -5,7 +5,7 @@ import Text from '@/components/Text/Text';
 import { MdPushPin } from 'react-icons/md';
 import { AiOutlineRetweet } from 'react-icons/ai';
 
-const TweetCaption = ({ displayType }) => {
+const TweetCaption = ({ username, isYou, displayType }) => {
   switch (displayType) {
     case 'pinned':
       return (
@@ -31,7 +31,7 @@ const TweetCaption = ({ displayType }) => {
           <Text
             type="callout"
             textThemeName="subText"
-            text="You Retweeted"
+            text={`${isYou ? 'You' : username} Retweeted`}
             gridArea="caption"
             weight="700"
           />
@@ -41,6 +41,8 @@ const TweetCaption = ({ displayType }) => {
 };
 
 TweetCaption.propTypes = {
+  username: PropTypes.string,
+  isYou: PropTypes.bool,
   displayType: PropTypes.string
 };
 

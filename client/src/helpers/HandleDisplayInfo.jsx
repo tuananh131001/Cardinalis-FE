@@ -3,6 +3,9 @@ import { pluralRules, irregularRules } from './HandlePlural';
 import uuid from 'react-uuid';
 import { StyledTextLink } from '@/components/Text/Text.styled';
 
+const urlRegex = /(https?:\/\/[^\s]+)/g;
+// /https?:\/\/(?:www\.|[a-zA-Z]{2}\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\\+.~#?&//=]+)/g
+
 const sanitizeWord = (word, replaceRules = irregularRules, regexRules = pluralRules) => {
   // if word is irregular, return the irregular form
   const token = word.toLowerCase();
@@ -23,6 +26,7 @@ const sanitizeWord = (word, replaceRules = irregularRules, regexRules = pluralRu
     }
   }
 };
+// get the plural form of a word and its number format
 export const displayCountNumber = (count, prefix = '') => {
   if (prefix === '') {
     return `${count}`;
@@ -70,15 +74,24 @@ export const displayCountNumber = (count, prefix = '') => {
   return `${count} ${prefix.charAt(0).toUpperCase() + prefix.slice(1)}`;
 };
 
+// get list of tweeters containing media
+export const getMediaTweeters = (tweetList) => {
+  return tweetList.filter((tweet) => urlRegex.test(tweet.content));
+};
+
+// display list of urls
+export const getListUrls = (content) => {
+  return content.match(urlRegex);
+};
+
+// display inline link
 export const displayInlineLink = (content) => {
-  const regex = /(https?:\/\/[^\s]+)/g;
-  // /https?:\/\/(?:www\.|[a-zA-Z]{2}\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\\+.~#?&//=]+)/g
-  const lines = content.split(regex);
+  const lines = content.split(urlRegex);
 
   return (
     <span>
       {lines.map((line) => {
-        if (line.match(regex)) {
+        if (line.match(urlRegex)) {
           return (
             <StyledTextLink
               key={uuid()}
@@ -95,10 +108,11 @@ export const displayInlineLink = (content) => {
     </span>
   );
 };
-
+// display date
 export const displayDate = (date) => {
   return moment(date).format('MMMM YYYY');
 };
+// display duration
 export const displayDuration = (date) => {
   if (moment(date).format('YYYY') !== moment().format('YYYY')) {
     return moment(date).format('MMM DD, YYYY');
@@ -106,4 +120,8 @@ export const displayDuration = (date) => {
     return moment(date).format('MMM DD');
   }
   return moment(date).fromNow(true);
+};
+// get the pinned tweet
+export const getPinnedTweet = (tweetList) => {
+  return tweetList.find((tweet) => tweet.isPinned);
 };

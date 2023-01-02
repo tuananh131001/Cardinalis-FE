@@ -7,44 +7,50 @@ import ShortInfoProfile from './ShortInfoProfile';
 import { EditButtonProfile, FollowButtonProfile } from './ButtonProfile';
 import PropTypes from 'prop-types';
 import { displayDate } from '@/helpers/HandleDisplayInfo';
+import CustomModal from '@/components/Modals/CustomModal';
+import { useChange } from '@/hooks/useChange';
+import UpdateProfileForm from '@/components/Form/UpdateProfileForm';
 
 const avatarSize = '9em';
 const bckHeight = '14em';
-const MainInfoProfile = ({ horizontalSpaces, user }) => {
+const containerGap = '0.5em';
+const MainInfoProfile = ({ user }) => {
+  const { value: isOpen, onSetTrue: handleOpen, onSetFalse: handleClose } = useChange(false);
   return (
-    <FlexContainer fd="column" isHideScrollBar={true}>
-      <InlineContainer height={bckHeight} width="100%" overflow="hidden">
-        <Image src={user.background} alt="Profile Background" width="100%" />
-      </InlineContainer>
-      <FlexContainer
-        position="relative"
-        height={`calc(${avatarSize} / 2)`}
-        overflow="visible"
-        jc="flex-end"
-        padding={`0 ${horizontalSpaces}`}>
+    <FlexContainer
+      fd="column"
+      isHideScrollBar={true}
+      gap="0.5em"
+      position="relative"
+      padding={`calc(${bckHeight} + ${containerGap}) var(--horizontal-spaces) 0`}>
+      <InlineContainer
+        position="absolute"
+        top="0"
+        left="0"
+        height={bckHeight}
+        width="100%"
+        overflow="visible">
+        <Image src={user.background} alt="Profile Background" width="100%" height={bckHeight} />
         <Avatar
           src={user.avatar}
           size={avatarSize}
           position="absolute"
-          left={horizontalSpaces}
-          top="-100%"
+          left="var(--horizontal-spaces)"
+          bottom={`calc(-${avatarSize} / 2)`}
         />
-        <EditButtonProfile />
-      </FlexContainer>
-      <ShortInfoProfile
-        name={user.name}
-        username={user.username}
-        padding={`1em ${horizontalSpaces}`}
-      />
-      <SubHeaderProfile
-        text={[<ImCalendar key={0} />, `Joined ${displayDate(user.createdAt)}`]}
-        padding={`0.5em ${horizontalSpaces}`}
-      />
+      </InlineContainer>
+      <EditButtonProfile onClick={handleOpen} />
+      <ShortInfoProfile name={user.name} username={user.username} padding="1em 0" />
+      <SubHeaderProfile text={[<ImCalendar key={0} />, `Joined ${displayDate(user.createdAt)}`]} />
 
-      <FlexContainer gap="2em" jc="flex-start" padding={`0.5em ${horizontalSpaces}`}>
+      <FlexContainer gap="2em" jc="flex-start">
         <FollowButtonProfile count={user.following} text="Following" />
         <FollowButtonProfile count={user.followers} text="Followers" />
       </FlexContainer>
+
+      <CustomModal isOpen={isOpen} handleClose={handleClose}>
+        {<UpdateProfileForm user={user} />}
+      </CustomModal>
     </FlexContainer>
   );
 };

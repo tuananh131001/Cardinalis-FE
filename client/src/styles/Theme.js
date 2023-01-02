@@ -40,7 +40,8 @@ const lightTheme = {
   },
   // Pseudo
   primaryPseudo: {
-    backgroundColor: 'var(--primary_pseudo_background_light)'
+    backgroundColor: 'var(--primary_pseudo_background_light)',
+    boxShadow: 'var(--primary_pseudo_shadow_light)'
   },
   // Text
   primaryText: {
@@ -121,7 +122,8 @@ const darkTheme = {
   },
   // Pseudo
   primaryPseudo: {
-    backgroundColor: 'var(--primary_pseudo_background_dark)'
+    backgroundColor: 'var(--primary_pseudo_background_dark)',
+    boxShadow: 'var(--primary_pseudo_shadow_dark)'
   },
   // Text
   primaryText: {

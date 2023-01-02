@@ -39,6 +39,12 @@ const generalContainerStyle = css`
     switch (pseudoAfter) {
       case '1':
         return css`
+          box-shadow: 3px 6px 10px 4px ${({ theme }) => theme.primaryPseudo.boxShadow};
+          -webkit-box-shadow: 3px 6px 10px 4px ${({ theme }) => theme.primaryPseudo.boxShadow};
+          -moz-box-shadow: 3px 6px 10px 4px ${({ theme }) => theme.primaryPseudo.boxShadow};
+          /* shape */
+          border-bottom-left-radius: ${(props) => props.pseudoAfterBorderRadius};
+          border-bottom-right-radius: ${(props) => props.pseudoAfterBorderRadius};
           &::after {
             content: '';
             display: block;
@@ -48,8 +54,8 @@ const generalContainerStyle = css`
             height: 100%;
             position: absolute;
             background-color: ${({ theme }) => theme.primaryPseudo.backgroundColor};
-            opacity: 0.7;
-            backdrop-filter: blur(10px) brightness(120%);
+            opacity: 0.8;
+            backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px) brightness(120%);
             z-index: -1;
           }
@@ -91,7 +97,9 @@ const generalDefaultProps = {
   alignSelf: 'unset',
   padding: '0px',
   minHeight: '0px',
-  isHideScrollBar: false
+  isHideScrollBar: false,
+  pseudoAfter: 'none',
+  pseudoAfterBorderRadius: '30px'
 };
 FlexContainer.defaultProps = {
   ...generalDefaultProps,

@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { HOME_PATH, EXPLORE_PATH, BOOKMARK_PATH } from '@/assets/Constant';
 import Button from '@/components/Button/Button';
 import { useLocation } from 'react-router-dom';
-import { defaultUser } from '@/assets/Data';
+import { defaultUser } from '@/assets/data/UserData';
 
 const horizontalSpace = '1.7em';
 const displayCurrentTab = (tabCompare, currentTab, type) => {
