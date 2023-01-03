@@ -38,8 +38,6 @@ const lightTheme = {
     activeColor: 'var(--favorite_color_active_light)',
     hoverBckColor: 'var(--favorite_background_hover_light)'
   },
-  // Change File
-
   // Pseudo
   primaryPseudo: {
     backgroundColor: 'var(--primary_pseudo_background_light)',

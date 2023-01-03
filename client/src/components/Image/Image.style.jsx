@@ -22,6 +22,7 @@ export const StyledImage = styled.img`
   left: ${({ left }) => left};
   bottom: ${({ bottom }) => bottom};
   right: ${({ right }) => right};
+  z-index: ${({ zIndex }) => zIndex};
   /* others */
   grid-area: ${(props) => props.gridArea};
   /* border */
@@ -58,5 +59,6 @@ StyledImage.defaultProps = {
   right: 'unset',
   left: 'unset',
   borderWidth: '0',
-  borderStyle: 'none'
+  borderStyle: 'none',
+  zIndex: 'unset'
 };

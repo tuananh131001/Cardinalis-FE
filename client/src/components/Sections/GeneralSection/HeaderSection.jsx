@@ -9,13 +9,18 @@ import Text from '@/components/Text/Text';
 import { useCallback, useEffect } from 'react';
 import { useChange } from '@/hooks/useChange';
 import AuthenSwitchTheme from '../NavSection/AuthenSwitchTheme';
+import { IoMdClose } from 'react-icons/io';
 
 const HeaderSection = ({
-  haveBackButton = true,
   backDestination = -1,
   content = 'hello',
   theme,
   themeToggler,
+  zIndex = 1,
+  haveBackButton = true,
+  haveCloseButton = false,
+  isFixedPosition = false,
+  isDisplayTheme = true,
   ...props
 }) => {
   const navigate = useNavigate();
@@ -47,11 +52,11 @@ const HeaderSection = ({
       jc="flex-start"
       gap="0.7em"
       padding={`1em var(--horizontal-spaces)`}
-      position={isScrolling ? 'sticky' : 'relative'}
+      position={isFixedPosition ? 'fixed' : isScrolling ? 'sticky' : 'relative'}
       top="0"
       left="0"
-      zIndex="1"
-      pseudoAfter={isScrolling ? '1' : 'none'}>
+      zIndex={zIndex}
+      pseudoAfter={isScrolling || isFixedPosition ? '1' : 'none'}>
       {haveBackButton && (
         <Button
           buttonType="link"
@@ -66,6 +71,18 @@ const HeaderSection = ({
           {<HiArrowSmLeft />}
         </Button>
       )}
+      {haveCloseButton && (
+        <Button
+          buttonType="primary"
+          buttonThemeName="secondaryButton"
+          fontSize="var(--font-size-base)"
+          width="fit-content"
+          hoverType={2}
+          borderRadius="50%"
+          padding="0.3em">
+          {<IoMdClose />}
+        </Button>
+      )}
       {typeof content === 'string' ? (
         <Text
           type="p"
@@ -78,17 +95,20 @@ const HeaderSection = ({
       ) : (
         content
       )}
-      <AuthenSwitchTheme theme={theme} themeToggler={themeToggler} />
+      {isDisplayTheme == true && <AuthenSwitchTheme theme={theme} themeToggler={themeToggler} />}
     </FlexContainer>
   );
 };
 
 HeaderSection.propTypes = {
   haveBackButton: PropTypes.bool,
+  haveCloseButton: PropTypes.bool,
   backDestination: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   theme: PropTypes.string,
   themeToggler: PropTypes.func,
-  horizontalSpaces: PropTypes.string
+  zIndex: PropTypes.number,
+  isFixedPosition: PropTypes.bool,
+  isDisplayTheme: PropTypes.bool
 };
 export default HeaderSection;

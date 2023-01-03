@@ -12,7 +12,18 @@ import Button from '@/components/Button/Button';
 import { forwardRef } from 'react';
 
 export const Input = forwardRef(function Input(
-  { inputType, inputThemeName, type = 'text', cols, onClick, children, isDisplay = true, ...props },
+  {
+    inputType,
+    inputThemeName,
+    type = 'text',
+    cols,
+    onClick,
+    children,
+    isDisplay = true,
+    register,
+    registerName,
+    ...props
+  },
   ref
 ) {
   /**
@@ -62,6 +73,7 @@ export const Input = forwardRef(function Input(
       return (
         <StyledFileInputContainer {...generalPropsList}>
           <StyledInput
+            {...register(registerName)}
             {...generalPropsList}
             onChange={onChange}
             accept="image/*"
@@ -82,6 +94,8 @@ Input.propTypes = {
   type: PropTypes.string,
   cols: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   onClick: PropTypes.func,
+  register: PropTypes.func,
+  registerName: PropTypes.string,
   isDisplay: PropTypes.bool,
   children: PropTypes.element,
   props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))

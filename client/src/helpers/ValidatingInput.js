@@ -42,6 +42,24 @@ export const displayErrorMessage = (type, errorType, ...args) => {
       return `Invalid ${displayType}`;
   }
 };
+const validatingImage = (name) => {
+  yup
+    .mixed()
+    .required(displayErrorMessage(name, 'required'))
+    .test('fileFormat', 'Unsupported file format', (value) => {
+      if (value) {
+        return ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type);
+      }
+      return true;
+    })
+    .test('isLink', 'Invalid URL', (value) => {
+      if (value && !value.type) {
+        return yup.string().url().isValidSync(value);
+      }
+      return true;
+    });
+};
+
 export const chooseInputSchema = (type) => {
   if (type == 'login') {
     return yup.object().shape({
@@ -63,36 +81,8 @@ export const chooseInputSchema = (type) => {
     });
   } else {
     return yup.object().shape({
-      banner: yup
-        .mixed()
-        .required(displayErrorMessage('banner', 'required'))
-        .test('fileFormat', 'Unsupported file format', (value) => {
-          if (value) {
-            return ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type);
-          }
-          return true;
-        })
-        .test('isLink', 'Invalid URL', (value) => {
-          if (value && !value.type) {
-            return yup.string().url().isValidSync(value);
-          }
-          return true;
-        }),
-      avatar: yup
-        .mixed()
-        .required(displayErrorMessage('avatar', 'required'))
-        .test('fileFormat', 'Unsupported file format', (value) => {
-          if (value) {
-            return ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type);
-          }
-          return true;
-        })
-        .test('isLink', 'Invalid URL', (value) => {
-          if (value && !value.type) {
-            return yup.string().url().isValidSync(value);
-          }
-          return true;
-        }),
+      banner: validatingImage('banner'),
+      avatar: validatingImage('avatar'),
       name: yup.string().required(displayErrorMessage('name', 'required')),
       bio: yup
         .string()

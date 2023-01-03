@@ -71,8 +71,12 @@ export const StyledInput = styled.input`
 export const StyledFileInputContainer = styled.label`
   display: block;
   height: ${(props) => props.height};
+  width: ${(props) => props.width};
   overflow: hidden;
-  position: relative;
+  position: ${(props) => props.position};
+  top: ${(props) => props.top};
+  left: ${(props) => props.left};
+  bottom: ${(props) => props.bottom};
 `;
 
 // Default Props
@@ -99,4 +103,12 @@ StyledInput.defaultProps = {
   ...generalDefaultProps,
   padding: '0.7em 0.8em',
   height: '3.75em'
+};
+StyledFileInputContainer.defaultProps = {
+  height: 'auto',
+  width: '100%',
+  position: 'relative',
+  top: 'unset',
+  left: 'unset',
+  bottom: 'unset'
 };

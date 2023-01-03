@@ -10,8 +10,8 @@ import { useOutletContext } from 'react-router-dom';
 // const CustomActionBar = () => {
 //     return <Button buttonType="link">CustomActionBar</Button>;
 // }
-export default function DateInput({ inputThemeName, name, control, errors }) {
-    const { theme, themeToggler } = useOutletContext();
+export default function DateInput({ inputThemeName, name, control }) {
+    // const { theme, themeToggler } = useOutletContext();
   return (
     <Controller
       name={name}
@@ -35,7 +35,6 @@ export default function DateInput({ inputThemeName, name, control, errors }) {
               onChange={(newValue) => {
                 field.onChange(newValue ? moment(newValue) : null);
               }}
-              error={errors}
               renderInput={(params) => (
                 <Input inputType="text" inputThemeName={inputThemeName} {...params} />
               )}

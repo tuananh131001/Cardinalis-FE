@@ -1,5 +1,4 @@
-import Avatar from '@/components/Image/Avatar';
-import { FlexContainer, InlineContainer } from '@/components/Container/Container.styled';
+import { FlexContainer } from '@/components/Container/Container.styled';
 import { SubHeaderProfile } from './TextProfile';
 import { ImCalendar } from 'react-icons/im';
 import ShortInfoProfile from './ShortInfoProfile';
@@ -34,7 +33,7 @@ const MainInfoProfile = ({ user }) => {
       </FlexContainer>
 
       <CustomModal isOpen={isOpen} handleClose={handleClose}>
-        {<UpdateProfileForm user={user} isInModal={true} />}
+        {<UpdateProfileForm user={user} isInModal={true} closeAction={handleClose} />}
       </CustomModal>
     </FlexContainer>
   );

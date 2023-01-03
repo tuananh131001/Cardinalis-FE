@@ -16,10 +16,11 @@ export const StyledModalBox = styled.div`
   background-color: ${({ theme }) => theme.mainBackgroundColor};
   box-shadow: 24px;
   border-radius: 7%;
-  overflow: scroll;
+
+  overflow: hidden;
 `;
 StyledModalBox.defaultProps = {
   width: '50vw',
-  padding: '5em 4em',
+  padding: '0',
   height: '60vh'
 };

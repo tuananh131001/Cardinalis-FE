@@ -8,13 +8,24 @@ import { ErrorText } from '@/components/Text/ErrorText';
 import StyledButton from '@/components/Button/Button.styled';
 import Text from '@/components/Text/Text';
 import DateInput from '@/components/Input/DateInput';
-import { BiImageAdd } from 'react-icons/bi';
-import { StyledInputContainer } from '@/components/Input/Input.styled';
+import ImageProfile from '@/components/Sections/ProfileSection/ImageProfile';
+import HeaderSection from '@/components/Sections/GeneralSection/HeaderSection';
+import CustomizedSnackbars from '@/components/Snackbar/Snackbar';
+import { useEffect, useState } from 'react';
+import { isEmptyObject } from '@/helpers/HandleObject';
 
 const errorPadding = '0 0 1em 0.2em';
-function UpdateProfileForm({ user, ...props }) {
+const bckHeight = '15em';
+const avatarSize = '9em';
+function UpdateProfileForm({ user, closeAction, ...props }) {
   const schema = chooseInputSchema('updateProfile');
+  // const {value: message, onSetNewValue: setMessage} = useChange("");
+  const [isOpen, setIsOpen] = useState(false);
+  const [message, setMessage] = useState('message');
+
   const defaultValues = {
+    banner: user.banner,
+    avatar: user.avatar,
     name: user.name,
     bio: user.bio ?? null,
     location: user.location ?? null,
@@ -36,16 +47,55 @@ function UpdateProfileForm({ user, ...props }) {
   //   const { mutate, isError, error, isSuccess } = useSignIn(reset);
   //   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (isEmptyObject(errors)) {
+      setIsOpen(false);
+      setMessage('');
+    } else {
+      let errorsName = Object.keys(errors)[0];
+      setMessage(errors[errorsName].message);
+      setIsOpen(true);
+    }
+  }, [errors]);
+
   // submit function
-  const onSubmitClick = (data) => {
-    console.log('click');
-    console.log(data);
+  const onSubmitClick = (data, isClose) => {
+    if (isClose) {
+      closeAction();
+    } else {
+      console.log('click');
+      console.log(data);
+      // if data valid, send to server + close modal
+      closeAction();
+    }
   };
 
   return (
-    <StyledForm {...props}>
+    <StyledForm
+      {...props}
+      onSubmit={handleSubmit(onSubmitClick)}
+      padding={`calc(${bckHeight} + ${avatarSize} / 1.5) var(--horizontal-spaces) 0`}
+      jc="flex-start">
+      <HeaderSection
+        content="Update Profile"
+        isFixedPosition={true}
+        isDisplayTheme={false}
+        haveBackButton={false}
+        haveCloseButton={true}
+        onClick={(data) => onSubmitClick(data, true)}
+        zIndex={2}
+      />
       {/* Image */}
-      <Input inputType="image" inputThemeName="loginInput" id="updateProfileAvatar" isDisplay={false}>{<BiImageAdd />}</Input>
+      <ImageProfile
+        user={user}
+        bckHeight={bckHeight}
+        avatarSize={avatarSize}
+        isInput={true}
+        avatarName="avatar"
+        bannerName="banner"
+        register={register}
+      />
+
       {/* Name */}
       <ProfileUpdateLabel text="Name" htmlFor="updateProfileName" />
       <Input
@@ -91,18 +141,16 @@ function UpdateProfileForm({ user, ...props }) {
       <ErrorText errors={errors.website?.message} padding={errorPadding} />
 
       {/* Date of Birth */}
-      <DateInput
-        inputThemeName="loginInput"
-        name="dob"
-        control={control}
-        errors={errors.dob?.message}
+      <DateInput inputThemeName="loginInput" name="dob" control={control} />
+      <CustomizedSnackbars
+        type="error"
+        verticalPosition="bottom"
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
+        message={message}
       />
-      <ErrorText errors={errors.dob?.message} padding={errorPadding} />
 
-      <StyledButton
-        type="submit"
-        buttonThemeName="primaryButton"
-        onClick={handleSubmit(onSubmitClick)}>
+      <StyledButton type="submit" buttonThemeName="primaryButton">
         Submit
       </StyledButton>
     </StyledForm>
@@ -121,6 +169,12 @@ const ProfileUpdateLabel = ({ text, htmlFor, ...props }) => (
 
 UpdateProfileForm.propTypes = {
   user: PropTypes.object,
+  closeAction: PropTypes.func,
+  props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string]))
+};
+ProfileUpdateLabel.propTypes = {
+  text: PropTypes.string,
+  htmlFor: PropTypes.string,
   props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string]))
 };
 export default UpdateProfileForm;
