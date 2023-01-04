@@ -1,5 +1,5 @@
 import { FlexContainer } from '@/components/Container/Container.styled';
-import { SubHeaderProfile } from './TextProfile';
+import { LinkProfile, SpanProfile } from './TextProfile';
 import { ImCalendar } from 'react-icons/im';
 import ShortInfoProfile from './ShortInfoProfile';
 import { EditButtonProfile, FollowButtonProfile } from './ButtonProfile';
@@ -9,12 +9,27 @@ import CustomModal from '@/components/Modals/CustomModal';
 import { useChange } from '@/hooks/useChange';
 import UpdateProfileForm from '@/components/Form/UpdateProfileForm';
 import ImageProfile from './ImageProfile';
+import { useNavigate } from 'react-router-dom';
+import { PROFILE_FOLLOWING_PATH, PROFILE_FOLLOWERS_PATH } from '@/assets/Constant';
+import { MdLocationOn } from 'react-icons/md';
+import { RiLinksLine } from 'react-icons/ri';
 
 const avatarSize = '9em';
 const bckHeight = '14em';
 const containerGap = '0.5em';
 const MainInfoProfile = ({ user }) => {
   const { value: isOpen, onSetTrue: handleOpen, onSetFalse: handleClose } = useChange(false);
+  const navigate = useNavigate();
+  const clickNavigate = (type) => {
+    switch (type) {
+      case 'following':
+        navigate(`/${user.username}/${PROFILE_FOLLOWING_PATH}`);
+        break;
+      case 'followers':
+        navigate(`/${user.username}/${PROFILE_FOLLOWERS_PATH}`);
+        break;
+    }
+  };
   return (
     <FlexContainer
       fd="column"
@@ -25,11 +40,28 @@ const MainInfoProfile = ({ user }) => {
       <ImageProfile user={user} bckHeight={bckHeight} avatarSize={avatarSize} />
       <EditButtonProfile onClick={handleOpen} />
       <ShortInfoProfile name={user.name} username={user.username} padding="1em 0" />
-      <SubHeaderProfile text={[<ImCalendar key={0} />, `Joined ${displayDate(user.createdAt)}`]} />
+      <SpanProfile text={[<ImCalendar key={0} />, `Joined ${displayDate(user.createdAt)}`]} />
+      {user.location && <SpanProfile text={[<MdLocationOn key={0} />, user.location]} />}
+      {user.website && (
+        <LinkProfile
+          href={user.website}
+          rel="noopener noreferrer"
+          textThemeName="primaryText"
+          text={[<RiLinksLine key={0} />, user.website]}
+        />
+      )}
 
       <FlexContainer gap="2em" jc="flex-start">
-        <FollowButtonProfile count={user.following} text="Following" />
-        <FollowButtonProfile count={user.followers} text="Followers" />
+        <FollowButtonProfile
+          count={user.following}
+          text="Following"
+          onClick={() => clickNavigate('following')}
+        />
+        <FollowButtonProfile
+          count={user.followers}
+          text="Followers"
+          onClick={() => clickNavigate('followers')}
+        />
       </FlexContainer>
 
       <CustomModal isOpen={isOpen} handleClose={handleClose}>

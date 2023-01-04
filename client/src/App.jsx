@@ -16,7 +16,13 @@ import Bookmarks from '@/pages/Bookmarks';
 import Main from '@/pages/Main';
 import ProtectedRoutes from '@/routes/ProtectedRoutes';
 import { AnimatePresence } from 'framer-motion';
-import { PROFILE_TWEET_PATH, PROFILE_REPLIES_PATH, PROFILE_MEDIA_PATH } from '@/assets/Constant';
+import {
+  PROFILE_TWEET_PATH,
+  PROFILE_REPLIES_PATH,
+  PROFILE_MEDIA_PATH,
+  PROFILE_FOLLOWERS_PATH,
+  PROFILE_FOLLOWING_PATH
+} from '@/assets/Constant';
 import ProfileSubpage from '@/components/Sections/ProfileSection/ProfileSubpage';
 
 // import Text from './components/Text/Text';
@@ -57,6 +63,14 @@ function App() {
                 <Route
                   path={`/:username/${PROFILE_MEDIA_PATH}`}
                   element={<ProfileSubpage type="media" />}
+                />
+                <Route
+                  path={`/:username/${PROFILE_FOLLOWERS_PATH}`}
+                  element={<ProfileSubpage type="followers" />}
+                />
+                <Route
+                  path={`/:username/${PROFILE_FOLLOWING_PATH}`}
+                  element={<ProfileSubpage type="following" />}
                 />
               </Route>
             </Route>

@@ -15,6 +15,10 @@ const ProfileSubpage = ({ type }) => {
       return <TweetList tweetList={defaultTweetList} />;
     case 'media':
       return <TweetList tweetList={getMediaTweeters(defaultTweetList)} />;
+    case 'followers':
+      return <h1>Follower</h1>;
+    case 'following':
+      return <h1>Following</h1>;
   }
 };
 

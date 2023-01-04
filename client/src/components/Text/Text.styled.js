@@ -14,6 +14,8 @@ const StyledGeneralHeading = css`
   align-items: ${({ ai }) => ai};
   line-height: ${(props) => props.lineHeight};
   visibility: ${({ visibility }) => visibility};
+  white-space: pre-line;
+  word-wrap: break-word;
 `;
 const ActiveStyling = css`
   color: ${({ theme, textThemeName }) => theme[textThemeName]?.activeColor ?? theme.text.color};
@@ -87,6 +89,12 @@ export const StyledLabel = styled.label`
   font-family: var(--font-family);
   ${({ isActive }) => isActive && ActiveStyling}
 `;
+// span
+export const StyledSpan = styled.span`
+  ${StyledGeneralHeading}
+  color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? theme.subtext.color};
+  ${({ isActive }) => isActive && ActiveStyling}
+`;
 
 // default props
 const generalDefaultProps = {
@@ -156,6 +164,18 @@ StyledCaption.defaultProps = {
   lineHeight: '1em'
 };
 StyledLabel.defaultProps = {
+  ...generalDefaultProps,
+  weight: 400,
+  size: 'var(--font-size-base)',
+  lineHeight: '1em'
+};
+// StyledTextLink.defaultProps = {
+//   ...generalDefaultProps,
+//   weight: 400,
+//   size: 'var(--font-size-base)',
+//   lineHeight: '1em'
+// };
+StyledSpan.defaultProps = {
   ...generalDefaultProps,
   weight: 400,
   size: 'var(--font-size-base)',

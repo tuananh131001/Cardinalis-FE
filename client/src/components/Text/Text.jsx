@@ -10,6 +10,7 @@ import {
   StyledParagraph,
   StyledParagraph2,
   StyledParagraph3,
+  StyledSpan,
   StyledTextLink
 } from './Text.styled';
 import PropTypes from 'prop-types';
@@ -47,6 +48,8 @@ function Text({ type, text, textThemeName, ...props }) {
       return <StyledTextLink {...generalPropsList}>{text}</StyledTextLink>;
     case 'label':
       return <StyledLabel {...generalPropsList}>{text}</StyledLabel>;
+    case 'span':
+      return <StyledSpan {...generalPropsList}>{text}</StyledSpan>;
   }
 }
 

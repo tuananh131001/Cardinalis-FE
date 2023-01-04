@@ -44,6 +44,34 @@ export const CaptionProfile = ({ text, textThemeName = 'paragraphText', ...props
     />
   );
 };
+// span profile
+export const SpanProfile = ({ text, textThemeName = 'paragraphText', ...props }) => {
+  return (
+    <Text
+      type="span"
+      textThemeName={textThemeName}
+      text={text}
+      width="100%"
+      txtAlign="left"
+      fontSize="calc(var(--font-size-base) - 2px)"
+      {...flexContainer}
+      {...props}
+    />
+  );
+};
+export const LinkProfile = ({ text, textThemeName = 'primaryText', ...props }) => {
+  return (
+    <Text
+      type="a"
+      textThemeName={textThemeName}
+      text={text}
+      width="100%"
+      txtAlign="left"
+      {...flexContainer}
+      {...props}
+    />
+  );
+};
 
 const customOneOfType = [PropTypes.string, PropTypes.node, PropTypes.number];
 const arrType = PropTypes.arrayOf(PropTypes.oneOfType(customOneOfType));
@@ -54,6 +82,14 @@ SubHeaderProfile.propTypes = {
   text: PropTypes.oneOfType([...customOneOfType, arrType]).isRequired
 };
 CaptionProfile.propTypes = {
+  text: PropTypes.oneOfType([...customOneOfType, arrType]).isRequired,
+  textThemeName: PropTypes.string
+};
+SpanProfile.propTypes = {
+  text: PropTypes.oneOfType([...customOneOfType, arrType]).isRequired,
+  textThemeName: PropTypes.string
+};
+LinkProfile.propTypes = {
   text: PropTypes.oneOfType([...customOneOfType, arrType]).isRequired,
   textThemeName: PropTypes.string
 };

@@ -9,6 +9,7 @@ export const defaultUser = {
   numTweets: 1_00,
   followers: 3,
   following: 4,
+  website: 'https://github.com/Puppychan',
   createdAt: '2021-11-02T21:33:45.249967',
   isYou: true,
   tweets: 1 // defaultTweetList
