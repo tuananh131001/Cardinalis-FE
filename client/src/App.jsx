@@ -53,23 +53,23 @@ function App() {
               <Route path="/bookmarks" element={<Bookmarks />} />
               <Route element={<Profile />}>
                 <Route
-                  path={`/:username/${PROFILE_TWEET_PATH}`}
+                  path={`/:username${PROFILE_TWEET_PATH}`}
                   element={<ProfileSubpage type="tweets" />}
                 />
                 <Route
-                  path={`/:username/${PROFILE_REPLIES_PATH}`}
+                  path={`/:username${PROFILE_REPLIES_PATH}`}
                   element={<ProfileSubpage type="tweetsAndReplies" />}
                 />
                 <Route
-                  path={`/:username/${PROFILE_MEDIA_PATH}`}
+                  path={`/:username${PROFILE_MEDIA_PATH}`}
                   element={<ProfileSubpage type="media" />}
                 />
                 <Route
-                  path={`/:username/${PROFILE_FOLLOWERS_PATH}`}
+                  path={`/:username${PROFILE_FOLLOWERS_PATH}`}
                   element={<ProfileSubpage type="followers" />}
                 />
                 <Route
-                  path={`/:username/${PROFILE_FOLLOWING_PATH}`}
+                  path={`/:username${PROFILE_FOLLOWING_PATH}`}
                   element={<ProfileSubpage type="following" />}
                 />
               </Route>

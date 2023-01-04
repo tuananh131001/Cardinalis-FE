@@ -106,6 +106,10 @@ export const displayInlineLink = (content) => {
     </span>
   );
 };
+// extract path
+export const extractPath = (path, regex = /[^/]*$/) => {
+  return regex.exec(path)[0];
+};
 // display date
 export const displayDate = (date) => {
   return moment(date).format('MMMM YYYY');

@@ -50,10 +50,12 @@ export const StyledIcon = styled.span`
         background-color: ${({ theme, iconThemeName }) => theme[iconThemeName]?.hoverBckColor};
         filter: brightness(120%) saturate(120%);
       }
-    `} /* & svg {
-    
-  } */
+    `}
   aspect-ratio: ${({ aspectRatio }) => aspectRatio};
+  & > svg {
+    width: 100%;
+    height: 100%;
+  }
 `;
 StyledIconContainer.defaultProps = {
   position: 'unset',

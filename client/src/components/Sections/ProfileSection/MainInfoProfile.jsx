@@ -1,5 +1,5 @@
 import { FlexContainer } from '@/components/Container/Container.styled';
-import { LinkProfile, SpanProfile } from './TextProfile';
+import { LinkProfile, SpanProfile, SubHeaderProfile } from './TextProfile';
 import { ImCalendar } from 'react-icons/im';
 import ShortInfoProfile from './ShortInfoProfile';
 import { EditButtonProfile, FollowButtonProfile } from './ButtonProfile';
@@ -23,10 +23,10 @@ const MainInfoProfile = ({ user }) => {
   const clickNavigate = (type) => {
     switch (type) {
       case 'following':
-        navigate(`/${user.username}/${PROFILE_FOLLOWING_PATH}`);
+        navigate(`/${user.username + PROFILE_FOLLOWING_PATH}`);
         break;
       case 'followers':
-        navigate(`/${user.username}/${PROFILE_FOLLOWERS_PATH}`);
+        navigate(`/${user.username + PROFILE_FOLLOWERS_PATH}`);
         break;
     }
   };
@@ -40,6 +40,7 @@ const MainInfoProfile = ({ user }) => {
       <ImageProfile user={user} bckHeight={bckHeight} avatarSize={avatarSize} />
       <EditButtonProfile onClick={handleOpen} />
       <ShortInfoProfile name={user.name} username={user.username} padding="1em 0" />
+      {user.bio && <SubHeaderProfile text={user.bio} />}
       <SpanProfile text={[<ImCalendar key={0} />, `Joined ${displayDate(user.createdAt)}`]} />
       {user.location && <SpanProfile text={[<MdLocationOn key={0} />, user.location]} />}
       {user.website && (
@@ -50,7 +51,6 @@ const MainInfoProfile = ({ user }) => {
           text={[<RiLinksLine key={0} />, user.website]}
         />
       )}
-
       <FlexContainer gap="2em" jc="flex-start">
         <FollowButtonProfile
           count={user.following}

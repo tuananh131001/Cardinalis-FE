@@ -14,6 +14,7 @@ import {
   renderPropsResponsive
 } from '@/helpers/AuthenticationDisplay';
 import { PageAnimation } from '@/styles/AnimationConstant';
+import { extractPath } from '@/helpers/HandleDisplayInfo';
 
 const Authentication = ({ theme, themeToggler }) => {
   const location = useLocation();
@@ -25,7 +26,7 @@ const Authentication = ({ theme, themeToggler }) => {
   };
   // determine the type of authentication page and the gridTemplateAreas
   const { type, gridTemplateAreas, displayedText } = useMemo(() => {
-    const type = /[^/]*$/.exec(location.pathname)[0];
+    const type = extractPath(location.pathname, /[^/]*$/);
     const gridTemplateAreas = findGridTemplateAreas(type, responsiveCondition);
     const displayedText = findDisplayText(type);
 

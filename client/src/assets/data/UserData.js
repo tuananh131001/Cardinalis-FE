@@ -27,3 +27,17 @@ export const defaultUser2 = {
   createdAt: '2022-11-02T21:33:45.249967',
   isYou: false
 };
+export const defaultUser3 = {
+  name: 'Huhu',
+  username: 'susei',
+  avatar:
+    'https://images.unsplash.com/photo-1672394423014-e0354d75b123?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+  background:
+    'https://plus.unsplash.com/premium_photo-1669386062266-5b20b994f7cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80',
+  numTweets: 1_00,
+  followers: 3,
+  following: 4,
+  createdAt: '2022-11-02T21:33:45.249967',
+  isYou: false
+};
+export const defaultFollowerList = [defaultUser2, defaultUser3];

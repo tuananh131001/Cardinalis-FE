@@ -13,10 +13,17 @@ export const PROFILE_PATH = 'profile'; // check lai sau
 
 // inside Profile
 export const PROFILE_TWEET_PATH = '';
-export const PROFILE_REPLIES_PATH = 'with_replies';
-export const PROFILE_MEDIA_PATH = 'media';
-export const PROFILE_FOLLOWERS_PATH = 'followers';
-export const PROFILE_FOLLOWING_PATH = 'following';
+export const PROFILE_REPLIES_PATH = '/with_replies';
+export const PROFILE_MEDIA_PATH = '/media';
+export const PROFILE_FOLLOWERS_PATH = '/followers';
+export const PROFILE_FOLLOWING_PATH = '/following';
+export const PROFILE_NESTED_PATHS = [
+  PROFILE_TWEET_PATH,
+  PROFILE_REPLIES_PATH,
+  PROFILE_MEDIA_PATH,
+  PROFILE_FOLLOWERS_PATH,
+  PROFILE_FOLLOWING_PATH
+];
 
 // Regex
 export const urlRegex = /(https?:\/\/[^\s]+)/g;

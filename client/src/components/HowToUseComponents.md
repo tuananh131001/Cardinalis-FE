@@ -2,8 +2,15 @@
 - [x] Display Profile path using username (in App, MainNav, Profile, Constant.js)
 - [ ] Do I need to use username from useParam to get user info (MainNav, Profile)
 - [ ] Tweet page (Have back button)
-- [ ] Home, Explore, Bookmarks, Settings -> Tweets, Profile, Trend, 
-- [ ] change defaultUser to dynamic user (in Profile, MainNav, TweetSection)
+- [x] Home, Explore, Bookmarks, Settings -> Tweets, Profile, Trend, 
+- [ ] change defaultUser to dynamic user (in Profile, MainNav, TweetSection, FollowerList, FollowingList, SubPage)
+  - Profile: whole user (attributes: name, numberOfTweets)
+    - MainInfoProfile: user (attributes: name, username, bio, createdAt, location, website, following list - `following` (count), follower list - `followers` (count))
+      - CustomModal - UpdateProfileForm: user (attr: banner, avatar, name, bio, location, website, dob)
+  - MainNav: user
+  - TweetSection: user (2 types: retweet user + tweet user)
+  - ProfileSubPage: user - to get tweet list, tweet and replies list, follower list, following list
+  - [ ] change follower
 - [ ] change defaultReply
 - [ ] change defaultTweetList to dynamic tweet (tweetlist in ProfileSubpage)
 - [ ] Restyle date of birth input later

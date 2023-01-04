@@ -5,12 +5,14 @@ import PropTypes from 'prop-types';
 import { AiOutlineNumber, AiOutlineHome, AiFillHome } from 'react-icons/ai';
 import { IoBookmarkOutline, IoBookmark, IoPersonOutline, IoPerson } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
-import { HOME_PATH, EXPLORE_PATH, BOOKMARK_PATH } from '@/assets/Constant';
+import { HOME_PATH, EXPLORE_PATH, BOOKMARK_PATH, PROFILE_TWEET_PATH } from '@/assets/Constant';
 import Button from '@/components/Button/Button';
 import { useLocation } from 'react-router-dom';
 import { defaultUser } from '@/assets/data/UserData';
+import { extractPath } from '@/helpers/HandleDisplayInfo';
 
 const horizontalSpace = '1.7em';
+const mainPathRegex = /[^/]*[^/*]/;
 const displayCurrentTab = (tabCompare, currentTab, type) => {
   // type: "icon" or "props"
   if (type == 'icon') {
@@ -37,6 +39,7 @@ const displayCurrentTab = (tabCompare, currentTab, type) => {
   }
 };
 const findNavigateButtonProps = (tabCompare, currentTab, navigate) => {
+  tabCompare = extractPath(tabCompare, mainPathRegex);
   return {
     horizontalPadding: horizontalSpace,
     icon: displayCurrentTab(tabCompare, currentTab, 'icon'),
@@ -48,7 +51,8 @@ const findNavigateButtonProps = (tabCompare, currentTab, navigate) => {
   };
 };
 const MainNav = ({ user = defaultUser, theme, ...props }) => {
-  const currentTab = /[^/]*$/.exec(useLocation().pathname)[0];
+  const currentTab = extractPath(useLocation().pathname, mainPathRegex);
+
   const navigate = useNavigate();
   return (
     <FlexContainer
@@ -68,7 +72,10 @@ const MainNav = ({ user = defaultUser, theme, ...props }) => {
         {...findNavigateButtonProps(BOOKMARK_PATH, currentTab, navigate)}
         text="Bookmarks"
       />
-      <NavButton {...findNavigateButtonProps(user.username, currentTab, navigate)} text="Profile" />
+      <NavButton
+        {...findNavigateButtonProps(user.username + PROFILE_TWEET_PATH, currentTab, navigate)}
+        text="Profile"
+      />
       {/* Tweet button */}
       <Button
         buttonThemeName="primaryButton"
