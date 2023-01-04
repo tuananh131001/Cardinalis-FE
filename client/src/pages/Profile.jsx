@@ -4,7 +4,6 @@ import BackProfile from '@/components/Sections/ProfileSection/BackProfile';
 import MainInfoProfile from '@/components/Sections/ProfileSection/MainInfoProfile';
 import PropTypes from 'prop-types';
 import { Outlet, useLocation } from 'react-router-dom';
-import { defaultUser } from '@/assets/data/UserData';
 import { useOutletContext } from 'react-router-dom';
 import {
   HOME_PATH,
@@ -13,7 +12,8 @@ import {
   PROFILE_FOLLOWING_PATH
 } from '@/assets/Constant';
 import { extractPath } from '@/helpers/HandleDisplayInfo';
-// import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { getUserByUsername } from '@/assets/data/UserData';
 
 const defineBackDestination = (location, user) => {
   if (PROFILE_NESTED_PATHS.includes(location)) return user.username;
@@ -21,8 +21,10 @@ const defineBackDestination = (location, user) => {
   return -1;
 };
 // Remember to use useMemo to prevent unnecessary re-rendering if have performance issue
-const Profile = ({ user = defaultUser, ...props }) => {
-  // const { username } = useParams(); // ????????????????
+const Profile = ({ ...props }) => {
+  const { username } = useParams(); // ????????????????
+  const user = getUserByUsername(username);
+
   const location = '/' + extractPath(useLocation().pathname);
 
   const { theme, themeToggler } = useOutletContext();

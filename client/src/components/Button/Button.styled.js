@@ -43,6 +43,7 @@ const StyledButton = styled.button`
   &:hover {
     filter: brightness(90%);
     background-color: ${({ theme, buttonThemeName }) => theme[buttonThemeName].hoverBckColor};
+    color: ${({ theme, buttonThemeName }) => theme[buttonThemeName]?.hoverColor};
   }
 `;
 // Styled Icon Button

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FlexContainer } from 'components/Container/Container.styled';
-import Avatar from 'components/Image/Avatar';
+import { FlexContainer } from '@/components/Container/Container.styled';
+import Avatar from '@/components/Image/Avatar';
 import ShortInfoProfile from '../ProfileSection/ShortInfoProfile';
 
 const ProfileInfoSummary = ({ user, avatarSize = '5em', subSection }) => {

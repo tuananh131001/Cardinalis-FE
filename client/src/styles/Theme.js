@@ -24,19 +24,26 @@ const lightTheme = {
     activeColor: 'var(--forth_button_text_active_light)',
     hoverBckColor: 'var(--forth_button_background_hover_light)'
   },
-  // Retweet
+  // Retweet Button
   retweetButton: {
     color: 'var(--retweet_color_light)',
     hoverColor: 'var(--retweet_color_hover_light)',
     activeColor: 'var(--retweet_color_active_light)',
     hoverBckColor: 'var(--retweet_background_hover_light)'
   },
-  // Favorite
+  // Favorite Button
   favoriteButton: {
     color: 'var(--favorite_color_light)',
     hoverColor: 'var(--favorite_color_hover_light)',
     activeColor: 'var(--favorite_color_active_light)',
     hoverBckColor: 'var(--favorite_background_hover_light)'
+  },
+  // Warning Button
+  warningButton: {
+    backgroundColor: 'var(--warning_button_background_light)',
+    color: 'var(--warning_button_text_light)',
+    borderColor: 'var(--warning_button_border_light)',
+    hoverBckColor: 'var(--warning_button_background_hover_light)'
   },
   // Pseudo
   primaryPseudo: {
@@ -106,19 +113,26 @@ const darkTheme = {
     activeColor: 'var(--forth_button_text_active_dark)',
     hoverBckColor: 'var(--forth_button_background_hover_dark)'
   },
-  // Retweet
+  // Retweet Button
   retweetButton: {
     color: 'var(--retweet_color_dark)',
     hoverColor: 'var(--retweet_color_hover_dark)',
     activeColor: 'var(--retweet_color_active_dark)',
     hoverBckColor: 'var(--retweet_background_hover_dark)'
   },
-  // Favorite
+  // Favorite Button
   favoriteButton: {
     color: 'var(--favorite_color_dark)',
     hoverColor: 'var(--favorite_color_hover_dark)',
     activeColor: 'var(--favorite_color_active_dark)',
     hoverBckColor: 'var(--favorite_background_hover_dark)'
+  },
+  // Warning Button
+  warningButton: {
+    backgroundColor: 'var(--warning_button_background_dark)',
+    color: 'var(--warning_button_text_dark)',
+    borderColor: 'var(--warning_button_border_dark)',
+    hoverBckColor: 'var(--warning_button_background_hover_dark)'
   },
   // Pseudo
   primaryPseudo: {

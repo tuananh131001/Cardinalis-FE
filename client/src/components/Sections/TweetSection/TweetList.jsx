@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { FlexContainer } from '@/components/Container/Container.styled';
 import { defaultTweetList } from '@/assets/data/Data';
-import TweetSection from '../TweetSection/TweetSection';
+import TweetSection from './TweetSection';
 import { getPinnedTweet } from '@/helpers/HandleDisplayInfo';
 
 function TweetList({ tweetList = defaultTweetList }) {

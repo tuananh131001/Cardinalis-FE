@@ -7,7 +7,7 @@
   - Profile: whole user (attributes: name, numberOfTweets)
     - MainInfoProfile: user (attributes: name, username, bio, createdAt, location, website, following list - `following` (count), follower list - `followers` (count))
       - CustomModal - UpdateProfileForm: user (attr: banner, avatar, name, bio, location, website, dob)
-  - MainNav: user
+  - MainNav: user (**you**)
   - TweetSection: user (2 types: retweet user + tweet user)
   - ProfileSubPage: user - to get tweet list, tweet and replies list, follower list, following list
   - [ ] change follower

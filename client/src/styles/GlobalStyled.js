@@ -29,11 +29,11 @@ box-sizing:border-box;
   /* button color */
   /* primary button */
   --primary_button_background_light:#DC6C14;
-  --primary_button_text_light:#FFFFFF;
+  --primary_button_text_light: #FEFAF7;
   /* secondary button */
-  --secondary_button_text_light: #0F1419;
-  --secondary_button_background_light: #fff;
-  --secondary_button_background_hover_light: #B8BDC4;
+  --secondary_button_text_light: #FEFAF7;
+  --secondary_button_background_light: #0F1419;
+  --secondary_button_background_hover_light: #272c30;
   /* third button */
   --third_button_background_light: transparent;
   --third_button_text_light: #0F1419;
@@ -55,6 +55,11 @@ box-sizing:border-box;
   --favorite_color_active_light: #f91980;
   --favorite_color_hover_light: #f91980;
   --favorite_background_hover_light: #ffe7f3;
+   /* warning button */
+   --warning_button_background_light: transparent;
+  --warning_button_text_light: #C61124;
+  --warning_button_border_light: #C61124;
+  --warning_button_background_hover_light: transparent;
 
 
   // Pseudo
@@ -87,9 +92,9 @@ box-sizing:border-box;
   --primary_button_background_dark:#DC6C14;
   --primary_button_text_dark:#F7F9FF;
   /* secondary button */
-  --secondary_button_background_dark: #EFF3F4;
+  --secondary_button_background_dark: #F7F9FF;
   --secondary_button_text_dark: #0F1419;
-  --secondary_button_background_hover_dark: #3B353B;
+  --secondary_button_background_hover_dark: #e0e2e6;
   /* third button */
   --third_button_background_dark: transparent;
   --third_button_text_dark: #F7F9FF;
@@ -111,6 +116,11 @@ box-sizing:border-box;
   --favorite_color_active_dark: #f91980;
   --favorite_color_hover_dark: #f91980;
   --favorite_background_hover_dark: #200814;
+  /* warning button */
+  --warning_button_background_dark: transparent;
+  --warning_button_text_dark: #f41000;
+  --warning_button_border_dark: #f41000;
+  --warning_button_background_hover_dark: transparent;
 
   // Pseudo
   --primary_pseudo_background_dark: var(--background-color_dark);

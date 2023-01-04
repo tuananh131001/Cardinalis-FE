@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { PROFILE_FOLLOWING_PATH, PROFILE_FOLLOWERS_PATH } from '@/assets/Constant';
 import { MdLocationOn } from 'react-icons/md';
 import { RiLinksLine } from 'react-icons/ri';
+import FollowButton from '../FollowSection/FollowButton';
 
 const avatarSize = '9em';
 const bckHeight = '14em';
@@ -38,7 +39,11 @@ const MainInfoProfile = ({ user }) => {
       position="relative"
       padding={`calc(${bckHeight} + ${containerGap}) var(--horizontal-spaces) 0`}>
       <ImageProfile user={user} bckHeight={bckHeight} avatarSize={avatarSize} />
-      <EditButtonProfile onClick={handleOpen} />
+      {user.isYou ? (
+        <EditButtonProfile onClick={handleOpen} />
+      ) : (
+        <FollowButton isFollowing={user.isFollowing} alignSelf="flex-end" width="20%" />
+      )}
       <ShortInfoProfile name={user.name} username={user.username} padding="1em 0" />
       {user.bio && <SubHeaderProfile text={user.bio} />}
       <SpanProfile text={[<ImCalendar key={0} />, `Joined ${displayDate(user.createdAt)}`]} />
@@ -64,9 +69,11 @@ const MainInfoProfile = ({ user }) => {
         />
       </FlexContainer>
 
-      <CustomModal isOpen={isOpen} handleClose={handleClose}>
-        {<UpdateProfileForm user={user} isInModal={true} closeAction={handleClose} />}
-      </CustomModal>
+      {user.isYou && (
+        <CustomModal isOpen={isOpen} handleClose={handleClose}>
+          {<UpdateProfileForm user={user} isInModal={true} closeAction={handleClose} />}
+        </CustomModal>
+      )}
     </FlexContainer>
   );
 };

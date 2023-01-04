@@ -1,9 +1,11 @@
-import TweetList from '@/components/Sections/GeneralSection/TweetList';
 import { defaultTweetList } from '@/assets/data/Data';
+import { defaultFollowerList, defaultFollowingList } from '@/assets/data/UserData';
 import { useOutletContext } from 'react-router-dom';
 import Proptypes from 'prop-types';
 import { getMediaTweeters } from '@/helpers/HandleDisplayInfo';
 import ProfileNav from './ProfileNav';
+import FollowList from '../FollowSection/FollowList';
+import TweetList from '../TweetSection/TweetList';
 
 const getNavType = (type) => {
   switch (type) {
@@ -29,9 +31,9 @@ const ProfileSubpage = ({ type }) => {
       case 'media':
         return <TweetList tweetList={getMediaTweeters(defaultTweetList)} />;
       case 'followers':
-        return <h1>Follower</h1>;
+        return <FollowList followList={defaultFollowerList} />;
       case 'following':
-        return <h1>Following</h1>;
+        return <FollowList followList={defaultFollowingList} />;
     }
   };
   return (

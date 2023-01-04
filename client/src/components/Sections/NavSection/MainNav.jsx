@@ -8,8 +8,8 @@ import { useNavigate } from 'react-router-dom';
 import { HOME_PATH, EXPLORE_PATH, BOOKMARK_PATH, PROFILE_TWEET_PATH } from '@/assets/Constant';
 import Button from '@/components/Button/Button';
 import { useLocation } from 'react-router-dom';
-import { defaultUser } from '@/assets/data/UserData';
 import { extractPath } from '@/helpers/HandleDisplayInfo';
+import { youUser } from '@/assets/data/UserData';
 
 const horizontalSpace = '1.7em';
 const mainPathRegex = /[^/]*[^/*]/;
@@ -50,7 +50,7 @@ const findNavigateButtonProps = (tabCompare, currentTab, navigate) => {
     }
   };
 };
-const MainNav = ({ user = defaultUser, theme, ...props }) => {
+const MainNav = ({ user = youUser, theme, ...props }) => {
   const currentTab = extractPath(useLocation().pathname, mainPathRegex);
 
   const navigate = useNavigate();
