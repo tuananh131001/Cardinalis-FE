@@ -33,20 +33,20 @@ export const Input = forwardRef(function Input(
    * @param {string} cols - number of cols for textarea
    * @param {function} onClick - function for external onClick event
    */
-  let [textareaRef, onChange, inputValue] = [null];
+  let [textareaRef, onTextareaChange, inputValue] = [null];
   // for general props of all components rendering conditionally
   // for optional props only
+  // const { ref: registerRef, ...rest } = register('tweet')
   let generalPropsList = {
     inputThemeName: inputThemeName,
     type: type,
     ...props
   };
-  // const buttonPropsList = {
 
   switch (inputType) {
     case 'textarea':
       // 32 số tạm thời chưa bít
-      [textareaRef, onChange, inputValue] = useResizeInput('', {
+      [textareaRef, onTextareaChange, inputValue] = useResizeInput('', {
         name: 'height',
         minSize: 32
       });
@@ -54,12 +54,18 @@ export const Input = forwardRef(function Input(
         <StyledTextArea
           {...generalPropsList}
           cols={cols || 30}
-          ref={textareaRef}
-          onChange={onChange}
+          ref={(event) => {
+            ref(event);
+            textareaRef.current = event;
+          }}
+          onChange={(event) => {
+            onTextareaChange(event);
+            props.onChange(event);
+          }}
           value={inputValue}></StyledTextArea>
       );
     case 'text':
-      return <StyledInput {...generalPropsList} onChange={onChange} ref={ref} />;
+      return <StyledInput {...generalPropsList} ref={ref} />;
     case 'textIcon':
       return (
         <StyledInputContainer {...generalPropsList}>
@@ -75,7 +81,7 @@ export const Input = forwardRef(function Input(
           <StyledInput
             {...register(registerName)}
             {...generalPropsList}
-            onChange={onChange}
+            onChange={props.onChange}
             accept="image/*"
             ref={ref}
             multiple
@@ -98,5 +104,5 @@ Input.propTypes = {
   registerName: PropTypes.string,
   isDisplay: PropTypes.bool,
   children: PropTypes.element,
-  props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
+  props: PropTypes.objectOf(PropTypes.any)
 };

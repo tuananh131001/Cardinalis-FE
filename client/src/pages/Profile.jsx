@@ -14,6 +14,7 @@ import {
 import { extractPath } from '@/helpers/HandleDisplayInfo';
 import { useParams } from 'react-router-dom';
 import { getUserByUsername } from '@/assets/data/UserData';
+import { pageContentTemplate } from '@/helpers/PageContentDisplay';
 
 const defineBackDestination = (location, user) => {
   if (PROFILE_NESTED_PATHS.includes(location)) return user.username;
@@ -22,6 +23,7 @@ const defineBackDestination = (location, user) => {
 };
 // Remember to use useMemo to prevent unnecessary re-rendering if have performance issue
 const Profile = ({ ...props }) => {
+  // logic here
   const { username } = useParams(); // ????????????????
   const user = getUserByUsername(username);
 
@@ -29,13 +31,7 @@ const Profile = ({ ...props }) => {
 
   const { theme, themeToggler } = useOutletContext();
   return (
-    <FlexContainer
-      fd="column"
-      ai="flex-start"
-      gridArea="main"
-      {...props}
-      width="100%"
-      overflow="visible">
+    <FlexContainer {...props} {...pageContentTemplate}>
       <HeaderSection
         content={<BackProfile name={user.name} numTweets={user.numTweets} />}
         backDestination={defineBackDestination(location, user)}

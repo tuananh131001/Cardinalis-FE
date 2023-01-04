@@ -1,6 +1,7 @@
 import { urlRegex } from '@/assets/Constant';
 import * as yup from 'yup';
 import moment from 'moment';
+export const maxTweetCharacters = 280;
 export const displayErrorMessage = (type, errorType, ...args) => {
   let displayType = 'input';
   switch (type) {
@@ -79,7 +80,7 @@ export const chooseInputSchema = (type) => {
         .oneOf([yup.ref('password'), null], displayErrorMessage('confirmPassword', 'oneOf'))
         .required(displayErrorMessage('confirmPassword', 'required'))
     });
-  } else {
+  } else if (type == 'updateProfile') {
     return yup.object().shape({
       banner: validatingImage('banner'),
       avatar: validatingImage('avatar'),
@@ -113,6 +114,12 @@ export const chooseInputSchema = (type) => {
           return value == null || moment().diff(moment(value), 'years') >= 10;
         })
         .default(null)
+    });
+  } else {
+    return yup.object().shape({
+      tweet: yup
+        .string()
+        .max(maxTweetCharacters, displayErrorMessage('tweet', 'max', maxTweetCharacters, 'string'))
     });
   }
 };

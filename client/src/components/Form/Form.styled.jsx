@@ -13,7 +13,7 @@ export const StyledForm = styled.form`
   /* size */
   width: ${({ width }) => width};
   padding: ${({ padding }) => padding};
-  height: 50vh;
+  height: ${({ height }) => height};
   overflow: scroll;
 `;
 
@@ -25,7 +25,7 @@ StyledForm.defaultProps = {
   ai: 'center',
   wrap: 'nowrap',
   width: '100%',
-  height: 'auto',
+  height: '50vh',
   gridArea: 'unset',
   alignSelf: 'unset',
   overflow: 'auto',

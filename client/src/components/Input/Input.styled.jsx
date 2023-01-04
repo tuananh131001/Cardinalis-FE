@@ -58,7 +58,7 @@ export const StyledInputIcon = styled.input`
 export const StyledTextArea = styled.textarea`
   ${StyledGeneralInput}
   resize: none;
-  overflow: hidden;
+  overflow: ${(props) => props.overflow};
   line-height: 1.5em;
   padding: ${(props) => props.padding};
 `;
@@ -97,7 +97,9 @@ StyledInputContainer.defaultProps = {
 };
 StyledTextArea.defaultProps = {
   ...generalDefaultProps,
-  padding: '0.9em 0.8em 2em'
+  padding: '0.9em 0.8em 2em',
+  height: 'auto',
+  overflow: 'hidden'
 };
 StyledInput.defaultProps = {
   ...generalDefaultProps,

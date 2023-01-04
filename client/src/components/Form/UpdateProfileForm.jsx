@@ -17,6 +17,7 @@ import { isEmptyObject } from '@/helpers/HandleObject';
 const errorPadding = '0 0 1em 0.2em';
 const bckHeight = '15em';
 const avatarSize = '9em';
+const textThemeName = 'loginInput';
 function UpdateProfileForm({ user, closeAction, ...props }) {
   const schema = chooseInputSchema('updateProfile');
   // const {value: message, onSetNewValue: setMessage} = useChange("");
@@ -101,7 +102,7 @@ function UpdateProfileForm({ user, closeAction, ...props }) {
       <Input
         id="updateProfileName"
         inputType="text"
-        inputThemeName="loginInput"
+        inputThemeName={textThemeName}
         placeholder="Name"
         {...register('name')}
       />
@@ -112,7 +113,7 @@ function UpdateProfileForm({ user, closeAction, ...props }) {
       <Input
         id="updateProfileBio"
         inputType="textarea"
-        inputThemeName="loginInput"
+        inputThemeName={textThemeName}
         placeholder="Bio"
         {...register('bio')}
       />
@@ -123,7 +124,7 @@ function UpdateProfileForm({ user, closeAction, ...props }) {
       <Input
         id="updateProfileLocation"
         inputType="text"
-        inputThemeName="loginInput"
+        inputThemeName={textThemeName}
         placeholder="Location"
         {...register('location')}
       />
@@ -134,14 +135,14 @@ function UpdateProfileForm({ user, closeAction, ...props }) {
       <Input
         id="updateProfileWebsite"
         inputType="text"
-        inputThemeName="loginInput"
+        inputThemeName={textThemeName}
         placeholder="Website"
         {...register('website')}
       />
       <ErrorText errors={errors.website?.message} padding={errorPadding} />
 
       {/* Date of Birth */}
-      <DateInput inputThemeName="loginInput" name="dob" control={control} />
+      <DateInput inputThemeName={textThemeName} name="dob" control={control} />
       <CustomizedSnackbars
         type="error"
         verticalPosition="bottom"

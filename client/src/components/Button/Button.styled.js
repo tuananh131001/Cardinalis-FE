@@ -30,6 +30,11 @@ const StyledGeneralButton = css`
   &:hover {
     cursor: pointer;
   }
+  &:disabled {
+    cursor: auto;
+    opacity: 0.6;
+    filter: none;
+  }
 `;
 
 // Styled Component
