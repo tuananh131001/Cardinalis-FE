@@ -17,6 +17,7 @@ import Main from '@/pages/Main';
 import ProtectedRoutes from '@/routes/ProtectedRoutes';
 import { AnimatePresence } from 'framer-motion';
 import {
+  COMPOSE_PATH,
   PROFILE_TWEET_PATH,
   PROFILE_REPLIES_PATH,
   PROFILE_MEDIA_PATH,
@@ -24,20 +25,23 @@ import {
   PROFILE_FOLLOWING_PATH
 } from '@/assets/Constant';
 import ProfileSubpage from '@/components/Sections/ProfileSection/ProfileSubpage';
+import TweetCompose from '@/pages/TweetCompose';
+import { useChange } from '@/hooks/useChange';
 
 // import Text from './components/Text/Text';
 
 function App() {
   const [theme, themeToggler] = useTheme();
-  const location = useLocation();
   const themeMode = theme === 'lightTheme' ? lightTheme : darkTheme;
+  const location = useLocation();
+  const background = location.state && location.state.background;
 
   return (
     <div className="app">
       <ThemeProvider theme={themeMode}>
         <GlobalStyled />
         <AnimatePresence mode="wait">
-          <Routes location={location} key={location.pathname}>
+          <Routes location={background || location} key={location.pathname}>
             {/* Authentication */}
             <Route element={<Authentication theme={theme} themeToggler={themeToggler} />}>
               <Route path="/" element={<Login theme={theme} themeToggler={themeToggler} />} />
@@ -51,6 +55,12 @@ function App() {
               <Route path="/home" element={<Home />} />
               <Route path="/explore" element={<Explore />} />
               <Route path="/bookmarks" element={<Bookmarks />} />
+              <Route path={`/${COMPOSE_PATH}`} element={<TweetCompose isModal={false} />} />
+              {/* {state?.backgroundLocation ? (
+                <Route path={`/${COMPOSE_PATH}`} element={<TweetCompose isModal={true} />} />
+              ) : (
+                <Route path={`/${COMPOSE_PATH}`} element={<TweetCompose isModal={false} />} />
+              )} */}
               <Route element={<Profile />}>
                 <Route
                   path={`/:username${PROFILE_TWEET_PATH}`}
@@ -77,6 +87,11 @@ function App() {
             <Route path={`/${FORGOT_PASSWORD_PATH}`} element={<ForgotPassword />} />
             <Route path="*" element={<StyledHeading1>Page Not Exist</StyledHeading1>} />
           </Routes>
+          {background && (
+            <Routes>
+              <Route path={`/${COMPOSE_PATH}`} element={<TweetCompose isModal={true} />} />
+            </Routes>
+          )}
         </AnimatePresence>
       </ThemeProvider>
     </div>

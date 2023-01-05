@@ -5,14 +5,18 @@ import PropTypes from 'prop-types';
 import { AiOutlineNumber, AiOutlineHome, AiFillHome } from 'react-icons/ai';
 import { IoBookmarkOutline, IoBookmark, IoPersonOutline, IoPerson } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
-import { HOME_PATH, EXPLORE_PATH, BOOKMARK_PATH, PROFILE_TWEET_PATH } from '@/assets/Constant';
+import {
+  HOME_PATH,
+  EXPLORE_PATH,
+  BOOKMARK_PATH,
+  PROFILE_TWEET_PATH,
+  COMPOSE_PATH
+} from '@/assets/Constant';
 import Button from '@/components/Button/Button';
-import { useLocation } from 'react-router-dom';
 import { extractPath } from '@/helpers/HandleDisplayInfo';
-import { youUser } from '@/assets/data/UserData';
+import { mainPathRegex } from '@/assets/Constant';
 
 const horizontalSpace = '1.7em';
-const mainPathRegex = /[^/]*[^/*]/;
 const displayCurrentTab = (tabCompare, currentTab, type) => {
   // type: "icon" or "props"
   if (type == 'icon') {
@@ -50,9 +54,7 @@ const findNavigateButtonProps = (tabCompare, currentTab, navigate) => {
     }
   };
 };
-const MainNav = ({ user = youUser, theme, ...props }) => {
-  const currentTab = extractPath(useLocation().pathname, mainPathRegex);
-
+const MainNav = ({ user, theme, currentTab, location, ...props }) => {
   const navigate = useNavigate();
   return (
     <FlexContainer
@@ -80,7 +82,9 @@ const MainNav = ({ user = youUser, theme, ...props }) => {
       <Button
         buttonThemeName="primaryButton"
         onClick={() => {
-          console.log('Tweet');
+          // navigate(`/${COMPOSE_PATH}`, {state: {backgroundLocation: location} });
+          navigate(`/${COMPOSE_PATH}`, { state: { background: location } });
+          // navigate(`/${COMPOSE_PATH}`);
         }}
         width="100%"
         borderRadius={horizontalSpace}>
@@ -95,6 +99,9 @@ const MainNav = ({ user = youUser, theme, ...props }) => {
 MainNav.propTypes = {
   user: PropTypes.object,
   theme: PropTypes.string,
+  openModal: PropTypes.func,
+  currentTab: PropTypes.string,
+  location: PropTypes.object,
   props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
 };
 

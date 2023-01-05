@@ -2,7 +2,7 @@ import Modal from '@mui/material/Modal';
 import PropTypes from 'prop-types';
 import { StyledModalBox } from './CustomModal.style';
 
-export default function CustomModal({ isOpen, handleClose, children }) {
+export default function CustomModal({ isOpen, handleClose, children, ...props }) {
   return (
     <Modal
       open={isOpen}
@@ -10,7 +10,7 @@ export default function CustomModal({ isOpen, handleClose, children }) {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description">
       {/* <Box sx={style}>{children}</Box> */}
-      <StyledModalBox>{children}</StyledModalBox>
+      <StyledModalBox {...props}>{children}</StyledModalBox>
     </Modal>
   );
 }

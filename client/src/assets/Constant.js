@@ -9,7 +9,7 @@ export const REGISTER_PATH = 'register';
 export const HOME_PATH = 'home';
 export const EXPLORE_PATH = 'explore';
 export const BOOKMARK_PATH = 'bookmarks';
-export const PROFILE_PATH = 'profile'; // check lai sau
+export const COMPOSE_PATH = 'tweet_compose';
 
 // inside Profile
 export const PROFILE_TWEET_PATH = '';
@@ -28,3 +28,4 @@ export const PROFILE_NESTED_PATHS = [
 // Regex
 export const urlRegex = /(https?:\/\/[^\s]+)/g;
 // /https?:\/\/(?:www\.|[a-zA-Z]{2}\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\\+.~#?&//=]+)/g
+export const mainPathRegex = /[^/]*[^/*]/;

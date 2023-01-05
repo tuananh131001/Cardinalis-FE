@@ -3,9 +3,9 @@ import styled from 'styled-components';
 export const StyledModalBox = styled.div`
   /* position */
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: ${({ top }) => top};
+  left: ${({ left }) => left};
+  transform: ${({ transform }) => transform};
 
   /* size */
   width: ${({ width }) => width};
@@ -15,12 +15,15 @@ export const StyledModalBox = styled.div`
   /* styling */
   background-color: ${({ theme }) => theme.mainBackgroundColor};
   box-shadow: 24px;
-  border-radius: 7%;
+  border-radius: 30px;
 
   overflow: hidden;
 `;
 StyledModalBox.defaultProps = {
   width: '50vw',
   padding: '0',
-  height: '60vh'
+  height: '60vh',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)'
 };

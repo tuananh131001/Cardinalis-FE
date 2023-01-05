@@ -5,9 +5,11 @@
 - [x] Home, Explore, Bookmarks, Settings -> Tweets, Profile, Trend, 
 - [ ] change defaultUser to dynamic user (in Profile, MainNav, TweetSection, FollowerList, FollowingList, SubPage)
   - Profile: whole user (attributes: name, numberOfTweets)
-    - MainInfoProfile: user (attributes: name, username, bio, createdAt, location, website, following list - `following` (count), follower list - `followers` (count))
+    - MainInfoProfile: user (attributes: name, username, bio, createdAt, location, website, following list - `following` (count), follower list - `followers` (count), isYou, isFollowing)
       - CustomModal - UpdateProfileForm: user (attr: banner, avatar, name, bio, location, website, dob)
-  - MainNav: user (**you**)
+      - FollowList: user
+        - FollowButton: user (isFollowing)
+  - Main: user (**you**)
   - TweetSection: user (2 types: retweet user + tweet user)
   - ProfileSubPage: user - to get tweet list, tweet and replies list, follower list, following list
   - [ ] change follower

@@ -2,10 +2,17 @@ import MainNav from '@/components/Sections/NavSection/MainNav';
 import { StyledPage } from './Page.styled';
 import PropTypes from 'prop-types';
 import useMediaQuery from '@/hooks/useMediaQuery';
-import { SMALL_MOBILE_QUERY, MOBILE_QUERY, TABLET_QUERY, DESKTOP_QUERY } from '@/assets/Constant';
-import { HOME_PATH } from '@/assets/Constant';
-import { useChange } from '@/hooks/useChange';
-import { Outlet } from 'react-router-dom';
+import {
+  SMALL_MOBILE_QUERY,
+  MOBILE_QUERY,
+  TABLET_QUERY,
+  DESKTOP_QUERY,
+  mainPathRegex
+} from '@/assets/Constant';
+import { Outlet, useLocation } from 'react-router-dom';
+import { youUser } from '@/assets/data/UserData';
+import { extractPath } from '@/helpers/HandleDisplayInfo';
+import { useMemo } from 'react';
 // import { useMemo } from 'react';
 
 export const renderPropsResponsive = (propsName, queries, type = 'element') => {
@@ -20,27 +27,32 @@ export const renderPropsResponsive = (propsName, queries, type = 'element') => {
   }
 };
 
-const Main = ({ theme, themeToggler }) => {
+const Main = ({ user = youUser, theme, themeToggler }) => {
   const responsiveCondition = {
     smallMobile: useMediaQuery(SMALL_MOBILE_QUERY),
     mobile: useMediaQuery(MOBILE_QUERY),
     tablet: useMediaQuery(TABLET_QUERY),
     desktop: useMediaQuery(DESKTOP_QUERY)
   };
-  // const { horizontalSpaces } = useMemo(() => {
-  //   const horizontalSpaces = renderPropsResponsive('horizontalPadding', responsiveCondition);
-
-  //   return { horizontalSpaces };
-  // }, [location, responsiveCondition]);
-  const { value: currentTab, onSetNewValue: changeTab } = useChange(HOME_PATH);
+  const location = useLocation();
+  const { currentTab } = useMemo(() => {
+    const currentTab = extractPath(location.pathname, mainPathRegex);
+    return { currentTab };
+  }, [location, responsiveCondition]);
   return (
     <StyledPage
       gridTemplateAreas={findGridTemplateAreas(responsiveCondition)}
       padding="0 10em"
       gap="7em"
       ai="flex-start">
-      <MainNav theme={theme} currentTab={currentTab} changeTab={changeTab} gridArea="nav" />
-      <Outlet context={{ theme, themeToggler }} />
+      <MainNav
+        user={user}
+        theme={theme}
+        location={location}
+        currentTab={currentTab}
+        gridArea="nav"
+      />
+      <Outlet context={{ theme, themeToggler, user }} />
     </StyledPage>
   );
 };
@@ -64,6 +76,7 @@ const findGridTemplateAreas = (queries) => {
 };
 
 Main.propTypes = {
+  user: PropTypes.object,
   theme: PropTypes.string,
   themeToggler: PropTypes.func
 };

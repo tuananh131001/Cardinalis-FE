@@ -2,23 +2,19 @@
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { chooseInputSchema, maxTweetCharacters } from '@/helpers/ValidatingInput';
-import PropTypes from 'prop-types';
 import { Input } from '@/components/Input/Input';
 import { StyledForm } from '@/components/Form/Form.styled';
 import StyledButton from '@/components/Button/Button.styled';
-import { useChange } from '@/hooks/useChange';
 import { ErrorText } from '@/components/Text/ErrorText';
 
 const TweetInput = ({ ...props }) => {
-  const { value: isDisabled, onSetNewValue: toggleDisabled } = useChange(false);
   const schema = chooseInputSchema('tweet');
   const defaultValues = { tweet: '' };
   const {
     register,
     handleSubmit,
-    formState: { errors, isDirty, isValid },
-    getValues,
-    setValue
+    formState: { isDirty, isValid },
+    getValues
   } = useForm({
     mode: 'onChange',
     defaultValues: defaultValues,
@@ -26,7 +22,7 @@ const TweetInput = ({ ...props }) => {
   });
 
   const onSubmitClick = (data) => {
-    console.log('Tweet');
+    console.log('Tweet', data);
     // if (isDirty && isValid) {
     //   console.log(data);
     // } else {
@@ -38,7 +34,7 @@ const TweetInput = ({ ...props }) => {
       height="auto"
       {...props}
       onSubmit={handleSubmit(onSubmitClick)}
-      padding={`0 var(--horizontal-spaces)`}
+      padding={`0.5em 1em`}
       jc="flex-start">
       <Input
         inputType="textarea"
@@ -47,11 +43,21 @@ const TweetInput = ({ ...props }) => {
         onChange={register('tweet').onChange}
         {...register('tweet')}
       />
-      
-          <ErrorText errors={getValues('tweet').length > maxTweetCharacters &&
-          maxTweetCharacters - getValues('tweet').length
-          } />
-      <StyledButton type="submit" disabled={!isDirty || !isValid} buttonThemeName="primaryButton">
+
+      <ErrorText
+        errors={
+          getValues('tweet').length > maxTweetCharacters
+            ? maxTweetCharacters - getValues('tweet').length
+            : ''
+        }
+      />
+      <StyledButton
+        alignSelf="flex-end"
+        width="auto"
+        borderRadius="30%/110%"
+        type="submit"
+        disabled={!isDirty || !isValid}
+        buttonThemeName="primaryButton">
         Tweet
       </StyledButton>
     </StyledForm>
