@@ -59,13 +59,15 @@ export const Input = forwardRef(function Input(
             textareaRef.current = event;
           }}
           onChange={(event) => {
+            // custom onChange
             onTextareaChange(event);
+            // react-hook-form onChange
             props.onChange(event);
           }}
           value={inputValue}></StyledTextArea>
       );
     case 'text':
-      return <StyledInput {...generalPropsList} ref={ref} />;
+      return <StyledInput onChange={props.onChange} {...generalPropsList} ref={ref} />;
     case 'textIcon':
       return (
         <StyledInputContainer {...generalPropsList}>
@@ -104,5 +106,5 @@ Input.propTypes = {
   registerName: PropTypes.string,
   isDisplay: PropTypes.bool,
   children: PropTypes.element,
-  props: PropTypes.objectOf(PropTypes.any)
+  onChange: PropTypes.func
 };

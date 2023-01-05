@@ -21,6 +21,7 @@ const HeaderSection = ({
   haveCloseButton = false,
   isFixedPosition = false,
   isDisplayTheme = true,
+  onClickClose,
   ...props
 }) => {
   const navigate = useNavigate();
@@ -59,8 +60,8 @@ const HeaderSection = ({
       pseudoAfter={isScrolling || isFixedPosition ? '1' : 'none'}>
       {haveBackButton && (
         <Button
-          buttonType="link"
           onClick={onClick}
+          buttonType="link"
           fontSize="var(--font-size-md)"
           width="fit-content"
           jc="flex-start"
@@ -73,6 +74,7 @@ const HeaderSection = ({
       )}
       {haveCloseButton && (
         <Button
+          onClick={onClickClose}
           buttonType="primary"
           buttonThemeName="secondaryButton"
           fontSize="var(--font-size-base)"
@@ -109,6 +111,7 @@ HeaderSection.propTypes = {
   themeToggler: PropTypes.func,
   zIndex: PropTypes.number,
   isFixedPosition: PropTypes.bool,
-  isDisplayTheme: PropTypes.bool
+  isDisplayTheme: PropTypes.bool,
+  onClickClose: PropTypes.func
 };
 export default HeaderSection;

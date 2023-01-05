@@ -115,11 +115,15 @@ export const chooseInputSchema = (type) => {
         })
         .default(null)
     });
-  } else {
+  } else if (type == 'tweet') {
     return yup.object().shape({
       tweet: yup
         .string()
         .max(maxTweetCharacters, displayErrorMessage('tweet', 'max', maxTweetCharacters, 'string'))
+    });
+  } else {
+    return yup.object().shape({
+      search: yup.string().required(displayErrorMessage('search', 'required'))
     });
   }
 };

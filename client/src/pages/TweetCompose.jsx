@@ -6,7 +6,7 @@ import CustomModal from '@/components/Modals/CustomModal';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
 
-const TweetCompose = ({ isModal = false }) => {
+const TweetCompose = ({ isModal = false, theme, themeToggler, user }) => {
   const navigate = useNavigate();
   const handleCloseModal = () => {
     navigate(-1);
@@ -21,14 +21,13 @@ const TweetCompose = ({ isModal = false }) => {
         isOpen={true}
         handleClose={handleCloseModal}>
         {
-          // <TweetComposeContent
-          //   theme={theme}
-          //   themeToggler={themeToggler}
-          //   isModal={isModal}
-          //   handleCloseModal={handleCloseModal}
-          //   user={user}
-          // />
-          <h1>Helloooo</h1>
+          <TweetComposeContent
+            theme={theme}
+            themeToggler={themeToggler}
+            isModal={isModal}
+            handleCloseModal={handleCloseModal}
+            user={user}
+          />
         }
       </CustomModal>
     );
@@ -44,13 +43,14 @@ const TweetCompose = ({ isModal = false }) => {
     );
   }
 };
-const TweetComposeContent = ({ theme, themeToggler, user, isModal }) => {
+const TweetComposeContent = ({ theme, themeToggler, user, isModal, handleCloseModal }) => {
   return (
     <FlexContainer fd="column" gridArea="main">
       <HeaderSection
         content=""
         haveBackButton={!isModal}
         haveCloseButton={isModal}
+        onClickClose={handleCloseModal}
         zIndex={2}
         theme={theme}
         themeToggler={themeToggler}
@@ -61,7 +61,10 @@ const TweetComposeContent = ({ theme, themeToggler, user, isModal }) => {
 };
 
 TweetCompose.propTypes = {
-  isModal: PropTypes.bool
+  isModal: PropTypes.bool,
+  theme: PropTypes.string,
+  themeToggler: PropTypes.func,
+  user: PropTypes.object
 };
 TweetComposeContent.propTypes = {
   theme: PropTypes.string,

@@ -1,3 +1,4 @@
+// https://dev.to/devmdmamun/create-contextual-modal-navigation-with-react-router-v6-28k2
 import GlobalStyled from '@/styles/GlobalStyled';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Home from '@/pages/Home';
@@ -26,7 +27,8 @@ import {
 } from '@/assets/Constant';
 import ProfileSubpage from '@/components/Sections/ProfileSection/ProfileSubpage';
 import TweetCompose from '@/pages/TweetCompose';
-import { useChange } from '@/hooks/useChange';
+import { youUser } from '@/assets/data/UserData';
+import Search from '@/pages/Search';
 
 // import Text from './components/Text/Text';
 
@@ -35,6 +37,7 @@ function App() {
   const themeMode = theme === 'lightTheme' ? lightTheme : darkTheme;
   const location = useLocation();
   const background = location.state && location.state.background;
+  const user = youUser;
 
   return (
     <div className="app">
@@ -56,11 +59,7 @@ function App() {
               <Route path="/explore" element={<Explore />} />
               <Route path="/bookmarks" element={<Bookmarks />} />
               <Route path={`/${COMPOSE_PATH}`} element={<TweetCompose isModal={false} />} />
-              {/* {state?.backgroundLocation ? (
-                <Route path={`/${COMPOSE_PATH}`} element={<TweetCompose isModal={true} />} />
-              ) : (
-                <Route path={`/${COMPOSE_PATH}`} element={<TweetCompose isModal={false} />} />
-              )} */}
+              <Route path="/search/:keyword" element={<Search />} />
               <Route element={<Profile />}>
                 <Route
                   path={`/:username${PROFILE_TWEET_PATH}`}
@@ -89,7 +88,17 @@ function App() {
           </Routes>
           {background && (
             <Routes>
-              <Route path={`/${COMPOSE_PATH}`} element={<TweetCompose isModal={true} />} />
+              <Route
+                path={`/${COMPOSE_PATH}`}
+                element={
+                  <TweetCompose
+                    isModal={true}
+                    theme={theme}
+                    themeToggler={themeToggler}
+                    user={user}
+                  />
+                }
+              />
             </Routes>
           )}
         </AnimatePresence>

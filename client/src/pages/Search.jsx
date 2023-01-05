@@ -1,15 +1,20 @@
+import React from 'react';
+// import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import { FlexContainer } from '@/components/Container/Container.styled';
 import HeaderSection from '@/components/Sections/GeneralSection/HeaderSection';
+import SearchInput from '@/components/Input/SearchInput';
 import { pageContentTemplate } from '@/helpers/PageContentDisplay';
 import { useOutletContext } from 'react-router-dom';
 
-const Explore = ({ ...props }) => {
+const Search = ({ ...props }) => {
+  const { keyword } = useParams();
+
   const { theme, themeToggler } = useOutletContext();
   return (
     <FlexContainer {...pageContentTemplate} {...props}>
       <HeaderSection
-        haveBackButton={false}
-        content="Explore"
+        content={<SearchInput />}
         isDisplayTheme={true}
         theme={theme}
         themeToggler={themeToggler}
@@ -19,4 +24,6 @@ const Explore = ({ ...props }) => {
   );
 };
 
-export default Explore;
+Search.propTypes = {};
+
+export default Search;

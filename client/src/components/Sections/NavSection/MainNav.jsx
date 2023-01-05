@@ -15,6 +15,7 @@ import {
 import Button from '@/components/Button/Button';
 import { extractPath } from '@/helpers/HandleDisplayInfo';
 import { mainPathRegex } from '@/assets/Constant';
+import SearchInput from '@/components/Input/SearchInput';
 
 const horizontalSpace = '1.7em';
 const displayCurrentTab = (tabCompare, currentTab, type) => {
@@ -66,7 +67,10 @@ const MainNav = ({ user, theme, currentTab, location, ...props }) => {
       position="sticky"
       top="0"
       {...props}>
+      {/* Nav Image */}
       <NavImage theme={theme} horizontalMargin={horizontalSpace} />
+      {/* Nav Search */}
+      {!location.pathname.includes('search') && <SearchInput />}
       {/* Navigate button */}
       <NavButton {...findNavigateButtonProps(HOME_PATH, currentTab, navigate)} text="Home" />
       <NavButton {...findNavigateButtonProps(EXPLORE_PATH, currentTab, navigate)} text="Explore" />

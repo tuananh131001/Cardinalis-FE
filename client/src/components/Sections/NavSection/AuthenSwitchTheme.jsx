@@ -9,6 +9,7 @@ function AuthenSwitchTheme({ theme, themeToggler, ...props }) {
   return (
     <Button
       {...props}
+      width="auto"
       buttonType="link"
       fontSize={`var(--font-size-${isMobile ? 'xl' : 'lg'})`}
       jc="flex-end"

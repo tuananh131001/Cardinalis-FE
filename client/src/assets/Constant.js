@@ -10,6 +10,7 @@ export const HOME_PATH = 'home';
 export const EXPLORE_PATH = 'explore';
 export const BOOKMARK_PATH = 'bookmarks';
 export const COMPOSE_PATH = 'tweet_compose';
+export const SEARCH_PATH = 'search';
 
 // inside Profile
 export const PROFILE_TWEET_PATH = '';
