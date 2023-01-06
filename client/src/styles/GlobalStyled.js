@@ -12,7 +12,7 @@ box-sizing:border-box;
   --primary_color_light: #DC6C14;
   --secondary_color_light: #4E98C7;
   --text_placeholder_light:#D7D5D8;
-  --background-color_light: #FEFAF7;
+  --background-color_light: #ffffff;
 
   /* text color */
   --subtext_color_light: #626C7A;
@@ -24,16 +24,49 @@ box-sizing:border-box;
 
   /* input color */
   --input_background_light:#EDEDEE;
-  --input_color_border: #676767;
+  --input_color_border: #626577;
 
   /* button color */
+  /* primary button */
   --primary_button_background_light:#DC6C14;
-  --primary_button_text_light:#FFFFFF;
+  --primary_button_text_light: #FEFAF7;
+  /* secondary button */
+  --secondary_button_text_light: #FEFAF7;
   --secondary_button_background_light: #0F1419;
-  --secondary_button_text_light: #fff;
+  --secondary_button_background_hover_light: #272c30;
+  /* third button */
   --third_button_background_light: transparent;
   --third_button_text_light: #0F1419;
   --third_button_border_light: #CFD9DE;
+  --third_button_background_hover_light: #e6e6e6;
+  /* forth button */
+  --forth_button_background_light: transparent;
+  --forth_button_background_hover_light: #fac8a1;
+  --forth_button_text_light: #626C7A;
+  --forth_button_text_active_light: #DC6C14;
+  --forth_button_text_hover_light: #DC6C14;
+  /* retweet */
+  --retweet_color_light: #626C7A;
+  --retweet_color_active_light: #00bb7d;
+  --retweet_color_hover_light: #00bb7d;
+  --retweet_background_hover_light: #dcf1ea;
+  /* favorite */
+  --favorite_color_light: #626C7A;
+  --favorite_color_active_light: #f91980;
+  --favorite_color_hover_light: #f91980;
+  --favorite_background_hover_light: #ffe7f3;
+   /* warning button */
+   --warning_button_background_light: transparent;
+  --warning_button_text_light: #C61124;
+  --warning_button_border_light: #C61124;
+  --warning_button_background_hover_light: transparent;
+
+
+  // Pseudo
+  --primary_pseudo_background_light: var(--background-color_light);
+  --primary_pseudo_shadow_light: rgba(203, 200, 198, 0.7);
+  /* --primary_pseudo_background_light: #0F1419; */
+
   --card_background_light:#FEFAF7;
   /* --------------------- End Light theme --------------------- */
 
@@ -41,7 +74,7 @@ box-sizing:border-box;
   --primary_color_dark: #DC6C14;
   --secondary_color_dark: #A7CCE3;
   --text_placeholder_dark:#7A7A81;
-  --background-color_dark: #1E1B1E;
+  --background-color_dark: #000000;
 
   /* text color */
   --subtext_color_dark: #CED9E9;
@@ -55,13 +88,45 @@ box-sizing:border-box;
   --input_color_border_dark: #DC6C14;
   
   /* button */
+  /* primary button */
   --primary_button_background_dark:#DC6C14;
-  --primary_button_text_dark:#FFFFFF;
-  --secondary_button_background_dark: #EFF3F4;
+  --primary_button_text_dark:#F7F9FF;
+  /* secondary button */
+  --secondary_button_background_dark: #F7F9FF;
   --secondary_button_text_dark: #0F1419;
+  --secondary_button_background_hover_dark: #e0e2e6;
+  /* third button */
   --third_button_background_dark: transparent;
-  --third_button_text_dark: #FFFFFF;
+  --third_button_text_dark: #F7F9FF;
   --third_button_border_dark: #536471;
+  --third_button_background_hover_dark: #3B353B;
+  /* forth button */
+  --forth_button_background_dark: transparent;
+  --forth_button_background_hover_dark: #3B353B;
+  --forth_button_text_dark: #F7F9FF;
+  --forth_button_text_active_dark: #DC6C14;
+  --forth_button_text_hover_dark: #DC6C14;
+  /* retweet */
+  --retweet_color_dark: #F7F9FF;
+  --retweet_color_active_dark: #00bb7d;
+  --retweet_color_hover_dark: #00bb7d;
+  --retweet_background_hover_dark: #071B15;
+  /* favorite */
+  --favorite_color_dark: #F7F9FF;
+  --favorite_color_active_dark: #f91980;
+  --favorite_color_hover_dark: #f91980;
+  --favorite_background_hover_dark: #200814;
+  /* warning button */
+  --warning_button_background_dark: transparent;
+  --warning_button_text_dark: #f41000;
+  --warning_button_border_dark: #f41000;
+  --warning_button_background_hover_dark: transparent;
+
+  // Pseudo
+  --primary_pseudo_background_dark: var(--background-color_dark);
+  /* --primary_pseudo_background_dark: #3B353B; */
+  --primary_pseudo_shadow_dark: rgba(53,50,53,0.7);
+
   --card_background_dark:#3B353B;  
   /* --------------------- End Dark theme --------------------- */
 
@@ -75,6 +140,12 @@ box-sizing:border-box;
   --font-size-xl: clamp(1.95rem, 1.56vw + 1.56rem, 2.81rem);
   --font-size-xxl: clamp(2.44rem, 2.38vw + 1.85rem, 3.75rem);
   --font-size-xxxl: clamp(3.05rem, 3.54vw + 2.17rem, 5rem);
+
+  /* padding */
+  --horizontal-spaces: 2em;
+  @media screen and (max-width: 768px) {
+    --horizontal-spaces: 0.5em;
+  }
 }
 
 #root{

@@ -10,6 +10,7 @@ import App from './App';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
+import ThemeContextProvider from '@/hooks/ThemeContextProvider';
 
 const queryClient = new QueryClient();
 const persistConfig = {
@@ -33,7 +34,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <QueryClientProvider client={queryClient}>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
-            <App />
+            <ThemeContextProvider>
+              <App />
+            </ThemeContextProvider>
           </PersistGate>
         </Provider>
         <ReactQueryDevtools initialIsOpen={false} />

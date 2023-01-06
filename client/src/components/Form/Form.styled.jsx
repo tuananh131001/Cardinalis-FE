@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const StyledForm = styled.form`
   display: flex;
+  position: relative;
   flex-direction: ${({ direction }) => direction};
   gap: ${({ gap }) => gap};
   justify-content: ${({ jc }) => jc};
@@ -11,6 +12,9 @@ export const StyledForm = styled.form`
   align-self: ${({ alignSelf }) => alignSelf};
   /* size */
   width: ${({ width }) => width};
+  padding: ${({ padding }) => padding};
+  height: ${({ height }) => height};
+  overflow: scroll;
 `;
 
 // Default Props
@@ -21,6 +25,9 @@ StyledForm.defaultProps = {
   ai: 'center',
   wrap: 'nowrap',
   width: '100%',
+  height: '50vh',
   gridArea: 'unset',
-  alignSelf: 'unset'
+  alignSelf: 'unset',
+  overflow: 'auto',
+  padding: '0'
 };

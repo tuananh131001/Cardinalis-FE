@@ -3,17 +3,21 @@ import Button from '@/components/Button/Button';
 import PropTypes from 'prop-types';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import { MOBILE_QUERY } from '@/assets/Constant';
+import { ThemeContext } from '@/hooks/ThemeContextProvider';
+import { useContext } from 'react';
 
-function AuthenSwitchTheme({ theme, themeToggler, ...props }) {
+function AuthenSwitchTheme({ ...props }) {
+  const { theme, themeTogglers } = useContext(ThemeContext);
   const isMobile = useMediaQuery(MOBILE_QUERY);
   return (
     <Button
       {...props}
+      width="auto"
       buttonType="link"
-      fontSize={`var(--font-size-${isMobile ? 'xl' : 'lg'})`}
+      fontSize={`var(--font-size-${isMobile ? 'md' : 'md'})`}
       jc="flex-end"
-      padding={isMobile ? '0.7em' : '0'}
-      onClick={themeToggler}>
+      padding={isMobile ? '0' : '0'}
+      onClick={themeTogglers}>
       {theme == 'lightTheme' ? <BsFillSunFill /> : <BsFillMoonStarsFill />}
     </Button>
   );

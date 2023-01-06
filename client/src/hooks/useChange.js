@@ -5,6 +5,9 @@ export const useChange = (initialValue = '') => {
 
   // event functions
   const onChange = (event) => setValue(event.target.value);
+  const onSetNewValue = (newValue) => setValue(newValue);
+  const onSetFalse = () => setValue(false);
+  const onSetTrue = () => setValue(true);
   const onReset = () => setValue(initialValue);
   // toggle
   const onToggle = (event) => {
@@ -12,5 +15,5 @@ export const useChange = (initialValue = '') => {
     setValue(!value);
   };
 
-  return { value, onChange, onReset, onToggle };
+  return { value, onChange, onSetNewValue, onReset, onToggle, onSetFalse, onSetTrue };
 };

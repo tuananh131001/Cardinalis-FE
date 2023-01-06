@@ -36,7 +36,7 @@ const StyledGeneralInput = css`
 
 // Styled Components
 // Input that has icon
-export const StyledInputContainer = styled.div`
+export const StyledInputContainer = styled.label`
   display: flex;
   align-items: ${(props) => props.ai};
   justify-content: ${(props) => props.jc};
@@ -45,9 +45,12 @@ export const StyledInputContainer = styled.div`
   ${StyledGeneralInput}
 `;
 export const StyledInputIcon = styled.input`
-  ${StyledGeneralInput}
   border: none;
   background-color: inherit;
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  font-family: inherit;
   outline: none;
   flex: 1;
 `;
@@ -55,14 +58,25 @@ export const StyledInputIcon = styled.input`
 export const StyledTextArea = styled.textarea`
   ${StyledGeneralInput}
   resize: none;
-  overflow: hidden;
-  line-height: 1em;
+  overflow: ${(props) => props.overflow};
+  line-height: 1.5em;
   padding: ${(props) => props.padding};
 `;
 // Normal input
 export const StyledInput = styled.input`
   ${StyledGeneralInput}
   padding: ${(props) => props.padding};
+`;
+// For File Input
+export const StyledFileInputContainer = styled.label`
+  display: block;
+  height: ${(props) => props.height};
+  width: ${(props) => props.width};
+  overflow: hidden;
+  position: ${(props) => props.position};
+  top: ${(props) => props.top};
+  left: ${(props) => props.left};
+  bottom: ${(props) => props.bottom};
 `;
 
 // Default Props
@@ -83,10 +97,20 @@ StyledInputContainer.defaultProps = {
 };
 StyledTextArea.defaultProps = {
   ...generalDefaultProps,
-  padding: '0.9em 0.8em 2em'
+  padding: '0.9em 0.8em 2em',
+  height: 'auto',
+  overflow: 'hidden'
 };
 StyledInput.defaultProps = {
   ...generalDefaultProps,
   padding: '0.7em 0.8em',
   height: '3.75em'
+};
+StyledFileInputContainer.defaultProps = {
+  height: 'auto',
+  width: '100%',
+  position: 'relative',
+  top: 'unset',
+  left: 'unset',
+  bottom: 'unset'
 };

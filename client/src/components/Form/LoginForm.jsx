@@ -12,15 +12,21 @@ import { RiEyeCloseFill } from 'react-icons/ri';
 import { useSignIn } from '@/hooks/useUser';
 import { useNavigate } from 'react-router-dom';
 import CustomizedSnackbars from '@/components/Snackbar/Snackbar';
+import { HOME_PATH } from '@/assets/Constant';
 import { useSelector, useDispatch } from 'react-redux';
 import { login } from '@/features/userSlice';
+import { ThemeContext } from '@/hooks/ThemeContextProvider';
+import { useContext } from 'react';
+
 function LoginForm({ ...props }) {
   const schema = chooseInputSchema('login');
   const navigate = useNavigate();
+  const { themeToggler } = useContext(ThemeContext);
   const defaultValues = {
     username: '',
     password: ''
   };
+
   const user = useSelector((state) => state.user);
   console.log(user);
   const {
@@ -33,7 +39,7 @@ function LoginForm({ ...props }) {
     resolver: yupResolver(schema)
   });
   const { value: hidePassword, onToggle: togglePassword } = useChange(true);
-  const { mutate, isError, error } = useSignIn(reset);
+  const { mutate, isError, error, isSuccess } = useSignIn(reset);
   const dispatch = useDispatch();
 
   // submit function
@@ -53,6 +59,10 @@ function LoginForm({ ...props }) {
     });
   };
 
+  if (isSuccess) {
+    navigate(`/${HOME_PATH}`, { replace: true });
+  }
+
   return (
     <StyledForm onSubmit={handleSubmit(onSubmitClick)} {...props}>
       <Input
@@ -64,7 +74,7 @@ function LoginForm({ ...props }) {
       <ErrorText errors={errors.username?.message} />
       <Input
         type={hidePassword ? 'password' : 'text'}
-        inputType="text"
+        inputType="textIcon"
         inputThemeName="loginInput"
         placeholder="Enter password..."
         onClick={togglePassword}

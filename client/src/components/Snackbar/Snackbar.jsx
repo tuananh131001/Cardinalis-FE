@@ -1,42 +1,40 @@
-import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 import PropTypes from 'prop-types';
+import { forwardRef, useState } from 'react';
+import uuid from 'react-uuid';
 
-const Alert = React.forwardRef(function Alert(props, ref) {
+const Alert = forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={10} ref={ref} variant="filled" {...props} />;
 });
 
-export default function CustomizedSnackbars({ type, message }) {
-  // const [open, setOpen] = React.useState(true);
-
-  const [state, setState] = React.useState({
-    open: true,
-    vertical: 'top',
-    horizontal: 'center'
-  });
-  const { vertical, horizontal, open } = state;
+export default function CustomizedSnackbars({
+  type,
+  message,
+  isOpen = null,
+  onClose = null,
+  verticalPosition = 'top',
+  horizontalPosition = 'center',
+  ...props
+}) {
+  const [open, setState] = useState(true);
 
   const handleClose = () => {
-    setState({ ...state, open: false });
+    if (onClose) {
+      onClose();
+    } else {
+      setState(false);
+    }
   };
 
-  // const handleClose = (event, reason) => {
-  //   if (reason === 'clickaway') {
-  //     return;
-  //   }
-
-  //   setOpen(false);
-  // };
-
   return (
-    <Stack spacing={2} sx={{ width: '100%' }}>
+    <Stack spacing={2} sx={{ width: '100%', ...props }}>
       <Snackbar
-        anchorOrigin={{ vertical, horizontal }}
-        key={vertical + horizontal}
-        open={open}
-        autoHideDuration={2000}
+        anchorOrigin={{ vertical: verticalPosition, horizontal: horizontalPosition }}
+        key={uuid()}
+        open={isOpen == null ? open : isOpen}
+        autoHideDuration={2500}
         onClose={handleClose}>
         <Alert
           onClose={handleClose}
@@ -53,5 +51,10 @@ export default function CustomizedSnackbars({ type, message }) {
 
 CustomizedSnackbars.propTypes = {
   type: PropTypes.string.isRequired,
-  message: PropTypes.string.isRequired
+  message: PropTypes.string.isRequired,
+  isOpen: PropTypes.bool,
+  onClose: PropTypes.func,
+  verticalPosition: PropTypes.string,
+  horizontalPosition: PropTypes.string,
+  props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string]))
 };

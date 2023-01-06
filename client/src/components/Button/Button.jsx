@@ -1,7 +1,7 @@
 import React from 'react';
 import StyledButton from '@/components/Button/Button.styled';
 import PropTypes from 'prop-types';
-import { StyledLink } from './Button.styled';
+import { StyledLink, StyledIconButton } from './Button.styled';
 
 function Button({ buttonType = 'primary', children, onClick, ...props }) {
   /**
@@ -15,6 +15,8 @@ function Button({ buttonType = 'primary', children, onClick, ...props }) {
   switch (buttonType) {
     case 'primary':
       return <StyledButton {...generalPropsList}>{children}</StyledButton>;
+    case 'icon':
+      return <StyledIconButton {...generalPropsList}>{children}</StyledIconButton>;
     case 'link':
       return <StyledLink {...generalPropsList}>{children}</StyledLink>;
   }

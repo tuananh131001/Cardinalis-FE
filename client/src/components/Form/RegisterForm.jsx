@@ -10,9 +10,12 @@ import { StyledForm } from './Form.styled';
 import { useRegister } from '@/hooks/useUser';
 import { ErrorText } from '@/components/Text/ErrorText';
 import CustomizedSnackbars from '@/components/Snackbar/Snackbar';
+import { useNavigate } from 'react-router-dom';
+import { LOGIN_PATH } from '@/assets/Constant';
 
 export const RegisterForm = ({ ...props }) => {
   const schema = chooseInputSchema('register');
+  const navigate = useNavigate();
 
   const {
     register,
@@ -26,8 +29,11 @@ export const RegisterForm = ({ ...props }) => {
 
   // submit function
   const onSubmitClick = (data) => {
-    // delete data.confirmPassword;
+    delete data.confirmPassword;
     mutate(data);
+    if (isSuccess) {
+      navigate(`/${LOGIN_PATH}`, { replace: true });
+    }
   };
 
   return (

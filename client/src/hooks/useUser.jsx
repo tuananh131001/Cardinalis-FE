@@ -70,6 +70,7 @@ const useGetUserInfo = (username) => {
 };
 
 const useSearchUsers = (username) => {
+  console.log(username);
   return useQuery({
     queryKey: ['search', username],
     queryFn: () => searchUsers(username),
