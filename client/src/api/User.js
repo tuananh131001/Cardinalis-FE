@@ -54,17 +54,21 @@ const unfollowUser = (users) =>
 
 const getUserFollowers = (id) =>
   userApi
-    .get(`${USER_FOLLOW_ENDPOINT}${id}${USER_FOLLOWERS_ENDPOINT}`, { headers: headerConfig })
+    .get(`${USER_FOLLOW_ENDPOINT}${id}${USER_FOLLOWERS_ENDPOINT}`, {
+      headers: headerConfig.headers
+    })
     .then((res) => res.data);
 
 const getUserFollowing = (id) =>
   userApi
-    .get(`${USER_FOLLOW_ENDPOINT}${id}${USER_FOLLOWING_ENDPOINT}`, { headers: headerConfig })
+    .get(`${USER_FOLLOW_ENDPOINT}${id}${USER_FOLLOWING_ENDPOINT}`, {
+      headers: headerConfig.headers
+    })
     .then((res) => res.data);
 
 const searchUsers = (username) =>
   userApi
-    .get(`${USER_SEARCH_ENDPOINT}?username=${username}`, { headers: headerConfig })
+    .get(`${USER_SEARCH_ENDPOINT}?username=${username}`, { headers: headerConfig.headers })
     .then((res) => res.data);
 
 export {

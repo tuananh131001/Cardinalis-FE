@@ -15,6 +15,7 @@ const NavButton = ({
     <Button
       buttonType="link"
       jc="flex-start"
+      textTransform="capitalize"
       gap="1em"
       buttonThemeName={buttonThemeName}
       onClick={onClick}

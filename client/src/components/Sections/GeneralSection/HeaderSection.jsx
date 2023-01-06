@@ -14,8 +14,6 @@ import { IoMdClose } from 'react-icons/io';
 const HeaderSection = ({
   backDestination = -1,
   content = 'hello',
-  theme,
-  themeToggler,
   zIndex = 1,
   haveBackButton = true,
   haveCloseButton = false,
@@ -52,7 +50,8 @@ const HeaderSection = ({
       {...props}
       jc="flex-start"
       gap="0.7em"
-      padding={`1em var(--horizontal-spaces)`}
+      ai="flex-start"
+      padding={`0 var(--horizontal-spaces)`}
       position={isFixedPosition ? 'fixed' : isScrolling ? 'sticky' : 'relative'}
       top="0"
       left="0"
@@ -67,8 +66,7 @@ const HeaderSection = ({
           jc="flex-start"
           buttonThemeName="thirdButton"
           hoverType={2}
-          borderRadius="50%"
-          padding="0.3em">
+          borderRadius="50%">
           {<HiArrowSmLeft />}
         </Button>
       )}
@@ -80,8 +78,7 @@ const HeaderSection = ({
           fontSize="var(--font-size-base)"
           width="fit-content"
           hoverType={2}
-          borderRadius="50%"
-          padding="0.3em">
+          borderRadius="50%">
           {<IoMdClose />}
         </Button>
       )}
@@ -97,7 +94,7 @@ const HeaderSection = ({
       ) : (
         content
       )}
-      {isDisplayTheme == true && <AuthenSwitchTheme theme={theme} themeToggler={themeToggler} />}
+      {isDisplayTheme == true && <AuthenSwitchTheme />}
     </FlexContainer>
   );
 };
@@ -107,8 +104,6 @@ HeaderSection.propTypes = {
   haveCloseButton: PropTypes.bool,
   backDestination: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-  theme: PropTypes.string,
-  themeToggler: PropTypes.func,
   zIndex: PropTypes.number,
   isFixedPosition: PropTypes.bool,
   isDisplayTheme: PropTypes.bool,

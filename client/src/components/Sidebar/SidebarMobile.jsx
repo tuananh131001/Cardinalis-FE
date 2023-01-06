@@ -17,7 +17,6 @@ import {
 import Button from '@/components/Button/Button';
 import { extractPath } from '@/helpers/HandleDisplayInfo';
 import { mainPathRegex } from '@/assets/Constant';
-import useMediaQuery from '@/hooks/useMediaQuery';
 
 const horizontalSpace = '1.7em';
 const displayCurrentTab = (tabCompare, currentTab, type) => {
@@ -47,25 +46,20 @@ const displayCurrentTab = (tabCompare, currentTab, type) => {
     };
   }
 };
-
+const findNavigateButtonProps = (tabCompare, currentTab, navigate) => {
+  tabCompare = extractPath(tabCompare, mainPathRegex);
+  return {
+    horizontalPadding: horizontalSpace,
+    icon: displayCurrentTab(tabCompare, currentTab, 'icon'),
+    buttonThemeName: 'thirdButton',
+    ...displayCurrentTab(tabCompare, currentTab, 'props'),
+    onClick: () => {
+      navigate(`/${tabCompare}`);
+    }
+  };
+};
 const MainNav = ({ user, theme, currentTab, location, ...props }) => {
   const navigate = useNavigate();
-  const responsiveCondition = {
-    desktop: useMediaQuery('(min-width: 1134px)'),
-    mobile: useMediaQuery('(min-width:480px)')
-  };
-  const findNavigateButtonProps = (tabCompare, currentTab, navigate) => {
-    tabCompare = extractPath(tabCompare, mainPathRegex);
-    return {
-      horizontalPadding: responsiveCondition?.mobile ? horizontalSpace : '0.6em',
-      icon: displayCurrentTab(tabCompare, currentTab, 'icon'),
-      buttonThemeName: 'thirdButton',
-      ...displayCurrentTab(tabCompare, currentTab, 'props'),
-      onClick: () => {
-        navigate(`/${tabCompare}`);
-      }
-    };
-  };
   return (
     <FlexContainer
       fd="column"
@@ -77,31 +71,19 @@ const MainNav = ({ user, theme, currentTab, location, ...props }) => {
       top="0"
       {...props}>
       {/* Nav Image */}
-      <NavImage
-        theme={theme}
-        horizontalMargin={responsiveCondition?.mobile ? horizontalSpace : '0.2em'}
-      />
+      <NavImage theme={theme} horizontalMargin={horizontalSpace} />
 
       {/* Navigate button */}
-      <NavButton
-        {...findNavigateButtonProps(HOME_PATH, currentTab, navigate)}
-        text={responsiveCondition?.desktop ? 'Home' : ''}
-      />
-      <NavButton
-        {...findNavigateButtonProps(SEARCH_PATH, currentTab, navigate)}
-        text={responsiveCondition?.desktop ? 'Search' : ''}
-      />
-      <NavButton
-        {...findNavigateButtonProps(EXPLORE_PATH, currentTab, navigate)}
-        text={responsiveCondition?.desktop ? 'Explore' : ''}
-      />
+      <NavButton {...findNavigateButtonProps(HOME_PATH, currentTab, navigate)} text="Home" />
+      <NavButton {...findNavigateButtonProps(SEARCH_PATH, currentTab, navigate)} text="Search" />
+      <NavButton {...findNavigateButtonProps(EXPLORE_PATH, currentTab, navigate)} text="Explore" />
       <NavButton
         {...findNavigateButtonProps(BOOKMARK_PATH, currentTab, navigate)}
-        text={responsiveCondition?.desktop ? 'Bookmark' : ''}
+        text="Bookmarks"
       />
       <NavButton
         {...findNavigateButtonProps(user.username + PROFILE_TWEET_PATH, currentTab, navigate)}
-        text={responsiveCondition?.desktop ? 'Profile' : ''}
+        text="Profile"
       />
       {/* Tweet button */}
       <Button
@@ -109,13 +91,9 @@ const MainNav = ({ user, theme, currentTab, location, ...props }) => {
         onClick={() => {
           navigate(`/${COMPOSE_PATH}`, { state: { background: location } });
         }}
-        width={responsiveCondition?.desktop ? '100%' : '50px'}
-        height={responsiveCondition?.desktop ? '50px' : '50px'}
-        jc="center"
-        padding="0"
-        ml={!responsiveCondition?.mobile || responsiveCondition?.desktop ? 0 : '0.8em'}
-        borderRadius={responsiveCondition?.desktop ? horizontalSpace : '50%'}>
-        {responsiveCondition?.desktop ? 'Tweet' : '+'}
+        width="100%"
+        borderRadius={horizontalSpace}>
+        Tweet
       </Button>
 
       {/* Profile section display */}

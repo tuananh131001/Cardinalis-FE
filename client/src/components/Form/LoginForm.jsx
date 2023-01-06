@@ -15,10 +15,13 @@ import CustomizedSnackbars from '@/components/Snackbar/Snackbar';
 import { HOME_PATH } from '@/assets/Constant';
 import { useSelector, useDispatch } from 'react-redux';
 import { login } from '@/features/userSlice';
+import { ThemeContext } from '@/hooks/ThemeContextProvider';
+import { useContext } from 'react';
 
 function LoginForm({ ...props }) {
   const schema = chooseInputSchema('login');
   const navigate = useNavigate();
+  const { themeToggler } = useContext(ThemeContext);
   const defaultValues = {
     username: '',
     password: ''

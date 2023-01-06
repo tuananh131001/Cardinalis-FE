@@ -53,10 +53,13 @@ const TweetInput = ({ ...props }) => {
       />
       <StyledButton
         alignSelf="flex-end"
-        width="auto"
-        borderRadius="30%/110%"
+        width="fit-content"
+        borderRadius="25px"
         type="submit"
         disabled={!isDirty || !isValid}
+        padding="0.75em 1.5em"
+        textTransform="capitalize"
+        cursor="pointer"
         buttonThemeName="primaryButton">
         Tweet
       </StyledButton>

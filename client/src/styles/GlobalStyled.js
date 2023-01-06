@@ -12,7 +12,7 @@ box-sizing:border-box;
   --primary_color_light: #DC6C14;
   --secondary_color_light: #4E98C7;
   --text_placeholder_light:#D7D5D8;
-  --background-color_light: #FEFAF7;
+  --background-color_light: #ffffff;
 
   /* text color */
   --subtext_color_light: #626C7A;
@@ -74,7 +74,7 @@ box-sizing:border-box;
   --primary_color_dark: #DC6C14;
   --secondary_color_dark: #A7CCE3;
   --text_placeholder_dark:#7A7A81;
-  --background-color_dark: #1E1B1E;
+  --background-color_dark: #000000;
 
   /* text color */
   --subtext_color_dark: #CED9E9;

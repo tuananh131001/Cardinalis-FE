@@ -7,7 +7,7 @@ import TweetInput from './TweetInput';
 const TweetInputCard = ({ user }) => {
   return (
     <FlexContainer padding={`0.7em var(--horizontal-spaces)`}>
-      <Avatar alignSelf="flex-start" src={user.avatar} size="5em" />
+      <Avatar alignSelf="flex-start" src={user.avatar} size="3em" />
       <TweetInput />
     </FlexContainer>
   );

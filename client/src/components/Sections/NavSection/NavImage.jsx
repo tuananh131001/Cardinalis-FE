@@ -9,7 +9,7 @@ const NavImage = ({ theme, horizontalMargin }) => {
       src={Icon}
       alt="Small Icon"
       themeName={theme}
-      width="5em"
+      width="2.5em"
       alignSelf="flex-start"
       margin={`0 ${horizontalMargin}`}
     />

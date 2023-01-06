@@ -12,6 +12,7 @@ const StyledGeneralButton = css`
   justify-content: ${({ jc }) => jc};
   align-items: ${({ ai }) => ai};
   flex-wrap: ${({ wrap }) => wrap};
+  margin-left: ${({ ml }) => ml};
   grid-area: ${({ gridArea }) => gridArea};
   /* border + size */
   border: none;
