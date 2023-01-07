@@ -49,12 +49,52 @@ function App() {
               <Route path="/" element={<Login />} />
               <Route path="/register" element={<Register />} />
             </Route>
-            <Route path="/home" element={<Home />} />
-            <Route path="/explore" element={<Explore />} />
-            <Route path="/bookmarks" element={<Bookmarks />} />
-            <Route path={`/${COMPOSE_PATH}`} element={<TweetCompose isModal={false} />} />
-            <Route path="/search/:keyword" element={<Search />} />
-            <Route element={<Profile />}>
+            <Route
+              path="/home"
+              element={
+                <ProtectedRoutes>
+                  <Home />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/explore"
+              element={
+                <ProtectedRoutes>
+                  <Explore />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/bookmarks"
+              element={
+                <ProtectedRoutes>
+                  <Bookmarks />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path={`/${COMPOSE_PATH}`}
+              element={
+                <ProtectedRoutes>
+                  <TweetCompose isModal={false} />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/search/:keyword"
+              element={
+                <ProtectedRoutes>
+                  <Search />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              element={
+                <ProtectedRoutes>
+                  <Profile />
+                </ProtectedRoutes>
+              }>
               <Route
                 path={`/:username${PROFILE_TWEET_PATH}`}
                 element={<ProfileSubpage type="tweets" />}
@@ -76,7 +116,14 @@ function App() {
                 element={<ProfileSubpage type="following" />}
               />
             </Route>
-            <Route path={`/${FORGOT_PASSWORD_PATH}`} element={<ForgotPassword />} />
+            <Route
+              path={`/${FORGOT_PASSWORD_PATH}`}
+              element={
+                <ProtectedRoutes>
+                  <ForgotPassword />
+                </ProtectedRoutes>
+              }
+            />
             <Route path="*" element={<StyledHeading1>Page Not Exist</StyledHeading1>} />
           </Routes>
         </AnimatePresence>

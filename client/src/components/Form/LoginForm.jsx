@@ -39,7 +39,7 @@ function LoginForm({ ...props }) {
     resolver: yupResolver(schema)
   });
   const { value: hidePassword, onToggle: togglePassword } = useChange(true);
-  const { mutate, isError, error, isSuccess } = useSignIn(reset);
+  const { mutate, isError, error } = useSignIn(reset);
   const dispatch = useDispatch();
 
   // submit function
@@ -54,14 +54,10 @@ function LoginForm({ ...props }) {
           userToken: userToken
         };
         dispatch(login(authData));
-        navigate('/home', { replace: true });
+        navigate(HOME_PATH, { replace: true });
       }
     });
   };
-
-  if (isSuccess) {
-    navigate(`/${HOME_PATH}`, { replace: true });
-  }
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmitClick)} {...props}>
