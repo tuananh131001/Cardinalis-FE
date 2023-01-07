@@ -6,7 +6,7 @@ import { MOBILE_QUERY } from '@/assets/Constant';
 import { ThemeContext } from '@/hooks/ThemeContextProvider';
 import { useContext } from 'react';
 
-function AuthenSwitchTheme({ ...props }) {
+function SwitchThemeButton({ ...props }) {
   const { theme, themeTogglers } = useContext(ThemeContext);
   const isMobile = useMediaQuery(MOBILE_QUERY);
   return (
@@ -23,9 +23,9 @@ function AuthenSwitchTheme({ ...props }) {
   );
 }
 
-AuthenSwitchTheme.propTypes = {
+SwitchThemeButton.propTypes = {
   theme: PropTypes.string,
   themeToggler: PropTypes.func,
   props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string]))
 };
-export default AuthenSwitchTheme;
+export default SwitchThemeButton;

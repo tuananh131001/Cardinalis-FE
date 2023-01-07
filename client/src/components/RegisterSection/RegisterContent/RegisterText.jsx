@@ -6,46 +6,42 @@ import PropTypes from 'prop-types';
 import { InlineContainer } from '@/components/Container/Container.styled';
 import Button from '@/components/Button/Button';
 import { useNavigate } from 'react-router-dom';
+import { REGISTER_PATH } from '@/assets/Constant';
 
 const renderPropsResponsive = (propsName, queries) => {
   switch (propsName) {
-    case 'alignSelf':
-      if (queries.tablet && !queries.desktop) return 'flex-start';
-      else return 'center';
     case 'txtAlignChildren':
       return queries.desktop ? 'left' : 'center';
-    case 'minHeight':
-      return queries.mobile ? '5em' : '0';
   }
 };
 
-function AuthenText({ mainText, subText, linkText, linkPath, responsiveCondition, ...props }) {
+function RegisterText({ responsiveCondition, ...props }) {
   const navigate = useNavigate();
   return (
-    <FlexContainer
-      fd="column"
-      alignSelf={renderPropsResponsive('alignSelf', responsiveCondition)}
-      gap="0.7em"
-      minHeight={renderPropsResponsive('minHeight', responsiveCondition)}
-      overflow="visible"
-      {...props}>
+    <FlexContainer className="text-container" {...props}>
       <Text
+        className="text"
         type={responsiveCondition.mobile ? 'h3' : 'h4'}
         textThemeName="headingText1"
-        text={mainText}
+        text="Register to access our service"
         txtAlign={renderPropsResponsive('txtAlignChildren', responsiveCondition)}
       />
       {!responsiveCondition.mobile && (
         <InlineContainer txtAlign={!responsiveCondition.desktop && 'center'}>
-          <Text type="p" text={subText} textThemeName="headingText1" txtAlign="right" />
+          <Text
+            type="p"
+            text="If you already had an account you can "
+            textThemeName="headingText1"
+            txtAlign="right"
+          />
           <Button
-            onClick={() => navigate(linkPath)}
+            onClick={() => navigate(`/${REGISTER_PATH}`)}
             buttonType="link"
             jc="flex-start"
             width="auto"
             fontSize="var(--font-size-base)"
             textTransform="normal">
-            {linkText}
+            login here
           </Button>
         </InlineContainer>
       )}
@@ -53,7 +49,7 @@ function AuthenText({ mainText, subText, linkText, linkPath, responsiveCondition
   );
 }
 
-AuthenText.propTypes = {
+RegisterText.propTypes = {
   mainText: PropTypes.string,
   subText: PropTypes.string,
   linkText: PropTypes.string,
@@ -61,4 +57,4 @@ AuthenText.propTypes = {
   responsiveCondition: PropTypes.object,
   props: PropTypes.arrayOf(PropTypes.string)
 };
-export default AuthenText;
+export default RegisterText;

@@ -32,7 +32,6 @@ export const MainNavStyled = styled.div`
   }
   @media screen and (max-width: 1024px) {
     align-items: center;
-    justify-content: center;
     & > button {
       align-self: center;
       justify-self: center;

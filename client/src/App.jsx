@@ -11,7 +11,6 @@ import { StyledHeading1 } from '@/components/Text/Text.styled';
 import { FORGOT_PASSWORD_PATH } from '@/assets/Constant';
 import { useContext } from 'react';
 import ForgotPassword from '@/pages/ForgotPassword';
-import Authentication from '@/pages/Authentication';
 import Explore from '@/pages/Explore';
 import Profile from '@/pages/Profile';
 import Bookmarks from '@/pages/Bookmarks';

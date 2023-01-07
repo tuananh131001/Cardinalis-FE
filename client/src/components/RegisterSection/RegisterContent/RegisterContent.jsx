@@ -1,8 +1,7 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { RegisterContentStyled } from './RegisterContent.styled';
-import AuthenImage from '@/components/Sections/AuthenSection/AuthenImage';
 import AuthenNav from '@/components/Sections/NavSection/AuthenNav';
-import AuthenSwitchTheme from '@/components/Sections/NavSection/AuthenSwitchTheme';
+import SwitchThemeButton from '@/components/Button/SwitchThemeButton';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import {
   SMALL_MOBILE_QUERY,
@@ -11,9 +10,9 @@ import {
   DESKTOP_QUERY,
   REGISTER_PATH
 } from '@/assets/Constant';
-import { findDisplayText } from '@/helpers/AuthenticationDisplay';
 import RegisterForm from '@/components/Form/RegisterForm';
-import AuthenText from '@/components/Sections/AuthenSection/AuthenText';
+import RegisterText from './RegisterText';
+import RegisterImage from './RegisterImage';
 
 function RegisterContent({ ...props }) {
   const responsiveCondition = {
@@ -22,21 +21,13 @@ function RegisterContent({ ...props }) {
     tablet: useMediaQuery(TABLET_QUERY),
     desktop: useMediaQuery(DESKTOP_QUERY)
   };
-  const { displayedText } = useMemo(() => {
-    const displayedText = findDisplayText(REGISTER_PATH);
-    return displayedText;
-  }, [responsiveCondition]);
 
   return (
     <RegisterContentStyled {...props}>
-      <AuthenNav
-        gridArea="nav"
-        currentTab={REGISTER_PATH}
-        responsiveCondition={responsiveCondition}
-      />
-      <AuthenImage gridArea="image" responsiveCondition={responsiveCondition} />
-      <AuthenSwitchTheme gridArea="theme" />
-      <AuthenText gridArea="text" {...displayedText} responsiveCondition={responsiveCondition} />
+      <AuthenNav gridArea="nav" currentTab={REGISTER_PATH} />
+      <RegisterImage gridArea="image" />
+      <SwitchThemeButton gridArea="theme" />
+      <RegisterText gridArea="text" responsiveCondition={responsiveCondition} />
       <RegisterForm gridArea="form" />
     </RegisterContentStyled>
   );

@@ -8,7 +8,7 @@ import Button from '@/components/Button/Button';
 import Text from '@/components/Text/Text';
 import { useCallback, useEffect } from 'react';
 import { useChange } from '@/hooks/useChange';
-import AuthenSwitchTheme from '../NavSection/AuthenSwitchTheme';
+import SwitchThemeButton from '@/components/Button/SwitchThemeButton';
 import { IoMdClose } from 'react-icons/io';
 
 const HeaderSection = ({
@@ -105,7 +105,7 @@ const HeaderSection = ({
           weight="700"
         />
       )}
-      {isDisplayTheme == true && <AuthenSwitchTheme />}
+      {isDisplayTheme == true && <SwitchThemeButton />}
     </FlexContainer>
   );
 };
