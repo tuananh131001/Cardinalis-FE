@@ -1,11 +1,12 @@
-import RegisterForm from '@/components/Form/RegisterForm';
+import RegisterSection from '@/components/RegisterSection/RegisterSection';
 
 function Register() {
-  return (
-    <>
-      <RegisterForm gridArea="form" />
-    </>
-  );
+  // const dispatch = useDispatch();
+  // const handleOnClick = () => {
+  //   dispatch(Register(user));
+  // };
+
+  return <RegisterSection></RegisterSection>;
 }
 
 export default Register;

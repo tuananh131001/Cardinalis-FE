@@ -15,6 +15,8 @@ import {
 } from '@/helpers/AuthenticationDisplay';
 import { PageAnimation } from '@/styles/AnimationConstant';
 import { extractPath } from '@/helpers/HandleDisplayInfo';
+import LoginForm from '@/components/Form/LoginForm';
+import RegisterForm from '@/components/Form/RegisterForm';
 
 const Authentication = ({ theme, themeToggler }) => {
   const location = useLocation();
@@ -45,9 +47,7 @@ const Authentication = ({ theme, themeToggler }) => {
       <AuthenImage gridArea="image" theme={theme} responsiveCondition={responsiveCondition} />
       <AuthenSwitchTheme gridArea="theme" theme={theme} themeToggler={themeToggler} />
       <AuthenText gridArea="text" {...displayedText} responsiveCondition={responsiveCondition} />
-      <div style={{ gridArea: 'form' }}>
-        <Outlet />
-      </div>
+      {type == 'login' ? <LoginForm /> : <RegisterForm />}
     </StyledPage>
   );
 };

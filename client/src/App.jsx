@@ -23,7 +23,9 @@ import {
   PROFILE_REPLIES_PATH,
   PROFILE_MEDIA_PATH,
   PROFILE_FOLLOWERS_PATH,
-  PROFILE_FOLLOWING_PATH
+  PROFILE_FOLLOWING_PATH,
+  LOGIN_PATH,
+  REGISTER_PATH
 } from '@/assets/Constant';
 import TweetCompose from '@/pages/TweetCompose';
 import Search from '@/pages/Search';
@@ -43,10 +45,13 @@ function App() {
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             {/* Authentication */}
-            <Route element={<Authentication />}>
-              <Route path="/" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-            </Route>
+            {/* <Route element={<Authentication />}>
+              <Route path="/" element={<Authentication />} />
+              <Route path="/register" element={<Authentication />} />
+            </Route> */}
+            <Route path={`/${LOGIN_PATH}`} element={<Login />} />
+            <Route path={`/${REGISTER_PATH}`} element={<Register />} />
+            {/* Home */}
             <Route path="/home" element={<Home />} />
             <Route path="/explore" element={<Explore />} />
             <Route path="/bookmarks" element={<Bookmarks />} />
