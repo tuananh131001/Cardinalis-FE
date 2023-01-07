@@ -82,6 +82,9 @@ const lightTheme = {
   card: {
     backgroundColor: 'var(--card_background_light)'
   },
+  divider: {
+    color: 'var(--divider_color_light)'
+  },
   primaryColor: 'var(--primary_color_light)',
   secondaryColor: 'var(--secondary_color_light)',
   mainBackgroundColor: 'var(--background-color_light)'
@@ -170,6 +173,9 @@ const darkTheme = {
   },
   card: {
     backgroundColor: 'var(--card_background_dark)'
+  },
+  divider: {
+    color: 'var(--divider_color_dark)'
   },
   primaryColor: 'var(--primary_color_dark)',
   secondaryColor: 'var(--secondary_color_dark)',

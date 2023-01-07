@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { PROFILE_FOLLOWING_PATH, PROFILE_FOLLOWERS_PATH } from '@/assets/Constant';
 import { MdLocationOn } from 'react-icons/md';
 import { RiLinksLine } from 'react-icons/ri';
-import FollowButton from '../FollowSection/FollowButton';
+import FollowButton from '@/components/Sections/FollowSection/FollowButton';
 
 const avatarSize = '9em';
 const bckHeight = '14em';

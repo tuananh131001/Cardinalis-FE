@@ -8,11 +8,11 @@ import { ErrorText } from '@/components/Text/ErrorText';
 import StyledButton from '@/components/Button/Button.styled';
 import Text from '@/components/Text/Text';
 import DateInput from '@/components/Input/DateInput';
-import ImageProfile from '@/components/Sections/ProfileSection/ImageProfile';
 import HeaderSection from '@/components/Sections/GeneralSection/HeaderSection';
 import CustomizedSnackbars from '@/components/Snackbar/Snackbar';
 import { useEffect, useState } from 'react';
 import { isEmptyObject } from '@/helpers/HandleObject';
+import ImageProfile from '@/components/ProfileSection/ProfileContent/ImageProfile';
 
 const errorPadding = '0 0 1em 0.2em';
 const bckHeight = '15em';

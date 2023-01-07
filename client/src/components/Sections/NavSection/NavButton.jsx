@@ -7,7 +7,6 @@ const NavButton = ({
   text,
   children,
   onClick,
-  horizontalPadding,
   buttonThemeName = 'secondaryButton',
   ...props
 }) => {
@@ -19,9 +18,7 @@ const NavButton = ({
       gap="1em"
       buttonThemeName={buttonThemeName}
       onClick={onClick}
-      padding={`0.7em ${horizontalPadding}`}
       hoverType={2}
-      borderRadius="30%/110%"
       width="auto"
       {...props}>
       {icon && <NavElementIcon>{icon}</NavElementIcon>}

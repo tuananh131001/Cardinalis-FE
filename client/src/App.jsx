@@ -25,9 +25,7 @@ import {
   PROFILE_FOLLOWERS_PATH,
   PROFILE_FOLLOWING_PATH
 } from '@/assets/Constant';
-import ProfileSubpage from '@/components/Sections/ProfileSection/ProfileSubpage';
 import TweetCompose from '@/pages/TweetCompose';
-import { youUser } from '@/assets/data/UserData';
 import Search from '@/pages/Search';
 
 // import Text from './components/Text/Text';
@@ -54,28 +52,21 @@ function App() {
             <Route path="/bookmarks" element={<Bookmarks />} />
             <Route path={`/${COMPOSE_PATH}`} element={<TweetCompose isModal={false} />} />
             <Route path="/search/:keyword" element={<Search />} />
-            <Route element={<Profile />}>
-              <Route
-                path={`/:username${PROFILE_TWEET_PATH}`}
-                element={<ProfileSubpage type="tweets" />}
-              />
-              <Route
-                path={`/:username${PROFILE_REPLIES_PATH}`}
-                element={<ProfileSubpage type="tweetsAndReplies" />}
-              />
-              <Route
-                path={`/:username${PROFILE_MEDIA_PATH}`}
-                element={<ProfileSubpage type="media" />}
-              />
-              <Route
-                path={`/:username${PROFILE_FOLLOWERS_PATH}`}
-                element={<ProfileSubpage type="followers" />}
-              />
-              <Route
-                path={`/:username${PROFILE_FOLLOWING_PATH}`}
-                element={<ProfileSubpage type="following" />}
-              />
-            </Route>
+            <Route path={`/:username${PROFILE_TWEET_PATH}`} element={<Profile type="tweets" />} />
+            <Route
+              path={`/:username${PROFILE_REPLIES_PATH}`}
+              element={<Profile type="tweetsAndReplies" />}
+            />
+            <Route path={`/:username${PROFILE_MEDIA_PATH}`} element={<Profile type="media" />} />
+            <Route
+              path={`/:username${PROFILE_FOLLOWERS_PATH}`}
+              element={<Profile type="followers" />}
+            />
+            <Route
+              path={`/:username${PROFILE_FOLLOWING_PATH}`}
+              element={<Profile type="following" />}
+            />
+            {/* </Route> */}
             <Route path={`/${FORGOT_PASSWORD_PATH}`} element={<ForgotPassword />} />
             <Route path="*" element={<StyledHeading1>Page Not Exist</StyledHeading1>} />
           </Routes>

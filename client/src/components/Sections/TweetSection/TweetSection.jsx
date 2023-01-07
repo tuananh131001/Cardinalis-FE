@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { GridContainer } from '@/components/Container/Container.styled';
 import Avatar from '@/components/Image/Avatar';
 import Text from '@/components/Text/Text';
 import { displayDuration, displayInlineLink } from '@/helpers/HandleDisplayInfo';
 import { TweetButtons } from './TweetButtons';
 import TweetCaption from './TweetCaption';
 import { defaultUser } from '@/assets/data/UserData';
+import { StyledTweetContainer } from './Tweet.style';
+import Divider from '@/components/Divider/Divider';
 
 const tabSpaces = '\u00A0\u00A0';
 const TweetSection = ({ tweet, isPinned = false, ...props }) => {
@@ -28,19 +29,9 @@ const TweetSection = ({ tweet, isPinned = false, ...props }) => {
         />
       );
   };
+
   return (
-    <GridContainer
-      {...props}
-      gridTemplateAreas={`
-      "captionIcon caption ." auto
-    "avatar name subInfo" auto
-    "avatar content content" auto
-    ". buttons buttons"  auto /
-    auto auto 1fr
-    `}
-      gap="0.1em 0.7em"
-      width="100%"
-      jc="flex-start">
+    <StyledTweetContainer {...props}>
       {displayCaption()}
       <Avatar size="5em" gridArea="avatar" src={tweetUser.avatar} alignSelf="flex-start" />
       <Text
@@ -64,11 +55,9 @@ const TweetSection = ({ tweet, isPinned = false, ...props }) => {
         lineHeight="1.5em"
         gridArea="content"
       />
-      {/* <iframe src="http://www.youtube.com/watch?v=ZCEiAf-k-sg" width="400" height="400"></iframe> */}
-      {/* <img src={"https://img.youtube.com/vi/ZCEiAf-k-sg/0.jpg"} alt="YouTube thumbnail" />
-      <iframe src="https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP" width={640} height={360} /> */}
       <TweetButtons tweet={tweet} gridArea="buttons" />
-    </GridContainer>
+      <Divider gridArea="bottomDivider" />
+    </StyledTweetContainer>
   );
 };
 

@@ -14,6 +14,7 @@ import { IoMdClose } from 'react-icons/io';
 const HeaderSection = ({
   backDestination = -1,
   content = 'hello',
+  subContent = null,
   zIndex = 1,
   haveBackButton = true,
   haveCloseButton = false,
@@ -82,7 +83,19 @@ const HeaderSection = ({
           {<IoMdClose />}
         </Button>
       )}
-      {typeof content === 'string' ? (
+      {typeof content === 'string' && typeof subContent === 'string' ? (
+        <FlexContainer fd="column" overflow="visible">
+          <Text
+            type="p"
+            textThemeName="paragraphText"
+            text={content}
+            width="100%"
+            txtAlign="left"
+            weight="700"
+          />
+          <Text type="p2" textThemeName="subText" text={subContent} txtAlign="left" width="100%" />
+        </FlexContainer>
+      ) : (
         <Text
           type="p"
           textThemeName="paragraphText"
@@ -91,8 +104,6 @@ const HeaderSection = ({
           txtAlign="left"
           weight="700"
         />
-      ) : (
-        content
       )}
       {isDisplayTheme == true && <AuthenSwitchTheme />}
     </FlexContainer>
@@ -104,6 +115,7 @@ HeaderSection.propTypes = {
   haveCloseButton: PropTypes.bool,
   backDestination: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  subContent: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   zIndex: PropTypes.number,
   isFixedPosition: PropTypes.bool,
   isDisplayTheme: PropTypes.bool,

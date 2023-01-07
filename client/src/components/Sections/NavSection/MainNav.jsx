@@ -1,4 +1,3 @@
-import { FlexContainer } from '@/components/Container/Container.styled';
 import NavImage from './NavImage';
 import NavButton from './NavButton';
 import PropTypes from 'prop-types';
@@ -18,6 +17,7 @@ import Button from '@/components/Button/Button';
 import { extractPath } from '@/helpers/HandleDisplayInfo';
 import { mainPathRegex } from '@/assets/Constant';
 import useMediaQuery from '@/hooks/useMediaQuery';
+import { MainNavStyled } from './Nav.styled';
 
 const horizontalSpace = '1.7em';
 const displayCurrentTab = (tabCompare, currentTab, type) => {
@@ -57,7 +57,6 @@ const MainNav = ({ user, theme, currentTab, location, ...props }) => {
   const findNavigateButtonProps = (tabCompare, currentTab, navigate) => {
     tabCompare = extractPath(tabCompare, mainPathRegex);
     return {
-      horizontalPadding: responsiveCondition?.mobile ? horizontalSpace : '0.6em',
       icon: displayCurrentTab(tabCompare, currentTab, 'icon'),
       buttonThemeName: 'thirdButton',
       ...displayCurrentTab(tabCompare, currentTab, 'props'),
@@ -67,15 +66,7 @@ const MainNav = ({ user, theme, currentTab, location, ...props }) => {
     };
   };
   return (
-    <FlexContainer
-      fd="column"
-      ai="flex-start"
-      jc="flex-start"
-      gap="1.5em"
-      width="100%"
-      position="sticky"
-      top="0"
-      {...props}>
+    <MainNavStyled {...props}>
       {/* Nav Image */}
       <NavImage
         theme={theme}
@@ -106,20 +97,17 @@ const MainNav = ({ user, theme, currentTab, location, ...props }) => {
       {/* Tweet button */}
       <Button
         buttonThemeName="primaryButton"
+        className="tweet-button"
         onClick={() => {
           navigate(`/${COMPOSE_PATH}`, { state: { background: location } });
         }}
-        width={responsiveCondition?.desktop ? '100%' : '50px'}
-        height={responsiveCondition?.desktop ? '50px' : '50px'}
         jc="center"
-        padding="0"
-        ml={!responsiveCondition?.mobile || responsiveCondition?.desktop ? 0 : '0.8em'}
-        borderRadius={responsiveCondition?.desktop ? horizontalSpace : '50%'}>
+        padding="0">
         {responsiveCondition?.desktop ? 'Tweet' : '+'}
       </Button>
 
       {/* Profile section display */}
-    </FlexContainer>
+    </MainNavStyled>
   );
 };
 

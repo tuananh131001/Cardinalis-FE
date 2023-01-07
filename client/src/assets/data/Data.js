@@ -5,7 +5,7 @@ export const defaultTweet = {
   content:
     'This is a tweet lobortis nisl ut aliquip ex ea commodo consequat http://www.youtube.com/watch?v=ZCEiAf-k-sg . \
   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est https://www.youtube.com/watch?v=fqIyy2e2I04 laborum.',
-  createdAt: '2022-12-30T21:33:45.249967',
+  createdAt: '2023-01-05T18:20:07.145077',
   isFavorited: false,
   isRetweeted: true,
   isPinned: true,
