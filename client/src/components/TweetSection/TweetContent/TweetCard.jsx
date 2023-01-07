@@ -40,7 +40,7 @@ const TweetCard = ({ tweet, ...props }) => {
     <TweetCardStyled {...props}>
       {displayCaption()}
       <Avatar
-        size="5em"
+        size="3em"
         gridArea="avatar"
         src={tweetUser.avatar}
         alignSelf="flex-start"
