@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useSearchUsers } from '@/hooks/useUser';
 import useDebounce from '@/hooks/useDebounce';
 import { SearchSectionStyled, DropDownSearchSectionStyled } from './SearchSection.styled';
+import { defaultUserList } from '@/assets/data/UserData';
 
 const SearchInput = () => {
   const [searchValue, setSearchValue] = useState('');
@@ -12,6 +13,7 @@ const SearchInput = () => {
   const [isSearching, setIsSearching] = useState(false);
   console.log(data?.data);
 
+  const searchList = defaultUserList;
   return (
     <SearchSectionStyled>
       <input

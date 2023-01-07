@@ -6,10 +6,10 @@ export const SearchSectionStyled = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 20px;
-  background-color: #212327;
+  background-color: ${({ theme }) => theme.homeInput.backgroundColor};
   height: 50px;
   &:focus-within {
-    border: 0.5px solid #DC6C14;
+    border: 0.5px solid ${({ theme }) => theme.homeInput.borderColor};
   }
   & > :first-child {
     width: 100%;
@@ -17,7 +17,7 @@ export const SearchSectionStyled = styled.div`
     outline: none;
     padding: 1em;
     border: none;
-    color: ${({ theme }) => theme.paragraphText.color};
+    color: ${({ theme }) => theme.homeInput.color};
   }
 `;
 
