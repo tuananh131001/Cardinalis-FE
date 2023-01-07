@@ -10,6 +10,7 @@ import { useCallback, useEffect } from 'react';
 import { useChange } from '@/hooks/useChange';
 import SwitchThemeButton from '@/components/Button/SwitchThemeButton';
 import { IoMdClose } from 'react-icons/io';
+import { HeaderSectionStyled } from './HeaderSection.styled';
 
 const HeaderSection = ({
   backDestination = -1,
@@ -27,7 +28,7 @@ const HeaderSection = ({
   const { value: isScrolling, onSetNewValue: onChangeScrolling } = useChange(false);
 
   const handleNavigation = useCallback(() => {
-    if (window.scrollY > 5) {
+    if (window.scrollY > 10) {
       onChangeScrolling(true);
     } else {
       onChangeScrolling(false);
@@ -47,15 +48,9 @@ const HeaderSection = ({
     navigate(backDestination, { replace: true });
   };
   return (
-    <FlexContainer
+    <HeaderSectionStyled
       {...props}
-      jc="flex-start"
-      gap="0.7em"
-      ai="flex-start"
-      padding={`0 var(--horizontal-spaces)`}
       position={isFixedPosition ? 'fixed' : isScrolling ? 'sticky' : 'relative'}
-      top="0"
-      left="0"
       zIndex={zIndex}
       pseudoAfter={isScrolling || isFixedPosition ? '1' : 'none'}>
       {haveBackButton && (
@@ -64,7 +59,7 @@ const HeaderSection = ({
           buttonType="link"
           fontSize="var(--font-size-md)"
           width="fit-content"
-          jc="flex-start"
+          jc="center"
           buttonThemeName="thirdButton"
           hoverType={2}
           borderRadius="50%">
@@ -106,7 +101,7 @@ const HeaderSection = ({
         />
       )}
       {isDisplayTheme == true && <SwitchThemeButton />}
-    </FlexContainer>
+    </HeaderSectionStyled>
   );
 };
 
