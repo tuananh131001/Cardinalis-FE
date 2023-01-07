@@ -50,7 +50,7 @@ const FollowButton = ({ isFollowing, ...props }) => {
       buttonType="primary"
       buttonThemeName={getAttribute('buttonThemeName', followType, isHover)}
       borderRadius="35%/110%"
-      padding="1em 1.3em">
+      padding="0.7em 1.3em">
       {getAttribute('text', followType, isHover)}
     </Button>
   );

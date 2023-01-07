@@ -1,5 +1,5 @@
 import { FlexContainer } from '@/components/Container/Container.styled';
-import { LinkProfile, SpanProfile, SubHeaderProfile } from './TextProfile';
+import { SpanProfile, SubHeaderProfile } from './TextProfile';
 import { ImCalendar } from 'react-icons/im';
 import ShortInfoProfile from './ShortInfoProfile';
 import { EditButtonProfile, FollowButtonProfile } from './ButtonProfile';
@@ -12,7 +12,6 @@ import ImageProfile from './ImageProfile';
 import { useNavigate } from 'react-router-dom';
 import { PROFILE_FOLLOWING_PATH, PROFILE_FOLLOWERS_PATH } from '@/assets/Constant';
 import { MdLocationOn } from 'react-icons/md';
-import { RiLinksLine } from 'react-icons/ri';
 import FollowButton from '@/components/FollowSection/FollowContent/FollowButton';
 
 const avatarSize = '9em';
@@ -44,18 +43,15 @@ const MainInfoProfile = ({ user }) => {
       ) : (
         <FollowButton isFollowing={user.isFollowing} alignSelf="flex-end" width="20%" />
       )}
-      <ShortInfoProfile name={user.name} username={user.username} padding="1em 0" />
+      <ShortInfoProfile
+        name={user.name}
+        username={user.username}
+        isHotUser={user.isHotUser}
+        padding="1em 0"
+      />
       {user.bio && <SubHeaderProfile text={user.bio} />}
       <SpanProfile text={[<ImCalendar key={0} />, `Joined ${displayDate(user.createdAt)}`]} />
       {user.location && <SpanProfile text={[<MdLocationOn key={0} />, user.location]} />}
-      {user.website && (
-        <LinkProfile
-          href={user.website}
-          rel="noopener noreferrer"
-          textThemeName="primaryText"
-          text={[<RiLinksLine key={0} />, user.website]}
-        />
-      )}
       <FlexContainer gap="2em" jc="flex-start">
         <FollowButtonProfile
           count={user.following}

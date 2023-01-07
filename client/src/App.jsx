@@ -2,7 +2,6 @@
 import GlobalStyled from '@/styles/GlobalStyled';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Home from '@/pages/Home';
-import Follow from '@/pages/Follow';
 import Register from '@/pages/Register';
 import Login from '@/pages/Login';
 import { ThemeProvider } from 'styled-components';
@@ -25,11 +24,11 @@ import {
   PROFILE_FOLLOWERS_PATH,
   PROFILE_FOLLOWING_PATH,
   LOGIN_PATH,
-  REGISTER_PATH,
-  TWEET_COMPOSE_PATH
+  REGISTER_PATH
 } from '@/assets/Constant';
 import TweetCompose from '@/pages/TweetCompose';
 import Search from '@/pages/Search';
+import Follow from '@/pages/Follow';
 import Tweet from '@/pages/Tweet';
 
 // import Text from './components/Text/Text';
@@ -101,15 +100,31 @@ function App() {
                 element={<Profile type="tweetsAndReplies" />}
               />
               <Route path={`/:username${PROFILE_MEDIA_PATH}`} element={<Profile type="media" />} />
-              <Route
-                path={`/:username${PROFILE_FOLLOWERS_PATH}`}
-                element={<Profile type="followers" />}
-              />
-              <Route
-                path={`/:username${PROFILE_FOLLOWING_PATH}`}
-                element={<Profile type="following" />}
-              />
             </Route>
+            <Route
+              path={`/:username${PROFILE_FOLLOWERS_PATH}`}
+              element={
+                <ProtectedRoutes>
+                  <Follow type="followers" />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path={`/:username${PROFILE_FOLLOWING_PATH}`}
+              element={
+                <ProtectedRoutes>
+                  <Follow type="following" />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path={`/:username/status/:tweetId`}
+              element={
+                <ProtectedRoutes>
+                  <Tweet />
+                </ProtectedRoutes>
+              }
+            />
             <Route
               path={`/${FORGOT_PASSWORD_PATH}`}
               element={

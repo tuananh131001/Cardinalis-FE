@@ -38,7 +38,7 @@ const TweetInput = ({ ...props }) => {
       jc="flex-start">
       <Input
         inputType="textarea"
-        inputThemeName="loginInput"
+        inputThemeName="homeInput"
         placeholder="What's happening?"
         onChange={register('tweet').onChange}
         {...register('tweet')}

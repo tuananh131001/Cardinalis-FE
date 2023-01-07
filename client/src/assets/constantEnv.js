@@ -1,4 +1,4 @@
-export const API_ORIGIN = import.meta.env.VITE_REACT_APP_API_ORIGIN || 'http://localhost:9002';
+export const API_ORIGIN = import.meta.env.VITE_REACT_APP_API_ORIGIN || 'http://cardinalis-be.live/';
 export const LOGIN_ENDPOINT = import.meta.env.VITE_REACT_APP_LOGIN_ENDPOINT || 'user/login';
 export const REGISTER_ENDPOINT =
   import.meta.env.VITE_REACT_APP_REGISTER_ENDPOINT || 'user/register';

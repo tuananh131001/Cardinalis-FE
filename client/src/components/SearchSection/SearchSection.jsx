@@ -5,6 +5,8 @@ import { useSearchUsers } from '@/hooks/useUser';
 import useDebounce from '@/hooks/useDebounce';
 import { SearchSectionStyled, DropDownSearchSectionStyled } from './SearchSection.styled';
 import { defaultUserList } from '@/assets/data/UserData';
+import UserCardSection from '@/components/UserCard/UserCardSection';
+import uuid from 'react-uuid';
 
 const SearchInput = () => {
   const [searchValue, setSearchValue] = useState('');
@@ -14,6 +16,11 @@ const SearchInput = () => {
   console.log(data?.data);
 
   const searchList = defaultUserList;
+  const renderSearchList = () => {
+    return searchList.map((user) => {
+      return <UserCardSection user={user} key={uuid()} />;
+    });
+  };
   return (
     <SearchSectionStyled>
       <input
@@ -25,7 +32,8 @@ const SearchInput = () => {
       />
       {isSearching ? (
         <DropDownSearchSectionStyled>
-          {isLoading ? <>Loading ...</> : <h1>siu</h1>}
+          {/* {isLoading ? <>Loading ...</> : renderSearchList()} */}
+          {renderSearchList()}
         </DropDownSearchSectionStyled>
       ) : null}
     </SearchSectionStyled>

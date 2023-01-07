@@ -5,13 +5,18 @@ export const UserCardSectionStyled = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-wrap: nowrap;
+  gap: 0.3em;
   /* size */
   width: 100%;
+
   & .text {
     text-align: left;
-    width: 100%;
   }
   &:hover {
     opacity: 0.8;
+    cursor: pointer;
   }
 `;
+UserCardSectionStyled.defaultProps = {
+  justifySelf: 'unset'
+};
