@@ -14,6 +14,7 @@ import { useNavigate } from 'react-router-dom';
 import CustomizedSnackbars from '@/components/Snackbar/Snackbar';
 import { useSelector, useDispatch } from 'react-redux';
 import { login } from '@/features/userSlice';
+import { HOME_PATH } from '@/assets/Constant';
 
 function LoginForm({ ...props }) {
   const schema = chooseInputSchema('login');
@@ -50,7 +51,7 @@ function LoginForm({ ...props }) {
           userToken: userToken
         };
         dispatch(login(authData));
-        navigate('/home', { replace: true });
+        navigate(HOME_PATH, { replace: true });
       }
     });
   };

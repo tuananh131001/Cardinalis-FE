@@ -1,6 +1,7 @@
 import React from 'react';
 import { HomeContentStyled } from './HomeContent.styled';
 import HeaderSection from '@/components/HeaderSection/HeaderSection';
+import TweetList from '@/components/TweetSection/TweetList';
 import { youUser } from '@/assets/data/UserData';
 import PropTypes from 'prop-types';
 import TweetComposeCard from '@/components/TweetComposeSection/TweetComposeContent/TweetComposeCard';
@@ -11,7 +12,8 @@ function HomeContent() {
   return (
     <HomeContentStyled>
       <HeaderSection content="Home" leftType="none" />
-      <TweetComposeCard user={user} />{' '}
+      <TweetComposeCard user={user} />
+      <TweetList />
     </HomeContentStyled>
   );
 }

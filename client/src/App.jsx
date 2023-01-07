@@ -47,39 +47,77 @@ function App() {
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             {/* Authentication */}
-            {/* <Route element={<Authentication />}>
-              <Route path="/" element={<Authentication />} />
-              <Route path="/register" element={<Authentication />} />
-            </Route> */}
             <Route path={`/${LOGIN_PATH}`} element={<Login />} />
             <Route path={`/${REGISTER_PATH}`} element={<Register />} />
-            {/* Home */}
-            <Route path="/home" element={<Home />} />
-            <Route path="/explore" element={<Explore />} />
-            <Route path="/bookmarks" element={<Bookmarks />} />
-            <Route path={`/${COMPOSE_PATH}`} element={<TweetCompose isModal={false} />} />
-            {/* Search */}
-            <Route path="/search/:keyword" element={<Search />} />
-            {/* Input */}
-            <Route path={`/${TWEET_COMPOSE_PATH}`} element={<TweetCompose />} />
-            {/* Profile */}
-            <Route path={`/:username${PROFILE_TWEET_PATH}`} element={<Profile type="tweets" />} />
             <Route
-              path={`/:username${PROFILE_REPLIES_PATH}`}
-              element={<Profile type="tweetsAndReplies" />}
-            />
-            <Route path={`/:username${PROFILE_MEDIA_PATH}`} element={<Profile type="media" />} />
-            <Route
-              path={`/:username${PROFILE_FOLLOWERS_PATH}`}
-              element={<Follow type="followers" />}
+              path="/home"
+              element={
+                <ProtectedRoutes>
+                  <Home />
+                </ProtectedRoutes>
+              }
             />
             <Route
-              path={`/:username${PROFILE_FOLLOWING_PATH}`}
-              element={<Follow type="following" />}
+              path="/explore"
+              element={
+                <ProtectedRoutes>
+                  <Explore />
+                </ProtectedRoutes>
+              }
             />
-            <Route path={`/:username/status/:tweetId`} element={<Tweet />} />
-            {/* </Route> */}
-            <Route path={`/${FORGOT_PASSWORD_PATH}`} element={<ForgotPassword />} />
+            <Route
+              path="/bookmarks"
+              element={
+                <ProtectedRoutes>
+                  <Bookmarks />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path={`/${COMPOSE_PATH}`}
+              element={
+                <ProtectedRoutes>
+                  <TweetCompose isModal={false} />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path="/search/:keyword"
+              element={
+                <ProtectedRoutes>
+                  <Search />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              element={
+                <ProtectedRoutes>
+                  <Profile />
+                </ProtectedRoutes>
+              }>
+              <Route path={`/:username${PROFILE_TWEET_PATH}`} element={<Profile type="tweets" />} />
+              <Route
+                path={`/:username${PROFILE_REPLIES_PATH}`}
+                element={<Profile type="tweetsAndReplies" />}
+              />
+              <Route path={`/:username${PROFILE_MEDIA_PATH}`} element={<Profile type="media" />} />
+              <Route
+                path={`/:username${PROFILE_FOLLOWERS_PATH}`}
+                element={<Profile type="followers" />}
+              />
+              <Route
+                path={`/:username${PROFILE_FOLLOWING_PATH}`}
+                element={<Profile type="following" />}
+              />
+            </Route>
+            <Route
+              path={`/${FORGOT_PASSWORD_PATH}`}
+              element={
+                <ProtectedRoutes>
+                  <ForgotPassword />
+                </ProtectedRoutes>
+              }
+            />
             <Route path="*" element={<StyledHeading1>Page Not Exist</StyledHeading1>} />
           </Routes>
         </AnimatePresence>
