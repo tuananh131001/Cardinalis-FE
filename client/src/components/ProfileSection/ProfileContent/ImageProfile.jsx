@@ -61,7 +61,7 @@ const ImageProfile = ({
             {
               <>
                 <Image
-                  src={user.background}
+                  src={user.avatar}
                   alt="Profile Background"
                   width="100%"
                   height={bckHeight}
@@ -106,7 +106,16 @@ const ImageProfile = ({
         </>
       ) : (
         <>
-          <Image src={user.background} alt="Profile Background" width="100%" height={bckHeight} />
+          <Image
+            src={
+              user?.banner == null
+                ? 'https://plus.unsplash.com/premium_photo-1669386062266-5b20b994f7cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80'
+                : user.banner
+            }
+            alt="Profile Background"
+            width="100%"
+            height={bckHeight}
+          />
           <Avatar
             src={user.avatar}
             size={avatarSize}

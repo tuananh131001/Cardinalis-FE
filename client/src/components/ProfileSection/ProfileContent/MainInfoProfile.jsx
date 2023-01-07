@@ -17,9 +17,10 @@ import FollowButton from '@/components/FollowSection/FollowContent/FollowButton'
 const avatarSize = '9em';
 const bckHeight = '14em';
 const containerGap = '0.5em';
-const MainInfoProfile = ({ user }) => {
+const MainInfoProfile = ({ user, currentUsername }) => {
   const { value: isOpen, onSetTrue: handleOpen, onSetFalse: handleClose } = useChange(false);
   const navigate = useNavigate();
+  const isYou = user.username === currentUsername ? true : false;
   const clickNavigate = (type) => {
     switch (type) {
       case 'following':
@@ -38,15 +39,15 @@ const MainInfoProfile = ({ user }) => {
       position="relative"
       padding={`calc(${bckHeight} + ${containerGap}) var(--horizontal-spaces) 0`}>
       <ImageProfile user={user} bckHeight={bckHeight} avatarSize={avatarSize} />
-      {user.isYou ? (
+      {isYou ? (
         <EditButtonProfile onClick={handleOpen} />
       ) : (
         <FollowButton isFollowing={user.isFollowing} alignSelf="flex-end" width="20%" />
       )}
       <ShortInfoProfile
-        name={user.name}
+        name={user.username}
         username={user.username}
-        isHotUser={user.isHotUser}
+        isHotUser={user.is_hot_user}
         padding="1em 0"
       />
       {user.bio && <SubHeaderProfile text={user.bio} />}
@@ -75,7 +76,8 @@ const MainInfoProfile = ({ user }) => {
 };
 MainInfoProfile.propTypes = {
   horizontalSpaces: PropTypes.string,
-  user: PropTypes.object
+  user: PropTypes.object,
+  currentUsername: PropTypes.string.isRequired
 };
 
 export default MainInfoProfile;

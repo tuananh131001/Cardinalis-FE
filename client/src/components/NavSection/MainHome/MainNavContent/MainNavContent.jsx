@@ -21,7 +21,6 @@ import useMediaQuery from '@/hooks/useMediaQuery';
 import { MainNavContentStyled } from './MainNavContent.styled';
 import { useChange } from '@/hooks/useChange';
 import TweetComposeModal from '@/components/TweetComposeSection/TweetComposeContent/TweetComposeModal';
-import { youUser } from '@/assets/data/UserData';
 import UserCardSection from '@/components/UserCard/UserCardSection';
 import LogoutButton from '@/components/Button/LogoutButton';
 
@@ -53,7 +52,7 @@ const displayCurrentTab = (tabCompare, currentTab, type) => {
   }
 };
 
-const MainNavContent = ({ user = youUser, currentTab, ...props }) => {
+const MainNavContent = ({ user, currentTab, ...props }) => {
   const navigate = useNavigate();
   const responsiveCondition = {
     desktop: useMediaQuery('(min-width: 1134px)'),

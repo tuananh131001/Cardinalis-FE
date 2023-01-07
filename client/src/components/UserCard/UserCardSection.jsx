@@ -27,7 +27,11 @@ const UserCardSection = ({ user, button, sz = 'base', isDisplayButtonOnly = fals
       {!isDisplayButtonOnly ? (
         <>
           <Avatar src={user.avatar} size={getSize(sz)} />
-          <UserCardInfo name={user.name} username={user.username} isHotUser={user.isHotUser} />
+          <UserCardInfo
+            name={user.username}
+            username={user.username}
+            isHotUser={user.is_hot_user}
+          />
           {button}
         </>
       ) : (
