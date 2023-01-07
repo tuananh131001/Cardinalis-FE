@@ -3,7 +3,7 @@
 import { FlexContainer } from '@/components/Container/Container.styled';
 import Button from '@/components/Button/Button';
 import { FaRegComment, FaRegHeart } from 'react-icons/fa';
-import { AiOutlineRetweet, AiOutlineShareAlt } from 'react-icons/ai';
+import { AiOutlineRetweet } from 'react-icons/ai';
 import PropTypes from 'prop-types';
 import Text from '@/components/Text/Text';
 import { displayCountNumber } from '@/helpers/HandleDisplayInfo';
@@ -41,7 +41,8 @@ const TweetButtonSection = ({
   );
 };
 export const TweetButtons = ({ tweet, ...props }) => {
-  const onClick = (type) => {
+  const onClick = (event, type) => {
+    event.stopPropagation();
     switch (type) {
       case 'comment':
         console.log('comment');
@@ -52,9 +53,6 @@ export const TweetButtons = ({ tweet, ...props }) => {
       case 'favorite':
         console.log('favorite');
         break;
-      case 'share':
-        console.log('share');
-        break;
     }
   };
   return (
@@ -62,23 +60,22 @@ export const TweetButtons = ({ tweet, ...props }) => {
       <TweetButtonSection
         icon={<FaRegComment />}
         count={displayCountNumber(tweet.numComments)}
-        onClick={() => onClick('comment')}
+        onClick={(event) => onClick(event, 'comment')}
       />
       <TweetButtonSection
         themeName="retweetButton"
         icon={<AiOutlineRetweet />}
         count={displayCountNumber(tweet.numRetweets)}
-        onClick={() => onClick('retweet')}
+        onClick={(event) => onClick(event, 'retweet')}
         isActive={tweet.isRetweeted}
       />
       <TweetButtonSection
         themeName="favoriteButton"
         icon={<FaRegHeart />}
         count={displayCountNumber(tweet.numFavorites)}
-        onClick={() => onClick('favorite')}
+        onClick={(event) => onClick(event, 'favorite')}
         isActive={tweet.isFavorited}
       />
-      <TweetButtonSection icon={<AiOutlineShareAlt />} onClick={() => onClick('share')} />
     </FlexContainer>
   );
 };

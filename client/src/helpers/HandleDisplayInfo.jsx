@@ -92,6 +92,7 @@ export const displayInlineLink = (content) => {
         if (line.match(urlRegex)) {
           return (
             <StyledTextLink
+              onClick={(e) => e.stopPropagation()}
               key={uuid()}
               href={line}
               target="_blank"
@@ -121,7 +122,7 @@ export const displayDuration = (date) => {
   } else if (moment().diff(moment(date), 'weeks') > 1) {
     return moment(date).format('MMM DD');
   }
-  return moment(date).fromNow(true);
+  return moment(date).fromNow();
 };
 // get the pinned tweet
 export const getPinnedTweet = (tweetList) => {

@@ -2,6 +2,7 @@
 import GlobalStyled from '@/styles/GlobalStyled';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import Home from '@/pages/Home';
+import Follow from '@/pages/Follow';
 import Register from '@/pages/Register';
 import Login from '@/pages/Login';
 import { ThemeProvider } from 'styled-components';
@@ -29,6 +30,7 @@ import {
 } from '@/assets/Constant';
 import TweetCompose from '@/pages/TweetCompose';
 import Search from '@/pages/Search';
+import Tweet from '@/pages/Tweet';
 
 // import Text from './components/Text/Text';
 
@@ -57,6 +59,7 @@ function App() {
             <Route path="/bookmarks" element={<Bookmarks />} />
             <Route path={`/${COMPOSE_PATH}`} element={<TweetCompose isModal={false} />} />
             <Route path="/search/:keyword" element={<Search />} />
+            {/* Profile */}
             <Route path={`/:username${PROFILE_TWEET_PATH}`} element={<Profile type="tweets" />} />
             <Route
               path={`/:username${PROFILE_REPLIES_PATH}`}
@@ -65,12 +68,13 @@ function App() {
             <Route path={`/:username${PROFILE_MEDIA_PATH}`} element={<Profile type="media" />} />
             <Route
               path={`/:username${PROFILE_FOLLOWERS_PATH}`}
-              element={<Profile type="followers" />}
+              element={<Follow type="followers" />}
             />
             <Route
               path={`/:username${PROFILE_FOLLOWING_PATH}`}
-              element={<Profile type="following" />}
+              element={<Follow type="following" />}
             />
+            <Route path={`/:username/status/:tweetId`} element={<Tweet />} />
             {/* </Route> */}
             <Route path={`/${FORGOT_PASSWORD_PATH}`} element={<ForgotPassword />} />
             <Route path="*" element={<StyledHeading1>Page Not Exist</StyledHeading1>} />

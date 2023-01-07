@@ -1,10 +1,10 @@
 import { FlexContainer } from '@/components/Container/Container.styled';
-import TweetInputCard from '@/components/Sections/TweetSection/TweetInputCard';
 import HeaderSection from '@/components/Sections/GeneralSection/HeaderSection';
 import { useOutletContext } from 'react-router-dom';
 import CustomModal from '@/components/Modals/CustomModal';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import TweetInputCard from '@/components/TweetSection/TweetInputCard';
 
 const TweetCompose = ({ isModal = false, theme, themeToggler, user }) => {
   const navigate = useNavigate();

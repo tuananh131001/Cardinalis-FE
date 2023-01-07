@@ -1,31 +1,28 @@
-import React from 'react';
-import { ProfileSectionStyled } from './ProfileSection.styled';
+import React, { useMemo } from 'react';
 import MainNav from '@/components/Sections/NavSection/MainNav';
-import ProfileContent from './ProfileContent/ProfileContent';
 import { useLocation } from 'react-router-dom';
 import { youUser } from '@/assets/data/UserData';
-import { extractPath } from '@/helpers/HandleDisplayInfo';
-import { useMemo } from 'react';
 import SearchSection from '@/components/SearchSection/SearchSection';
-import PropTypes from 'prop-types';
+import TweetContent from './TweetContent/TweetContent';
+import { extractPath } from '@/helpers/HandleDisplayInfo';
 import { mainPathRegex } from '@/assets/Constant';
+import { TweetSectionStyled } from './TweetSection.style';
 
-function ProfileSection({ pageSubType }) {
+function TweetSection() {
   const user = youUser;
+
   const location = useLocation();
   const { currentTab } = useMemo(() => {
     const currentTab = extractPath(location.pathname, mainPathRegex);
     return { currentTab };
   }, [location]);
+
   return (
-    <ProfileSectionStyled>
+    <TweetSectionStyled>
       <MainNav user={user} location={location} currentTab={currentTab} />
-      <ProfileContent pageSubType={pageSubType} />
+      <TweetContent />
       <SearchSection />
-    </ProfileSectionStyled>
+    </TweetSectionStyled>
   );
 }
-ProfileSection.propTypes = {
-  pageSubType: PropTypes.string.isRequired
-};
-export default ProfileSection;
+export default TweetSection;

@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import Avatar from '@/components/Image/Avatar';
 import Text from '@/components/Text/Text';
 import { displayDuration, displayInlineLink } from '@/helpers/HandleDisplayInfo';
-import { TweetButtons } from './TweetButtons';
-import TweetCaption from './TweetCaption';
+import { TweetButtons } from '../TweetButtons';
+import TweetCaption from '../TweetCaption';
 import { defaultUser } from '@/assets/data/UserData';
-import { StyledTweetContainer } from './Tweet.style';
 import Divider from '@/components/Divider/Divider';
+import { TweetCardStyled } from './TweetContent.style';
 
 const tabSpaces = '\u00A0\u00A0';
-const TweetSection = ({ tweet, isPinned = false, ...props }) => {
+const TweetCard = ({ tweet, isPinned = false, ...props }) => {
   /**
    * @param {isPinned} if this tweet "is pinned" display type
    */
@@ -18,6 +18,8 @@ const TweetSection = ({ tweet, isPinned = false, ...props }) => {
   const tweetUser = defaultUser;
   // user who retweeted this tweet (change later) (if this tweet is displayed in that user's profile)
   const retweetUser = defaultUser;
+
+  // Render component inside content
   const displayCaption = () => {
     if (isPinned) return <TweetCaption displayType="pinned" />;
     else if (tweet.isRetweeted)
@@ -31,7 +33,7 @@ const TweetSection = ({ tweet, isPinned = false, ...props }) => {
   };
 
   return (
-    <StyledTweetContainer {...props}>
+    <TweetCardStyled {...props}>
       {displayCaption()}
       <Avatar size="5em" gridArea="avatar" src={tweetUser.avatar} alignSelf="flex-start" />
       <Text
@@ -57,14 +59,14 @@ const TweetSection = ({ tweet, isPinned = false, ...props }) => {
       />
       <TweetButtons tweet={tweet} gridArea="buttons" />
       <Divider gridArea="bottomDivider" />
-    </StyledTweetContainer>
+    </TweetCardStyled>
   );
 };
 
-TweetSection.propTypes = {
+TweetCard.propTypes = {
   tweet: PropTypes.object,
   isPinned: PropTypes.bool,
   props: PropTypes.arrayOf(PropTypes.string)
 };
 
-export default TweetSection;
+export default TweetCard;

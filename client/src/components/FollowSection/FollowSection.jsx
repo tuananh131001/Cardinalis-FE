@@ -1,31 +1,32 @@
-import React from 'react';
-import { ProfileSectionStyled } from './ProfileSection.styled';
+import React, { useMemo } from 'react';
+import { FollowSectionStyled } from './FollowSection.styled';
 import MainNav from '@/components/Sections/NavSection/MainNav';
-import ProfileContent from './ProfileContent/ProfileContent';
 import { useLocation } from 'react-router-dom';
 import { youUser } from '@/assets/data/UserData';
-import { extractPath } from '@/helpers/HandleDisplayInfo';
-import { useMemo } from 'react';
 import SearchSection from '@/components/SearchSection/SearchSection';
 import PropTypes from 'prop-types';
+import FollowContent from './FollowContent/FollowContent';
+import { extractPath } from '@/helpers/HandleDisplayInfo';
 import { mainPathRegex } from '@/assets/Constant';
 
-function ProfileSection({ pageSubType }) {
+function FollowSection({ type }) {
   const user = youUser;
+
   const location = useLocation();
   const { currentTab } = useMemo(() => {
     const currentTab = extractPath(location.pathname, mainPathRegex);
     return { currentTab };
   }, [location]);
+
   return (
-    <ProfileSectionStyled>
+    <FollowSectionStyled>
       <MainNav user={user} location={location} currentTab={currentTab} />
-      <ProfileContent pageSubType={pageSubType} />
+      <FollowContent type={type} />
       <SearchSection />
-    </ProfileSectionStyled>
+    </FollowSectionStyled>
   );
 }
-ProfileSection.propTypes = {
-  pageSubType: PropTypes.string.isRequired
+FollowSection.propTypes = {
+  type: PropTypes.string.isRequired
 };
-export default ProfileSection;
+export default FollowSection;

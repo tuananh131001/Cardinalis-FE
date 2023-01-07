@@ -29,7 +29,11 @@ function RegisterContent({ ...props }) {
 
   return (
     <RegisterContentStyled {...props}>
-      <AuthenNav gridArea="nav" currentTab={REGISTER_PATH} responsiveCondition={responsiveCondition} />
+      <AuthenNav
+        gridArea="nav"
+        currentTab={REGISTER_PATH}
+        responsiveCondition={responsiveCondition}
+      />
       <AuthenImage gridArea="image" responsiveCondition={responsiveCondition} />
       <AuthenSwitchTheme gridArea="theme" />
       <AuthenText gridArea="text" {...displayedText} responsiveCondition={responsiveCondition} />

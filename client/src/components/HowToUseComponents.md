@@ -3,7 +3,7 @@
 - [ ] Do I need to use username from useParam to get user info (MainNav, Profile)
 - [ ] Tweet page (Have back button)
 - [x] Home, Explore, Bookmarks, Settings -> Tweets, Profile, Trend, 
-- [ ] change defaultUser to dynamic user (in Profile, MainNav, TweetSection, FollowerList, FollowingList, SubPage)
+- [ ] change defaultUser to dynamic user (in Profile, MainNav, TweetContent, FollowerList, FollowingList, SubPage)
   - App.jsx: user (**you**) (should render here instead of Home.jsx)
   - Main: user (**you**)
   - Profile: whole user (attributes: name, numberOfTweets)
@@ -11,7 +11,7 @@
       - CustomModal - UpdateProfileForm: user (attr: banner, avatar, name, bio, location, website, dob)
       - FollowList: user
         - FollowButton: user (isFollowing)
-  - TweetSection: user (2 types: retweet user + tweet user)
+  - TweetContent: user (2 types: retweet user + tweet user)
   - ProfileSubPage: user - to get tweet list, tweet and replies list, follower list, following list
 - [ ] change follower
 - [ ] change defaultReply

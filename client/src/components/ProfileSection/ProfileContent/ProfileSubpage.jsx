@@ -1,10 +1,8 @@
 import { defaultTweetList } from '@/assets/data/Data';
-import { defaultFollowerList, defaultFollowingList } from '@/assets/data/UserData';
 import Proptypes from 'prop-types';
 import { getMediaTweeters } from '@/helpers/HandleDisplayInfo';
 import ProfileNav from './ProfileNav';
-import FollowList from '../../Sections/FollowSection/FollowList';
-import TweetList from '../../Sections/TweetSection/TweetList';
+import TweetList from '@/components/TweetSection/TweetList';
 
 const getNavType = (type) => {
   switch (type) {
@@ -12,9 +10,6 @@ const getNavType = (type) => {
     case 'tweetsAndReplies':
     case 'media':
       return 'tweetNav';
-    case 'followers':
-    case 'following':
-      return 'followNav';
   }
 };
 const ProfileSubpage = ({ type, user }) => {
@@ -28,10 +23,6 @@ const ProfileSubpage = ({ type, user }) => {
         return <TweetList tweetList={defaultTweetList} />;
       case 'media':
         return <TweetList tweetList={getMediaTweeters(defaultTweetList)} />;
-      case 'followers':
-        return <FollowList followList={defaultFollowerList} />;
-      case 'following':
-        return <FollowList followList={defaultFollowingList} />;
     }
   };
   return (

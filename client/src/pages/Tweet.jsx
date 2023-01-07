@@ -1,12 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+// import PropTypes from 'prop-types';
+import TweetSection from '@/components/TweetSection/TweetSection';
 
-const Tweet = props => {
-  return (
-    
-  )
-}
+const Tweet = () => {
+  return <TweetSection></TweetSection>;
+};
 
-Tweet.propTypes = {}
+Tweet.propTypes = {};
 
-export default Tweet
+export default Tweet;
