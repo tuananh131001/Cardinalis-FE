@@ -1,32 +1,32 @@
 // https://reactrouter.com/en/6.4.4/hooks/use-outlet-context
 // https://dev.to/nadeemkhanrtm/detect-scroll-direction-reactjs-1gnp
-import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { FlexContainer } from '@/components/Container/Container.styled';
-import { HiArrowSmLeft } from 'react-icons/hi';
-import Button from '@/components/Button/Button';
-import Text from '@/components/Text/Text';
 import { useCallback, useEffect } from 'react';
 import { useChange } from '@/hooks/useChange';
-import SwitchThemeButton from '@/components/Button/SwitchThemeButton';
-import { IoMdClose } from 'react-icons/io';
 import { HeaderSectionStyled } from './HeaderSection.styled';
+import { HeaderContentLeft } from './HeaderContent/HeaderContentLeft';
+import HeaderContentCenter from './HeaderContent/HeaderContentCenter';
+import HeaderContentRight from './HeaderContent/HeaderContentRight';
 
 const HeaderSection = ({
+  user = user,
+  currentTab = 'home',
   backDestination = -1,
   content = 'hello',
   subContent = null,
+  // style
   zIndex = 1,
-  haveBackButton = true,
-  haveCloseButton = false,
+  backgroundStyle = 1,
   isFixedPosition = false,
-  isDisplayTheme = true,
+  // button
+  leftType = 'back', // can be "back" | "close" | "none"
+  rightType = 'theme', // can be "theme" | "none"
+  // action
   onClickClose,
   ...props
 }) => {
-  const navigate = useNavigate();
+  // detect onscroll
   const { value: isScrolling, onSetNewValue: onChangeScrolling } = useChange(false);
-
   const handleNavigation = useCallback(() => {
     if (window.scrollY > 10) {
       onChangeScrolling(true);
@@ -34,7 +34,6 @@ const HeaderSection = ({
       onChangeScrolling(false);
     }
   }, [window.scrollY]);
-
   useEffect(() => {
     window.addEventListener('scroll', handleNavigation);
 
@@ -43,77 +42,36 @@ const HeaderSection = ({
     };
   }, [handleNavigation]);
 
-  // click navigate back
-  const onClick = () => {
-    navigate(backDestination, { replace: true });
-  };
   return (
     <HeaderSectionStyled
       {...props}
       position={isFixedPosition ? 'fixed' : isScrolling ? 'sticky' : 'relative'}
       zIndex={zIndex}
-      pseudoAfter={isScrolling || isFixedPosition ? '1' : 'none'}>
-      {haveBackButton && (
-        <Button
-          onClick={onClick}
-          buttonType="link"
-          fontSize="var(--font-size-md)"
-          width="fit-content"
-          jc="center"
-          buttonThemeName="thirdButton"
-          hoverType={2}
-          borderRadius="50%">
-          {<HiArrowSmLeft />}
-        </Button>
-      )}
-      {haveCloseButton && (
-        <Button
-          onClick={onClickClose}
-          buttonType="primary"
-          buttonThemeName="secondaryButton"
-          fontSize="var(--font-size-base)"
-          width="fit-content"
-          hoverType={2}
-          borderRadius="50%">
-          {<IoMdClose />}
-        </Button>
-      )}
-      {typeof content === 'string' && typeof subContent === 'string' ? (
-        <FlexContainer fd="column" overflow="visible">
-          <Text
-            type="p"
-            textThemeName="paragraphText"
-            text={content}
-            width="100%"
-            txtAlign="left"
-            weight="700"
-          />
-          <Text type="p2" textThemeName="subText" text={subContent} txtAlign="left" width="100%" />
-        </FlexContainer>
-      ) : (
-        <Text
-          type="p"
-          textThemeName="paragraphText"
-          text={content}
-          width="100%"
-          txtAlign="left"
-          weight="700"
-        />
-      )}
-      {isDisplayTheme == true && <SwitchThemeButton />}
+      pseudoAfter={isScrolling || isFixedPosition ? backgroundStyle : 0}>
+      <HeaderContentLeft
+        user={user}
+        currentTab={currentTab}
+        type={leftType}
+        backDestination={backDestination}
+        onClickClose={onClickClose}
+      />
+      <HeaderContentCenter content={content} subContent={subContent} />
+      <HeaderContentRight type={rightType} />
     </HeaderSectionStyled>
   );
 };
 
 HeaderSection.propTypes = {
-  haveBackButton: PropTypes.bool,
-  haveCloseButton: PropTypes.bool,
+  leftType: PropTypes.oneOf(['back', 'close', 'none']),
+  rightType: PropTypes.oneOf(['theme', 'none']),
+  user: PropTypes.object,
   backDestination: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  currentTab: PropTypes.string,
   content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   subContent: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   zIndex: PropTypes.number,
+  backgroundStyle: PropTypes.number,
   isFixedPosition: PropTypes.bool,
-  isDisplayTheme: PropTypes.bool,
   onClickClose: PropTypes.func
 };
 export default HeaderSection;

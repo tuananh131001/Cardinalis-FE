@@ -5,8 +5,12 @@ export const HeaderSectionStyled = styled.div`
   justify-content: flex-start;
   align-items: center;
   gap: 0.7em;
+  flex-wrap: nowrap;
   /* size */
-  padding: 0 var(--horizontal-spaces);
+  padding: 0.7em var(--horizontal-spaces);
+  width: 100%;
+  height: auto;
+  min-height: 0px;
 
   /* position */
   position: ${(props) => props.position};
@@ -18,34 +22,51 @@ export const HeaderSectionStyled = styled.div`
   ${({ pseudoAfter }) => {
     switch (pseudoAfter) {
       case 1:
-        css`
-          box-shadow: 3px 6px 10px 4px ${({ theme }) => theme.primaryPseudo.boxShadow};
-          -webkit-box-shadow: 3px 6px 10px 4px ${({ theme }) => theme.primaryPseudo.boxShadow};
-          -moz-box-shadow: 3px 6px 10px 4px ${({ theme }) => theme.primaryPseudo.boxShadow};
+        return css`
+          box-shadow: 3px 4px 5px 4px ${({ theme }) => theme.primaryPseudo.boxShadow};
+          -webkit-box-shadow: 3px 4px 5px 4px ${({ theme }) => theme.primaryPseudo.boxShadow};
+          -moz-box-shadow: 3px 4px 5px 4px ${({ theme }) => theme.primaryPseudo.boxShadow};
           /* shape */
-          border-bottom-left-radius: ${(props) => props.pseudoAfterBorderRadius};
-          border-bottom-right-radius: ${(props) => props.pseudoAfterBorderRadius};
+          border-bottom-left-radius: ${(props) => props.borderRadius};
+          border-bottom-right-radius: ${(props) => props.borderRadius};
           &::after {
             content: '';
+            /* position */
             display: block;
+            position: absolute;
             top: 0;
             left: 0;
+            z-index: -1;
+            /* shape */
             width: 100%;
             height: 100%;
-            position: absolute;
+            border-bottom-left-radius: ${(props) => props.borderRadius};
+            border-bottom-right-radius: ${(props) => props.borderRadius};
+            /* style */
             background-color: ${({ theme }) => theme.primaryPseudo.backgroundColor};
-            opacity: 0.8;
+            opacity: 0.9;
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px) brightness(120%);
-            z-index: -1;
           }
         `;
     }
   }}
+  & button {
+    width: fit-content;
+    border-radius: 50%;
+    &.left {
+      padding: 0.3em;
+      transform: translateX(-0.3em);
+    }
+  }
+  & .text {
+    text-align: left;
+    width: 100%;
+  }
 `;
 HeaderSectionStyled.defaultProps = {
   position: 'relative',
   zIndex: 1,
-  pseudoAfterBorderRadius: '0.5em',
+  borderRadius: '10px',
   pseudoAfter: 0
 };

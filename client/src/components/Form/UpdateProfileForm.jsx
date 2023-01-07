@@ -80,9 +80,8 @@ function UpdateProfileForm({ user, closeAction, ...props }) {
       <HeaderSection
         content="Update Profile"
         isFixedPosition={true}
-        isDisplayTheme={false}
-        haveBackButton={false}
-        haveCloseButton={true}
+        leftType="back"
+        rightType="none"
         onClick={(data) => onSubmitClick(data, true)}
         zIndex={2}
       />
