@@ -1,5 +1,12 @@
-import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
-import { getFollowingTweets, updateTweet, deleteTweet, postTweet, getTweet } from '@/api/Tweet';
+import { useMutation, useQueryClient, useQuery, useInfiniteQuery } from '@tanstack/react-query';
+import {
+  getFollowingTweets,
+  updateTweet,
+  deleteTweet,
+  postTweet,
+  getTweet,
+  getTweetsByPage
+} from '@/api/Tweet';
 
 const usePostTweet = (reset) => {
   const queryClient = useQueryClient();
@@ -51,4 +58,17 @@ const useGetTweet = (id) =>
     queryFn: () => getTweet(id),
     enabled: Boolean(id)
   });
-export { useUpdateTweet, useDeleteTweet, usePostTweet, useGetFollowingTweets, useGetTweet };
+
+const useGetAllTweetsByPage = () => {
+  return useInfiniteQuery(['tweets'], getTweetsByPage, {
+    getNextPageParam: (lastPage) => lastPage.nextPage ?? undefined
+  });
+};
+export {
+  useUpdateTweet,
+  useDeleteTweet,
+  usePostTweet,
+  useGetFollowingTweets,
+  useGetTweet,
+  useGetAllTweetsByPage
+};

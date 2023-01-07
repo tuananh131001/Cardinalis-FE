@@ -7,7 +7,14 @@ const initialState = {
   user: {
     username: '',
     avatar: '',
-    email: ''
+    email: '',
+    bio: '',
+    banner: '',
+    created_at: '',
+    dateOfBirth: '',
+    id: '',
+    location: '',
+    is_hot_user: ''
   }
 };
 
@@ -28,9 +35,16 @@ const userSlice = createSlice({
     getUserInfo: (state, action) => {
       state.user.avatar = action.payload.avatar;
       state.user.email = action.payload.email;
+      state.user.bio = action.payload.bio;
+      state.user.banner = action.payload.banner;
+      state.user.created_at = action.payload.created_at;
+      state.user.dateOfBirth = action.payload.dateOfBirth;
+      state.user.id = action.payload.id;
+      state.user.location = action.payload.location;
+      state.user.is_hot_user = action.payload.is_hot_user;
     }
   }
 });
 
 export default userSlice.reducer;
-export const { login, getToken } = userSlice.actions;
+export const { login, getToken, getUserInfo, logout } = userSlice.actions;

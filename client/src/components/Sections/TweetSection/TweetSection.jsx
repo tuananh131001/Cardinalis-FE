@@ -17,17 +17,17 @@ const TweetSection = ({ tweet, isPinned = false, ...props }) => {
   const tweetUser = defaultUser;
   // user who retweeted this tweet (change later) (if this tweet is displayed in that user's profile)
   const retweetUser = defaultUser;
-  const displayCaption = () => {
-    if (isPinned) return <TweetCaption displayType="pinned" />;
-    else if (tweet.isRetweeted)
-      return (
-        <TweetCaption
-          displayType="retweeted"
-          isYou={retweetUser.isYou}
-          username={retweetUser.username}
-        />
-      );
-  };
+  // const displayCaption = () => {
+  //   if (isPinned) return <TweetCaption displayType="pinned" />;
+  //   else if (tweet.isRetweeted)
+  //     return (
+  //       <TweetCaption
+  //         displayType="retweeted"
+  //         isYou={retweetUser.isYou}
+  //         username={retweetUser.username}
+  //       />
+  //     );
+  // };
   return (
     <GridContainer
       {...props}
@@ -41,8 +41,8 @@ const TweetSection = ({ tweet, isPinned = false, ...props }) => {
       gap="0.1em 0.7em"
       width="100%"
       jc="flex-start">
-      {displayCaption()}
-      <Avatar size="5em" gridArea="avatar" src={tweetUser.avatar} alignSelf="flex-start" />
+      {/* {displayCaption()} */}
+      <Avatar size="3em" gridArea="avatar" src={tweetUser.avatar} alignSelf="flex-start" />
       <Text
         type="p"
         textThemeName="paragraphText"
