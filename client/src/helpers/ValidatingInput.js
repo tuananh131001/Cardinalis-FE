@@ -1,4 +1,3 @@
-import { urlRegex } from '@/assets/Constant';
 import * as yup from 'yup';
 import moment from 'moment';
 export const maxTweetCharacters = 280;
@@ -95,15 +94,6 @@ export const chooseInputSchema = (type) => {
         .min(0)
         .max(30, displayErrorMessage('location', 'max', 30, 'string'))
         .nullable(),
-      website: yup
-        .string()
-        .nullable()
-        .min(0)
-        .max(100, displayErrorMessage('website', 'max', 100, 'string'))
-        .matches(urlRegex, {
-          message: displayErrorMessage('website', 'matches'),
-          excludeEmptyString: true
-        }),
       dob: yup
         .date({
           message: displayErrorMessage('dob', displayErrorMessage('dob', 'date')),
