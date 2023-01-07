@@ -1,7 +1,7 @@
 import { defaultTweetList } from '@/assets/data/Data';
 import Proptypes from 'prop-types';
 import { getMediaTweeters } from '@/helpers/HandleDisplayInfo';
-import ProfileNav from './ProfileNav';
+import SubNav from '../../NavSection/SubNav';
 import TweetList from '@/components/TweetSection/TweetList';
 
 const getNavType = (type) => {
@@ -27,7 +27,7 @@ const ProfileSubpage = ({ type, user }) => {
   };
   return (
     <>
-      <ProfileNav user={user} navType={getNavType(type)} />
+      <SubNav user={user} navType={getNavType(type)} />
       {renderContent()}
     </>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 import { HomeContentStyled } from './HomeContent.styled';
-import HeaderSection from '@/components/Sections/GeneralSection/HeaderSection';
+import HeaderSection from '@/components/HeaderSection/HeaderSection';
 import TweetInputCard from '@/components/TweetSection/TweetInputCard';
 import { youUser } from '@/assets/data/UserData';
 function HomeContent() {

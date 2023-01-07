@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import HeaderSection from '@/components/Sections/GeneralSection/HeaderSection';
+import HeaderSection from '@/components/HeaderSection/HeaderSection';
 import { defaultTweet } from '@/assets/data/Data';
 import TweetCard from './TweetCard';
 import { TweetContentStyled } from './TweetContent.style';

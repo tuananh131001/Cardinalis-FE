@@ -8,7 +8,7 @@ import { ErrorText } from '@/components/Text/ErrorText';
 import StyledButton from '@/components/Button/Button.styled';
 import Text from '@/components/Text/Text';
 import DateInput from '@/components/Input/DateInput';
-import HeaderSection from '@/components/Sections/GeneralSection/HeaderSection';
+import HeaderSection from '@/components/HeaderSection/HeaderSection';
 import CustomizedSnackbars from '@/components/Snackbar/Snackbar';
 import { useEffect, useState } from 'react';
 import { isEmptyObject } from '@/helpers/HandleObject';

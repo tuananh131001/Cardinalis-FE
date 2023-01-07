@@ -1,6 +1,6 @@
 import React from 'react';
 import { ProfileContentStyled } from './ProfileContent.styled';
-import HeaderSection from '@/components/Sections/GeneralSection/HeaderSection';
+import HeaderSection from '@/components/HeaderSection/HeaderSection';
 import { youUser } from '@/assets/data/UserData';
 import { extractPath } from '@/helpers/HandleDisplayInfo';
 import MainInfoProfile from '@/components/ProfileSection/ProfileContent/MainInfoProfile';

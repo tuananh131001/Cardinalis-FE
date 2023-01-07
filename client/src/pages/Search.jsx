@@ -2,7 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import { FlexContainer } from '@/components/Container/Container.styled';
-import HeaderSection from '@/components/Sections/GeneralSection/HeaderSection';
+import HeaderSection from '@/components/HeaderSection/HeaderSection';
 import SearchInput from '@/components/Input/SearchInput';
 import { pageContentTemplate } from '@/helpers/PageContentDisplay';
 import { useOutletContext } from 'react-router-dom';

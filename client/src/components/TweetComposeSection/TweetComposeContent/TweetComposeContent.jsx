@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import HeaderSection from '@/components/Sections/GeneralSection/HeaderSection';
+import HeaderSection from '@/components/HeaderSection/HeaderSection';
 import TweetComposeCard from './TweetComposeCard';
 import { TweetComposeContentStyled } from './TweetContent.style';
 

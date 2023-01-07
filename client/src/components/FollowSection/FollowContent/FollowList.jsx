@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FlexContainer } from '@/components/Container/Container.styled';
-import ProfileInfoSummary from '../GeneralSection/ProfileInfoSummary';
+import ProfileInfoSummary from '@/components/Sections/GeneralSection/ProfileInfoSummary';
 import uuid from 'react-uuid';
 import FollowButton from './FollowButton';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ProfileSectionStyled } from './ProfileSection.styled';
-import MainNav from '@/components/Sections/NavSection/MainNav';
+import MainNav from '@/components/NavSection/MainNav';
 import ProfileContent from './ProfileContent/ProfileContent';
 import { useLocation } from 'react-router-dom';
 import { youUser } from '@/assets/data/UserData';

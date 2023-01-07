@@ -1,11 +1,11 @@
 import React from 'react';
 import { FollowContentStyled } from './FollowContent.styled';
-import HeaderSection from '@/components/Sections/GeneralSection/HeaderSection';
+import HeaderSection from '@/components/HeaderSection/HeaderSection';
 import { youUser } from '@/assets/data/UserData';
-import FollowList from '@/components/Sections/FollowSection/FollowList';
+import FollowList from './FollowList';
 import { defaultFollowerList, defaultFollowingList } from '@/assets/data/UserData';
 import PropTypes from 'prop-types';
-import ProfileNav from '@/components/ProfileSection/ProfileContent/ProfileNav';
+import SubNav from '@/components/NavSection/SubNav';
 
 function FollowContent({ type }) {
   const user = youUser;
@@ -18,7 +18,7 @@ function FollowContent({ type }) {
         subContent={`@${user.username}`}
         backDestination={`/${user.username}`}
       />
-      <ProfileNav user={user} navType="followNav" />
+      <SubNav user={user} navType="followNav" />
       <FollowList followList={followList} />
     </FollowContentStyled>
   );

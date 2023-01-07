@@ -1,6 +1,6 @@
 import React from 'react';
 import { FavoriteContentStyled } from './FavoriteContent.styled';
-import HeaderSection from '@/components/Sections/GeneralSection/HeaderSection';
+import HeaderSection from '@/components/HeaderSection/HeaderSection';
 import { youUser } from '@/assets/data/UserData';
 function FavoriteContent() {
   const user = youUser;

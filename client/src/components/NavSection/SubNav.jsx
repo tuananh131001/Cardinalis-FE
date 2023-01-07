@@ -1,5 +1,5 @@
 import { FlexContainer } from '@/components/Container/Container.styled';
-import { NavButtonProfile } from './ButtonProfile';
+import { NavButtonProfile } from '../ProfileSection/ProfileContent/ButtonProfile';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
   PROFILE_TWEET_PATH,
@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import { extractPath } from '@/helpers/HandleDisplayInfo';
 import Divider from '@/components/Divider/Divider';
 
-const ProfileNav = ({ user, navType = 'tweetNav', ...props }) => {
+const SubNav = ({ user, navType = 'tweetNav', ...props }) => {
   /**
    * @param {string} navType: 'tweet' or 'follow'
    */
@@ -77,9 +77,9 @@ const ProfileNav = ({ user, navType = 'tweetNav', ...props }) => {
   );
 };
 
-ProfileNav.propTypes = {
+SubNav.propTypes = {
   user: PropTypes.object,
   navType: PropTypes.string,
   props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
 };
-export default ProfileNav;
+export default SubNav;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { RegisterContentStyled } from './RegisterContent.styled';
-import AuthenNav from '@/components/Sections/NavSection/AuthenNav';
+import AuthenNav from '@/components/NavSection/AuthenNav';
 import SwitchThemeButton from '@/components/Button/SwitchThemeButton';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import {

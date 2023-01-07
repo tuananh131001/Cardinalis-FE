@@ -1,6 +1,6 @@
 import React from 'react';
 import { HomeSectionStyled } from './HomeSection.styled';
-import MainNav from '@/components/Sections/NavSection/MainNav';
+import MainNav from '@/components/NavSection/MainNav';
 import HomeContent from './HomeContent/HomeContent';
 import { useLocation } from 'react-router-dom';
 import { youUser } from '@/assets/data/UserData';
