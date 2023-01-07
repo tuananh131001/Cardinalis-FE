@@ -1,7 +1,7 @@
 export const SMALL_MOBILE_QUERY = '(max-width: 480px)';
 export const MOBILE_QUERY = '(max-width: 766px)';
 export const TABLET_QUERY = '(min-width: 766px)';
-export const DESKTOP_QUERY = '(min-width: 1040px)';
+export const DESKTOP_QUERY = '(min-width: 1024px)';
 
 export const FORGOT_PASSWORD_PATH = 'forgot-password';
 export const LOGIN_PATH = '';
@@ -11,6 +11,7 @@ export const EXPLORE_PATH = 'explore';
 export const BOOKMARK_PATH = 'bookmarks';
 export const COMPOSE_PATH = 'tweet_compose';
 export const SEARCH_PATH = 'search';
+export const TWEET_COMPOSE_PATH = 'compose/tweet';
 
 // inside Profile
 export const PROFILE_TWEET_PATH = '';

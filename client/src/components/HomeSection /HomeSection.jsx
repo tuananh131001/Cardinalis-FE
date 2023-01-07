@@ -1,11 +1,11 @@
 import React from 'react';
 import { HomeSectionStyled } from './HomeSection.styled';
-import MainNav from '@/components/Sections/NavSection/MainNav';
+import MainNav from '@/components/NavSection/MainHome/MainNav';
 import HomeContent from './HomeContent/HomeContent';
 import { useLocation } from 'react-router-dom';
-import { youUser } from '@/assets/data/UserData';
 import { extractPath } from '@/helpers/HandleDisplayInfo';
 import { useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import SearchSection from '@/components/SearchSection/SearchSection';
 // import { useMemo } from 'react';
 import {
@@ -23,15 +23,15 @@ function HomeSection() {
     tablet: useMediaQuery(TABLET_QUERY),
     desktop: useMediaQuery(DESKTOP_QUERY)
   };
-  const user = youUser;
   const location = useLocation();
+  const { user } = useSelector((state) => state.user);
   const { currentTab } = useMemo(() => {
     const currentTab = extractPath(location.pathname, mainPathRegex);
     return { currentTab };
   }, [location, responsiveCondition]);
   return (
     <HomeSectionStyled>
-      <MainNav user={user} location={location} currentTab={currentTab} />
+      <MainNav user={user} currentTab={currentTab} />
       <HomeContent />
       <SearchSection />
     </HomeSectionStyled>

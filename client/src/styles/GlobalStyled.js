@@ -25,6 +25,9 @@ box-sizing:border-box;
   /* input color */
   --input_background_light:#EDEDEE;
   --input_color_border: #626577;
+  --input_home_background_light: #F2F2F2;
+  --input_home_color_light: #0F1419;
+  --input_home_border_light: #DC6C14;
 
   /* button color */
   /* primary button */
@@ -61,13 +64,15 @@ box-sizing:border-box;
   --warning_button_border_light: #C61124;
   --warning_button_background_hover_light: transparent;
 
-
   // Pseudo
   --primary_pseudo_background_light: var(--background-color_light);
   --primary_pseudo_shadow_light: rgba(203, 200, 198, 0.7);
   /* --primary_pseudo_background_light: #0F1419; */
 
   --card_background_light:#FEFAF7;
+
+  /* divider */
+  --divider_color_light: #eff3f4;
   /* --------------------- End Light theme --------------------- */
 
   /* --------------------- Dark theme --------------------- */
@@ -86,6 +91,9 @@ box-sizing:border-box;
   /* input color */
   --input_background_dark: #3A3841;
   --input_color_border_dark: #DC6C14;
+  --input_home_background_dark: #212327;
+  --input_home_color_dark: #F7F9FF;
+  --input_home_border_dark: #DC6C14;
   
   /* button */
   /* primary button */
@@ -128,6 +136,9 @@ box-sizing:border-box;
   --primary_pseudo_shadow_dark: rgba(53,50,53,0.7);
 
   --card_background_dark:#3B353B;  
+
+  /* divider */
+  --divider_color_dark: #2f3336;
   /* --------------------- End Dark theme --------------------- */
 
   --font-family: 'Open Sans';

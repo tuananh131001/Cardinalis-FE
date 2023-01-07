@@ -8,11 +8,11 @@ import { ErrorText } from '@/components/Text/ErrorText';
 import StyledButton from '@/components/Button/Button.styled';
 import Text from '@/components/Text/Text';
 import DateInput from '@/components/Input/DateInput';
-import ImageProfile from '@/components/Sections/ProfileSection/ImageProfile';
-import HeaderSection from '@/components/Sections/GeneralSection/HeaderSection';
+import HeaderSection from '@/components/HeaderSection/HeaderSection';
 import CustomizedSnackbars from '@/components/Snackbar/Snackbar';
 import { useEffect, useState } from 'react';
 import { isEmptyObject } from '@/helpers/HandleObject';
+import ImageProfile from '@/components/ProfileSection/ProfileContent/ImageProfile';
 
 const errorPadding = '0 0 1em 0.2em';
 const bckHeight = '15em';
@@ -30,7 +30,6 @@ function UpdateProfileForm({ user, closeAction, ...props }) {
     name: user.name,
     bio: user.bio ?? null,
     location: user.location ?? null,
-    website: user.website ?? null,
     dob: user.dob ?? null // if user.dob is null, set default value to null
   };
 
@@ -80,9 +79,9 @@ function UpdateProfileForm({ user, closeAction, ...props }) {
       <HeaderSection
         content="Update Profile"
         isFixedPosition={true}
-        isDisplayTheme={false}
-        haveBackButton={false}
-        haveCloseButton={true}
+        leftType="close"
+        rightType="none"
+        backgroundStyle={2}
         onClick={(data) => onSubmitClick(data, true)}
         zIndex={2}
       />
@@ -129,17 +128,6 @@ function UpdateProfileForm({ user, closeAction, ...props }) {
         {...register('location')}
       />
       <ErrorText errors={errors.location?.message} padding={errorPadding} />
-
-      {/* Website */}
-      <ProfileUpdateLabel text="Website" htmlFor="updateProfileWebsite" />
-      <Input
-        id="updateProfileWebsite"
-        inputType="text"
-        inputThemeName={textThemeName}
-        placeholder="Website"
-        {...register('website')}
-      />
-      <ErrorText errors={errors.website?.message} padding={errorPadding} />
 
       {/* Date of Birth */}
       <DateInput inputThemeName={textThemeName} name="dob" control={control} />

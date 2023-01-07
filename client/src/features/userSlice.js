@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { PURGE } from 'redux-persist';
 
 // Declare the initial value for item
 const initialState = {
@@ -43,6 +44,9 @@ const userSlice = createSlice({
       state.user.location = action.payload.location;
       state.user.is_hot_user = action.payload.is_hot_user;
     }
+  },
+  extraReducers: {
+    [PURGE]: () => initialState
   }
 });
 

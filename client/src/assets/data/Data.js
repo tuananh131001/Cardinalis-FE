@@ -5,7 +5,7 @@ export const defaultTweet = {
   content:
     'This is a tweet lobortis nisl ut aliquip ex ea commodo consequat http://www.youtube.com/watch?v=ZCEiAf-k-sg . \
   Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est https://www.youtube.com/watch?v=fqIyy2e2I04 laborum.',
-  createdAt: '2022-12-30T21:33:45.249967',
+  createdAt: '2023-01-05T18:20:07.145077',
   isFavorited: false,
   isRetweeted: true,
   isPinned: true,
@@ -15,7 +15,7 @@ export const defaultTweet = {
 };
 export const defaultTweet2 = {
   id: 2,
-  username: 'anya__folger',
+  username: 'huyne103',
   content: 'Second testing tweet of Anya chwannn',
   createdAt: '2022-12-30T21:33:45.249967',
   isFavorited: false,
@@ -27,7 +27,7 @@ export const defaultTweet2 = {
 };
 export const defaultTweet3 = {
   id: 3,
-  username: 'Matsuri',
+  username: 'huyne106',
   content: 'Testing tweet of Matsuri.',
   createdAt: '2022-12-30T21:33:45.249967',
   isFavorited: false,
@@ -39,7 +39,7 @@ export const defaultTweet3 = {
 };
 export const defaultTweet4 = {
   id: 4,
-  username: 'Matsuri',
+  username: 'huyne105',
   content: 'Testing tweet 4 of Matsuri. Itsudatte no monogatari no',
   createdAt: '2021-12-30T21:33:45.249967',
   isFavorited: false,
@@ -51,7 +51,7 @@ export const defaultTweet4 = {
 };
 export const defaultTweet5 = {
   id: 5,
-  username: 'Matsuri',
+  username: 'nhung',
   content: 'Testing tweet 5 of Matsuri. Sekai wa kimi no koto wo suki ni natte iru',
   createdAt: '2021-01-02T21:33:45.249967',
   isFavorited: false,

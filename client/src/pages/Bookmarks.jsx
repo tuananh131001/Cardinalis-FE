@@ -1,8 +1,7 @@
-import { BOOKMARK_PATH } from '@/assets/Constant';
-import MainNav from '@/components/Sections/NavSection/MainNav';
+import FavoriteSection from '@/components/FavoriteSection/FavoriteSection';
 
 const Bookmarks = () => {
-  return <div>Bookmarks</div>;
+  return <FavoriteSection />;
 };
 
 export default Bookmarks;

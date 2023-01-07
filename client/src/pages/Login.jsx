@@ -1,6 +1,7 @@
 // import { login } from '@/features/userSlice';
-import LoginForm from '@/components/Form/LoginForm';
 // import { useDispatch } from 'react-redux';
+
+import LoginSection from '@/components/LoginSection/LoginSection';
 
 function Login() {
   // const dispatch = useDispatch();
@@ -8,11 +9,7 @@ function Login() {
   //   dispatch(login(user));
   // };
 
-  return (
-    <>
-      <LoginForm gridArea="form" />
-    </>
-  );
+  return <LoginSection></LoginSection>;
 }
 
 export default Login;
