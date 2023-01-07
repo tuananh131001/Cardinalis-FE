@@ -71,8 +71,9 @@ const lightTheme = {
   },
   // Input
   homeInput: {
-    backgroundColor: 'var(--input_background_light)',
-    color: 'var(--subtext_color_light)'
+    backgroundColor: 'var(--input_home_background_light)',
+    color: 'var(--input_home_color_light)',
+    borderColor: 'var(--input_home_border_light)'
   },
   loginInput: {
     color: 'var(--subtext_color_light)',
@@ -163,8 +164,9 @@ const darkTheme = {
   },
   // Input
   homeInput: {
-    backgroundColor: 'var(--input_background_dark)',
-    color: 'var(--subtext_color_dark)'
+    backgroundColor: 'var(--input_home_background_dark)',
+    color: 'var(--input_home_color_dark)',
+    borderColor: 'var(--input_home_border_dark)'
   },
   loginInput: {
     color: 'var(--subtext_color_dark)',

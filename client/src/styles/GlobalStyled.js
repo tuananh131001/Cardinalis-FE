@@ -25,6 +25,9 @@ box-sizing:border-box;
   /* input color */
   --input_background_light:#EDEDEE;
   --input_color_border: #626577;
+  --input_home_background_light: #F2F2F2;
+  --input_home_color_light: #0F1419;
+  --input_home_border_light: #DC6C14;
 
   /* button color */
   /* primary button */
@@ -88,6 +91,9 @@ box-sizing:border-box;
   /* input color */
   --input_background_dark: #3A3841;
   --input_color_border_dark: #DC6C14;
+  --input_home_background_dark: #212327;
+  --input_home_color_dark: #F7F9FF;
+  --input_home_border_dark: #DC6C14;
   
   /* button */
   /* primary button */

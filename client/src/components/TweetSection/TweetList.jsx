@@ -13,7 +13,7 @@ function TweetList({ tweetList = defaultTweetList }) {
     navigate(`/${tweet.username}/status/${tweet.id}`);
   };
   return (
-    <FlexContainer fd="column" padding="2em 0" gap="2em">
+    <FlexContainer fd="column" padding="1em 0 2em" gap="2em">
       {tweetList.map((tweet) => (
         <TweetCard key={uuid()} tweet={tweet} onClick={(event) => onClick(event, tweet)} />
         // <FlexContainer fd="column" key={uuid()}>

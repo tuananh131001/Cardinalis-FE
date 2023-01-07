@@ -30,9 +30,17 @@ export const MainNavContentStyled = styled.div`
     border-radius: 30%/110%;
     align-self: center;
   }
+  & > :last-child {
+    margin-top: auto;
+    padding-bottom: 1em;
+  }
   @media screen and (max-width: 1024px) {
     align-items: center;
-    & > button {
+    & > :last-child {
+      justify-content: center;
+    }
+    & > button,
+    & > :last-child button {
       align-self: center;
       justify-self: center;
     }
@@ -42,7 +50,8 @@ export const MainNavContentStyled = styled.div`
     }
   }
   @media screen and (max-width: 768px) {
-    & > button {
+    & > button,
+    & > :last-child button {
       padding: 0;
       aspect-ratio: 1/1;
       border-radius: 50%;

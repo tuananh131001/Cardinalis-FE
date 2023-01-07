@@ -12,6 +12,7 @@ export const defaultUser = {
   website: 'https://github.com/Puppychan',
   createdAt: '2021-11-02T21:33:45.249967',
   isYou: true,
+  isHotUser: true,
   tweets: 1 // defaultTweetList
 };
 export const defaultUser2 = {
@@ -26,7 +27,8 @@ export const defaultUser2 = {
   following: 4,
   createdAt: '2022-11-02T21:33:45.249967',
   isYou: false,
-  isFollowing: false
+  isFollowing: false,
+  isHotUser: true
 };
 export const defaultUser3 = {
   name: 'Huhu',
