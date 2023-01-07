@@ -49,6 +49,35 @@ export const HeaderSectionStyled = styled.div`
             -webkit-backdrop-filter: blur(10px) brightness(120%);
           }
         `;
+      case 2:
+        return css`
+          padding: 1.2em var(--horizontal-spaces);
+          box-shadow: 3px 2px 5px 2px ${({ theme }) => theme.primaryPseudo.boxShadow};
+          -webkit-box-shadow: 3px 2px 5px 2px ${({ theme }) => theme.primaryPseudo.boxShadow};
+          -moz-box-shadow: 3px 2px 5px 2px ${({ theme }) => theme.primaryPseudo.boxShadow};
+          /* shape */
+          border-bottom-left-radius: 3px;
+          border-bottom-right-radius: 3px;
+          &::after {
+            content: '';
+            /* position */
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            /* shape */
+            width: 100%;
+            height: 100%;
+            border-bottom-left-radius: 3px;
+            border-bottom-right-radius: 3px;
+            /* style */
+            background-color: ${({ theme }) => theme.primaryPseudo.backgroundColor};
+            opacity: 0.9;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px) brightness(120%);
+          }
+        `;
     }
   }}
   & button {

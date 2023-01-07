@@ -21,7 +21,6 @@ import useMediaQuery from '@/hooks/useMediaQuery';
 import { MainNavContentStyled } from './MainNavContent.styled';
 import { useChange } from '@/hooks/useChange';
 import TweetComposeModal from '@/components/TweetComposeSection/TweetComposeContent/TweetComposeModal';
-import UserCardInfo from '@/components/UserCard/UserCardContent/UserCardInfo';
 import { youUser } from '@/assets/data/UserData';
 import UserCardSection from '@/components/UserCard/UserCardSection';
 import LogoutButton from '@/components/Button/LogoutButton';

@@ -17,7 +17,6 @@ import { ThemeContext } from '@/hooks/ThemeContextProvider';
 import ProtectedRoutes from '@/routes/ProtectedRoutes';
 import { AnimatePresence } from 'framer-motion';
 import {
-  COMPOSE_PATH,
   PROFILE_TWEET_PATH,
   PROFILE_REPLIES_PATH,
   PROFILE_MEDIA_PATH,
@@ -26,7 +25,6 @@ import {
   LOGIN_PATH,
   REGISTER_PATH
 } from '@/assets/Constant';
-import TweetCompose from '@/pages/TweetCompose';
 import Search from '@/pages/Search';
 import Follow from '@/pages/Follow';
 import Tweet from '@/pages/Tweet';
@@ -73,15 +71,7 @@ function App() {
               }
             />
             <Route
-              path={`/${COMPOSE_PATH}`}
-              element={
-                <ProtectedRoutes>
-                  <TweetCompose isModal={false} />
-                </ProtectedRoutes>
-              }
-            />
-            <Route
-              path="/search/:keyword"
+              path="/search/"
               element={
                 <ProtectedRoutes>
                   <Search />
@@ -89,18 +79,29 @@ function App() {
               }
             />
             <Route
+              path={`/:username${PROFILE_TWEET_PATH}`}
               element={
                 <ProtectedRoutes>
-                  <Profile />
+                  <Profile type="tweets" />
                 </ProtectedRoutes>
-              }>
-              <Route path={`/:username${PROFILE_TWEET_PATH}`} element={<Profile type="tweets" />} />
-              <Route
-                path={`/:username${PROFILE_REPLIES_PATH}`}
-                element={<Profile type="tweetsAndReplies" />}
-              />
-              <Route path={`/:username${PROFILE_MEDIA_PATH}`} element={<Profile type="media" />} />
-            </Route>
+              }
+            />
+            <Route
+              path={`/:username${PROFILE_REPLIES_PATH}`}
+              element={
+                <ProtectedRoutes>
+                  <Profile type="tweetsAndReplies" />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path={`/:username${PROFILE_MEDIA_PATH}`}
+              element={
+                <ProtectedRoutes>
+                  <Profile type="media" />
+                </ProtectedRoutes>
+              }
+            />
             <Route
               path={`/:username${PROFILE_FOLLOWERS_PATH}`}
               element={

@@ -30,7 +30,6 @@ function UpdateProfileForm({ user, closeAction, ...props }) {
     name: user.name,
     bio: user.bio ?? null,
     location: user.location ?? null,
-    website: user.website ?? null,
     dob: user.dob ?? null // if user.dob is null, set default value to null
   };
 
@@ -80,8 +79,9 @@ function UpdateProfileForm({ user, closeAction, ...props }) {
       <HeaderSection
         content="Update Profile"
         isFixedPosition={true}
-        leftType="back"
+        leftType="close"
         rightType="none"
+        backgroundStyle={2}
         onClick={(data) => onSubmitClick(data, true)}
         zIndex={2}
       />
@@ -128,17 +128,6 @@ function UpdateProfileForm({ user, closeAction, ...props }) {
         {...register('location')}
       />
       <ErrorText errors={errors.location?.message} padding={errorPadding} />
-
-      {/* Website */}
-      <ProfileUpdateLabel text="Website" htmlFor="updateProfileWebsite" />
-      <Input
-        id="updateProfileWebsite"
-        inputType="text"
-        inputThemeName={textThemeName}
-        placeholder="Website"
-        {...register('website')}
-      />
-      <ErrorText errors={errors.website?.message} padding={errorPadding} />
 
       {/* Date of Birth */}
       <DateInput inputThemeName={textThemeName} name="dob" control={control} />
