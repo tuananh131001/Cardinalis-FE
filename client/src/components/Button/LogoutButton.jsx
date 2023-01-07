@@ -3,12 +3,18 @@ import PropTypes from 'prop-types';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import { MOBILE_QUERY } from '@/assets/Constant';
 import { MdLogout } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
+import { logout } from '@/features/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 function LogoutButton({ ...props }) {
   const isMobile = useMediaQuery(MOBILE_QUERY);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const onClick = (event) => {
     event.stopPropagation();
-    console.log('logout');
+    dispatch(logout());
+    navigate('/', { replace: true });
   };
   return (
     <Button

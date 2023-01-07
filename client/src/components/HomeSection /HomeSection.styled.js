@@ -6,6 +6,7 @@ export const HomeSectionStyled = styled(motion.div)`
   margin: 0 auto;
   padding: 1em 4em;
   min-height: 100vh;
+  gap: 2.5em;
   & > :first-child {
     flex: 1;
     padding: 0.7em 0;
@@ -24,6 +25,7 @@ export const HomeSectionStyled = styled(motion.div)`
   }
   @media (max-width: 768px) {
     padding: 1em 0.4em;
+    gap: 0.5em;
     & > :last-child {
       display: none;
     }
