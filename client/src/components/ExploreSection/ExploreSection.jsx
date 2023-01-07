@@ -1,6 +1,6 @@
 import React from 'react';
 import { ExploreSectionStyled } from './ExploreSection.styled';
-import MainNav from '@/components/NavSection/MainNav';
+import MainNav from '@/components/NavSection/MainHome/MainNav';
 import ExploreContent from './ExploreContent/ExploreContent';
 import { useLocation } from 'react-router-dom';
 import { youUser } from '@/assets/data/UserData';

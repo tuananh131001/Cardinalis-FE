@@ -1,6 +1,6 @@
 import React from 'react';
 import { RegisterContentStyled } from './RegisterContent.styled';
-import AuthenNav from '@/components/NavSection/AuthenNav';
+import LoginRegisterNav from '@/components/NavSection/LoginRegister/LoginRegisterNav';
 import SwitchThemeButton from '@/components/Button/SwitchThemeButton';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import {
@@ -24,7 +24,7 @@ function RegisterContent({ ...props }) {
 
   return (
     <RegisterContentStyled {...props}>
-      <AuthenNav gridArea="nav" currentTab={REGISTER_PATH} />
+      <LoginRegisterNav gridArea="nav" currentTab={REGISTER_PATH} />
       <RegisterImage gridArea="image" />
       <SwitchThemeButton gridArea="theme" />
       <RegisterText gridArea="text" responsiveCondition={responsiveCondition} />

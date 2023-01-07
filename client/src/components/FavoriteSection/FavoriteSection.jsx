@@ -1,6 +1,6 @@
 import React from 'react';
 import { FavoriteSectionStyled } from './FavoriteSection.styled';
-import MainNav from '@/components/NavSection/MainNav';
+import MainNav from '@/components/NavSection/MainHome/MainNav';
 import FavoriteContent from './FavoriteContent/FavoriteContent';
 import { useLocation } from 'react-router-dom';
 import { youUser } from '@/assets/data/UserData';

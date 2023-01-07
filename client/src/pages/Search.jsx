@@ -13,12 +13,7 @@ const Search = ({ ...props }) => {
   const { theme, themeToggler } = useOutletContext();
   return (
     <FlexContainer {...pageContentTemplate} {...props}>
-      <HeaderSection
-        content={<SearchInput />}
-        isDisplayTheme={true}
-        theme={theme}
-        themeToggler={themeToggler}
-      />
+      <HeaderSection content={<SearchInput />} leftType="back" />
       {/* List search here */}
     </FlexContainer>
   );

@@ -17,6 +17,7 @@ function FollowContent({ type }) {
         content="Follow"
         subContent={`@${user.username}`}
         backDestination={`/${user.username}`}
+        leftType="back"
       />
       <SubNav user={user} navType="followNav" />
       <FollowList followList={followList} />

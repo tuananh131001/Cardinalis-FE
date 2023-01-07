@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const MainNavStyled = styled.div`
+export const MainNavContentStyled = styled.div`
   /* fd="column"
       ai="flex-start"
       jc="flex-start"

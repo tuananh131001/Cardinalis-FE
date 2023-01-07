@@ -11,13 +11,14 @@ import {
   BOOKMARK_PATH,
   PROFILE_TWEET_PATH,
   SEARCH_PATH,
-  TWEET_COMPOSE_PATH
+  TWEET_COMPOSE_PATH,
+  MOBILE_QUERY
 } from '@/assets/Constant';
 import Button from '@/components/Button/Button';
 import { extractPath } from '@/helpers/HandleDisplayInfo';
 import { mainPathRegex } from '@/assets/Constant';
 import useMediaQuery from '@/hooks/useMediaQuery';
-import { MainNavStyled } from './Nav.styled';
+import { MainNavContentStyled } from './MainNavContent.styled';
 import { useChange } from '@/hooks/useChange';
 import TweetComposeModal from '@/components/TweetComposeSection/TweetComposeContent/TweetComposeModal';
 
@@ -49,10 +50,11 @@ const displayCurrentTab = (tabCompare, currentTab, type) => {
   }
 };
 
-const MainNav = ({ user, theme, currentTab, ...props }) => {
+const MainNavContent = ({ user, currentTab, ...props }) => {
   const navigate = useNavigate();
   const responsiveCondition = {
-    desktop: useMediaQuery('(min-width: 1134px)')
+    desktop: useMediaQuery('(min-width: 1134px)'),
+    mobile: useMediaQuery(MOBILE_QUERY)
   };
   const { value: isOpenTweet, onSetTrue: openTweet, onSetFalse: closeTweet } = useChange(false);
   const findNavigateButtonProps = (tabCompare, currentTab, navigate) => {
@@ -67,19 +69,21 @@ const MainNav = ({ user, theme, currentTab, ...props }) => {
     };
   };
   return (
-    <MainNavStyled {...props}>
+    <MainNavContentStyled {...props}>
       {/* Nav Image */}
-      <NavImage theme={theme} />
+      <NavImage />
 
       {/* Navigate button */}
       <NavButton
         {...findNavigateButtonProps(HOME_PATH, currentTab, navigate)}
         text={responsiveCondition?.desktop ? 'Home' : ''}
       />
-      <NavButton
-        {...findNavigateButtonProps(SEARCH_PATH, currentTab, navigate)}
-        text={responsiveCondition?.desktop ? 'Search' : ''}
-      />
+      {!responsiveCondition?.desktop && (
+        <NavButton
+          {...findNavigateButtonProps(SEARCH_PATH, currentTab, navigate)}
+          text={responsiveCondition?.desktop ? 'Search' : ''}
+        />
+      )}
       <NavButton
         {...findNavigateButtonProps(EXPLORE_PATH, currentTab, navigate)}
         text={responsiveCondition?.desktop ? 'Explore' : ''}
@@ -97,7 +101,6 @@ const MainNav = ({ user, theme, currentTab, ...props }) => {
         buttonThemeName="primaryButton"
         className="tweet-button"
         onClick={() => {
-          // navigate(`/${COMPOSE_PATH}`, { state: { background: location } });
           if (responsiveCondition?.desktop) {
             openTweet();
           } else {
@@ -111,11 +114,11 @@ const MainNav = ({ user, theme, currentTab, ...props }) => {
       <TweetComposeModal isOpen={isOpenTweet} handleCloseModal={closeTweet} />
 
       {/* Profile section display */}
-    </MainNavStyled>
+    </MainNavContentStyled>
   );
 };
 
-MainNav.propTypes = {
+MainNavContent.propTypes = {
   user: PropTypes.object,
   theme: PropTypes.string,
   openModal: PropTypes.func,
@@ -124,4 +127,4 @@ MainNav.propTypes = {
   props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number]))
 };
 
-export default MainNav;
+export default MainNavContent;

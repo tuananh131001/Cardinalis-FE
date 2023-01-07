@@ -10,7 +10,7 @@ const displayCurrentTab = (tabCompare, currentTab) => {
     transform: tabCompare == currentTab ? 'scale(1.01)' : 'scale(1)'
   };
 };
-function AuthenNav({ currentTab = 'register', ...props }) {
+function LoginRegisterNav({ currentTab = 'register', ...props }) {
   const navigate = useNavigate();
   return (
     <FlexContainer {...props} className="nav-container">
@@ -34,9 +34,9 @@ function AuthenNav({ currentTab = 'register', ...props }) {
   );
 }
 
-AuthenNav.propTypes = {
+LoginRegisterNav.propTypes = {
   currentTab: PropTypes.string,
   responsiveCondition: PropTypes.object,
   props: PropTypes.arrayOf(PropTypes.string, PropTypes.number)
 };
-export default AuthenNav;
+export default LoginRegisterNav;

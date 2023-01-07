@@ -9,8 +9,6 @@ import HeaderContentCenter from './HeaderContent/HeaderContentCenter';
 import HeaderContentRight from './HeaderContent/HeaderContentRight';
 
 const HeaderSection = ({
-  user = user,
-  currentTab = 'home',
   backDestination = -1,
   content = 'hello',
   subContent = null,
@@ -49,8 +47,6 @@ const HeaderSection = ({
       zIndex={zIndex}
       pseudoAfter={isScrolling || isFixedPosition ? backgroundStyle : 0}>
       <HeaderContentLeft
-        user={user}
-        currentTab={currentTab}
         type={leftType}
         backDestination={backDestination}
         onClickClose={onClickClose}

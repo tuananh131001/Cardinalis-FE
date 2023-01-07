@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { FollowSectionStyled } from './FollowSection.styled';
-import MainNav from '@/components/NavSection/MainNav';
+import MainNav from '@/components/NavSection/MainHome/MainNav';
 import { useLocation } from 'react-router-dom';
 import { youUser } from '@/assets/data/UserData';
 import SearchSection from '@/components/SearchSection/SearchSection';

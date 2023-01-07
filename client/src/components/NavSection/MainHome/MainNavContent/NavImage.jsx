@@ -1,9 +1,11 @@
 // https://bobbyhadz.com/blog/react-import-image
 import Image from '@/components/Image/Image';
-import PropTypes from 'prop-types';
 import Icon from '@/assets/images/icon.png';
+import { ThemeContext } from '@/hooks/ThemeContextProvider';
+import { useContext } from 'react';
 
-const NavImage = ({ theme }) => {
+const NavImage = () => {
+  const { theme } = useContext(ThemeContext);
   return (
     <Image
       className="nav-image"
@@ -14,10 +16,6 @@ const NavImage = ({ theme }) => {
       alignSelf="flex-start"
     />
   );
-};
-
-NavImage.propTypes = {
-  theme: PropTypes.string
 };
 
 export default NavImage;

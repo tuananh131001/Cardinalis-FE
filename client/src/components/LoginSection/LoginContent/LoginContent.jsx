@@ -1,6 +1,6 @@
 import React from 'react';
 import { LoginContentStyled } from './LoginContent.styled';
-import AuthenNav from '@/components/NavSection/AuthenNav';
+import LoginRegisterNav from '@/components/NavSection/LoginRegister/LoginRegisterNav';
 import SwitchThemeButton from '@/components/Button/SwitchThemeButton';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import {
@@ -24,7 +24,7 @@ function LoginContent({ ...props }) {
 
   return (
     <LoginContentStyled {...props}>
-      <AuthenNav gridArea="nav" currentTab={LOGIN_PATH} />
+      <LoginRegisterNav gridArea="nav" currentTab={LOGIN_PATH} />
       <LoginImage gridArea="image" />
       <SwitchThemeButton gridArea="theme" />
       <LoginText gridArea="text" responsiveCondition={responsiveCondition} />

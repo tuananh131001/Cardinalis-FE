@@ -7,7 +7,7 @@ import { TweetComposeContentStyled } from './TweetContent.style';
 const TweetComposeContent = ({ ...props }) => {
   return (
     <TweetComposeContentStyled {...props}>
-      <HeaderSection content="Tweet Compose" />
+      <HeaderSection content="Tweet Compose" leftType="back" />
       <TweetComposeCard isDisableHover={true} />
     </TweetComposeContentStyled>
   );

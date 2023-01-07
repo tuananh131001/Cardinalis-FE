@@ -10,7 +10,7 @@ const TweetContent = ({ ...props }) => {
   const tweet = defaultTweet;
   return (
     <TweetContentStyled {...props}>
-      <HeaderSection content="Tweet" />
+      <HeaderSection content="Tweet" leftType="back" />
       <TweetCard tweet={tweet} isDisableHover={true} />
       <TweetComposeCard />
       {/* Tweet Reply */}

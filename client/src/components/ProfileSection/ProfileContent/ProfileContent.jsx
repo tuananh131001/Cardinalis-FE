@@ -30,7 +30,7 @@ function ProfileContent({ pageSubType }) {
       <HeaderSection
         content={user.username}
         subContent={displayCountNumber(user.numTweets, 'Tweet')}
-        haveBackButton={true}
+        leftType="back"
         backDestination={defineBackDestination(location, user)}
       />
       {!(location == PROFILE_FOLLOWERS_PATH || location == PROFILE_FOLLOWING_PATH) && (
