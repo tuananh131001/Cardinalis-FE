@@ -19,7 +19,7 @@ function TweetSection() {
 
   return (
     <TweetSectionStyled>
-      <MainNav user={user} location={location} currentTab={currentTab} />
+      <MainNav user={user} currentTab={currentTab} />
       <TweetContent />
       <SearchSection />
     </TweetSectionStyled>

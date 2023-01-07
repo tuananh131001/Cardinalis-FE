@@ -26,7 +26,8 @@ import {
   PROFILE_FOLLOWERS_PATH,
   PROFILE_FOLLOWING_PATH,
   LOGIN_PATH,
-  REGISTER_PATH
+  REGISTER_PATH,
+  TWEET_COMPOSE_PATH
 } from '@/assets/Constant';
 import TweetCompose from '@/pages/TweetCompose';
 import Search from '@/pages/Search';
@@ -58,7 +59,10 @@ function App() {
             <Route path="/explore" element={<Explore />} />
             <Route path="/bookmarks" element={<Bookmarks />} />
             <Route path={`/${COMPOSE_PATH}`} element={<TweetCompose isModal={false} />} />
+            {/* Search */}
             <Route path="/search/:keyword" element={<Search />} />
+            {/* Input */}
+            <Route path={`/${TWEET_COMPOSE_PATH}`} element={<TweetCompose />} />
             {/* Profile */}
             <Route path={`/:username${PROFILE_TWEET_PATH}`} element={<Profile type="tweets" />} />
             <Route

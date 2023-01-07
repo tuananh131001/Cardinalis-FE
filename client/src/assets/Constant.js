@@ -11,6 +11,7 @@ export const EXPLORE_PATH = 'explore';
 export const BOOKMARK_PATH = 'bookmarks';
 export const COMPOSE_PATH = 'tweet_compose';
 export const SEARCH_PATH = 'search';
+export const TWEET_COMPOSE_PATH = 'compose/tweet';
 
 // inside Profile
 export const PROFILE_TWEET_PATH = '';

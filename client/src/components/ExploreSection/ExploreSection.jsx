@@ -31,7 +31,7 @@ function ExploreSection() {
   }, [location, responsiveCondition]);
   return (
     <ExploreSectionStyled>
-      <MainNav user={user} location={location} currentTab={currentTab} />
+      <MainNav user={user} currentTab={currentTab} />
       <ExploreContent />
       <SearchSection />
     </ExploreSectionStyled>

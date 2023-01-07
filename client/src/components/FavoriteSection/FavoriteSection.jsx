@@ -31,7 +31,7 @@ function FavoriteSection() {
   }, [location, responsiveCondition]);
   return (
     <FavoriteSectionStyled>
-      <MainNav user={user} location={location} currentTab={currentTab} />
+      <MainNav user={user} currentTab={currentTab} />
       <FavoriteContent />
       <SearchSection />
     </FavoriteSectionStyled>

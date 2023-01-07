@@ -20,7 +20,7 @@ function FollowSection({ type }) {
 
   return (
     <FollowSectionStyled>
-      <MainNav user={user} location={location} currentTab={currentTab} />
+      <MainNav user={user} currentTab={currentTab} />
       <FollowContent type={type} />
       <SearchSection />
     </FollowSectionStyled>

@@ -13,7 +13,6 @@ const NavButton = ({
   return (
     <Button
       buttonType="link"
-      jc="flex-start"
       textTransform="capitalize"
       gap="1em"
       buttonThemeName={buttonThemeName}

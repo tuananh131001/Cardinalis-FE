@@ -2,11 +2,13 @@
 
 import { FlexContainer } from '@/components/Container/Container.styled';
 import Button from '@/components/Button/Button';
-import { FaRegComment, FaRegHeart } from 'react-icons/fa';
+import { FaRegComment, FaRegHeart, FaHeart } from 'react-icons/fa';
 import { AiOutlineRetweet } from 'react-icons/ai';
 import PropTypes from 'prop-types';
 import Text from '@/components/Text/Text';
 import { displayCountNumber } from '@/helpers/HandleDisplayInfo';
+import { useChange } from '@/hooks/useChange';
+import TweetComposeModal from '@/components/TweetComposeSection/TweetComposeContent/TweetComposeModal';
 
 const TweetButtonSection = ({
   isActive = false,
@@ -41,14 +43,20 @@ const TweetButtonSection = ({
   );
 };
 export const TweetButtons = ({ tweet, ...props }) => {
+  const { value: isOpenTweet, onSetTrue: openTweet, onSetFalse: closeTweet } = useChange(false);
+  const onCloseTweet = (event) => {
+    closeTweet(event);
+  };
   const onClick = (event, type) => {
     event.stopPropagation();
     switch (type) {
       case 'comment':
         console.log('comment');
+        openTweet();
         break;
       case 'retweet':
         console.log('retweet');
+        openTweet();
         break;
       case 'favorite':
         console.log('favorite');
@@ -71,11 +79,12 @@ export const TweetButtons = ({ tweet, ...props }) => {
       />
       <TweetButtonSection
         themeName="favoriteButton"
-        icon={<FaRegHeart />}
+        icon={tweet.isFavorited ? <FaHeart /> : <FaRegHeart />}
         count={displayCountNumber(tweet.numFavorites)}
         onClick={(event) => onClick(event, 'favorite')}
         isActive={tweet.isFavorited}
       />
+      <TweetComposeModal isOpen={isOpenTweet} onClose={onCloseTweet} />
     </FlexContainer>
   );
 };

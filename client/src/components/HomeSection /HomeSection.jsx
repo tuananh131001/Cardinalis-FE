@@ -31,7 +31,7 @@ function HomeSection() {
   }, [location, responsiveCondition]);
   return (
     <HomeSectionStyled>
-      <MainNav user={user} location={location} currentTab={currentTab} />
+      <MainNav user={user} currentTab={currentTab} />
       <HomeContent />
       <SearchSection />
     </HomeSectionStyled>

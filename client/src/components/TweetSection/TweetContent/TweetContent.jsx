@@ -4,6 +4,7 @@ import HeaderSection from '@/components/Sections/GeneralSection/HeaderSection';
 import { defaultTweet } from '@/assets/data/Data';
 import TweetCard from './TweetCard';
 import { TweetContentStyled } from './TweetContent.style';
+import TweetComposeCard from '@/components/TweetComposeSection/TweetComposeContent/TweetComposeCard';
 
 const TweetContent = ({ ...props }) => {
   const tweet = defaultTweet;
@@ -11,6 +12,8 @@ const TweetContent = ({ ...props }) => {
     <TweetContentStyled {...props}>
       <HeaderSection content="Tweet" />
       <TweetCard tweet={tweet} isDisableHover={true} />
+      <TweetComposeCard />
+      {/* Tweet Reply */}
     </TweetContentStyled>
   );
 };

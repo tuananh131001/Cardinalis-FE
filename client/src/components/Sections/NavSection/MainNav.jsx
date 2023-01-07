@@ -11,15 +11,16 @@ import {
   BOOKMARK_PATH,
   PROFILE_TWEET_PATH,
   SEARCH_PATH,
-  COMPOSE_PATH
+  TWEET_COMPOSE_PATH
 } from '@/assets/Constant';
 import Button from '@/components/Button/Button';
 import { extractPath } from '@/helpers/HandleDisplayInfo';
 import { mainPathRegex } from '@/assets/Constant';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import { MainNavStyled } from './Nav.styled';
+import { useChange } from '@/hooks/useChange';
+import TweetComposeModal from '@/components/TweetComposeSection/TweetComposeContent/TweetComposeModal';
 
-const horizontalSpace = '1.7em';
 const displayCurrentTab = (tabCompare, currentTab, type) => {
   // type: "icon" or "props"
   if (type == 'icon') {
@@ -48,12 +49,12 @@ const displayCurrentTab = (tabCompare, currentTab, type) => {
   }
 };
 
-const MainNav = ({ user, theme, currentTab, location, ...props }) => {
+const MainNav = ({ user, theme, currentTab, ...props }) => {
   const navigate = useNavigate();
   const responsiveCondition = {
-    desktop: useMediaQuery('(min-width: 1134px)'),
-    mobile: useMediaQuery('(min-width:480px)')
+    desktop: useMediaQuery('(min-width: 1134px)')
   };
+  const { value: isOpenTweet, onSetTrue: openTweet, onSetFalse: closeTweet } = useChange(false);
   const findNavigateButtonProps = (tabCompare, currentTab, navigate) => {
     tabCompare = extractPath(tabCompare, mainPathRegex);
     return {
@@ -68,10 +69,7 @@ const MainNav = ({ user, theme, currentTab, location, ...props }) => {
   return (
     <MainNavStyled {...props}>
       {/* Nav Image */}
-      <NavImage
-        theme={theme}
-        horizontalMargin={responsiveCondition?.mobile ? horizontalSpace : '0.2em'}
-      />
+      <NavImage theme={theme} />
 
       {/* Navigate button */}
       <NavButton
@@ -99,12 +97,18 @@ const MainNav = ({ user, theme, currentTab, location, ...props }) => {
         buttonThemeName="primaryButton"
         className="tweet-button"
         onClick={() => {
-          navigate(`/${COMPOSE_PATH}`, { state: { background: location } });
+          // navigate(`/${COMPOSE_PATH}`, { state: { background: location } });
+          if (responsiveCondition?.desktop) {
+            openTweet();
+          } else {
+            navigate(`/${TWEET_COMPOSE_PATH}`);
+          }
         }}
         jc="center"
         padding="0">
         {responsiveCondition?.desktop ? 'Tweet' : '+'}
       </Button>
+      <TweetComposeModal isOpen={isOpenTweet} handleCloseModal={closeTweet} />
 
       {/* Profile section display */}
     </MainNavStyled>

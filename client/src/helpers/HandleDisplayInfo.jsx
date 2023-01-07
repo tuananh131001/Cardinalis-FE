@@ -124,7 +124,3 @@ export const displayDuration = (date) => {
   }
   return moment(date).fromNow();
 };
-// get the pinned tweet
-export const getPinnedTweet = (tweetList) => {
-  return tweetList.find((tweet) => tweet.isPinned);
-};

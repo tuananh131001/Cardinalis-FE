@@ -1,31 +1,28 @@
-import React from 'react';
-import { ProfileSectionStyled } from './ProfileSection.styled';
+import React, { useMemo } from 'react';
 import MainNav from '@/components/Sections/NavSection/MainNav';
-import ProfileContent from './ProfileContent/ProfileContent';
 import { useLocation } from 'react-router-dom';
 import { youUser } from '@/assets/data/UserData';
+import TweetComposeContent from './TweetComposeContent/TweetComposeContent';
 import { extractPath } from '@/helpers/HandleDisplayInfo';
-import { useMemo } from 'react';
-import SearchSection from '@/components/SearchSection/SearchSection';
-import PropTypes from 'prop-types';
 import { mainPathRegex } from '@/assets/Constant';
+import { TweetComposeSectionStyled } from './TweetComposeSection.style';
+import SearchSection from '@/components/SearchSection/SearchSection';
 
-function ProfileSection({ pageSubType }) {
+function TweetComposeSection() {
   const user = youUser;
+
   const location = useLocation();
   const { currentTab } = useMemo(() => {
     const currentTab = extractPath(location.pathname, mainPathRegex);
     return { currentTab };
   }, [location]);
+
   return (
-    <ProfileSectionStyled>
+    <TweetComposeSectionStyled>
       <MainNav user={user} currentTab={currentTab} />
-      <ProfileContent pageSubType={pageSubType} />
+      <TweetComposeContent />
       <SearchSection />
-    </ProfileSectionStyled>
+    </TweetComposeSectionStyled>
   );
 }
-ProfileSection.propTypes = {
-  pageSubType: PropTypes.string.isRequired
-};
-export default ProfileSection;
+export default TweetComposeSection;

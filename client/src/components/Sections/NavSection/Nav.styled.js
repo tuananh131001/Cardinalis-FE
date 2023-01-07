@@ -31,8 +31,11 @@ export const MainNavStyled = styled.div`
     align-self: center;
   }
   @media screen and (max-width: 1024px) {
-    & > * {
+    align-items: center;
+    justify-content: center;
+    & > button {
       align-self: center;
+      justify-self: center;
     }
     & > button.tweet-button {
       width: 50px;
@@ -41,7 +44,7 @@ export const MainNavStyled = styled.div`
   }
   @media screen and (max-width: 768px) {
     & > button {
-      padding: 0.7em 0.6em;
+      padding: 0;
       aspect-ratio: 1/1;
       border-radius: 50%;
     }

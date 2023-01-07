@@ -10,6 +10,7 @@ import {
 } from '@/assets/Constant';
 import PropTypes from 'prop-types';
 import { extractPath } from '@/helpers/HandleDisplayInfo';
+import Divider from '@/components/Divider/Divider';
 
 const ProfileNav = ({ user, navType = 'tweetNav', ...props }) => {
   /**
@@ -38,9 +39,9 @@ const ProfileNav = ({ user, navType = 'tweetNav', ...props }) => {
     }
   };
   return (
-    <FlexContainer overflow="visible" {...props}>
+    <FlexContainer fd="column" {...props}>
       {navType == 'tweetNav' ? (
-        <>
+        <FlexContainer overflow="visible">
           <NavButtonProfile
             text={'Tweets'}
             isCurrentTab={location == user.username}
@@ -56,9 +57,9 @@ const ProfileNav = ({ user, navType = 'tweetNav', ...props }) => {
             isCurrentTab={location == extractPath(PROFILE_MEDIA_PATH)}
             onClick={() => changePath('media')}
           />
-        </>
+        </FlexContainer>
       ) : (
-        <>
+        <FlexContainer overflow="visible">
           <NavButtonProfile
             text={'Followers'}
             isCurrentTab={location == extractPath(PROFILE_FOLLOWERS_PATH)}
@@ -69,8 +70,9 @@ const ProfileNav = ({ user, navType = 'tweetNav', ...props }) => {
             isCurrentTab={location == extractPath(PROFILE_FOLLOWING_PATH)}
             onClick={() => changePath('following')}
           />
-        </>
+        </FlexContainer>
       )}
+      <Divider />
     </FlexContainer>
   );
 };

@@ -16,6 +16,14 @@ const StyledGeneralHeading = css`
   visibility: ${({ visibility }) => visibility};
   white-space: pre-line;
   word-wrap: break-word;
+  ${({ isDisableHover }) =>
+    !isDisableHover &&
+    css`
+      &:hover {
+        text-decoration-line: underline;
+        cursor: pointer;
+      }
+    `}
 `;
 const ActiveStyling = css`
   color: ${({ theme, textThemeName }) => theme[textThemeName]?.activeColor ?? theme.text.color};
@@ -106,7 +114,8 @@ const generalDefaultProps = {
   gap: '0',
   jc: 'auto',
   ai: 'auto',
-  visibility: 'visible'
+  visibility: 'visible',
+  isDisableHover: true
 };
 
 StyledHeading1.defaultProps = {

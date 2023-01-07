@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { StyledPage } from './Page.styled';
-import { Outlet, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AuthenImage from '@/components/Sections/AuthenSection/AuthenImage';
 import AuthenNav from '@/components/Sections/NavSection/AuthenNav';
