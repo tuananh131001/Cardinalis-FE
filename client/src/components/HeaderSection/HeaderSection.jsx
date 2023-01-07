@@ -63,7 +63,7 @@ HeaderSection.propTypes = {
   user: PropTypes.object,
   backDestination: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   currentTab: PropTypes.string,
-  content: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  content: PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.element]),
   subContent: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   zIndex: PropTypes.number,
   backgroundStyle: PropTypes.number,
