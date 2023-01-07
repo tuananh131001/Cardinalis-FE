@@ -50,7 +50,7 @@ function LoginForm({ ...props }) {
           userToken: userToken
         };
         dispatch(login(authData));
-        navigate('/home', { replace: true });
+        navigate(HOME_PATH, { replace: true });
       }
     });
   };
