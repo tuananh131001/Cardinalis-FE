@@ -28,13 +28,18 @@ export const RegisterForm = ({ ...props }) => {
   const { mutate, isError, isSuccess, error } = useRegister(reset);
 
   // submit function
-  const onSubmitClick = (data) => {
-    delete data.confirmPassword;
-    mutate(data);
-    if (isSuccess) {
-      navigate(`/${LOGIN_PATH}`, { replace: true });
-    }
-  };
+  const onSubmitClick = (type = 'submit') => (data) => {
+      if (type == 'submit') {
+        delete data.confirmPassword;
+        mutate(data);
+        if (isSuccess) {
+          navigate(`/${LOGIN_PATH}`, { replace: true });
+        }
+      } else {
+        // login github
+        console.log('login github');
+      }
+    };
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmitClick)} {...props}>
@@ -71,6 +76,9 @@ export const RegisterForm = ({ ...props }) => {
       <ErrorText errors={errors.confirmPassword?.message} />
       <StyledButton type="submit" buttonThemeName="primaryButton">
         Submit
+      </StyledButton>
+      <StyledButton buttonThemeName="primaryButton" onClick={onSubmitClick('loginGithub')}>
+        Login using Github
       </StyledButton>
       {isSuccess && <CustomizedSnackbars type="success" message="Register successfully" />}
       {isError && (
