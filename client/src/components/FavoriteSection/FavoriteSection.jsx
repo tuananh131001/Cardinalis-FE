@@ -3,7 +3,7 @@ import { FavoriteSectionStyled } from './FavoriteSection.styled';
 import MainNav from '@/components/NavSection/MainHome/MainNav';
 import FavoriteContent from './FavoriteContent/FavoriteContent';
 import { useLocation } from 'react-router-dom';
-import { youUser } from '@/assets/data/UserData';
+import { useSelector } from 'react-redux';
 import { extractPath } from '@/helpers/HandleDisplayInfo';
 import { useMemo } from 'react';
 import SearchSection from '@/components/SearchSection/SearchSection';
@@ -23,7 +23,7 @@ function FavoriteSection() {
     tablet: useMediaQuery(TABLET_QUERY),
     desktop: useMediaQuery(DESKTOP_QUERY)
   };
-  const user = youUser;
+  const { user } = useSelector((state) => state.user);
   const location = useLocation();
   const { currentTab } = useMemo(() => {
     const currentTab = extractPath(location.pathname, mainPathRegex);

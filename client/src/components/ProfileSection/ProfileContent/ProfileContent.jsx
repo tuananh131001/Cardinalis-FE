@@ -1,7 +1,6 @@
 import React from 'react';
 import { ProfileContentStyled } from './ProfileContent.styled';
 import HeaderSection from '@/components/HeaderSection/HeaderSection';
-import { youUser } from '@/assets/data/UserData';
 import { extractPath } from '@/helpers/HandleDisplayInfo';
 import MainInfoProfile from '@/components/ProfileSection/ProfileContent/MainInfoProfile';
 import {
@@ -14,6 +13,9 @@ import { useLocation } from 'react-router-dom';
 import ProfileSubpage from './ProfileSubpage';
 import PropTypes from 'prop-types';
 import { displayCountNumber } from '@/helpers/HandleDisplayInfo';
+import { useParams } from 'react-router-dom';
+import { useGetUserInfo } from '@/hooks/useUser';
+import { useSelector } from 'react-redux';
 
 const defineBackDestination = (location, user) => {
   if (PROFILE_NESTED_PATHS.includes(location)) return `/${user.username}`;
@@ -21,24 +23,28 @@ const defineBackDestination = (location, user) => {
   return -1;
 };
 function ProfileContent({ pageSubType }) {
-  const user = youUser;
-
+  // const user = youUser;
   const location = '/' + extractPath(useLocation().pathname);
-
+  const { username } = useParams();
+  const { data: user, isLoading, isError, error } = useGetUserInfo(username ?? '');
+  const { user: currentUsername } = useSelector((state) => state.user);
+  if (isLoading) return <div>Loading...</div>;
+  console.log(user?.data);
+  if (isError) return <div>Error: {error.message}</div>;
   return (
     <ProfileContentStyled>
       <HeaderSection
         content={user.username}
-        subContent={displayCountNumber(user.numTweets, 'Tweet')}
+        subContent={displayCountNumber(10, 'Tweet')}
         leftType="back"
         backDestination={defineBackDestination(location, user)}
       />
       {!(location == PROFILE_FOLLOWERS_PATH || location == PROFILE_FOLLOWING_PATH) && (
-        <MainInfoProfile user={user} />
+        <MainInfoProfile user={user?.data} currentUsername={currentUsername.username} />
       )}
 
       {/* sub page content */}
-      <ProfileSubpage type={pageSubType} user={user} />
+      <ProfileSubpage type={pageSubType} user={user?.data} />
     </ProfileContentStyled>
   );
 }

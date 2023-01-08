@@ -6,7 +6,7 @@ import useDebounce from '@/hooks/useDebounce';
 import { SearchSectionStyled } from './SearchSection.styled';
 import SearchContentModal from './SearchContent/SearchContentModal';
 import MainNav from '@/components/NavSection/MainHome/MainNav';
-import { youUser } from '@/assets/data/UserData';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import SearchContent from './SearchContent/SearchContent';
 import { extractPath } from '@/helpers/HandleDisplayInfo';
@@ -20,7 +20,7 @@ const SearchSection = ({ type = 'modal' }) => {
   const [isSearching, setIsSearching] = useState(false);
   console.log(data?.data);
 
-  const user = youUser;
+  const { user } = useSelector((state) => state.user);
 
   const location = useLocation();
   const { currentTab } = useMemo(() => {
