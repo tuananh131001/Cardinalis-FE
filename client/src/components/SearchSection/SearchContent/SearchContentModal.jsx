@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { DropDownSearchSectionStyled } from '../SearchSection.styled';
-import { defaultUserList } from '@/assets/data/UserData';
 import BeforeAfterSearchContent from './BeforeAfterSearchContent';
 
 const SearchContentModal = ({ searchInputObject, isSearchingObject, searchValueObject }) => {
   const { searchValue, setSearchValue } = searchInputObject;
   const { isSearching, setIsSearching } = isSearchingObject;
   const { isLoading, data } = searchValueObject;
-  const searchList = defaultUserList;
-  console.log('Search', searchValue);
+  const searchList = data?.data;
   return (
     <>
       <input

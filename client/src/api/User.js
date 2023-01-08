@@ -21,6 +21,8 @@ const headerConfig = {
   }
 };
 
+console.log(USER_FOLLOWING_ENDPOINT);
+
 const registerUser = (user) => userApi.post(REGISTER_ENDPOINT, user).then((res) => res.data);
 
 const signIn = ({ email, password }) =>
@@ -45,22 +47,20 @@ const unfollowUser = (users) =>
 
 const getUserFollowers = (id) =>
   userApi
-    .get(`${USER_FOLLOW_ENDPOINT}${id}${USER_FOLLOWERS_ENDPOINT}`, {
+    .get(`${USER_FOLLOWERS_ENDPOINT}${id}`, {
       headers: headerConfig.headers
     })
     .then((res) => res.data);
 
 const getUserFollowing = (id) =>
   userApi
-    .get(`${USER_FOLLOW_ENDPOINT}${id}${USER_FOLLOWING_ENDPOINT}`, {
+    .get(`${USER_FOLLOWING_ENDPOINT}${id}`, {
       headers: headerConfig.headers
     })
     .then((res) => res.data);
 
 const searchUsers = (username) =>
-  userApi
-    .get(`${USER_SEARCH_ENDPOINT}?username=${username}`, { headers: headerConfig.headers })
-    .then((res) => res.data);
+  userApi.get(`${USER_SEARCH_ENDPOINT}?username=${username}`).then((res) => res.data);
 
 export {
   registerUser,

@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom';
 import { extractPath } from '@/helpers/HandleDisplayInfo';
 import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
-import SearchSection from '@/components/SearchSection/SearchSection';
+import RightSection from '@/components/RightSection/RightSection';
 // import { useMemo } from 'react';
 import {
   SMALL_MOBILE_QUERY,
@@ -33,7 +33,7 @@ function HomeSection() {
     <HomeSectionStyled>
       <MainNav user={user} currentTab={currentTab} />
       <HomeContent />
-      <SearchSection />
+      <RightSection />
     </HomeSectionStyled>
   );
 }
