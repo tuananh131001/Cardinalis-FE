@@ -31,6 +31,7 @@ const userSlice = createSlice({
     },
     logout: () => {
       localStorage.removeItem('userToken');
+      localStorage.removeItem('username');
       return initialState;
     },
     getUserInfo: (state, action) => {
@@ -38,11 +39,18 @@ const userSlice = createSlice({
       state.user.email = action.payload.email;
       state.user.bio = action.payload.bio;
       state.user.banner = action.payload.banner;
-      state.user.created_at = action.payload.created_at;
+      state.user.createdAt = action.payload.createdAt;
       state.user.dateOfBirth = action.payload.dateOfBirth;
       state.user.id = action.payload.id;
       state.user.location = action.payload.location;
       state.user.is_hot_user = action.payload.is_hot_user;
+      state.user.country = action.payload.country;
+      state.user.countryCode = action.payload.countryCode;
+      state.user.fullName = action.payload.fullName;
+      state.user.website = action.payload.website;
+      state.user.phone = action.payload.phone;
+      state.user.notificationsCount = action.payload.notificationsCount;
+      state.user.gender = action.payload.gender;
     }
   },
   extraReducers: {

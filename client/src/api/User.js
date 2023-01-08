@@ -10,8 +10,6 @@ import {
   USER_FOLLOWERS_ENDPOINT,
   USER_SEARCH_ENDPOINT
 } from '@/assets/constantEnv';
-const token = localStorage.getItem('userToken');
-console.log(token);
 const userApi = axios.create({
   baseURL: API_ORIGIN
 });
@@ -25,25 +23,18 @@ const headerConfig = {
 
 const registerUser = (user) => userApi.post(REGISTER_ENDPOINT, user).then((res) => res.data);
 
-const signIn = ({ username, password }) =>
-  userApi.post(LOGIN_ENDPOINT, { username, password }).then((res) => {
-    const token = res?.data?.data?.token;
-    console.log(token);
+const signIn = ({ email, password }) =>
+  userApi.post(LOGIN_ENDPOINT, { email, password }).then((res) => {
+    const token = res.data.data.token;
     localStorage.setItem('userToken', token);
+    localStorage.setItem('username', res.data.data.user.username);
   });
 
 const updateProfile = ({ data, id }) =>
   userApi.put(USER_ENDPOINT, { data, id }).then((res) => res.data);
 
 const getUserInfo = (username) => {
-  return userApi
-    .get(`${GET_USER_ENDPOINT}${username}`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('userToken')}`,
-        'Content-Type': 'application/json'
-      }
-    })
-    .then((res) => res.data);
+  return userApi.get(`${GET_USER_ENDPOINT}${username}`).then((res) => res.data);
 };
 
 const followUser = (users) =>

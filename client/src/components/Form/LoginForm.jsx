@@ -20,7 +20,7 @@ function LoginForm({ ...props }) {
   const schema = chooseInputSchema('login');
   const navigate = useNavigate();
   const defaultValues = {
-    username: '',
+    email: '',
     password: ''
   };
 
@@ -37,6 +37,7 @@ function LoginForm({ ...props }) {
   });
   const { value: hidePassword, onToggle: togglePassword } = useChange(true);
   const { mutate, isError, error } = useSignIn(reset);
+
   const dispatch = useDispatch();
 
   // submit function
@@ -44,9 +45,10 @@ function LoginForm({ ...props }) {
     mutate(data, {
       onSuccess: () => {
         const userToken = localStorage.getItem('userToken');
+        const username = localStorage.getItem('username');
         const authData = {
           user: {
-            username: data.username
+            username: username
           },
           userToken: userToken
         };
@@ -61,10 +63,10 @@ function LoginForm({ ...props }) {
       <Input
         inputType="text"
         inputThemeName="loginInput"
-        placeholder="Enter Username..."
-        {...register('username')}
+        placeholder="Enter Email..."
+        {...register('email')}
       />
-      <ErrorText errors={errors.username?.message} />
+      <ErrorText errors={errors.email?.message} />
       <Input
         type={hidePassword ? 'password' : 'text'}
         inputType="textIcon"

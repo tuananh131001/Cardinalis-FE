@@ -1,5 +1,3 @@
-// https://stackoverflow.com/questions/52483260/validate-phone-number-with-yup
-// https://stackoverflow.com/questions/46656476/rendering-empty-space-in-react
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { chooseInputSchema } from '@/helpers/ValidatingInput';
@@ -28,18 +26,12 @@ export const RegisterForm = ({ ...props }) => {
   const { mutate, isError, isSuccess, error } = useRegister(reset);
 
   // submit function
-  const onSubmitClick = (type = 'submit') => (data) => {
-      if (type == 'submit') {
-        delete data.confirmPassword;
-        mutate(data);
-        if (isSuccess) {
-          navigate(`/${LOGIN_PATH}`, { replace: true });
-        }
-      } else {
-        // login github
-        console.log('login github');
-      }
-    };
+  const onSubmitClick = (data) => {
+    mutate(data);
+    if (isSuccess) {
+      navigate(`/${LOGIN_PATH}`, { replace: true });
+    }
+  };
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmitClick)} {...props}>
@@ -77,9 +69,9 @@ export const RegisterForm = ({ ...props }) => {
       <StyledButton type="submit" buttonThemeName="primaryButton">
         Submit
       </StyledButton>
-      <StyledButton buttonThemeName="primaryButton" onClick={onSubmitClick('loginGithub')}>
+      {/* <StyledButton buttonThemeName="primaryButton" onClick={onSubmitClick('loginGithub')}>
         Login using Github
-      </StyledButton>
+      </StyledButton> */}
       {isSuccess && <CustomizedSnackbars type="success" message="Register successfully" />}
       {isError && (
         <CustomizedSnackbars

@@ -23,7 +23,7 @@ const useRegister = (reset) =>
 
 const useSignIn = (reset) =>
   useMutation({
-    mutationFn: (user) => signIn(user),
+    mutationFn: (data) => signIn(data),
     onSuccess: () => {
       reset();
     },

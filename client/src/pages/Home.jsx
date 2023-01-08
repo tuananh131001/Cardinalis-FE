@@ -10,6 +10,7 @@ function Home() {
   const dispatch = useDispatch();
   console.log(user);
   const { data: UserInfo, isLoading, status } = useGetUserInfo(user.username);
+  console.log(UserInfo?.data);
   if (status === 'success') {
     dispatch(getUserInfo(UserInfo.data));
   }

@@ -63,7 +63,7 @@ const validatingImage = (name) => {
 export const chooseInputSchema = (type) => {
   if (type == 'login') {
     return yup.object().shape({
-      username: yup.string().required(displayErrorMessage('email', 'required')),
+      email: yup.string().required(displayErrorMessage('email', 'required')),
       password: yup.string().required(displayErrorMessage('password', 'required'))
     });
   } else if (type == 'register') {
