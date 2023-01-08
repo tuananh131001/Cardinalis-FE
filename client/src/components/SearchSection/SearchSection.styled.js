@@ -28,6 +28,7 @@ export const SearchSectionStyled = styled.div`
           margin: 0 auto;
           padding: 1em 4em;
           min-height: 100vh;
+          gap: 3em;
           & input {
             width: 100%;
             background-color: transparent;

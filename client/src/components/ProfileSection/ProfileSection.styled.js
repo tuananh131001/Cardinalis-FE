@@ -6,7 +6,7 @@ export const ProfileSectionStyled = styled(motion.div)`
   margin: 0 auto;
   padding: 1em 4em;
   min-height: 100vh;
-  gap: 2.5em;
+  gap: 3em;
   & > :first-child {
     flex: 1;
     padding: 0.7em 0;

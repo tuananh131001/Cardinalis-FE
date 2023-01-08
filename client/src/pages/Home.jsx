@@ -3,6 +3,7 @@ import { useGetUserInfo } from '@/hooks/useUser';
 import { useSelector, useDispatch } from 'react-redux';
 import HomeSection from '@/components/HomeSection /HomeSection';
 import { getUserInfo } from '@/features/userSlice';
+import Loading from '@/components/LoadingNothing/Loading';
 
 function Home() {
   const { user } = useSelector((state) => state.user);
@@ -12,7 +13,7 @@ function Home() {
   if (status === 'success') {
     dispatch(getUserInfo(UserInfo.data));
   }
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loading type="gif" />;
 
   return <HomeSection></HomeSection>;
 }

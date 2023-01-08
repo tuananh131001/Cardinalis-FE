@@ -5,6 +5,7 @@ export const TweetSectionStyled = styled(motion.div)`
   display: flex;
   margin: 0 auto;
   padding: 1em 4em;
+  gap: 3em;
   & > :first-child {
     flex: 1;
     padding: 0.7em 0;

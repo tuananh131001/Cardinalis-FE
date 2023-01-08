@@ -34,7 +34,7 @@ const MainInfoProfile = ({ user }) => {
     <FlexContainer
       fd="column"
       isHideScrollBar={true}
-      gap="0.5em"
+      gap="1em"
       position="relative"
       padding={`calc(${bckHeight} + ${containerGap}) var(--horizontal-spaces) 0`}>
       <ImageProfile user={user} bckHeight={bckHeight} avatarSize={avatarSize} />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import uuid from 'react-uuid';
 import UserCardSection from '@/components/UserCard/UserCardSection';
@@ -10,7 +10,7 @@ const SearchList = ({ searchList, type }) => {
   const renderSearchList = () => {
     return searchList.map((user) => {
       return (
-        <>
+        <Fragment key={uuid()}>
           <UserCardSection
             key={uuid()}
             user={user}
@@ -18,7 +18,7 @@ const SearchList = ({ searchList, type }) => {
             button={type != 'modal' && <FollowButton isFollowing={user.isFollowing} width="30%" />}
           />
           {type != 'modal' && <Divider />}
-        </>
+        </Fragment>
       );
     });
   };

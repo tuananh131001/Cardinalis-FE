@@ -15,6 +15,20 @@ export const StyledForm = styled.form`
   padding: ${({ padding }) => padding};
   height: ${({ height }) => height};
   overflow: scroll;
+  & .flex-row {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 0 0 1em;
+    & .label,
+    & .button {
+      width: fit-content;
+      align-items: center;
+    }
+  }
 `;
 
 // Default Props

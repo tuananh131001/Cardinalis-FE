@@ -5,7 +5,7 @@ export const ExploreSectionStyled = styled(motion.div)`
   display: flex;
   margin: 0 auto;
   padding: 1em 4em;
-  gap: 2.5em;
+  gap: 3em;
   min-height: 100vh;
   & > :first-child {
     flex: 1;

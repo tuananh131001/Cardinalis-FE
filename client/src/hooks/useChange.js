@@ -11,7 +11,7 @@ export const useChange = (initialValue = '') => {
   const onReset = () => setValue(initialValue);
   // toggle
   const onToggle = (event) => {
-    event.preventDefault();
+    if (event) event.preventDefault();
     setValue(!value);
   };
 

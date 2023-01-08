@@ -13,11 +13,13 @@ import CustomizedSnackbars from '@/components/Snackbar/Snackbar';
 import { useEffect, useState } from 'react';
 import { isEmptyObject } from '@/helpers/HandleObject';
 import ImageProfile from '@/components/ProfileSection/ProfileContent/ImageProfile';
+import Button from '@/components/Button/Button';
+import { useChange } from '@/hooks/useChange';
 
 const errorPadding = '0 0 1em 0.2em';
 const bckHeight = '15em';
 const avatarSize = '9em';
-const textThemeName = 'loginInput';
+const textThemeName = 'homeInput';
 function UpdateProfileForm({ user, closeAction, ...props }) {
   const schema = chooseInputSchema('updateProfile');
   // const {value: message, onSetNewValue: setMessage} = useChange("");
@@ -44,6 +46,7 @@ function UpdateProfileForm({ user, closeAction, ...props }) {
     defaultValues: defaultValues,
     resolver: yupResolver(schema)
   });
+  const { value: showDate, onToggle: toggleShowDate } = useChange(false);
   //   const { mutate, isError, error, isSuccess } = useSignIn(reset);
   //   const dispatch = useDispatch();
 
@@ -59,9 +62,12 @@ function UpdateProfileForm({ user, closeAction, ...props }) {
   }, [errors]);
 
   // submit function
-  const onSubmitClick = (data, isClose) => {
+  const onSubmitClick = (isClose, isEditDate, event) => (data) => {
     if (isClose) {
       closeAction();
+    } else if (isEditDate) {
+      console.log('yes');
+      toggleShowDate(event);
     } else {
       console.log('click');
       console.log(data);
@@ -82,7 +88,7 @@ function UpdateProfileForm({ user, closeAction, ...props }) {
         leftType="close"
         rightType="none"
         backgroundStyle={2}
-        onClick={(data) => onSubmitClick(data, true)}
+        onClick={onSubmitClick(true)}
         zIndex={2}
       />
       {/* Image */}
@@ -130,7 +136,26 @@ function UpdateProfileForm({ user, closeAction, ...props }) {
       <ErrorText errors={errors.location?.message} padding={errorPadding} />
 
       {/* Date of Birth */}
-      <DateInput inputThemeName={textThemeName} name="dob" control={control} />
+      <div className="flex-row">
+        <ProfileUpdateLabel
+          className="label"
+          text="Date of Birth"
+          htmlFor="updateProfileLocation"
+        />
+        <Button
+          className="button"
+          width="auto"
+          buttonType="link"
+          onClick={onSubmitClick(false, true)}>
+          Edit
+        </Button>
+      </div>
+
+      <div className="flex-row">
+        {showDate && <DateInput inputThemeName={textThemeName} name="dob" control={control} />}
+      </div>
+
+      {/* Error message */}
       <CustomizedSnackbars
         type="error"
         verticalPosition="bottom"
