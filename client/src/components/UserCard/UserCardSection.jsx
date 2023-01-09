@@ -23,7 +23,7 @@ const UserCardSection = ({ user, button, sz = 'base', isDisplayButtonOnly = fals
     navigate(`/${user.username}`);
   };
   return (
-    <UserCardSectionStyled onClick={handleClick} {...props}>
+    <UserCardSectionStyled onClick={handleClick} {...props} overflow="visible">
       {!isDisplayButtonOnly ? (
         <>
           <Avatar src={user.avatar} size={getSize(sz)} />

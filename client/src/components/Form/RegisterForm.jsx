@@ -3,13 +3,14 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { chooseInputSchema } from '@/helpers/ValidatingInput';
 import PropTypes from 'prop-types';
 import { Input } from '@/components/Input/Input';
-import StyledButton from '@/components/Button/Button.styled';
 import { StyledForm } from './Form.styled';
 import { useRegister } from '@/hooks/useUser';
 import { ErrorText } from '@/components/Text/ErrorText';
 import CustomizedSnackbars from '@/components/Snackbar/Snackbar';
 import { useNavigate } from 'react-router-dom';
 import { LOGIN_PATH } from '@/assets/Constant';
+import Button from '@/components/Button/Button';
+import { BsGithub } from 'react-icons/bs';
 
 export const RegisterForm = ({ ...props }) => {
   const schema = chooseInputSchema('register');
@@ -32,6 +33,10 @@ export const RegisterForm = ({ ...props }) => {
       navigate(`/${LOGIN_PATH}`, { replace: true });
     }
   };
+  const clickLoginGithub = (event) => {
+    event.preventDefault();
+    console.log("click github");
+  }
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmitClick)} {...props}>
@@ -66,12 +71,13 @@ export const RegisterForm = ({ ...props }) => {
         {...register('confirmPassword')}
       />
       <ErrorText errors={errors.confirmPassword?.message} />
-      <StyledButton type="submit" buttonThemeName="primaryButton">
+      <Button type="submit" buttonThemeName="primaryButton">
         Submit
-      </StyledButton>
-      {/* <StyledButton buttonThemeName="primaryButton" onClick={onSubmitClick('loginGithub')}>
-        Login using Github
-      </StyledButton> */}
+      </Button>
+      <Button buttonType="link" onClick={clickLoginGithub} gap="0.4em">
+        <BsGithub style={{fontSize: "var(--font-size-md)"}} />
+        Login Using Github
+      </Button>
       {isSuccess && <CustomizedSnackbars type="success" message="Register successfully" />}
       {isError && (
         <CustomizedSnackbars

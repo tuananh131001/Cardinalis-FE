@@ -1,6 +1,7 @@
 import CustomModal from '@/components/Modals/CustomModal';
 import TweetComposeCard from './TweetComposeCard';
 import PropTypes from 'prop-types';
+import HeaderSection from '@/components/HeaderSection/HeaderSection';
 
 const TweetComposeModal = ({ isOpen, handleCloseModal }) => {
   return (
@@ -11,7 +12,12 @@ const TweetComposeModal = ({ isOpen, handleCloseModal }) => {
       transform="translateX(-50%)"
       isOpen={isOpen}
       handleClose={handleCloseModal}>
-      {<TweetComposeCard />}
+      {
+        <>
+          <HeaderSection leftType="close" content="Tweet Compose" onClickClose={handleCloseModal} />
+          <TweetComposeCard />
+        </>
+      }
     </CustomModal>
   );
 };

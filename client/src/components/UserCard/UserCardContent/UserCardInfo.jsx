@@ -7,7 +7,7 @@ import { BsFillPatchCheckFill } from 'react-icons/bs';
 const UserCardInfo = ({ name, username, isHotUser }) => {
   return (
     <FlexContainer fd="column">
-      <FlexContainer jc="flex-start" gap="0.4em">
+      <FlexContainer jc="flex-start" gap="0.4em" overflow="visible">
         <Text
           type="p3"
           textThemeName="paragraphText"
@@ -15,6 +15,7 @@ const UserCardInfo = ({ name, username, isHotUser }) => {
           className="text"
           weight="700"
           width="auto"
+          overflow="visible"
         />
         {isHotUser && <BsFillPatchCheckFill size="1.2em" color="var(--primary_color_light)" />}
       </FlexContainer>
@@ -24,6 +25,7 @@ const UserCardInfo = ({ name, username, isHotUser }) => {
         text={`@${username}`}
         className="text"
         width="100%"
+        overflow="visible"
       />
     </FlexContainer>
   );

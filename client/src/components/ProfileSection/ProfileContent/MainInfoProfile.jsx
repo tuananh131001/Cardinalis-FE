@@ -1,5 +1,5 @@
 import { FlexContainer } from '@/components/Container/Container.styled';
-import { SpanProfile, SubHeaderProfile } from './TextProfile';
+import { LinkProfile, SpanProfile, SubHeaderProfile } from './TextProfile';
 import { ImCalendar } from 'react-icons/im';
 import ShortInfoProfile from './ShortInfoProfile';
 import { EditButtonProfile, FollowButtonProfile } from './ButtonProfile';
@@ -13,11 +13,17 @@ import { useNavigate } from 'react-router-dom';
 import { PROFILE_FOLLOWING_PATH, PROFILE_FOLLOWERS_PATH } from '@/assets/Constant';
 import { MdLocationOn } from 'react-icons/md';
 import FollowButton from '@/components/FollowSection/FollowContent/FollowButton';
+import { RiLinksLine } from 'react-icons/ri';
+import useMediaQuery from '@/hooks/useMediaQuery';
+import { UPDATE_PROFILE_PATH } from '@/assets/Constant';
 
 const avatarSize = '9em';
 const bckHeight = '14em';
 const containerGap = '0.5em';
 const MainInfoProfile = ({ user, currentUsername }) => {
+  const responsiveCondition = {
+    desktop: useMediaQuery('(min-width: 1134px)')
+  };
   const { value: isOpen, onSetTrue: handleOpen, onSetFalse: handleClose } = useChange(false);
   const navigate = useNavigate();
   const isYou = user.username === currentUsername ? true : false;
@@ -31,6 +37,11 @@ const MainInfoProfile = ({ user, currentUsername }) => {
         break;
     }
   };
+  const clickUpdateProfile = (event) => {
+    event.preventDefault();
+    if (responsiveCondition?.desktop) handleOpen(event);
+    else navigate(`/${UPDATE_PROFILE_PATH}`);
+  };
   return (
     <FlexContainer
       fd="column"
@@ -40,7 +51,7 @@ const MainInfoProfile = ({ user, currentUsername }) => {
       padding={`calc(${bckHeight} + ${containerGap}) var(--horizontal-spaces) 0`}>
       <ImageProfile user={user} bckHeight={bckHeight} avatarSize={avatarSize} />
       {isYou ? (
-        <EditButtonProfile onClick={handleOpen} />
+        <EditButtonProfile onClick={clickUpdateProfile} />
       ) : (
         <FollowButton isFollowing={user.isFollowing} alignSelf="flex-end" width="20%" />
       )}
@@ -53,20 +64,28 @@ const MainInfoProfile = ({ user, currentUsername }) => {
       {user.bio && <SubHeaderProfile text={user.bio} />}
       <SpanProfile text={[<ImCalendar key={0} />, `Joined ${displayDate(user.createdAt)}`]} />
       {user.location && <SpanProfile text={[<MdLocationOn key={0} />, user.location]} />}
+      {user.website && (
+        <LinkProfile
+          href={user.website}
+          rel="noopener noreferrer"
+          textThemeName="primaryText"
+          text={[<RiLinksLine key={0} />, user.website]}
+        />
+      )}
       <FlexContainer gap="2em" jc="flex-start">
         <FollowButtonProfile
-          count={user.following}
+          count={user.following ?? 0}
           text="Following"
           onClick={() => clickNavigate('following')}
         />
         <FollowButtonProfile
-          count={user.followers}
+          count={user.followers ?? 0}
           text="Followers"
           onClick={() => clickNavigate('followers')}
         />
       </FlexContainer>
 
-      {user.isYou && (
+      {isYou && (
         <CustomModal isOpen={isOpen} handleClose={handleClose}>
           {<UpdateProfileForm user={user} isInModal={true} closeAction={handleClose} />}
         </CustomModal>

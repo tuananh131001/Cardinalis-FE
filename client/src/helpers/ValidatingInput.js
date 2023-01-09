@@ -1,5 +1,6 @@
 import * as yup from 'yup';
 import moment from 'moment';
+import { urlRegex, phoneRegex } from '@/assets/Constant';
 export const maxTweetCharacters = 280;
 export const displayErrorMessage = (type, errorType, ...args) => {
   let displayType = 'input';
@@ -27,6 +28,8 @@ export const displayErrorMessage = (type, errorType, ...args) => {
       return `Your ${displayType} can only be positive`;
     case 'integer':
       return `Your ${displayType} should be int only`;
+    case 'phone':
+      return `Your phone number is invalid`;
     case 'min':
       if (displayType == 'Date of Birth') return `You are too young to join social media`;
       else return `Your ${displayType} must be greater or equal to ${args[0]}`;
@@ -89,11 +92,22 @@ export const chooseInputSchema = (type) => {
         .min(0)
         .max(160, displayErrorMessage('bio', 'max', 160, 'string'))
         .nullable(),
+      gender: yup.string().nullable(),
       location: yup
         .string()
         .min(0)
         .max(30, displayErrorMessage('location', 'max', 30, 'string'))
         .nullable(),
+      website: yup
+        .string()
+        .nullable()
+        .min(0)
+        .max(100, displayErrorMessage('website', 'max', 100, 'string'))
+        .matches(urlRegex, {
+          message: displayErrorMessage('website', 'matches'),
+          excludeEmptyString: true
+        }),
+      phone: yup.string().matches(phoneRegex, displayErrorMessage('phone', 'phone')).nullable(),
       dob: yup
         .date({
           message: displayErrorMessage('dob', displayErrorMessage('dob', 'date')),

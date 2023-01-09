@@ -1,19 +1,22 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import RightCardInfoWrapper from './RightCardInfo.styled';
 import PropTypes from 'prop-types';
 import UserCardSection from '@/components/UserCard/UserCardSection';
+import Text from '@/components/Text/Text';
+import uuid from 'react-uuid';
+import Button from '@/components/Button/Button';
 
 function RightCardInfo({ text, data }) {
   console.log(data);
   return (
     <RightCardInfoWrapper>
-      <h2>{text}</h2>
+      <Text type="p" textThemeName="subText" text={text} weight="700" />
       {data?.map((user) => (
-        <Fragment key={user.id}>
-          <UserCardSection key={user.id} user={user} sz="medium" />
-        </Fragment>
+        <UserCardSection key={uuid()} user={user} sz="medium" />
       ))}
-      <button>Show more</button>
+      <Button buttonType="link" fontSize={`var(--font-size-sm)`}>
+        Show More
+      </Button>
     </RightCardInfoWrapper>
   );
 }

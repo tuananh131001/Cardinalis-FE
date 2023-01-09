@@ -9,6 +9,7 @@ const RightCardInfoWrapper = styled.div`
   border-radius: 20px;
   background-color: ${({ theme }) => theme.homeInput.backgroundColor};
   border-radius: 4px;
+  overflow: scroll;
 `;
 
 export default RightCardInfoWrapper;

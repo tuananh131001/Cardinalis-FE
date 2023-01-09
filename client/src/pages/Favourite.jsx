@@ -1,7 +1,7 @@
 import FavoriteSection from '@/components/FavoriteSection/FavoriteSection';
 
-const Bookmarks = () => {
+const Favourite = () => {
   return <FavoriteSection />;
 };
 
-export default Bookmarks;
+export default Favourite;
