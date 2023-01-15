@@ -15,13 +15,6 @@ const userApi = axios.create({
   baseURL: API_ORIGIN
 });
 
-const headerConfig = {
-  headers: {
-    Authorization: `Bearer ${localStorage.getItem('userToken')}`,
-    'Content-Type': 'application/json'
-  }
-};
-
 const getOauthUrl = (provider) => {
   if (provider == 'google') {
     return API_ORIGIN + GOOGLE_LOGIN_ENDPOINT;

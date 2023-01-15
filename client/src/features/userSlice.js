@@ -11,11 +11,9 @@ const initialState = {
     email: '',
     bio: '',
     banner: '',
-    created_at: '',
     dateOfBirth: '',
     id: '',
-    location: '',
-    is_hot_user: ''
+    location: ''
   }
 };
 
@@ -39,11 +37,11 @@ const userSlice = createSlice({
       state.user.email = action.payload.email;
       state.user.bio = action.payload.bio;
       state.user.banner = action.payload.banner;
+      state.user.username = action.payload.username;
       state.user.createdAt = action.payload.createdAt;
       state.user.dateOfBirth = action.payload.dateOfBirth;
       state.user.id = action.payload.id;
       state.user.location = action.payload.location;
-      state.user.is_hot_user = action.payload.is_hot_user;
       state.user.country = action.payload.country;
       state.user.countryCode = action.payload.countryCode;
       state.user.fullName = action.payload.fullName;
