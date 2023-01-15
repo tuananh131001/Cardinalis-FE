@@ -44,7 +44,7 @@ const useUpdateProfile = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (user) => updateProfile(user),
-    onSuccess: (data) => queryClient.setQueryData(['user', { id: data.id }], data),
+    onSuccess: () => queryClient.invalidateQueries(),
     onError: (error) => console.log(error)
   });
 };

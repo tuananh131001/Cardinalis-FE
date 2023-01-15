@@ -15,6 +15,7 @@ import { isEmptyObject } from '@/helpers/HandleObject';
 import ImageProfile from '@/components/ProfileSection/ProfileContent/ImageProfile';
 import Button from '@/components/Button/Button';
 import { useChange } from '@/hooks/useChange';
+import { useUpdateProfile } from '@/hooks/useUser';
 
 const errorPadding = '0 0 1em 0.2em';
 const bckHeight = '15em';
@@ -37,8 +38,7 @@ function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
     dob: user.dob ?? null // if user.dob is null, set default value to null
   };
 
-  //   const user = useSelector((state) => state.user);
-  //   console.log(user);
+  const { mutate } = useUpdateProfile();
   const {
     register,
     handleSubmit,
@@ -67,6 +67,7 @@ function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
   const onSubmitClick = (data) => {
     console.log('click');
     console.log(data);
+    mutate(data);
   };
   const clickEdit = (event) => {
     event.preventDefault();
