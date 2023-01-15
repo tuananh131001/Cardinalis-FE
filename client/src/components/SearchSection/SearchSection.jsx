@@ -31,11 +31,15 @@ const SearchSection = ({ type = 'modal' }) => {
   return (
     <SearchSectionStyled type={type}>
       {type === 'modal' ? (
-        <SearchContentModal
-          searchInputObject={{ searchValue, setSearchValue }}
-          isSearchingObject={{ isSearching, setIsSearching }}
-          searchValueObject={{ isLoading, data, isError }}
-        />
+        isError ? (
+          <Nothing hasImage={false} />
+        ) : (
+          <SearchContentModal
+            searchInputObject={{ searchValue, setSearchValue }}
+            isSearchingObject={{ isSearching, setIsSearching }}
+            searchValueObject={{ isLoading, data, isError }}
+          />
+        )
       ) : (
         <>
           <MainNav user={user} currentTab={currentTab} />

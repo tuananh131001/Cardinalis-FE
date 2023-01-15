@@ -49,6 +49,7 @@ export const SearchSectionStyled = styled.div`
           }
           @media (max-width: 1134px) {
             padding: 1em;
+            gap: 0.5em;
             & > :first-child {
               flex: 0.5;
             }

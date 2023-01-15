@@ -1,22 +1,19 @@
 import * as React from 'react';
-import { FlexContainer } from '@/components/Container/Container.styled';
 import Image from '@/components/Image/Image';
 import Text from '@/components/Text/Text';
+import { QuestionGifStyled } from './LoadingNothing.style';
 
 export default function QuestionGif() {
   return (
-    <FlexContainer height="100%" fd="column">
-      <Image
-        src="https://1.bp.blogspot.com/-iJp4eEgroEM/XNtMg5IWnTI/AAAAAAAMh70/_VVSEcyfHGco3XRgBi-s27Xjj9kD4YU6wCLcBGAs/s1600/AS0005269_04.gif"
-        width="50%"
-        height="50%"
-      />
+    <QuestionGifStyled>
+      <Image src="https://i.pinimg.com/originals/32/50/70/32507076eb277ccc6b55dc842d04ccf4.gif" />
       <Text
-        type="p3"
+        className="loading-text"
+        type="p2"
         jc="center"
         textThemeName="paragraphText"
         text={'What do you want to find??'}
       />
-    </FlexContainer>
+    </QuestionGifStyled>
   );
 }
