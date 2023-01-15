@@ -75,19 +75,9 @@ const getUserInfo = (username) => {
   return userApi.get(`${GET_USER_ENDPOINT}${username}`).then((res) => res.data);
 };
 
-const followUser = (users) =>
+const followUser = (id) =>
   userApi
-    .post(USER_FOLLOW_ENDPOINT, users, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('userToken')}`,
-        'Content-Type': 'application/json'
-      }
-    })
-    .then((res) => res.data);
-
-const unfollowUser = (users) =>
-  userApi
-    .delete(USER_FOLLOW_ENDPOINT, users, {
+    .get(`${USER_FOLLOW_ENDPOINT}?userId=${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('userToken')}`,
         'Content-Type': 'application/json'
@@ -97,7 +87,7 @@ const unfollowUser = (users) =>
 
 const getUserFollowers = (id) =>
   userApi
-    .get(`${USER_FOLLOWERS_ENDPOINT}${id}`, {
+    .get(`${USER_FOLLOWERS_ENDPOINT}?userId=${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('userToken')}`,
         'Content-Type': 'application/json'
@@ -107,7 +97,7 @@ const getUserFollowers = (id) =>
 
 const getUserFollowing = (id) =>
   userApi
-    .get(`${USER_FOLLOWING_ENDPOINT}${id}`, {
+    .get(`${USER_FOLLOWING_ENDPOINT}?userId=${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('userToken')}`,
         'Content-Type': 'application/json'
@@ -128,6 +118,5 @@ export {
   searchUsers,
   getUserFollowers,
   getUserFollowing,
-  followUser,
-  unfollowUser
+  followUser
 };

@@ -8,8 +8,7 @@ import {
   searchUsers,
   getUserFollowers,
   getUserFollowing,
-  followUser,
-  unfollowUser
+  followUser
 } from '@/api/User';
 
 const useRegister = (reset) =>
@@ -50,23 +49,11 @@ const useUpdateProfile = () => {
   });
 };
 
-const useFollowUser = (users) => {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: (users) => followUser(users),
-    onSuccess: () => {
-      queryClient.invalidateQueries(['followers', users.followingId]);
-    }
-  });
-};
-
-const useUnfollowUser = (users) => {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: (users) => unfollowUser(users),
-    onSuccess: () => {
-      queryClient.invalidateQueries(['followers', users.followingId]);
-    }
+const useFollowUser = (id) => {
+  return useQuery({
+    queryKey: ['follow', id],
+    queryFn: () => followUser(id),
+    enabled: Boolean(id)
   });
 };
 
@@ -111,6 +98,5 @@ export {
   useSearchUsers,
   useGetUserFollowing,
   useGetUserFollowers,
-  useFollowUser,
-  useUnfollowUser
+  useFollowUser
 };

@@ -1,21 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FlexContainer } from '@/components/Container/Container.styled';
-import uuid from 'react-uuid';
 import FollowButton from './FollowButton';
 import UserCardSection from '@/components/UserCard/UserCardSection';
 import Divider from '@/components/Divider/Divider';
 
 const FollowList = ({ followList }) => {
+  console.log(followList);
   const renderFollowList = () => {
     return followList.map((user) => {
       return (
         <>
           <UserCardSection
-            key={uuid()}
+            key={user?.id}
             user={user}
             sz="large"
-            button={<FollowButton isFollowing={user.isFollowing} width="30%" />}
+            button={<FollowButton id={user?.id} isFollowing={user.isFollowing} width="30%" />}
           />
           <Divider />
         </>
