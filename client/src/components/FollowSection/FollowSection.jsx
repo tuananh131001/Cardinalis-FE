@@ -8,6 +8,8 @@ import FollowContent from './FollowContent/FollowContent';
 import { extractPath } from '@/helpers/HandleDisplayInfo';
 import { mainPathRegex } from '@/assets/Constant';
 import { useGetUserInfo } from '@/hooks/useUser';
+import Loading from '@/components/LoadingNothing/Loading';
+import Nothing from '@/components/LoadingNothing/Nothing';
 
 function FollowSection({ type }) {
   const { username } = useParams();
@@ -18,10 +20,10 @@ function FollowSection({ type }) {
     return { currentTab };
   }, [location]);
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loading type="circular" />;
   }
   if (isError) {
-    return <div>Error: {error.message}</div>;
+    return <Nothing type="error" error={error.message} />;
   }
 
   return (
