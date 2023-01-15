@@ -7,7 +7,7 @@ const Image = ({ src, alt, ...props }) => {
 };
 
 Image.propTypes = {
-  src: PropTypes.string,
+  src: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   alt: PropTypes.string,
   props: PropTypes.arrayOf(PropTypes.string)
 };

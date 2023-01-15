@@ -1,22 +1,28 @@
 import React from 'react';
 import RightCardInfoWrapper from './RightCardInfo.styled';
+import PropTypes from 'prop-types';
+import UserCardSection from '@/components/UserCard/UserCardSection';
 import Text from '@/components/Text/Text';
 import Button from '@/components/Button/Button';
-import PropTypes from 'prop-types';
 
-function RightCardInfo({ text }) {
+function RightCardInfo({ text, data }) {
+  console.log(data);
   return (
     <RightCardInfoWrapper>
-      <Text type="h2" text={text} />
-      <Button ta="capitalizer" color="#DC6C14">
-        Show more
+      <Text type="p" textThemeName="subText" text={text} weight="700" />
+      {data?.map((user) => (
+        <UserCardSection key={data.id} user={user} sz="medium" />
+      ))}
+      <Button buttonType="link" fontSize={`var(--font-size-sm)`}>
+        Show More
       </Button>
     </RightCardInfoWrapper>
   );
 }
 
 RightCardInfo.propTypes = {
-  text: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
+  data: PropTypes.array.isRequired
 };
 
 export default RightCardInfo;

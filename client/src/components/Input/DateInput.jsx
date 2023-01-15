@@ -5,24 +5,23 @@ import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 import { Controller } from 'react-hook-form';
 import { Input } from './Input';
 import PropTypes from 'prop-types';
-import { useOutletContext } from 'react-router-dom';
+import { ThemeContext } from '@/hooks/ThemeContextProvider';
+import { useContext } from 'react';
 
 // const CustomActionBar = () => {
 //     return <Button buttonType="link">CustomActionBar</Button>;
 // }
 export default function DateInput({ inputThemeName, name, control }) {
-    // const { theme, themeToggler } = useOutletContext();
+  const { theme } = useContext(ThemeContext);
   return (
     <Controller
       name={name}
       control={control}
-      render={({ field, ...props }) => {
+      render={({ field }) => {
         return (
           <LocalizationProvider dateAdapter={AdapterMoment}>
             <StaticDatePicker
-            // components={{
-            //     ActionBar: CustomActionBar
-            // }}
+              theme={theme}
               componentsProps={{
                 actionBar: {
                   // The actions will be the same between desktop and mobile

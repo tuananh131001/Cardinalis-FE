@@ -48,7 +48,7 @@ export const Input = forwardRef(function Input(
       // 32 số tạm thời chưa bít
       [textareaRef, onTextareaChange, inputValue] = useResizeInput('', {
         name: 'height',
-        minSize: 32
+        minSize: 50
       });
       return (
         <StyledTextArea

@@ -6,25 +6,22 @@ import { Input } from '@/components/Input/Input';
 import { BiImageAdd } from 'react-icons/bi';
 import Icon from '@/components/Image/Icon';
 
-const FileInputIcon = ({ fontSize, bckHeight }) => {
+const FileInputIcon = ({ fontSize }) => {
   return (
-    <InlineContainer width="100%" height={bckHeight} backgroundColor="black" opacity={0.7}>
-      <Icon
-        iconThemeName="secondaryButton"
-        position="absolute"
-        top="50%"
-        left="50%"
-        transform="translate(-50%, -50%)"
-        display="flex"
-        fontSize={fontSize}
-        padding="0.2em"
-        isHover={true}
-        width="fit-content"
-        aspectRatio="1/1"
-        borderRadius="50%">
-        {<BiImageAdd />}
-      </Icon>
-    </InlineContainer>
+    <Icon
+      iconThemeName="secondaryButton"
+      position="absolute"
+      top="50%"
+      left="50%"
+      transform="translate(-50%, -50%)"
+      display="flex"
+      fontSize={fontSize}
+      padding="0.2em"
+      isHover={true}
+      width="fit-content"
+      borderRadius="50%">
+      {<BiImageAdd />}
+    </Icon>
   );
 };
 const ImageProfile = ({
@@ -61,16 +58,19 @@ const ImageProfile = ({
             {
               <>
                 <Image
-                  src={user.avatar}
+                  src={
+                    user?.banner == null
+                      ? 'https://plus.unsplash.com/premium_photo-1669386062266-5b20b994f7cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80'
+                      : user.banner
+                  }
                   alt="Profile Background"
                   width="100%"
                   height={bckHeight}
-                  position="absolute"
                   top="0"
                   left="0"
                   zIndex="-1"
                 />
-                <FileInputIcon fontSize="var(--font-size-xl)" bckHeight={bckHeight} />
+                <FileInputIcon fontSize="var(--font-size-xl)" />
               </>
             }
           </Input>
@@ -99,7 +99,7 @@ const ImageProfile = ({
                   left="0"
                   bottom="0"
                 />
-                <FileInputIcon fontSize="var(--font-size-xl)" bckHeight={avatarSize} />
+                <FileInputIcon fontSize="var(--font-size-xl)" />
               </>
             }
           </Input>

@@ -1,11 +1,12 @@
 import Image from './Image';
 import PropTypes from 'prop-types';
+import Blank from '@/assets/images/blank.png';
 
 const Avatar = ({ src, size, ...props }) => {
   return (
     <Image
       {...props}
-      src={src}
+      src={src || <Blank />}
       alt="Profile Avatar"
       borderRadius="100%"
       width={size}

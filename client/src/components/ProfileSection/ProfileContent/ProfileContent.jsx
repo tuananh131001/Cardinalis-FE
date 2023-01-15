@@ -16,6 +16,7 @@ import { displayCountNumber } from '@/helpers/HandleDisplayInfo';
 import { useParams } from 'react-router-dom';
 import { useGetUserInfo } from '@/hooks/useUser';
 import { useSelector } from 'react-redux';
+import Loading from '@/components/LoadingNothing/Loading';
 
 const defineBackDestination = (location, user) => {
   if (PROFILE_NESTED_PATHS.includes(location)) return `/${user.username}`;
@@ -28,13 +29,13 @@ function ProfileContent({ pageSubType }) {
   const { username } = useParams();
   const { data: user, isLoading, isError, error } = useGetUserInfo(username ?? '');
   const { user: currentUsername } = useSelector((state) => state.user);
-  if (isLoading) return <div>Loading...</div>;
-  console.log(user?.data);
+  if (isLoading) return <Loading type="gif" />;
+  console.log('Data in profile', user?.data);
   if (isError) return <div>Error: {error.message}</div>;
   return (
     <ProfileContentStyled>
       <HeaderSection
-        content={user.username}
+        content={user?.data.username}
         subContent={displayCountNumber(10, 'Tweet')}
         leftType="back"
         backDestination={defineBackDestination(location, user)}

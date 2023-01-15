@@ -12,7 +12,7 @@ import { useContext } from 'react';
 import ForgotPassword from '@/pages/ForgotPassword';
 import Explore from '@/pages/Explore';
 import Profile from '@/pages/Profile';
-import Bookmarks from '@/pages/Bookmarks';
+import Favourite from '@/pages/Favourite';
 import { ThemeContext } from '@/hooks/ThemeContextProvider';
 import ProtectedRoutes from '@/routes/ProtectedRoutes';
 import { AnimatePresence } from 'framer-motion';
@@ -23,11 +23,15 @@ import {
   PROFILE_FOLLOWERS_PATH,
   PROFILE_FOLLOWING_PATH,
   LOGIN_PATH,
-  REGISTER_PATH
+  REGISTER_PATH,
+  TWEET_COMPOSE_PATH,
+  UPDATE_PROFILE_PATH
 } from '@/assets/Constant';
 import Search from '@/pages/Search';
 import Follow from '@/pages/Follow';
 import Tweet from '@/pages/Tweet';
+import TweetCompose from '@/pages/TweetCompose';
+import UpdateProfilePage from '@/pages/UpdateProfilePage';
 
 // import Text from './components/Text/Text';
 
@@ -63,10 +67,10 @@ function App() {
               }
             />
             <Route
-              path="/bookmarks"
+              path="/favourite"
               element={
                 <ProtectedRoutes>
-                  <Bookmarks />
+                  <Favourite />
                 </ProtectedRoutes>
               }
             />
@@ -75,6 +79,23 @@ function App() {
               element={
                 <ProtectedRoutes>
                   <Search />
+                </ProtectedRoutes>
+              }
+            />
+            {/* Input */}
+            <Route
+              path={`/${TWEET_COMPOSE_PATH}`}
+              element={
+                <ProtectedRoutes>
+                  <TweetCompose />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path={`/${UPDATE_PROFILE_PATH}`}
+              element={
+                <ProtectedRoutes>
+                  <UpdateProfilePage />
                 </ProtectedRoutes>
               }
             />

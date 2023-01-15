@@ -22,15 +22,22 @@ const UserCardSection = ({ user, button, sz = 'base', isDisplayButtonOnly = fals
   const handleClick = () => {
     navigate(`/${user.username}`);
   };
+  console.log(user);
   return (
-    <UserCardSectionStyled onClick={handleClick} {...props}>
+    <UserCardSectionStyled onClick={handleClick} {...props} overflow="visible">
       {!isDisplayButtonOnly ? (
         <>
-          <Avatar src={user.avatar} size={getSize(sz)} />
+          <Avatar
+            src={
+              user.avatar ??
+              'https://i.pinimg.com/736x/d4/15/95/d415956c03d9ca8783bfb3c5cc984dde.jpg'
+            }
+            size={getSize(sz)}
+          />
           <UserCardInfo
-            name={user.username}
-            username={user.username}
-            isHotUser={user.is_hot_user}
+            name={user.username ?? 'not found'}
+            username={user.username ?? 'not found'}
+            isHotUser={user.is_hot_user ?? false}
           />
           {button}
         </>

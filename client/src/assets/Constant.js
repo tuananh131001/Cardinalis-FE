@@ -8,10 +8,11 @@ export const LOGIN_PATH = '';
 export const REGISTER_PATH = 'register';
 export const HOME_PATH = 'home';
 export const EXPLORE_PATH = 'explore';
-export const BOOKMARK_PATH = 'bookmarks';
+export const FAVOURITE_PATH = 'favourite';
 export const COMPOSE_PATH = 'tweet_compose';
 export const SEARCH_PATH = 'search';
 export const TWEET_COMPOSE_PATH = 'compose/tweet';
+export const UPDATE_PROFILE_PATH = 'compose/profile';
 
 // inside Profile
 export const PROFILE_TWEET_PATH = '';
@@ -31,3 +32,5 @@ export const PROFILE_NESTED_PATHS = [
 export const urlRegex = /(https?:\/\/[^\s]+)/g;
 // /https?:\/\/(?:www\.|[a-zA-Z]{2}\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\\+.~#?&//=]+)/g
 export const mainPathRegex = /[^/]*[^/*]/;
+export const phoneRegex =
+  /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;

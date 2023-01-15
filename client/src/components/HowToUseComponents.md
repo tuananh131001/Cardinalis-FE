@@ -2,7 +2,7 @@
 - [x] Display Profile path using username (in App, MainNav, Profile, Constant.js)
 - [ ] Do I need to use username from useParam to get user info (MainNav, Profile)
 - [ ] Tweet page (Have back button)
-- [x] Home, Explore, Bookmarks, Settings -> Tweets, Profile, Trend, 
+- [x] Home, Explore, Favourite, Settings -> Tweets, Profile, Trend, 
 - [ ] change defaultUser to dynamic user (in Profile, MainNav, TweetContent, FollowerList, FollowingList, SubPage)
   - App.jsx: user (**you**) (should render here instead of Home.jsx)
   - Main: user (**you**)

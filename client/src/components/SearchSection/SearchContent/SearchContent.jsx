@@ -1,16 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import HeaderSection from '@/components/HeaderSection/HeaderSection';
-import SearchList from './SearchList';
 import { SearchContentStyled } from './SearchContent.styled';
-import { defaultUserList } from '@/assets/data/UserData';
 import Divider from '@/components/Divider/Divider';
+import BeforeAfterSearchContent from './BeforeAfterSearchContent';
 
 const SearchContent = ({ searchInputObject, isSearchingObject, searchValueObject }) => {
   const { searchValue, setSearchValue } = searchInputObject;
   const { isSearching, setIsSearching } = isSearchingObject;
   const { isLoading, data } = searchValueObject;
-  const searchList = defaultUserList;
+  const searchList = data?.data;
   return (
     <SearchContentStyled>
       <HeaderSection content="Search" leftType="back" />
@@ -22,7 +21,13 @@ const SearchContent = ({ searchInputObject, isSearchingObject, searchValueObject
         value={searchValue}
       />
       <Divider />
-      {isSearching ? <SearchList searchList={searchList} type="page" /> : null}
+      {isSearching ? (
+        <BeforeAfterSearchContent
+          isLoading={isLoading}
+          values={searchList}
+          inputValues={searchValue}
+        />
+      ) : null}
     </SearchContentStyled>
   );
 };

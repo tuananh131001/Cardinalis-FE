@@ -1,7 +1,7 @@
 import React from 'react';
-import { HomeSectionStyled } from './HomeSection.styled';
+import { UpdateProfileSectionStyled } from './UpdateProfileSection.styled';
 import MainNav from '@/components/NavSection/MainHome/MainNav';
-import HomeContent from './HomeContent/HomeContent';
+import UpdateProfileContent from './UpdateProfileContent/UpdateProfileContent';
 import { useLocation } from 'react-router-dom';
 import { extractPath } from '@/helpers/HandleDisplayInfo';
 import { useMemo } from 'react';
@@ -16,7 +16,7 @@ import {
   mainPathRegex
 } from '@/assets/Constant';
 import useMediaQuery from '@/hooks/useMediaQuery';
-function HomeSection() {
+function UpdateProfileSection() {
   const responsiveCondition = {
     smallMobile: useMediaQuery(SMALL_MOBILE_QUERY),
     mobile: useMediaQuery(MOBILE_QUERY),
@@ -30,12 +30,12 @@ function HomeSection() {
     return { currentTab };
   }, [location, responsiveCondition]);
   return (
-    <HomeSectionStyled>
+    <UpdateProfileSectionStyled>
       <MainNav user={user} currentTab={currentTab} />
-      <HomeContent />
+      <UpdateProfileContent user={user} />
       <RightSection />
-    </HomeSectionStyled>
+    </UpdateProfileSectionStyled>
   );
 }
 
-export default HomeSection;
+export default UpdateProfileSection;

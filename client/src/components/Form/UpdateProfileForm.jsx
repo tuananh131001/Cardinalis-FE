@@ -13,12 +13,14 @@ import CustomizedSnackbars from '@/components/Snackbar/Snackbar';
 import { useEffect, useState } from 'react';
 import { isEmptyObject } from '@/helpers/HandleObject';
 import ImageProfile from '@/components/ProfileSection/ProfileContent/ImageProfile';
+import Button from '@/components/Button/Button';
+import { useChange } from '@/hooks/useChange';
 
 const errorPadding = '0 0 1em 0.2em';
 const bckHeight = '15em';
 const avatarSize = '9em';
-const textThemeName = 'loginInput';
-function UpdateProfileForm({ user, closeAction, ...props }) {
+const textThemeName = 'homeInput';
+function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
   const schema = chooseInputSchema('updateProfile');
   // const {value: message, onSetNewValue: setMessage} = useChange("");
   const [isOpen, setIsOpen] = useState(false);
@@ -27,9 +29,11 @@ function UpdateProfileForm({ user, closeAction, ...props }) {
   const defaultValues = {
     banner: user.banner,
     avatar: user.avatar,
+    gender: user.gender || null,
     name: user.name,
     bio: user.bio ?? null,
     location: user.location ?? null,
+    website: user.website ?? null,
     dob: user.dob ?? null // if user.dob is null, set default value to null
   };
 
@@ -44,6 +48,7 @@ function UpdateProfileForm({ user, closeAction, ...props }) {
     defaultValues: defaultValues,
     resolver: yupResolver(schema)
   });
+  const { value: showDate, onToggle: toggleShowDate } = useChange(false);
   //   const { mutate, isError, error, isSuccess } = useSignIn(reset);
   //   const dispatch = useDispatch();
 
@@ -59,15 +64,14 @@ function UpdateProfileForm({ user, closeAction, ...props }) {
   }, [errors]);
 
   // submit function
-  const onSubmitClick = (data, isClose) => {
-    if (isClose) {
-      closeAction();
-    } else {
-      console.log('click');
-      console.log(data);
-      // if data valid, send to server + close modal
-      closeAction();
-    }
+  const onSubmitClick = (data) => {
+    console.log('click');
+    console.log(data);
+  };
+  const clickEdit = (event) => {
+    event.preventDefault();
+    toggleShowDate(event);
+    console.log('Click Edit Date');
   };
 
   return (
@@ -76,15 +80,17 @@ function UpdateProfileForm({ user, closeAction, ...props }) {
       onSubmit={handleSubmit(onSubmitClick)}
       padding={`calc(${bckHeight} + ${avatarSize} / 1.5) var(--horizontal-spaces) 0`}
       jc="flex-start">
-      <HeaderSection
-        content="Update Profile"
-        isFixedPosition={true}
-        leftType="close"
-        rightType="none"
-        backgroundStyle={2}
-        onClick={(data) => onSubmitClick(data, true)}
-        zIndex={2}
-      />
+      {isInModal && (
+        <HeaderSection
+          content="Update Profile"
+          isFixedPosition={true}
+          leftType="close"
+          rightType="none"
+          backgroundStyle={2}
+          onClick={(event) => closeAction(event)}
+          zIndex={2}
+        />
+      )}
       {/* Image */}
       <ImageProfile
         user={user}
@@ -106,6 +112,42 @@ function UpdateProfileForm({ user, closeAction, ...props }) {
         {...register('name')}
       />
       <ErrorText errors={errors.name?.message} padding={errorPadding} />
+
+      {/* Gender */}
+      <ProfileUpdateLabel text="Gender" padding="0.5em 0" />
+      <div className="flex-row">
+        <Input
+          id="updateProfileMale"
+          type="radio"
+          value="Male"
+          inputType="text"
+          inputThemeName={textThemeName}
+          {...register('gender')}
+        />
+        <ProfileUpdateLabel text="Male" htmlFor="updateProfileMale" className="label" />
+      </div>
+      <div className="flex-row">
+        <Input
+          id="updateProfileFemale"
+          type="radio"
+          value="Female"
+          inputType="text"
+          inputThemeName={textThemeName}
+          {...register('gender')}
+        />
+        <ProfileUpdateLabel text="Female" htmlFor="updateProfileFemale" className="label" />
+      </div>
+      <div className="flex-row">
+        <Input
+          id="updateProfileGenderOther"
+          type="radio"
+          value="Other"
+          inputType="text"
+          inputThemeName={textThemeName}
+          {...register('gender')}
+        />
+        <ProfileUpdateLabel text="Other" htmlFor="updateProfileGenderOther" className="label" />
+      </div>
 
       {/* Bio */}
       <ProfileUpdateLabel text="Bio" htmlFor="updateProfileBio" />
@@ -129,8 +171,34 @@ function UpdateProfileForm({ user, closeAction, ...props }) {
       />
       <ErrorText errors={errors.location?.message} padding={errorPadding} />
 
+      {/* Website */}
+      <ProfileUpdateLabel text="Website" htmlFor="updateProfileWebsite" />
+      <Input
+        id="updateProfileWebsite"
+        inputType="text"
+        inputThemeName={textThemeName}
+        placeholder="Website"
+        {...register('website')}
+      />
+      <ErrorText errors={errors.website?.message} padding={errorPadding} />
+
       {/* Date of Birth */}
-      <DateInput inputThemeName={textThemeName} name="dob" control={control} />
+      <div className="flex-row">
+        <ProfileUpdateLabel
+          className="label"
+          text="Date of Birth"
+          htmlFor="updateProfileLocation"
+        />
+        <Button className="button" width="auto" buttonType="link" onClick={clickEdit}>
+          Edit
+        </Button>
+      </div>
+
+      <div className="flex-row">
+        {showDate && <DateInput inputThemeName={textThemeName} name="dob" control={control} />}
+      </div>
+
+      {/* Error message */}
       <CustomizedSnackbars
         type="error"
         verticalPosition="bottom"
@@ -159,7 +227,8 @@ const ProfileUpdateLabel = ({ text, htmlFor, ...props }) => (
 UpdateProfileForm.propTypes = {
   user: PropTypes.object,
   closeAction: PropTypes.func,
-  props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string]))
+  props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string])),
+  isInModal: PropTypes.bool
 };
 ProfileUpdateLabel.propTypes = {
   text: PropTypes.string,
