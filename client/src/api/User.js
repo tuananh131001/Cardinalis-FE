@@ -21,7 +21,6 @@ const headerConfig = {
   }
 };
 
-console.log(USER_FOLLOWING_ENDPOINT);
 
 const registerUser = (user) => userApi.post(REGISTER_ENDPOINT, user).then((res) => res.data);
 

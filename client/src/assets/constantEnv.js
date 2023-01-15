@@ -14,3 +14,5 @@ export const USER_FOLLOWERS_ENDPOINT = 'user/followers/';
 export const USER_FOLLOWING_ENDPOINT = 'user/following/';
 export const USER_SEARCH_ENDPOINT =
   import.meta.env.VITE_REACT_APP_SEARCH_USER_ENDPOINT || 'user/search';
+export const TWEET_EXPLORE_ENDPOINT =
+  import.meta.env.VITE_REACT_APP_EXPLORE_TWEET_ENDPOINT_EXPLORE || 'tweets';

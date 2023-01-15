@@ -8,7 +8,7 @@ function RegisterSection() {
   return (
     // <RegisterSectionStyled >
     // </RegisterSectionStyled>
-      <RegisterContent variants={PageAnimation} initial="initial" animate="animate" exit="exit"/>
+    <RegisterContent variants={PageAnimation} initial="initial" animate="animate" exit="exit" />
   );
 }
 

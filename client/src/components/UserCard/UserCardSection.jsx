@@ -22,7 +22,6 @@ const UserCardSection = ({ user, button, sz = 'base', isDisplayButtonOnly = fals
   const handleClick = () => {
     navigate(`/${user.username}`);
   };
-  console.log(user);
   return (
     <UserCardSectionStyled onClick={handleClick} {...props} overflow="visible">
       {!isDisplayButtonOnly ? (

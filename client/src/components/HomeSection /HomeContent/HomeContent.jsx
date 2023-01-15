@@ -13,7 +13,7 @@ function HomeContent() {
     <HomeContentStyled>
       <HeaderSection content="Home" leftType="none" />
       <TweetComposeCard user={user} />
-      <TweetList />
+      {/* <TweetList /> */}
     </HomeContentStyled>
   );
 }

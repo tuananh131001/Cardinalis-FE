@@ -13,7 +13,7 @@ const usePostTweet = (reset) => {
   return useMutation({
     mutationFn: (tweet) => postTweet(tweet),
     onSuccess: (data, variables) => {
-      queryClient.setQueryData(['tweet', { id: variables.id }], data);
+      queryClient.setQueryData(['tweets', { id: variables.id }], data);
       reset();
     },
     onError: (error, data) => console.log(error, data)
@@ -64,6 +64,7 @@ const useGetAllTweetsByPage = () => {
     getNextPageParam: (lastPage) => lastPage.nextPage ?? undefined
   });
 };
+
 export {
   useUpdateTweet,
   useDeleteTweet,
