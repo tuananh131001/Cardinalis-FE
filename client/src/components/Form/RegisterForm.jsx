@@ -10,7 +10,11 @@ import CustomizedSnackbars from '@/components/Snackbar/Snackbar';
 import { useNavigate } from 'react-router-dom';
 import { LOGIN_PATH } from '@/assets/Constant';
 import Button from '@/components/Button/Button';
-import { BsGithub } from 'react-icons/bs';
+import OAuth2Button from '@/components/Button/OAuth2Button';
+import { FcGoogle } from 'react-icons/fc';
+import { SiFacebook } from 'react-icons/si';
+import uuid from 'react-uuid';
+import { getOauthUrl } from '@/api/User';
 
 export const RegisterForm = ({ ...props }) => {
   const schema = chooseInputSchema('register');
@@ -33,10 +37,6 @@ export const RegisterForm = ({ ...props }) => {
       navigate(`/${LOGIN_PATH}`, { replace: true });
     }
   };
-  const clickLoginGithub = (event) => {
-    event.preventDefault();
-    console.log("click github");
-  }
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmitClick)} {...props}>
@@ -74,10 +74,23 @@ export const RegisterForm = ({ ...props }) => {
       <Button type="submit" buttonThemeName="primaryButton">
         Submit
       </Button>
-      <Button buttonType="link" onClick={clickLoginGithub} gap="0.4em">
-        <BsGithub style={{fontSize: "var(--font-size-md)"}} />
-        Login Using Github
-      </Button>
+      <div className="flex-col">
+        <OAuth2Button
+          href={getOauthUrl('facebook')}
+          text={[
+            <FcGoogle key={uuid()} style={{ fontSize: 'var(--font-size-md)' }} />,
+            'Login with Google'
+          ]}
+        />
+        <OAuth2Button
+          href={getOauthUrl('facebook')}
+          text={[
+            <SiFacebook key={uuid()} style={{ fontSize: 'var(--font-size-md)' }} />,
+            'Login with Facebook'
+          ]}
+          className="oauth"
+        />
+      </div>
       {isSuccess && <CustomizedSnackbars type="success" message="Register successfully" />}
       {isError && (
         <CustomizedSnackbars

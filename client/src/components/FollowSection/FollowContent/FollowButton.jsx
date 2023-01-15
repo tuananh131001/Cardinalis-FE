@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@/components/Button/Button';
 import { useChange } from '@/hooks/useChange';
+import { useFollowUser } from '@/hooks/useUser';
 
 const getAttribute = (type, followType, isHover = false) => {
   switch (type) {
@@ -19,10 +20,9 @@ const getAttribute = (type, followType, isHover = false) => {
       }
   }
 };
-const FollowButton = ({ isFollowing, ...props }) => {
-  // follow logic here
+const FollowButton = ({id, isFollowing, ...props }) => {
+  const { data, isLoading, isError, error } = useFollowUser();
   const followType = isFollowing ? 'following' : 'follow';
-
   const { value: isHover, onSetNewValue: onSetHover } = useChange(false);
   const onEnter = () => {
     if (followType == 'following') {
@@ -35,11 +35,7 @@ const FollowButton = ({ isFollowing, ...props }) => {
     }
   };
   const onClick = () => {
-    if (followType == 'following') {
-      // unfollow logic here
-    } else {
-      // follow logic here
-    }
+
   };
   return (
     <Button

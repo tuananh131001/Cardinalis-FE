@@ -14,7 +14,11 @@ const SearchList = ({ searchList, type }) => {
             key={user.id}
             user={user}
             sz="medium"
-            button={type != 'modal' && <FollowButton isFollowing={user.isFollowing} width="30%" />}
+            button={
+              type != 'modal' && (
+                <FollowButton id={user?.id} isFollowing={user.isFollowing} width="30%" />
+              )
+            }
           />
           {type != 'modal' && <Divider />}
         </Fragment>

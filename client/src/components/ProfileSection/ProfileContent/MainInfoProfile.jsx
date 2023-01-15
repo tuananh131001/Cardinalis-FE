@@ -15,6 +15,7 @@ import { MdLocationOn } from 'react-icons/md';
 import FollowButton from '@/components/FollowSection/FollowContent/FollowButton';
 import { RiLinksLine } from 'react-icons/ri';
 import useMediaQuery from '@/hooks/useMediaQuery';
+import { useGetUserFollowers, useGetUserFollowing } from '@/hooks/useUser';
 import { UPDATE_PROFILE_PATH } from '@/assets/Constant';
 
 const avatarSize = '9em';
@@ -26,6 +27,19 @@ const MainInfoProfile = ({ user, currentUsername }) => {
   };
   const { value: isOpen, onSetTrue: handleOpen, onSetFalse: handleClose } = useChange(false);
   const navigate = useNavigate();
+  const {
+    data: followers,
+    isLoading: isLoadingFollowers,
+    isError: isErrorFollower
+  } = useGetUserFollowers(user.id);
+  const {
+    data: following,
+    isLoading: isLoadingFollowing,
+    isError: isErrorFollowing
+  } = useGetUserFollowing(user.id);
+  if (isLoadingFollowers || isLoadingFollowing) return <div>Loading...</div>;
+  if (isErrorFollower || isErrorFollowing) return <div>Error</div>;
+
   const isYou = user.username === currentUsername ? true : false;
   const clickNavigate = (type) => {
     switch (type) {
@@ -37,6 +51,10 @@ const MainInfoProfile = ({ user, currentUsername }) => {
         break;
     }
   };
+  console.log(user);
+  console.log(followers);
+  const isFollowedByCurrentUser =
+    followers?.data.filter((follower) => follower.username === currentUsername).length > 0;
   const clickUpdateProfile = (event) => {
     event.preventDefault();
     if (responsiveCondition?.desktop) handleOpen(event);
@@ -53,7 +71,12 @@ const MainInfoProfile = ({ user, currentUsername }) => {
       {isYou ? (
         <EditButtonProfile onClick={clickUpdateProfile} />
       ) : (
-        <FollowButton isFollowing={user.isFollowing} alignSelf="flex-end" width="20%" />
+        <FollowButton
+          id={user?.id}
+          isFollowing={isFollowedByCurrentUser}
+          alignSelf="flex-end"
+          width="20%"
+        />
       )}
       <ShortInfoProfile
         name={user.username}
@@ -74,12 +97,12 @@ const MainInfoProfile = ({ user, currentUsername }) => {
       )}
       <FlexContainer gap="2em" jc="flex-start">
         <FollowButtonProfile
-          count={user.following ?? 0}
+          count={following?.data.length ?? 0}
           text="Following"
           onClick={() => clickNavigate('following')}
         />
         <FollowButtonProfile
-          count={user.followers ?? 0}
+          count={followers?.data.length ?? 0}
           text="Followers"
           onClick={() => clickNavigate('followers')}
         />

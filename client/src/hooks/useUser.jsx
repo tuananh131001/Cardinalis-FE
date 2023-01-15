@@ -2,13 +2,13 @@ import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
 import {
   registerUser,
   signIn,
+  signInOauth2,
   updateProfile,
   getUserInfo,
   searchUsers,
   getUserFollowers,
   getUserFollowing,
-  followUser,
-  unfollowUser
+  followUser
 } from '@/api/User';
 
 const useRegister = (reset) =>
@@ -31,6 +31,14 @@ const useSignIn = (reset) =>
       console.log(error);
     }
   });
+const useSignInOauth2 = () =>
+  // {type, token}
+  useMutation({
+    mutationFn: (dataToken) => signInOauth2(dataToken),
+    onError: (error) => {
+      console.log(error);
+    }
+  });
 
 const useUpdateProfile = () => {
   const queryClient = useQueryClient();
@@ -41,23 +49,11 @@ const useUpdateProfile = () => {
   });
 };
 
-const useFollowUser = (users) => {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: (users) => followUser(users),
-    onSuccess: () => {
-      queryClient.invalidateQueries(['followers', users.followingId]);
-    }
-  });
-};
-
-const useUnfollowUser = (users) => {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: (users) => unfollowUser(users),
-    onSuccess: () => {
-      queryClient.invalidateQueries(['followers', users.followingId]);
-    }
+const useFollowUser = (id) => {
+  return useQuery({
+    queryKey: ['follow', id],
+    queryFn: () => followUser(id),
+    enabled: Boolean(id)
   });
 };
 
@@ -95,12 +91,12 @@ const useGetUserFollowing = (userId) => {
 
 export {
   useSignIn,
+  useSignInOauth2,
   useRegister,
   useUpdateProfile,
   useGetUserInfo,
   useSearchUsers,
   useGetUserFollowing,
   useGetUserFollowers,
-  useFollowUser,
-  useUnfollowUser
+  useFollowUser
 };

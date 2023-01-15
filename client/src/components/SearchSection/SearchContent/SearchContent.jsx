@@ -8,22 +8,27 @@ import BeforeAfterSearchContent from './BeforeAfterSearchContent';
 const SearchContent = ({ searchInputObject, isSearchingObject, searchValueObject }) => {
   const { searchValue, setSearchValue } = searchInputObject;
   const { isSearching, setIsSearching } = isSearchingObject;
-  const { isLoading, data } = searchValueObject;
+  const { isLoading, data, isError } = searchValueObject;
   const searchList = data?.data;
   return (
     <SearchContentStyled>
-      <HeaderSection content="Search" leftType="back" />
-      <input
-        onFocus={() => setIsSearching(true)}
-        onBlur={() => setIsSearching(false)}
-        placeholder="What are you looking for?"
-        onChange={(e) => setSearchValue(e.target.value)}
-        value={searchValue}
+      <HeaderSection
+        content={
+          <input
+            onFocus={() => setIsSearching(true)}
+            placeholder="What are you looking for?"
+            onChange={(e) => setSearchValue(e.target.value)}
+            value={searchValue}
+          />
+        }
+        leftType="back"
       />
       <Divider />
+
       {isSearching ? (
         <BeforeAfterSearchContent
           isLoading={isLoading}
+          isError={isError}
           values={searchList}
           inputValues={searchValue}
         />

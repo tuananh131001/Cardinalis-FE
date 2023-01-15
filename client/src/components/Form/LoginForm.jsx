@@ -15,6 +15,11 @@ import CustomizedSnackbars from '@/components/Snackbar/Snackbar';
 import { useSelector, useDispatch } from 'react-redux';
 import { login } from '@/features/userSlice';
 import { HOME_PATH } from '@/assets/Constant';
+import OAuth2Button from '@/components/Button/OAuth2Button';
+import { FcGoogle } from 'react-icons/fc';
+import { SiFacebook } from 'react-icons/si';
+import uuid from 'react-uuid';
+import { getOauthUrl } from '@/api/User';
 
 function LoginForm({ ...props }) {
   const schema = chooseInputSchema('login');
@@ -80,6 +85,23 @@ function LoginForm({ ...props }) {
       <StyledButton type="submit" buttonThemeName="primaryButton">
         Submit
       </StyledButton>
+      <div className="flex-col">
+        <OAuth2Button
+          href={getOauthUrl('google')}
+          text={[
+            <FcGoogle key={uuid()} style={{ fontSize: 'var(--font-size-md)' }} />,
+            'Login with Google'
+          ]}
+        />
+        <OAuth2Button
+          href={getOauthUrl('facebook')}
+          text={[
+            <SiFacebook key={uuid()} style={{ fontSize: 'var(--font-size-md)' }} />,
+            'Login with Facebook'
+          ]}
+          className="oauth"
+        />
+      </div>
       {isError && (
         <CustomizedSnackbars
           type="error"

@@ -12,7 +12,6 @@ const SearchContentModal = ({ searchInputObject, isSearchingObject, searchValueO
     <>
       <input
         onFocus={() => setIsSearching(true)}
-        onBlur={() => setIsSearching(false)}
         placeholder="Search"
         onChange={(e) => setSearchValue(e.target.value)}
         value={searchValue}

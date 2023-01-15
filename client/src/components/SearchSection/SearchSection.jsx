@@ -12,13 +12,13 @@ import SearchContent from './SearchContent/SearchContent';
 import { extractPath } from '@/helpers/HandleDisplayInfo';
 import { mainPathRegex } from '@/assets/Constant';
 import PropTypes from 'prop-types';
+import Nothing from '@/components/LoadingNothing/Nothing';
 
 const SearchSection = ({ type = 'modal' }) => {
   const [searchValue, setSearchValue] = useState('');
   const debouncedSearchTerm = useDebounce(searchValue, 1000);
-  const { data, isLoading } = useSearchUsers(debouncedSearchTerm);
+  const { data, isLoading, isError } = useSearchUsers(debouncedSearchTerm);
   const [isSearching, setIsSearching] = useState(false);
-  console.log(data?.data);
 
   const { user } = useSelector((state) => state.user);
 
@@ -34,17 +34,23 @@ const SearchSection = ({ type = 'modal' }) => {
         <SearchContentModal
           searchInputObject={{ searchValue, setSearchValue }}
           isSearchingObject={{ isSearching, setIsSearching }}
-          searchValueObject={{ isLoading, data }}
+          searchValueObject={{ isLoading, data, isError }}
         />
       ) : (
         <>
           <MainNav user={user} currentTab={currentTab} />
-          <SearchContent
-            searchInputObject={{ searchValue, setSearchValue }}
-            isSearchingObject={{ isSearching, setIsSearching }}
-            searchValueObject={{ isLoading, data }}
-          />
-          <div>Hdiskjnsd</div>
+
+          {isError ? (
+            <Nothing />
+          ) : (
+            <SearchContent
+              searchInputObject={{ searchValue, setSearchValue }}
+              isSearchingObject={{ isSearching, setIsSearching }}
+              searchValueObject={{ isLoading, data, isError }}
+            />
+          )}
+          {/* đừng bỏ dòng này */}
+          <div></div>
         </>
       )}
     </SearchSectionStyled>

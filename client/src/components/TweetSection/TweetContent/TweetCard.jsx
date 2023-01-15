@@ -47,19 +47,10 @@ const TweetCard = ({ tweet, ...props }) => {
         onClick={(event) => navigateProfile(event)}
       />
       <Text
-        type="p"
-        textThemeName="paragraphText"
-        weight="700"
-        text={tweet.username}
-        gridArea="name"
-        isDisableHover={false}
-        onClick={(event) => navigateProfile(event)}
-      />
-      <Text
         type="p3"
         textThemeName="subText"
         text={`@${tweet.username}${tabSpaces}•${tabSpaces}${displayDuration(tweet.createdAt)}`}
-        gridArea="subInfo"
+        gridArea="name"
         isDisableHover={false}
         onClick={(event) => navigateProfile(event)}
       />
