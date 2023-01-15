@@ -26,7 +26,10 @@ function RightCardInfo({ type, text, data }) {
         </Button>
       )}
       {data?.length === 0 && (
-        <Nothing subText={`No ${type == 'followers' ? type : 'one to follow'} yet`} />
+        <Nothing
+          subText={`No ${type == 'followers' ? type : 'one to follow'} yet`}
+          hasImage={false}
+        />
       )}
     </RightCardInfoWrapper>
   );
