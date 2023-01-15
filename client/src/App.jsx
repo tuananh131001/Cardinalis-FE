@@ -59,7 +59,7 @@ function App() {
                 </ProtectedRoutes>
               }
             />
-            <Route path="/oauth2/:token" element={<TokenRecevied />} />
+            <Route path="/oauth2/:type/:token" element={<TokenRecevied />} />
             <Route
               path="/explore"
               element={

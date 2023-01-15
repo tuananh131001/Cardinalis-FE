@@ -13,7 +13,6 @@ import {
 import LoginForm from '@/components/Form/LoginForm';
 import LoginText from './LoginText';
 import LoginImage from './LoginImage';
-import { Link } from 'react-router-dom';
 
 function LoginContent({ ...props }) {
   const responsiveCondition = {
@@ -30,9 +29,6 @@ function LoginContent({ ...props }) {
       <SwitchThemeButton gridArea="theme" />
       <LoginText gridArea="text" responsiveCondition={responsiveCondition} />
       <LoginForm gridArea="form" />
-      <a href={"https://cardinalis-be.live/oauth2/authorization/google"}>Login with Google</a>
-      <a href={"https://cardinalis-be.live/oauth2/authorization/facebook"}>Login with Facebook</a>
-
     </LoginContentStyled>
   );
 }

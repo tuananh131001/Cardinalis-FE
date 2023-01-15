@@ -68,6 +68,12 @@ export const StyledForm = styled.form`
       }
     }
   }
+  & .flex-col {
+    padding: 1em 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
 `;
 
 // Default Props

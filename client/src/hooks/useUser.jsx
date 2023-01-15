@@ -2,6 +2,7 @@ import { useMutation, useQueryClient, useQuery } from '@tanstack/react-query';
 import {
   registerUser,
   signIn,
+  signInOauth2,
   updateProfile,
   getUserInfo,
   searchUsers,
@@ -27,6 +28,14 @@ const useSignIn = (reset) =>
     onSuccess: () => {
       reset();
     },
+    onError: (error) => {
+      console.log(error);
+    }
+  });
+const useSignInOauth2 = () =>
+  // {type, token}
+  useMutation({
+    mutationFn: (dataToken) => signInOauth2(dataToken),
     onError: (error) => {
       console.log(error);
     }
@@ -95,6 +104,7 @@ const useGetUserFollowing = (userId) => {
 
 export {
   useSignIn,
+  useSignInOauth2,
   useRegister,
   useUpdateProfile,
   useGetUserInfo,

@@ -11,8 +11,7 @@ function LoginSection() {
     // >
     // </LoginSectionStyled>
     <LoginContent variants={PageAnimation} initial="initial" animate="animate" exit="exit" />
-    
-    );
+  );
 }
 
 export default LoginSection;

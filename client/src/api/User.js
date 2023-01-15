@@ -2,6 +2,8 @@ import axios from 'axios';
 import {
   API_ORIGIN,
   LOGIN_ENDPOINT,
+  GOOGLE_LOGIN_ENDPOINT,
+  FACEBOOK_LOGIN_ENDPOINT,
   USER_ENDPOINT,
   REGISTER_ENDPOINT,
   GET_USER_ENDPOINT,
@@ -23,6 +25,14 @@ const headerConfig = {
 
 console.log(USER_FOLLOWING_ENDPOINT);
 
+const getOauthUrl = (provider) => {
+  if (provider == 'google') {
+    return API_ORIGIN + GOOGLE_LOGIN_ENDPOINT;
+  } else {
+    return API_ORIGIN + FACEBOOK_LOGIN_ENDPOINT;
+  }
+};
+
 const registerUser = (user) => userApi.post(REGISTER_ENDPOINT, user).then((res) => res.data);
 
 const signIn = ({ email, password }) =>
@@ -31,6 +41,33 @@ const signIn = ({ email, password }) =>
     localStorage.setItem('userToken', token);
     localStorage.setItem('username', res.data.data.user.username);
   });
+
+const signInOauth2 = (dataToken) => {
+  const token = dataToken.token;
+  localStorage.setItem('userToken', token);
+  if (dataToken.type == 'facebook') {
+    axios
+      .get('https://graph.facebook.com/me', {
+        params: {
+          fields: ['id', 'email', 'first_name', 'last_name'].join(','),
+          access_token: token
+        }
+      })
+      .then((res) => {
+        localStorage.setItem('username', res.email);
+      });
+  } else {
+    axios
+      .get('https://www.googleapis.com/oauth2/v2/userinfo', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      .then((res) => {
+        localStorage.setItem('username', res.email);
+      });
+  }
+};
 
 const updateProfile = ({ data, id }) =>
   userApi.put(USER_ENDPOINT, { data, id }).then((res) => res.data);
@@ -85,6 +122,8 @@ const searchUsers = (username) =>
 export {
   registerUser,
   signIn,
+  signInOauth2,
+  getOauthUrl,
   updateProfile,
   getUserInfo,
   searchUsers,
