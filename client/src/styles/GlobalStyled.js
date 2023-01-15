@@ -154,8 +154,10 @@ box-sizing:border-box;
 
   /* padding */
   --horizontal-spaces: 2em;
+  --vertical-nothing-spaces: 5em;
   @media screen and (max-width: 768px) {
     --horizontal-spaces: 0.5em;
+    --vertical-nothing-spaces: 0.7em;
   }
 }
 

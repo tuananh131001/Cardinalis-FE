@@ -6,9 +6,9 @@ import PropTypes from 'prop-types';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { getExploreTweets } from '@/api/Tweet.js';
 import Loading from '@/components/LoadingNothing/Loading';
-import ErrorDisplay from '@/components/LoadingNothing/ErrorDisplay';
 import Footer from '@/components/Footer/Footer';
 import Button from '@/components/Button/Button';
+import Nothing from '@/components/LoadingNothing/Nothing';
 
 function ExploreContent() {
   const { fetchNextPage, hasNextPage, isFetchingNextPage, isFetching, error, data, status } =
@@ -25,7 +25,7 @@ function ExploreContent() {
     <Loading />;
   }
   if (status === 'error') {
-    <ErrorDisplay />;
+    <Nothing text="Server Error" subText={error.message} />;
   }
   const renderLoading = () => {
     return (

@@ -11,9 +11,8 @@ import { useLocation } from 'react-router-dom';
 import SearchContent from './SearchContent/SearchContent';
 import { extractPath } from '@/helpers/HandleDisplayInfo';
 import { mainPathRegex } from '@/assets/Constant';
-import Nothing from '@/components/LoadingNothing/Nothing';
-
 import PropTypes from 'prop-types';
+import Nothing from '@/components/LoadingNothing/Nothing';
 
 const SearchSection = ({ type = 'modal' }) => {
   const [searchValue, setSearchValue] = useState('');
@@ -29,10 +28,6 @@ const SearchSection = ({ type = 'modal' }) => {
     return { currentTab };
   }, [location]);
 
-  if (isError) {
-    return <Nothing />;
-  }
-
   return (
     <SearchSectionStyled type={type}>
       {type === 'modal' ? (
@@ -44,11 +39,16 @@ const SearchSection = ({ type = 'modal' }) => {
       ) : (
         <>
           <MainNav user={user} currentTab={currentTab} />
-          <SearchContent
-            searchInputObject={{ searchValue, setSearchValue }}
-            isSearchingObject={{ isSearching, setIsSearching }}
-            searchValueObject={{ isLoading, data, isError }}
-          />
+
+          {isError ? (
+            <Nothing />
+          ) : (
+            <SearchContent
+              searchInputObject={{ searchValue, setSearchValue }}
+              isSearchingObject={{ isSearching, setIsSearching }}
+              searchValueObject={{ isLoading, data, isError }}
+            />
+          )}
           {/* đừng bỏ dòng này */}
           <div></div>
         </>
