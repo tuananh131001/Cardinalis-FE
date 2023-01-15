@@ -34,8 +34,12 @@ function RightSection() {
   return (
     <RightSectionStyled>
       <SearchSection />
-      {FollowersData?.data ? <RightCardInfo data={FollowersData?.data} text="Followers:" /> : null}
-      {FollowingData?.data ? <RightCardInfo data={FollowingData?.data} text="Following:" /> : null}
+      {FollowersData?.data ? (
+        <RightCardInfo type="followers" data={FollowersData?.data} text="Followers:" />
+      ) : null}
+      {FollowingData?.data ? (
+        <RightCardInfo type="following" data={FollowingData?.data} text="Following:" />
+      ) : null}
     </RightSectionStyled>
   );
 }

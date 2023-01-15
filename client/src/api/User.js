@@ -7,7 +7,6 @@ import {
   USER_ENDPOINT,
   REGISTER_ENDPOINT,
   GET_USER_ENDPOINT,
-  USER_FOLLOW_ENDPOINT,
   USER_FOLLOWING_ENDPOINT,
   USER_FOLLOWERS_ENDPOINT,
   USER_SEARCH_ENDPOINT
@@ -22,7 +21,6 @@ const headerConfig = {
     'Content-Type': 'application/json'
   }
 };
-
 
 const getOauthUrl = (provider) => {
   if (provider == 'google') {
@@ -68,8 +66,15 @@ const signInOauth2 = (dataToken) => {
   }
 };
 
-const updateProfile = ({ data, id }) =>
-  userApi.put(USER_ENDPOINT, { data, id }).then((res) => res.data);
+const updateProfile = (data) =>
+  userApi
+    .put(USER_ENDPOINT, data, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('userToken')}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((res) => res.data);
 
 const getUserInfo = (username) => {
   return userApi.get(`${GET_USER_ENDPOINT}${username}`).then((res) => res.data);
@@ -77,7 +82,7 @@ const getUserInfo = (username) => {
 
 const followUser = (id) =>
   userApi
-    .get(`${USER_FOLLOW_ENDPOINT}?userId=${id}`, {
+    .get(`/user/follow?userId=${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('userToken')}`,
         'Content-Type': 'application/json'

@@ -12,7 +12,7 @@ export const TWEET_ENDPOINT = import.meta.env.VITE_REACT_APP_TWEET_ENDPOINT || '
 export const TWEET_DETAIL_ENDPOINT =
   import.meta.env.VITE_REACT_APP_TWEET_DETAIL_ENDPOINT || 'tweet';
 export const USER_FOLLOW_ENDPOINT =
-  import.meta.env.VITE_REACT_APP_USER_FOLLOW_ENDPOINT || 'user/follow/';
+  import.meta.env.VITE_REACT_APP_USER_FOLLOW_ENDPOINT || 'user/follow';
 export const USER_FOLLOWERS_ENDPOINT = 'user/followers/';
 export const USER_FOLLOWING_ENDPOINT = 'user/following/';
 export const USER_SEARCH_ENDPOINT =

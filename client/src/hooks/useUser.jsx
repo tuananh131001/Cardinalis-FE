@@ -44,7 +44,7 @@ const useUpdateProfile = () => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (user) => updateProfile(user),
-    onSuccess: (data) => queryClient.setQueryData(['user', { id: data.id }], data),
+    onSuccess: () => queryClient.invalidateQueries(),
     onError: (error) => console.log(error)
   });
 };
@@ -53,7 +53,7 @@ const useFollowUser = (id) => {
   return useQuery({
     queryKey: ['follow', id],
     queryFn: () => followUser(id),
-    enabled: Boolean(id)
+    enabled: false
   });
 };
 
