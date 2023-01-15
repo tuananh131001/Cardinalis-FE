@@ -53,7 +53,7 @@ const useFollowUser = (id) => {
   return useQuery({
     queryKey: ['follow', id],
     queryFn: () => followUser(id),
-    enabled: Boolean(id)
+    enabled: false
   });
 };
 

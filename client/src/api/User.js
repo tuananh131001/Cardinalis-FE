@@ -77,7 +77,7 @@ const getUserInfo = (username) => {
 
 const followUser = (id) =>
   userApi
-    .get(`${USER_FOLLOW_ENDPOINT}?userId=${id}`, {
+    .get(`/user/follow?userId=${id}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('userToken')}`,
         'Content-Type': 'application/json'
