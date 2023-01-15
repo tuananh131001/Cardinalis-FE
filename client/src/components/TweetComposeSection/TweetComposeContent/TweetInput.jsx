@@ -6,13 +6,15 @@ import { Input } from '@/components/Input/Input';
 import { StyledForm } from '@/components/Form/Form.styled';
 import StyledButton from '@/components/Button/Button.styled';
 import { ErrorText } from '@/components/Text/ErrorText';
+import { usePostTweet } from '@/hooks/useTweet';
 
 const TweetInput = ({ ...props }) => {
   const schema = chooseInputSchema('tweet');
-  const defaultValues = { tweet: '' };
+  const defaultValues = { content: '' };
   const {
     register,
     handleSubmit,
+    reset,
     formState: { isDirty, isValid },
     getValues
   } = useForm({
@@ -20,9 +22,11 @@ const TweetInput = ({ ...props }) => {
     defaultValues: defaultValues,
     resolver: yupResolver(schema)
   });
+  const { mutate } = usePostTweet(reset);
 
   const onSubmitClick = (data) => {
     console.log('Tweet', data);
+    mutate(data);
     // if (isDirty && isValid) {
     //   console.log(data);
     // } else {
@@ -40,14 +44,14 @@ const TweetInput = ({ ...props }) => {
         inputType="textarea"
         inputThemeName="homeInput"
         placeholder="What's happening?"
-        onChange={register('tweet').onChange}
-        {...register('tweet')}
+        onChange={register('content').onChange}
+        {...register('content')}
       />
 
       <ErrorText
         errors={
-          getValues('tweet').length > maxTweetCharacters
-            ? maxTweetCharacters - getValues('tweet').length
+          getValues('content').length > maxTweetCharacters
+            ? maxTweetCharacters - getValues('content').length
             : ''
         }
       />

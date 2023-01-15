@@ -8,7 +8,7 @@ import { extractPath } from '@/helpers/HandleDisplayInfo';
 import { mainPathRegex } from '@/assets/Constant';
 import { TweetSectionStyled } from './TweetSection.style';
 
-function TweetSection() {
+function TweetSection({ tweet }) {
   const user = youUser;
 
   const location = useLocation();
@@ -20,7 +20,7 @@ function TweetSection() {
   return (
     <TweetSectionStyled>
       <MainNav user={user} currentTab={currentTab} />
-      <TweetContent />
+      <TweetContent tweet={tweet} />
       <SearchSection />
     </TweetSectionStyled>
   );

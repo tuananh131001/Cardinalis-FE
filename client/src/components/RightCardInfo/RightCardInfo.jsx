@@ -6,7 +6,6 @@ import Text from '@/components/Text/Text';
 import Button from '@/components/Button/Button';
 
 function RightCardInfo({ text, data }) {
-  console.log(data);
   return (
     <RightCardInfoWrapper>
       <Text type="p" textThemeName="subText" text={text} weight="700" />

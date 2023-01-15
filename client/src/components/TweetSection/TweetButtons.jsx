@@ -37,7 +37,7 @@ const TweetButtonSection = ({
         textThemeName={themeName}
         text={count}
         isActive={isActive}
-        visibility={count != 0 ? 'visible' : 'hidden'}
+        visibility="visible"
       />
     </FlexContainer>
   );
@@ -67,20 +67,20 @@ export const TweetButtons = ({ tweet, ...props }) => {
     <FlexContainer {...props}>
       <TweetButtonSection
         icon={<FaRegComment />}
-        count={displayCountNumber(tweet.numComments)}
+        count={displayCountNumber(tweet.totalComment)}
         onClick={(event) => onClick(event, 'comment')}
       />
       <TweetButtonSection
         themeName="retweetButton"
         icon={<AiOutlineRetweet />}
-        count={displayCountNumber(tweet.numRetweets)}
+        count={displayCountNumber(tweet.totalRetweet)}
         onClick={(event) => onClick(event, 'retweet')}
         isActive={tweet.isRetweeted}
       />
       <TweetButtonSection
         themeName="favoriteButton"
         icon={tweet.isFavorited ? <FaHeart /> : <FaRegHeart />}
-        count={displayCountNumber(tweet.numFavorites)}
+        count={displayCountNumber(tweet.totalFav)}
         onClick={(event) => onClick(event, 'favorite')}
         isActive={tweet.isFavorited}
       />

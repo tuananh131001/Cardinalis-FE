@@ -23,7 +23,6 @@ const headerConfig = {
   }
 };
 
-console.log(USER_FOLLOWING_ENDPOINT);
 
 const getOauthUrl = (provider) => {
   if (provider == 'google') {
