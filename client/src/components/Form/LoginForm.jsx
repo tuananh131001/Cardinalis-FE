@@ -19,6 +19,7 @@ import OAuth2Button from '@/components/Button/OAuth2Button';
 import { FcGoogle } from 'react-icons/fc';
 import { SiFacebook } from 'react-icons/si';
 import uuid from 'react-uuid';
+import { getOauthUrl } from '@/api/User';
 
 function LoginForm({ ...props }) {
   const schema = chooseInputSchema('login');
@@ -86,14 +87,14 @@ function LoginForm({ ...props }) {
       </StyledButton>
       <div className="flex-col">
         <OAuth2Button
-          href="https://cardinalis-be.live/oauth2/authorization/google"
+          href={getOauthUrl('google')}
           text={[
             <FcGoogle key={uuid()} style={{ fontSize: 'var(--font-size-md)' }} />,
             'Login with Google'
           ]}
         />
         <OAuth2Button
-          href="https://cardinalis-be.live/oauth2/authorization/facebook"
+          href={getOauthUrl('facebook')}
           text={[
             <SiFacebook key={uuid()} style={{ fontSize: 'var(--font-size-md)' }} />,
             'Login with Facebook'

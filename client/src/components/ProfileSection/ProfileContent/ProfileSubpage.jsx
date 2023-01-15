@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Proptypes from 'prop-types';
-import { getMediaTweeters } from '@/helpers/HandleDisplayInfo';
+import { getMediaTweeters, haveMediaTweeters } from '@/helpers/HandleDisplayInfo';
 import SubNav from '../../NavSection/SubNav';
 import TweetList from '@/components/TweetSection/TweetList';
 import { getUserTweets } from '@/api/Tweet.js';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import Loading from '@/components/LoadingNothing/Loading';
+import ErrorDisplay from '@/components/LoadingNothing/ErrorDisplay';
+import Footer from '@/components/Footer/Footer';
+import Button from '@/components/Button/Button';
+import Nothing from '@/components/LoadingNothing/Nothing';
 
 const getNavType = (type) => {
   switch (type) {
@@ -15,7 +20,7 @@ const getNavType = (type) => {
   }
 };
 const ProfileSubpage = ({ type, user }) => {
-  const { fetchNextPage, hasNextPage, isFetchingNextPage, isFetching, error, data, status } =
+  const { fetchNextPage, hasNextPage, isFetchingNextPage, isFetching, data, status } =
     useInfiniteQuery({
       queryKey: ['tweet/user', user?.email],
       queryFn: getUserTweets,
@@ -27,38 +32,68 @@ const ProfileSubpage = ({ type, user }) => {
       enabled: Boolean(user?.email)
     });
   if (status === 'loading') {
-    <p>Loading...</p>;
+    <Loading />;
   }
   if (status === 'error') {
-    <p>{error.message}</p>;
+    <ErrorDisplay />;
   }
-  console.log(data);
+  console.log(`Profile @${user?.username} Sub Page: `, data);
+  const renderLoading = () => {
+    return (
+      <Fragment>
+        {!isFetching && hasNextPage && (
+          <Button
+            width="fit-content"
+            buttonType="link"
+            jc="flex-end"
+            padding="1em var(--horizontal-spaces)"
+            onClick={() => fetchNextPage()}>
+            Load More
+          </Button>
+        )}
+        <div>{isFetching || isFetchingNextPage ? <Loading /> : null}</div>
+        {!hasNextPage && <Footer />}
+      </Fragment>
+    );
+  };
+  // data.pages
   const renderContent = () => {
     switch (type) {
+      // Tweets
       case 'tweets':
-        return (
+        return data?.pages[0].data.data.length === 0 ? (
+          <Nothing hasImage={false} />
+        ) : (
           <div>
             {data?.pages.map((group, i) => (
-              <React.Fragment key={i}>
+              <Fragment key={i}>
                 <TweetList tweetList={group.data?.data} />
-              </React.Fragment>
+              </Fragment>
             ))}
-            <div>
-              <button onClick={() => fetchNextPage()} disabled={!hasNextPage || isFetchingNextPage}>
-                {isFetchingNextPage
-                  ? 'Loading more...'
-                  : hasNextPage
-                  ? 'Load More'
-                  : 'Nothing more to load'}
-              </button>
-            </div>
-            <div>{isFetching && !isFetchingNextPage ? 'Fetching...' : null}</div>
+            {renderLoading()}
           </div>
         );
+      // Tweet and replies
       case 'tweetsAndReplies':
-        return <TweetList tweetList={data?.pages[0]?.data?.data} />;
+        return data?.pages[0].data.data.length === 0 ? (
+          <Nothing hasImage={false} />
+        ) : (
+          <div>
+            <TweetList tweetList={data?.pages[0]?.data?.data} />
+            {renderLoading()}
+          </div>
+        );
+      ///////////////////////////////////////////////////// Chú ý kỹ logic media
+      // Media
       case 'media':
-        return <TweetList tweetList={getMediaTweeters(data?.pages[0]?.data?.data)} />;
+        return !haveMediaTweeters(data?.pages[0]?.data?.data) ? (
+          <Nothing hasImage={false} />
+        ) : (
+          <div>
+            <TweetList tweetList={getMediaTweeters(data?.pages[0]?.data?.data)} />
+            {renderLoading()}
+          </div>
+        );
     }
   };
   return (

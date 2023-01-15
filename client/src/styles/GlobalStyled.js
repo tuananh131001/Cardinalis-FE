@@ -159,6 +159,16 @@ box-sizing:border-box;
   }
 }
 
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
 #root{
   display: flex;
   flex-direction:row;

@@ -10,15 +10,16 @@ export const TweetCardStyled = styled.div`
   display: grid;
   grid-template:
     'captionIcon caption .' auto
-    'avatar name subInfo' auto
+    'avatar name name' auto
     'avatar content content' auto
     '. buttons buttons' auto
     'bottomDivider bottomDivider bottomDivider' auto /
     auto auto 1fr;
   justify-content: flex-start;
   align-items: center;
-  gap: 0.1em 0.7em;
+  gap: 0.3em 0.8em;
   width: 100%;
+  padding: 0 var(--horizontal-spaces);
   ${({ isDisableHover }) =>
     !isDisableHover &&
     css`

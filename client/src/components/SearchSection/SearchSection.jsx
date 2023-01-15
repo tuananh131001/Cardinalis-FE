@@ -49,6 +49,8 @@ const SearchSection = ({ type = 'modal' }) => {
             isSearchingObject={{ isSearching, setIsSearching }}
             searchValueObject={{ isLoading, data, isError }}
           />
+          {/* đừng bỏ dòng này */}
+          <div></div>
         </>
       )}
     </SearchSectionStyled>

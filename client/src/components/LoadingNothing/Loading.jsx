@@ -16,7 +16,7 @@ export default function Loading({ type = 'circular' }) {
     return (
       <FlexContainer height="100%" fd="column">
         <Image
-          src="https://media.tenor.com/_jxpbkCkJK8AAAAC/kittycass-peachcat.gif"
+          src="https://media.tenor.com/RXF9kEWyyHwAAAAi/peach-goma.gif"
           width="50vh"
           height="50vh"
         />
