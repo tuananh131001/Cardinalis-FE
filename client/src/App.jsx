@@ -32,6 +32,7 @@ import Follow from '@/pages/Follow';
 import Tweet from '@/pages/Tweet';
 import TweetCompose from '@/pages/TweetCompose';
 import UpdateProfilePage from '@/pages/UpdateProfilePage';
+import TokenRecevied from '@/pages/TokenRecevied';
 
 // import Text from './components/Text/Text';
 
@@ -58,6 +59,7 @@ function App() {
                 </ProtectedRoutes>
               }
             />
+            <Route path="/oauth2/:type/:token" element={<TokenRecevied />} />
             <Route
               path="/explore"
               element={

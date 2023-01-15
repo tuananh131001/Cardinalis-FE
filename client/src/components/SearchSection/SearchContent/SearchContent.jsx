@@ -12,14 +12,19 @@ const SearchContent = ({ searchInputObject, isSearchingObject, searchValueObject
   const searchList = data?.data;
   return (
     <SearchContentStyled>
-      <HeaderSection content="Search" leftType="back" />
-      <input
-        onFocus={() => setIsSearching(true)}
-        placeholder="What are you looking for?"
-        onChange={(e) => setSearchValue(e.target.value)}
-        value={searchValue}
+      <HeaderSection
+        content={
+          <input
+            onFocus={() => setIsSearching(true)}
+            placeholder="What are you looking for?"
+            onChange={(e) => setSearchValue(e.target.value)}
+            value={searchValue}
+          />
+        }
+        leftType="back"
       />
       <Divider />
+
       {isSearching ? (
         <BeforeAfterSearchContent
           isLoading={isLoading}

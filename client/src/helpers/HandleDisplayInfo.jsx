@@ -72,6 +72,11 @@ export const displayCountNumber = (count, prefix = '') => {
   return `${count} ${prefix.charAt(0).toUpperCase() + prefix.slice(1)}`;
 };
 
+// check if have the tweet containing media
+export const haveMediaTweeters = (tweetList) => {
+  if (tweetList) return tweetList.some((tweet) => urlRegex.test(tweet.content));
+};
+
 // get list of tweeters containing media
 export const getMediaTweeters = (tweetList) => {
   return tweetList.filter((tweet) => urlRegex.test(tweet.content));

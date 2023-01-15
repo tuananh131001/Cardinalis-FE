@@ -154,9 +154,21 @@ box-sizing:border-box;
 
   /* padding */
   --horizontal-spaces: 2em;
+  --vertical-nothing-spaces: 5em;
   @media screen and (max-width: 768px) {
     --horizontal-spaces: 0.5em;
+    --vertical-nothing-spaces: 0.7em;
   }
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+* {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 #root{

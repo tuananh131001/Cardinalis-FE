@@ -9,27 +9,14 @@ import RightSection from '@/components/RightSection/RightSection';
 import HomeContent from './HomeContent/HomeContent';
 
 // import { useMemo } from 'react';
-import {
-  SMALL_MOBILE_QUERY,
-  MOBILE_QUERY,
-  TABLET_QUERY,
-  DESKTOP_QUERY,
-  mainPathRegex
-} from '@/assets/Constant';
-import useMediaQuery from '@/hooks/useMediaQuery';
+import { mainPathRegex } from '@/assets/Constant';
 function HomeSection() {
-  const responsiveCondition = {
-    smallMobile: useMediaQuery(SMALL_MOBILE_QUERY),
-    mobile: useMediaQuery(MOBILE_QUERY),
-    tablet: useMediaQuery(TABLET_QUERY),
-    desktop: useMediaQuery(DESKTOP_QUERY)
-  };
   const location = useLocation();
   const { user } = useSelector((state) => state.user);
   const { currentTab } = useMemo(() => {
     const currentTab = extractPath(location.pathname, mainPathRegex);
     return { currentTab };
-  }, [location, responsiveCondition]);
+  }, [location]);
   return (
     <HomeSectionStyled>
       <MainNav user={user} currentTab={currentTab} />

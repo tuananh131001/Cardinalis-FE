@@ -17,20 +17,26 @@ import { useParams } from 'react-router-dom';
 import { useGetUserInfo } from '@/hooks/useUser';
 import { useSelector } from 'react-redux';
 import Loading from '@/components/LoadingNothing/Loading';
+import Nothing from '@/components/LoadingNothing/Nothing';
 
 const defineBackDestination = (location, user) => {
   if (PROFILE_NESTED_PATHS.includes(location)) return `/${user.username}`;
   if (extractPath(location) == user.username) return `/${HOME_PATH}`;
   return -1;
 };
+const loadingPadding = 'var(--vertical-nothing-spaces) var(--horizontal-spaces)';
 function ProfileContent({ pageSubType }) {
   // const user = youUser;
   const location = '/' + extractPath(useLocation().pathname);
   const { username } = useParams();
   const { data: user, isLoading, isError, error } = useGetUserInfo(username ?? '');
   const { user: currentUsername } = useSelector((state) => state.user);
-  if (isLoading) return <Loading type="gif" />;
-  if (isError) return <div>Error: {error.message}</div>;
+
+  if (isError)
+    return <Nothing padding={loadingPadding} text="Server Error" subText={error.message} />;
+  if (isLoading) return <Loading padding={loadingPadding} />;
+  console.log('Data in profile', user?.data);
+
   return (
     <ProfileContentStyled>
       <HeaderSection
@@ -42,7 +48,6 @@ function ProfileContent({ pageSubType }) {
       {!(location == PROFILE_FOLLOWERS_PATH || location == PROFILE_FOLLOWING_PATH) && (
         <MainInfoProfile user={user?.data} currentUsername={currentUsername.username} />
       )}
-
       {/* sub page content */}
       <ProfileSubpage type={pageSubType} user={user?.data} />
     </ProfileContentStyled>
