@@ -19,22 +19,23 @@ function RightSection() {
     isError: isErrorFollowing,
     error: errorFollowing
   } = useGetUserFollowing(user.id);
-  if (isLoadingFollower || isLoadingFollowing) {
+  if (isLoadingFollower) {
     return <div>Loading ...</div>;
   }
-  if (isErrorFollower || isErrorFollowing) {
-    return <div>{errorFollower || errorFollowing}</div>;
+  if (isLoadingFollowing) {
+    return <div>Loading ...</div>;
+  }
+  if (isErrorFollower) {
+    return <div>{errorFollower}</div>;
+  }
+  if (isErrorFollowing) {
+    return <div>{errorFollowing}</div>;
   }
   return (
     <RightSectionStyled>
       <SearchSection />
-      {FollowersData?.data[0].id != null ? (
-        <RightCardInfo data={FollowersData?.data} text="Followers:" />
-      ) : null}
-      {/* <RightCardInfo data={FollowingData?.data} text="Followings:" /> */}
-      {FollowingData?.data[0].id != null ? (
-        <RightCardInfo data={FollowingData?.data} text="Following:" />
-      ) : null}
+      {FollowersData?.data ? <RightCardInfo data={FollowersData?.data} text="Followers:" /> : null}
+      {FollowingData?.data ? <RightCardInfo data={FollowingData?.data} text="Following:" /> : null}
     </RightSectionStyled>
   );
 }

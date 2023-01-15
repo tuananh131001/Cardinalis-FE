@@ -40,22 +40,42 @@ const getUserInfo = (username) => {
 };
 
 const followUser = (users) =>
-  userApi.post(USER_FOLLOW_ENDPOINT, users, { headers: headerConfig }).then((res) => res.data);
+  userApi
+    .post(USER_FOLLOW_ENDPOINT, users, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('userToken')}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((res) => res.data);
 
 const unfollowUser = (users) =>
-  userApi.delete(USER_FOLLOW_ENDPOINT, users, { headers: headerConfig }).then((res) => res.data);
+  userApi
+    .delete(USER_FOLLOW_ENDPOINT, users, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('userToken')}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((res) => res.data);
 
 const getUserFollowers = (id) =>
   userApi
     .get(`${USER_FOLLOWERS_ENDPOINT}${id}`, {
-      headers: headerConfig.headers
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('userToken')}`,
+        'Content-Type': 'application/json'
+      }
     })
     .then((res) => res.data);
 
 const getUserFollowing = (id) =>
   userApi
     .get(`${USER_FOLLOWING_ENDPOINT}${id}`, {
-      headers: headerConfig.headers
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('userToken')}`,
+        'Content-Type': 'application/json'
+      }
     })
     .then((res) => res.data);
 

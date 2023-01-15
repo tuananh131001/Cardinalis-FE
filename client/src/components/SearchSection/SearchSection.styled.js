@@ -71,7 +71,7 @@ export const DropDownSearchSectionStyled = styled.div`
   top: 10vh;
   left: 0;
   width: 100%;
-  height: 40vh;
+  min-height: 40vh;
   background-color: ${({ theme }) => theme.body.backgroundColor};
   border-radius: 4px;
   z-index: 1;
