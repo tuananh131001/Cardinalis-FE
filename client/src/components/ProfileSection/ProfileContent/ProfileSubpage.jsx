@@ -32,7 +32,6 @@ const ProfileSubpage = ({ type, user }) => {
   if (status === 'error') {
     <p>{error.message}</p>;
   }
-  console.log(data);
   const renderContent = () => {
     switch (type) {
       case 'tweets':

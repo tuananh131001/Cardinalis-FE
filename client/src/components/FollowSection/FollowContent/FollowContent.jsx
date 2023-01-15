@@ -1,15 +1,29 @@
 import React from 'react';
 import { FollowContentStyled } from './FollowContent.styled';
 import HeaderSection from '@/components/HeaderSection/HeaderSection';
-import { youUser } from '@/assets/data/UserData';
 import FollowList from './FollowList';
-import { defaultFollowerList, defaultFollowingList } from '@/assets/data/UserData';
 import PropTypes from 'prop-types';
 import SubNav from '@/components/NavSection/SubNav';
+import { useParams } from 'react-router-dom';
+import { useGetUserFollowers, useGetUserFollowing } from '@/hooks/useUser';
 
-function FollowContent({ type }) {
-  const user = youUser;
-  const followList = type == 'followers' ? defaultFollowerList : defaultFollowingList;
+function FollowContent({ type, user }) {
+  const params = useParams();
+  console.log(params);
+  console.log(user);
+  const {
+    data: followers,
+    isLoading: isLoadingFollowers,
+    isError: isErrorFollower
+  } = useGetUserFollowers(user.id);
+  const {
+    data: following,
+    isLoading: isLoadingFollowing,
+    isError: isErrorFollowing
+  } = useGetUserFollowing(user.id);
+  if (isLoadingFollowers || isLoadingFollowing) return <div>Loading...</div>;
+  if (isErrorFollower || isErrorFollowing) return <div>Error</div>;
+  const followList = type == 'followers' ? followers?.data : following?.data;
 
   return (
     <FollowContentStyled>
@@ -25,6 +39,7 @@ function FollowContent({ type }) {
   );
 }
 FollowContent.propTypes = {
-  type: PropTypes.string.isRequired
+  type: PropTypes.string.isRequired,
+  user: PropTypes.object
 };
 export default FollowContent;

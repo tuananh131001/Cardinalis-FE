@@ -30,7 +30,6 @@ function ProfileContent({ pageSubType }) {
   const { data: user, isLoading, isError, error } = useGetUserInfo(username ?? '');
   const { user: currentUsername } = useSelector((state) => state.user);
   if (isLoading) return <Loading type="gif" />;
-  console.log('Data in profile', user?.data);
   if (isError) return <div>Error: {error.message}</div>;
   return (
     <ProfileContentStyled>
