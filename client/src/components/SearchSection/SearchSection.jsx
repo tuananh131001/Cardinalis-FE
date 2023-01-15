@@ -11,14 +11,15 @@ import { useLocation } from 'react-router-dom';
 import SearchContent from './SearchContent/SearchContent';
 import { extractPath } from '@/helpers/HandleDisplayInfo';
 import { mainPathRegex } from '@/assets/Constant';
+import Nothing from '@/components/LoadingNothing/Nothing';
+
 import PropTypes from 'prop-types';
 
 const SearchSection = ({ type = 'modal' }) => {
   const [searchValue, setSearchValue] = useState('');
   const debouncedSearchTerm = useDebounce(searchValue, 1000);
-  const { data, isLoading } = useSearchUsers(debouncedSearchTerm);
+  const { data, isLoading, isError } = useSearchUsers(debouncedSearchTerm);
   const [isSearching, setIsSearching] = useState(false);
-  console.log(data?.data);
 
   const { user } = useSelector((state) => state.user);
 
@@ -28,13 +29,17 @@ const SearchSection = ({ type = 'modal' }) => {
     return { currentTab };
   }, [location]);
 
+  if (isError) {
+    return <Nothing />;
+  }
+
   return (
     <SearchSectionStyled type={type}>
       {type === 'modal' ? (
         <SearchContentModal
           searchInputObject={{ searchValue, setSearchValue }}
           isSearchingObject={{ isSearching, setIsSearching }}
-          searchValueObject={{ isLoading, data }}
+          searchValueObject={{ isLoading, data, isError }}
         />
       ) : (
         <>
@@ -42,9 +47,8 @@ const SearchSection = ({ type = 'modal' }) => {
           <SearchContent
             searchInputObject={{ searchValue, setSearchValue }}
             isSearchingObject={{ isSearching, setIsSearching }}
-            searchValueObject={{ isLoading, data }}
+            searchValueObject={{ isLoading, data, isError }}
           />
-          <div>Hdiskjnsd</div>
         </>
       )}
     </SearchSectionStyled>

@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { API_ORIGIN, TWEET_ENDPOINT, TWEET_DETAIL_ENDPOINT } from '@/assets/constantEnv';
+import {
+  API_ORIGIN,
+  TWEET_ENDPOINT,
+  TWEET_DETAIL_ENDPOINT,
+  TWEET_EXPLORE_ENDPOINT
+} from '@/assets/constantEnv';
 const tweetApi = axios.create({
   baseURL: API_ORIGIN,
   headers: {
@@ -18,7 +23,18 @@ const getTweetsByPage = async ({ paramPage = 0 }) =>
     .get(`${TWEET_DETAIL_ENDPOINT}?page=${paramPage}`, { headers: headerConfig })
     .then((res) => res.data);
 
-const postTweet = (tweet) => tweetApi.post(TWEET_ENDPOINT, tweet).then((res) => res.data);
+const postTweet = (tweet) => tweetApi.post(TWEET_DETAIL_ENDPOINT, tweet).then((res) => res.data);
+
+const getExploreTweets = ({ pageParam = 0 }) => {
+  return tweetApi.get(`${TWEET_EXPLORE_ENDPOINT}?pageNo=${pageParam}`).then((res) => res.data);
+};
+
+const getUserTweets = ({ queryKey, pageParam = 0 }) => {
+  console.log(pageParam);
+  return tweetApi
+    .get(`${TWEET_ENDPOINT}?usermail=${queryKey[1]}&pageNo=${pageParam}`)
+    .then((res) => res.data);
+};
 
 const deleteTweet = (id) =>
   tweetApi.delete(`${TWEET_DETAIL_ENDPOINT}/${id}`).then((res) => res.data);
@@ -28,6 +44,15 @@ const updateTweet = ({ data, id }) =>
 
 const getFollowingTweets = () => tweetApi.get(TWEET_ENDPOINT).then((res) => res.data);
 
-const getTweet = (id) => tweetApi.get(`${TWEET_DETAIL_ENDPOINT}/${id}`).then((res) => res.data);
+const getTweet = (id) => tweetApi.get(`${TWEET_DETAIL_ENDPOINT}?id=${id}`).then((res) => res.data);
 
-export { getFollowingTweets, updateTweet, deleteTweet, postTweet, getTweet, getTweetsByPage };
+export {
+  getFollowingTweets,
+  updateTweet,
+  deleteTweet,
+  postTweet,
+  getTweet,
+  getTweetsByPage,
+  getExploreTweets,
+  getUserTweets
+};
