@@ -3,8 +3,8 @@ export const LOGIN_ENDPOINT = import.meta.env.VITE_REACT_APP_LOGIN_ENDPOINT || '
 export const REGISTER_ENDPOINT =
   import.meta.env.VITE_REACT_APP_REGISTER_ENDPOINT || 'user/register';
 export const LOGOUT_ENDPOINT = import.meta.env.VITE_REACT_APP_LOGOUT_ENDPOINT || 'user/logout';
-export const FACEBOOK_LOGIN_ENDPOINT = '/oauth2/authorization/facebook';
-export const GOOGLE_LOGIN_ENDPOINT = '/oauth2/authorization/google';
+export const FACEBOOK_LOGIN_ENDPOINT = 'oauth2/authorization/facebook';
+export const GOOGLE_LOGIN_ENDPOINT = 'oauth2/authorization/google';
 
 export const USER_ENDPOINT = import.meta.env.VITE_REACT_APP_USER_ENDPOINT || 'user';
 export const GET_USER_ENDPOINT = import.meta.env.VITE_REACT_APP_GET_USER_ENDPOINT || 'user/fetch/';
