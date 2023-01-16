@@ -2,7 +2,7 @@ import * as yup from 'yup';
 import moment from 'moment';
 import { urlRegex, phoneRegex } from '@/assets/Constant';
 export const maxTweetCharacters = 280;
-const maxPasswordSize = 10;
+const minPasswordSize = 10;
 export const displayErrorMessage = (type, errorType, ...args) => {
   let displayType = 'input';
   switch (type) {
@@ -84,7 +84,7 @@ export const chooseInputSchema = (type) => {
       password: yup
         .string()
         .required(displayErrorMessage('password', 'required'))
-        .max(maxPasswordSize, displayErrorMessage('password', 'max', maxPasswordSize, 'string'))
+        .min(minPasswordSize, displayErrorMessage('password', 'min', minPasswordSize, 'string'))
     });
   } else if (type == 'register') {
     return yup.object().shape({
@@ -96,7 +96,7 @@ export const chooseInputSchema = (type) => {
       password: yup
         .string()
         .required(displayErrorMessage('password', 'required'))
-        .max(maxPasswordSize, displayErrorMessage('password', 'max', maxPasswordSize, 'string')),
+        .min(minPasswordSize, displayErrorMessage('password', 'min', minPasswordSize, 'string')),
       confirmPassword: yup
         .string()
         .oneOf([yup.ref('password'), null], displayErrorMessage('confirmPassword', 'oneOf'))
@@ -150,22 +150,22 @@ export const chooseInputSchema = (type) => {
       oldPassword: yup
         .string()
         .required(displayErrorMessage('oldPassword', 'required'))
-        .max(maxPasswordSize, displayErrorMessage('oldPassword', 'max', maxPasswordSize, 'string')),
+        .min(minPasswordSize, displayErrorMessage('oldPassword', 'min', minPasswordSize, 'string')),
       currentPassword: yup
         .string()
         .notOneOf([yup.ref('oldPassword'), null], displayErrorMessage('currentPassword', 'oneOf'))
         .required(displayErrorMessage('currentPassword', 'required'))
-        .max(
-          maxPasswordSize,
-          displayErrorMessage('currentPassword', 'max', maxPasswordSize, 'string')
+        .min(
+          minPasswordSize,
+          displayErrorMessage('currentPassword', 'min', minPasswordSize, 'string')
         ),
       confirmPassword: yup
         .string()
         .oneOf([yup.ref('confirmPassword'), null], displayErrorMessage('confirmPassword', 'oneOf'))
         .required(displayErrorMessage('confirmPassword', 'required'))
-        .max(
-          maxPasswordSize,
-          displayErrorMessage('confirmPassword', 'max', maxPasswordSize, 'string')
+        .min(
+          minPasswordSize,
+          displayErrorMessage('confirmPassword', 'min', minPasswordSize, 'string')
         )
     });
   } else {
