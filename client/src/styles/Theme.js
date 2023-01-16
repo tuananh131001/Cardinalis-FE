@@ -2,6 +2,10 @@ const lightTheme = {
   body: {
     backgroundColor: 'var(--background-color_light)'
   },
+  modal: {
+    backgroundColor: 'var(--background-color_modal_light)',
+    boxShadow: 'var(--shadow-color_modal_light)'
+  },
   // Button
   primaryButton: {
     backgroundColor: 'var(--primary_button_background_light)',
@@ -94,6 +98,10 @@ const lightTheme = {
 const darkTheme = {
   body: {
     backgroundColor: 'var(--background-color_dark)'
+  },
+  modal: {
+    backgroundColor: 'var(--background-color_modal_dark)',
+    boxShadow: 'var(--shadow-color_modal_dark)'
   },
   // Button
   primaryButton: {

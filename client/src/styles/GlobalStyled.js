@@ -13,6 +13,10 @@ box-sizing:border-box;
   --secondary_color_light: #4E98C7;
   --text_placeholder_light:#D7D5D8;
   --background-color_light: #ffffff;
+  
+  /* modal */
+  --background-color_modal_light: #ffff;
+  --shadow-color_modal_dark: #919191;
 
   /* text color */
   --subtext_color_light: #626C7A;
@@ -80,6 +84,10 @@ box-sizing:border-box;
   --secondary_color_dark: #A7CCE3;
   --text_placeholder_dark:#7A7A81;
   --background-color_dark: #000000;
+
+  /* modal color */
+  --background-color_modal_dark: #000000;
+  --shadow-color_modal_dark: #5E5E5E;
 
   /* text color */
   --subtext_color_dark: #CED9E9;
