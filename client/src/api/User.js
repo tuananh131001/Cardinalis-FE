@@ -9,8 +9,7 @@ import {
   GET_USER_ENDPOINT,
   USER_FOLLOWING_ENDPOINT,
   USER_FOLLOWERS_ENDPOINT,
-  USER_SEARCH_ENDPOINT,
-  GET_USER_BY_EMAIL_ENDPOINT
+  USER_SEARCH_ENDPOINT
 } from '@/assets/constantEnv';
 const userApi = axios.create({
   baseURL: API_ORIGIN
@@ -76,7 +75,7 @@ const getUserInfo = (username) => {
 };
 
 const getUserByEmail = (email) => {
-  return userApi.get(`${GET_USER_BY_EMAIL_ENDPOINT}?email=${email}`).then((res) => res.data);
+  return userApi.get(`${GET_USER_ENDPOINT}?email=${email}`).then((res) => res.data);
 };
 
 const followUser = (id) =>

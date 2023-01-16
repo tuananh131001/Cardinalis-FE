@@ -33,6 +33,10 @@ function TokenRecevied() {
     userToken: token
   };
   dispatch(login(authData));
+
+  if (username) {
+    navigate('/home', { replace: true });
+  }
   // navigate(HOME_PATH, { replace: true });
 
   // const navigate = useNavigate();
