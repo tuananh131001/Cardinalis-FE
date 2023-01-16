@@ -20,7 +20,6 @@ import { getUserInfo } from '@/features/userSlice';
 import { useLocation } from 'react-router-dom';
 import { UPDATE_PROFILE_PATH } from '@/assets/Constant';
 import { useNavigate } from 'react-router-dom';
-import { CHANGE_PASSWORD_PATH } from '@/assets/Constant';
 import ProfileUpdateLabel from './ProfileUpdateLabel';
 
 const errorPadding = '0 0 1em 0.2em';
@@ -99,10 +98,6 @@ function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
     event.preventDefault();
     toggleShowDate(event);
     console.log('Click Edit Date');
-  };
-  const clickEditPassword = (event) => {
-    event.preventDefault();
-    navigate(`/${CHANGE_PASSWORD_PATH}`);
   };
   const onChangeImageLink = (event, registerType, type) => {
     if (type === 'avatar') {
@@ -272,14 +267,6 @@ function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
         {showDate && (
           <DateInput inputThemeName={textThemeName} name="dateOfBirth" control={control} />
         )}
-      </div>
-
-      {/* Password */}
-      <div className="flex-row">
-        <ProfileUpdateLabel className="label" text="Password" />
-        <Button className="button" width="auto" buttonType="link" onClick={clickEditPassword}>
-          Edit
-        </Button>
       </div>
 
       {/* Error message */}

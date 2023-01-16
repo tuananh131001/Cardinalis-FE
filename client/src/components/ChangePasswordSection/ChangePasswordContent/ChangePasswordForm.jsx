@@ -41,7 +41,10 @@ const ChangePasswordForm = () => {
   };
 
   return (
-    <StyledForm onSubmit={handleSubmit(onSubmitClick)} padding="0 var(--horizontal-spaces)">
+    <StyledForm
+      onSubmit={handleSubmit(onSubmitClick)}
+      padding="0 var(--horizontal-spaces)"
+      height="auto">
       <ProfileUpdateLabel className="label" text="Old Password" htmlFor="updateProfilePassword" />
       <Input
         id="updateProfilePassword"

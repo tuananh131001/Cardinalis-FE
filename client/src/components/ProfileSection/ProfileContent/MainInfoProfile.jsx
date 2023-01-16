@@ -18,6 +18,7 @@ import useMediaQuery from '@/hooks/useMediaQuery';
 import { useGetUserFollowers, useGetUserFollowing } from '@/hooks/useUser';
 import { UPDATE_PROFILE_PATH } from '@/assets/Constant';
 import { MainInfoProfileStyled } from './ProfileContent.styled';
+import { CHANGE_PASSWORD_PATH } from '@/assets/Constant';
 
 const avatarSize = '9em';
 const bckHeight = '14em';
@@ -56,16 +57,25 @@ const MainInfoProfile = ({ user, currentUsername }) => {
   console.log(followers);
   const isFollowedByCurrentUser =
     followers?.data.filter((follower) => follower.username === currentUsername).length > 0;
+
+  // event handlers
   const clickUpdateProfile = (event) => {
     event.preventDefault();
     if (responsiveCondition?.desktop) handleOpen(event);
     else navigate(`/${UPDATE_PROFILE_PATH}`);
   };
+  const clickEditPassword = (event) => {
+    event.preventDefault();
+    navigate(`/${CHANGE_PASSWORD_PATH}`);
+  };
   return (
     <MainInfoProfileStyled bckHeight={bckHeight}>
       <ImageProfile user={user} bckHeight={bckHeight} avatarSize={avatarSize} />
       {isYou ? (
-        <EditButtonProfile text={'Edit'} onClick={clickUpdateProfile} />
+        <FlexContainer fd="column" gap="0.6em">
+          <EditButtonProfile text={'Edit Profile'} onClick={clickUpdateProfile} />
+          <EditButtonProfile text={'Edit Pass'} onClick={clickEditPassword} />
+        </FlexContainer>
       ) : (
         <FollowButton
           id={user?.id}

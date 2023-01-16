@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from '@/components/Button/Button';
 import { CaptionProfile } from './TextProfile';
 
-export const EditButtonProfile = ({ onClick, text = 'Edit Profile', ...props }) => {
+export const EditButtonProfile = ({ onClick, text = 'Edit', ...props }) => {
   return (
     <Button
       {...props}
