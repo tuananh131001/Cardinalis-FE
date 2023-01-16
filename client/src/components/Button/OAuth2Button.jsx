@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Text from '@/components/Text/Text';
 
 const OAuth2Button = ({ href, text, ...props }) => {
+  console.log(href);
   return (
     <Text
       {...props}

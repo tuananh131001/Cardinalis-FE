@@ -11,7 +11,7 @@ export const displayErrorMessage = (type, errorType, ...args) => {
     case 'website':
       displayType = 'URL';
       break;
-    case 'dob':
+    case 'dateOfBirth':
       displayType = 'Date of Birth';
       break;
     default:
@@ -86,7 +86,7 @@ export const chooseInputSchema = (type) => {
     return yup.object().shape({
       banner: validatingImage('banner'),
       avatar: validatingImage('avatar'),
-      name: yup.string().required(displayErrorMessage('name', 'required')),
+      username: yup.string().required(displayErrorMessage('name', 'required')),
       bio: yup
         .string()
         .min(0)
@@ -108,13 +108,13 @@ export const chooseInputSchema = (type) => {
           excludeEmptyString: true
         }),
       phone: yup.string().matches(phoneRegex, displayErrorMessage('phone', 'phone')).nullable(),
-      dob: yup
+      dateOfBirth: yup
         .date({
-          message: displayErrorMessage('dob', displayErrorMessage('dob', 'date')),
+          message: displayErrorMessage('dateOfBirth', displayErrorMessage('dateOfBirth', 'date')),
           excludeEmptyString: true
         })
         .nullable()
-        .test('empty-check', displayErrorMessage('dob', 'min', 10), (value) => {
+        .test('empty-check', displayErrorMessage('dateOfBirth', 'min', 10), (value) => {
           return value == null || moment().diff(moment(value), 'years') >= 10;
         })
         .default(null)

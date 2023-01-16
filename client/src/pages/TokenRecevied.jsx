@@ -8,43 +8,14 @@ import { useDispatch } from 'react-redux';
 import { login } from '@/features/userSlice';
 
 function TokenRecevied() {
-  const { token } = useParams();
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  // const { mutate } = useSignInOauth2();
-  console.log('Oauth2 page', token);
-  // useEffect(() => {
-  //   mutate(
-  //     { token },
-  //     {
-  //       onSuccess: () => {
-  //         const userToken = localStorage.getItem('userToken');
-  //         const username = localStorage.getItem('username');
-  //         const authData = {
-  //           user: {
-  //             username: username
-  //           },
-  //           userToken: userToken
-  //         };
-  //         dispatch(login(authData));
-  //         console.log("Oauth2 page: ", userToken, username);
-  //         // navigate(`/${HOME_PATH}`, { replace: true });
-  //       }
-  //     }
-  //   );
-  // }, []);
-  useEffect(() => {
-    console.log("Oauth2 fdsfsd");
-  })
-  const queryString = window.location.search;
-  const urlParams = new URLSearchParams(queryString);
-  console.log("Oatuh2", urlParams);
+  const params = useParams();
+  console.log(params);
+  // const navigate = useNavigate();
+  // const dispatch = useDispatch();
 
   return (
     <div>
-      <h1>Token Received</h1>
-      <p>{token}</p>
+      <h1>siu</h1>
     </div>
   );
 }
