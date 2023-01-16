@@ -22,7 +22,7 @@ function TweetSection({ tweet }) {
   return (
     <TweetSectionStyled>
       <MainNav user={user} currentTab={currentTab} />
-      <TweetContent tweet={tweet} />
+      <TweetContent params={params} tweet={tweet} />
       <SearchSection />
     </TweetSectionStyled>
   );

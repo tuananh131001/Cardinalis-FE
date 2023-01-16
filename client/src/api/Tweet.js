@@ -46,7 +46,7 @@ const getUserTweets = ({ queryKey, pageParam = 0 }) => {
 };
 
 const deleteTweet = (id) =>
-  tweetApi.delete(`${TWEET_DETAIL_ENDPOINT}/${id}`).then((res) => res.data);
+  tweetApi.delete(`${TWEET_DETAIL_ENDPOINT}?id=${id}`).then((res) => res.data);
 
 const updateTweet = ({ data, id }) =>
   tweetApi.put(`${TWEET_DETAIL_ENDPOINT}/${id}`, { data, id }).then((res) => res.data);
