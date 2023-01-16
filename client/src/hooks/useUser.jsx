@@ -8,7 +8,8 @@ import {
   searchUsers,
   getUserFollowers,
   getUserFollowing,
-  followUser
+  followUser,
+  getUserByEmail
 } from '@/api/User';
 
 const useRegister = (reset) =>
@@ -65,6 +66,14 @@ const useGetUserInfo = (username) => {
   });
 };
 
+const useGetUserByEmailInfo = (email) => {
+  return useQuery({
+    queryKey: ['user', email],
+    queryFn: () => getUserByEmail(email),
+    enabled: Boolean(email)
+  });
+};
+
 const useSearchUsers = (username) => {
   return useQuery({
     queryKey: ['search', username],
@@ -98,5 +107,6 @@ export {
   useSearchUsers,
   useGetUserFollowing,
   useGetUserFollowers,
-  useFollowUser
+  useFollowUser, 
+  useGetUserByEmailInfo
 };
