@@ -29,6 +29,9 @@ export const TweetCardStyled = styled.div`
         cursor: pointer;
       }
     `}
+  @media screen and (max-width: 768px) {
+    gap: 0.3em 0.3em;
+  }
 `;
 TweetCardStyled.defaultProps = {
   isDisableHover: false

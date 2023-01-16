@@ -6,7 +6,6 @@ import { StyledForm } from './Form.styled';
 import { Input } from '@/components/Input/Input';
 import { ErrorText } from '@/components/Text/ErrorText';
 import StyledButton from '@/components/Button/Button.styled';
-import Text from '@/components/Text/Text';
 import DateInput from '@/components/Input/DateInput';
 import HeaderSection from '@/components/HeaderSection/HeaderSection';
 import CustomizedSnackbars from '@/components/Snackbar/Snackbar';
@@ -18,21 +17,28 @@ import { useChange } from '@/hooks/useChange';
 import { useUpdateProfile } from '@/hooks/useUser';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserInfo } from '@/features/userSlice';
+import { useLocation } from 'react-router-dom';
+import { UPDATE_PROFILE_PATH } from '@/assets/Constant';
+import { useNavigate } from 'react-router-dom';
+import ProfileUpdateLabel from './ProfileUpdateLabel';
 
 const errorPadding = '0 0 1em 0.2em';
 const bckHeight = '15em';
 const avatarSize = '9em';
 const textThemeName = 'homeInput';
 function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
+  const location = useLocation();
+  const navigate = useNavigate();
   const schema = chooseInputSchema('updateProfile');
   // const {value: message, onSetNewValue: setMessage} = useChange("");
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const [message, setMessage] = useState('message');
   const defaultValues = {
-    username: user?.name,
+    username: user?.username,
     email: user?.email,
     avatar: user?.avatar,
+    banner: user?.banner,
     bio: user?.bio,
     country: user?.country,
     countryCode: user?.countryCode,
@@ -45,19 +51,22 @@ function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
     gender: user?.gender
   };
   const { user: thisUser } = useSelector((state) => state.user);
-  console.log(thisUser);
+  console.log('User In Update Form', thisUser);
   const { mutate } = useUpdateProfile();
   const {
     register,
     handleSubmit,
     control,
-    reset,
     formState: { errors }
   } = useForm({
     defaultValues: defaultValues,
     resolver: yupResolver(schema)
   });
+  const { value: showAvatarLink, onToggle: toggleShowAvatar } = useChange(false);
+  const { value: showBannerLink, onToggle: toggleShowBanner } = useChange(false);
   const { value: showDate, onToggle: toggleShowDate } = useChange(false);
+  const { value: avatarLink, onSetNewValue: changeAvatar } = useChange(defaultValues.avatar);
+  const { value: bannerLink, onSetNewValue: changeBanner } = useChange(defaultValues.banner);
   //   const { mutate, isError, error, isSuccess } = useSignIn(reset);
   //   const dispatch = useDispatch();
 
@@ -77,12 +86,27 @@ function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
     console.log(data);
     dispatch(getUserInfo(data));
     mutate(data);
-    reset();
+
+    // back after finishing update
+    if (location.pathname === `/${UPDATE_PROFILE_PATH}`) {
+      navigate(-1);
+    } else {
+      closeAction();
+    }
   };
   const clickEdit = (event) => {
     event.preventDefault();
     toggleShowDate(event);
     console.log('Click Edit Date');
+  };
+  const onChangeImageLink = (event, registerType, type) => {
+    if (type === 'avatar') {
+      registerType.onChange(event);
+      changeAvatar(event.target.value);
+    } else {
+      registerType.onChange(event);
+      changeBanner(event.target.value);
+    }
   };
 
   return (
@@ -99,7 +123,7 @@ function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
           rightType="none"
           backgroundStyle={2}
           onClick={(event) => closeAction(event)}
-          zIndex={2}
+          zIndex={10}
         />
       )}
       {/* Image */}
@@ -108,21 +132,55 @@ function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
         bckHeight={bckHeight}
         avatarSize={avatarSize}
         isInput={true}
-        avatarName="avatar"
-        bannerName="banner"
-        register={register}
+        // for input
+        onClickAvatar={toggleShowAvatar}
+        onClickBanner={toggleShowBanner}
+        avatarContentInput={avatarLink}
+        bannerContentInput={bannerLink}
       />
 
+      {/* Avatar */}
+      {showAvatarLink && (
+        <>
+          <ProfileUpdateLabel text="Avatar Link" htmlFor="updateProfileAvatar" />
+          <Input
+            id="updateProfileAvatar"
+            inputType="text"
+            inputThemeName={textThemeName}
+            placeholder="Avatar Link"
+            {...register('avatar')}
+            onChange={(event) => onChangeImageLink(event, register('avatar'), 'avatar')}
+          />
+          <ErrorText errors={errors.avatar?.message} padding={errorPadding} />
+        </>
+      )}
+
+      {/* Banner */}
+      {showBannerLink && (
+        <>
+          <ProfileUpdateLabel text="Banner Link" htmlFor="updateProfileBanner" />
+          <Input
+            id="updateProfileBanner"
+            inputType="text"
+            inputThemeName={textThemeName}
+            placeholder="Banner Link"
+            {...register('banner')}
+            onChange={(event) => onChangeImageLink(event, register('banner'), 'banner')}
+          />
+          <ErrorText errors={errors.banner?.message} padding={errorPadding} />
+        </>
+      )}
+
       {/* Name */}
-      <ProfileUpdateLabel text="Name" htmlFor="updateProfileName" />
+      <ProfileUpdateLabel text="Full Name" htmlFor="updateProfileName" />
       <Input
         id="updateProfileName"
         inputType="text"
         inputThemeName={textThemeName}
-        placeholder="Name"
-        {...register('username')}
+        placeholder="Full Name"
+        {...register('fullName')}
       />
-      <ErrorText errors={errors.name?.message} padding={errorPadding} />
+      <ErrorText errors={errors.fullName?.message} padding={errorPadding} />
 
       {/* Gender */}
       <ProfileUpdateLabel text="Gender" padding="0.5em 0" />
@@ -226,26 +284,11 @@ function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
     </StyledForm>
   );
 }
-const ProfileUpdateLabel = ({ text, htmlFor, ...props }) => (
-  <Text
-    {...props}
-    type="label"
-    textThemeName="subText"
-    text={text}
-    txtAlign="left"
-    htmlFor={htmlFor}
-  />
-);
 
 UpdateProfileForm.propTypes = {
   user: PropTypes.object,
   closeAction: PropTypes.func,
   props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string])),
   isInModal: PropTypes.bool
-};
-ProfileUpdateLabel.propTypes = {
-  text: PropTypes.string,
-  htmlFor: PropTypes.string,
-  props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string]))
 };
 export default UpdateProfileForm;

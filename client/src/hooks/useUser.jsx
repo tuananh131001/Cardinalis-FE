@@ -9,7 +9,8 @@ import {
   getUserFollowers,
   getUserFollowing,
   followUser,
-  getUserByEmail
+  getUserByEmail,
+  changePassword
 } from '@/api/User';
 
 const useRegister = (reset) =>
@@ -98,6 +99,18 @@ const useGetUserFollowing = (userId) => {
   });
 };
 
+const useChangePassword = (reset) => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (data) => changePassword(data),
+    onSuccess: () => {
+      queryClient.invalidateQueries();
+      reset();
+    },
+    onError: (error) => console.log(error)
+  });
+};
+
 export {
   useSignIn,
   useSignInOauth2,
@@ -108,5 +121,6 @@ export {
   useGetUserFollowing,
   useGetUserFollowers,
   useFollowUser,
-  useGetUserByEmailInfo
+  useGetUserByEmailInfo,
+  useChangePassword
 };

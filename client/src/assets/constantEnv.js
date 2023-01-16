@@ -22,3 +22,11 @@ export const USER_SEARCH_ENDPOINT =
   import.meta.env.VITE_REACT_APP_SEARCH_USER_ENDPOINT || 'user/search';
 export const TWEET_EXPLORE_ENDPOINT =
   import.meta.env.VITE_REACT_APP_EXPLORE_TWEET_ENDPOINT_EXPLORE || 'tweets';
+export const TWEET_FAVORITE_ENDPOINT =
+  import.meta.env.VITE_REACT_APP_FAVORITE_TWEET_ENDPOINT_FAVORITE || 'favoritetweets';
+export const TWEET_FAVORITE_DETAIL_ENDPOINT =
+  import.meta.env.VITE_REACT_APP_FAVORITE_TWEET_ENDPOINT_FAVORITE || 'favoritetweet';
+export const TWEET_REPLY_ENDPOINT =
+  import.meta.env.VITE_REACT_APP_REPLY_TWEET_ENDPOINT_REPLY || 'replies';
+export const CHANGE_PASSWORD =
+  import.meta.env.VITE_REACT_APP_CHANGE_PASSWORD || '/user/change-password';

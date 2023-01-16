@@ -13,8 +13,11 @@ export const StyledModalBox = styled.div`
   padding: ${({ padding }) => padding};
 
   /* styling */
-  background-color: ${({ theme }) => theme.mainBackgroundColor};
-  box-shadow: 24px;
+  background-color: ${({ theme }) => theme.modal.backgroundColor};
+  box-shadow: 3px 3px 10px 5px ${({ theme }) => theme.modal.boxShadow};
+  /* background-color: ${({ theme }) => theme.mainBackgroundColor}; */
+  /* box-shadow: 24px; */
+  /* box-shadow: 100px; */
   border-radius: 30px;
 
   overflow: hidden;

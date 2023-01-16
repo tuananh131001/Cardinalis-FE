@@ -2,11 +2,18 @@ import * as yup from 'yup';
 import moment from 'moment';
 import { urlRegex, phoneRegex } from '@/assets/Constant';
 export const maxTweetCharacters = 280;
+const minPasswordSize = 8;
 export const displayErrorMessage = (type, errorType, ...args) => {
   let displayType = 'input';
   switch (type) {
     case 'confirmPassword':
       displayType = 'Confirm Password';
+      break;
+    case 'newPassword':
+      displayType = 'New Password';
+      break;
+    case 'oldPassword':
+      displayType = 'Old Password';
       break;
     case 'website':
       displayType = 'URL';
@@ -46,20 +53,27 @@ export const displayErrorMessage = (type, errorType, ...args) => {
   }
 };
 const validatingImage = (name) => {
-  yup
-    .mixed()
+  // yup
+  //   .mixed()
+  //   .required(displayErrorMessage(name, 'required'))
+  //   .test('fileFormat', 'Unsupported file format', (value) => {
+  //     if (value) {
+  //       return ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type);
+  //     }
+  //     return true;
+  //   })
+  //   .test('isLink', 'Invalid URL', (value) => {
+  //     if (value && !value.type) {
+  //       return yup.string().url().isValidSync(value);
+  //     }
+  //     return true;
+  //   });
+  return yup
+    .string()
     .required(displayErrorMessage(name, 'required'))
-    .test('fileFormat', 'Unsupported file format', (value) => {
-      if (value) {
-        return ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type);
-      }
-      return true;
-    })
-    .test('isLink', 'Invalid URL', (value) => {
-      if (value && !value.type) {
-        return yup.string().url().isValidSync(value);
-      }
-      return true;
+    .matches(urlRegex, {
+      message: displayErrorMessage(name, 'matches'),
+      excludeEmptyString: true
     });
 };
 
@@ -67,7 +81,10 @@ export const chooseInputSchema = (type) => {
   if (type == 'login') {
     return yup.object().shape({
       email: yup.string().required(displayErrorMessage('email', 'required')),
-      password: yup.string().required(displayErrorMessage('password', 'required'))
+      password: yup
+        .string()
+        .required(displayErrorMessage('password', 'required'))
+        .min(minPasswordSize, displayErrorMessage('password', 'min', minPasswordSize, 'string'))
     });
   } else if (type == 'register') {
     return yup.object().shape({
@@ -76,7 +93,10 @@ export const chooseInputSchema = (type) => {
         .email(displayErrorMessage('email', 'email'))
         .required(displayErrorMessage('email', 'required')),
       username: yup.string().required(displayErrorMessage('email', 'required')),
-      password: yup.string().required(displayErrorMessage('password', 'required')),
+      password: yup
+        .string()
+        .required(displayErrorMessage('password', 'required'))
+        .min(minPasswordSize, displayErrorMessage('password', 'min', minPasswordSize, 'string')),
       confirmPassword: yup
         .string()
         .oneOf([yup.ref('password'), null], displayErrorMessage('confirmPassword', 'oneOf'))
@@ -86,7 +106,7 @@ export const chooseInputSchema = (type) => {
     return yup.object().shape({
       banner: validatingImage('banner'),
       avatar: validatingImage('avatar'),
-      username: yup.string().required(displayErrorMessage('name', 'required')),
+      fullName: yup.string().nullable(),
       bio: yup
         .string()
         .min(0)
@@ -124,6 +144,29 @@ export const chooseInputSchema = (type) => {
       tweet: yup
         .string()
         .max(maxTweetCharacters, displayErrorMessage('tweet', 'max', maxTweetCharacters, 'string'))
+    });
+  } else if (type == 'changePassword') {
+    return yup.object().shape({
+      oldPassword: yup
+        .string()
+        .required(displayErrorMessage('oldPassword', 'required'))
+        .min(minPasswordSize, displayErrorMessage('oldPassword', 'min', minPasswordSize, 'string')),
+      newPassword: yup
+        .string()
+        .notOneOf([yup.ref('oldPassword'), null], displayErrorMessage('New Password', 'oneOf'))
+        .required(displayErrorMessage('New Password', 'required'))
+        .min(
+          minPasswordSize,
+          displayErrorMessage('New Password', 'min', minPasswordSize, 'string')
+        ),
+      confirmPassword: yup
+        .string()
+        .oneOf([yup.ref('confirmPassword'), null], displayErrorMessage('confirmPassword', 'oneOf'))
+        .required(displayErrorMessage('confirmPassword', 'required'))
+        .min(
+          minPasswordSize,
+          displayErrorMessage('confirmPassword', 'min', minPasswordSize, 'string')
+        )
     });
   } else {
     return yup.object().shape({

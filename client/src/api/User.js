@@ -9,7 +9,8 @@ import {
   GET_USER_ENDPOINT,
   USER_FOLLOWING_ENDPOINT,
   USER_FOLLOWERS_ENDPOINT,
-  USER_SEARCH_ENDPOINT
+  USER_SEARCH_ENDPOINT,
+  CHANGE_PASSWORD
 } from '@/assets/constantEnv';
 const userApi = axios.create({
   baseURL: API_ORIGIN
@@ -59,6 +60,16 @@ const signInOauth2 = (dataToken) => {
       });
   }
 };
+
+const changePassword = (data) =>
+  userApi
+    .put(CHANGE_PASSWORD, data, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('userToken')}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((res) => res.data);
 
 const updateProfile = (data) =>
   userApi
@@ -122,5 +133,6 @@ export {
   getUserFollowers,
   getUserFollowing,
   followUser,
-  getUserByEmail
+  getUserByEmail,
+  changePassword
 };

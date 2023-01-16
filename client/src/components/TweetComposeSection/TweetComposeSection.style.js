@@ -17,6 +17,7 @@ export const TweetComposeSectionStyled = styled(motion.div)`
     flex: 1.5;
   }
   @media (max-width: 1134px) {
+    gap: 0.5em;
     padding: 1em;
     & > :first-child {
       flex: 0.5;

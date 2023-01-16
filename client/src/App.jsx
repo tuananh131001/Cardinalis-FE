@@ -6,7 +6,6 @@ import Register from '@/pages/Register';
 import Login from '@/pages/Login';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '@/styles/Theme';
-import { StyledHeading1 } from '@/components/Text/Text.styled';
 import { FORGOT_PASSWORD_PATH } from '@/assets/Constant';
 import { useContext } from 'react';
 import ForgotPassword from '@/pages/ForgotPassword';
@@ -25,7 +24,8 @@ import {
   LOGIN_PATH,
   REGISTER_PATH,
   TWEET_COMPOSE_PATH,
-  UPDATE_PROFILE_PATH
+  UPDATE_PROFILE_PATH,
+  CHANGE_PASSWORD_PATH
 } from '@/assets/Constant';
 import Search from '@/pages/Search';
 import Follow from '@/pages/Follow';
@@ -33,7 +33,8 @@ import Tweet from '@/pages/Tweet';
 import TweetCompose from '@/pages/TweetCompose';
 import UpdateProfilePage from '@/pages/UpdateProfilePage';
 import TokenRecevied from '@/pages/TokenRecevied';
-
+import Nothing from '@/components/LoadingNothing/Nothing';
+import ChangePassword from '@/pages/ChangePassword';
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -101,6 +102,14 @@ function App() {
               }
             />
             <Route
+              path={`/${CHANGE_PASSWORD_PATH}`}
+              element={
+                <ProtectedRoutes>
+                  <ChangePassword />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
               path={`/:username${PROFILE_TWEET_PATH}`}
               element={
                 <ProtectedRoutes>
@@ -156,7 +165,7 @@ function App() {
                 </ProtectedRoutes>
               }
             />
-            <Route path="*" element={<h1>Page Not Exist</h1>} />
+            <Route path="*" element={<Nothing text="Page Not Found" />} />
           </Routes>
         </AnimatePresence>
       </ThemeProvider>

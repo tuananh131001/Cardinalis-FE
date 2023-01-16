@@ -3,17 +3,18 @@ import PropTypes from 'prop-types';
 import Button from '@/components/Button/Button';
 import { CaptionProfile } from './TextProfile';
 
-export const EditButtonProfile = ({ onClick }) => {
+export const EditButtonProfile = ({ onClick, text = 'Edit', ...props }) => {
   return (
     <Button
+      {...props}
       buttonType="primary"
       buttonThemeName="thirdButton"
       alignSelf="flex-end"
-      borderRadius="30%/110%"
+      borderRadius="0.8em"
       width="auto"
       padding="0.8em 1.3em"
       onClick={onClick}>
-      Edit Profile
+      {text}
     </Button>
   );
 };
@@ -51,7 +52,8 @@ export const NavButtonProfile = ({ text, onClick, isCurrentTab }) => {
   );
 };
 EditButtonProfile.propTypes = {
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  text: PropTypes.string
 };
 FollowButtonProfile.propTypes = {
   count: PropTypes.number,
