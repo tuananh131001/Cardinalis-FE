@@ -35,7 +35,6 @@ function ProfileContent({ pageSubType }) {
   if (isError)
     return <Nothing padding={loadingPadding} text="Server Error" subText={error.message} />;
   if (isLoading) return <Loading type="gif" padding={loadingPadding} />;
-  console.log('Data in profile', user?.data);
 
   return (
     <ProfileContentStyled>

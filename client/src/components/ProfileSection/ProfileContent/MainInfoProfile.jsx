@@ -53,8 +53,6 @@ const MainInfoProfile = ({ user, currentUsername }) => {
         break;
     }
   };
-  console.log(user);
-  console.log(followers);
   const isFollowedByCurrentUser =
     followers?.data.filter((follower) => follower.username === currentUsername).length > 0;
 

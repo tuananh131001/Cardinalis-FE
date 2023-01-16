@@ -38,7 +38,6 @@ import ChangePassword from '@/pages/ChangePassword';
 
 function App() {
   const { theme } = useContext(ThemeContext);
-  // console.log(theme);
   const themeMode = theme === 'lightTheme' ? lightTheme : darkTheme;
   const location = useLocation();
 

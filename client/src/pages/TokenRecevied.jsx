@@ -11,9 +11,7 @@ function TokenRecevied() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { token } = useParams();
-  console.log(token);
   const user = jwt(token);
-  console.log(user);
   const { isLoading, data, isError, error } = useGetUserByEmailInfo(user.sub);
   if (isLoading) {
     return <div>Loading...</div>;
@@ -21,7 +19,6 @@ function TokenRecevied() {
   if (isError) {
     return <div>Error: {error.message}</div>;
   }
-  console.log(data?.data);
   const username = data?.data?.username;
   localStorage.setItem('userToken', token);
   localStorage.setItem('username', username);

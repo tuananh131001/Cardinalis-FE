@@ -18,7 +18,6 @@ const userApi = axios.create({
 
 const getOauthUrl = (provider) => {
   if (provider == 'google') {
-    console.log('Oauth 2', API_ORIGIN + GOOGLE_LOGIN_ENDPOINT);
     return API_ORIGIN + GOOGLE_LOGIN_ENDPOINT;
   } else {
     return API_ORIGIN + FACEBOOK_LOGIN_ENDPOINT;

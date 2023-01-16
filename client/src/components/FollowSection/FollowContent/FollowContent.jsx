@@ -21,7 +21,6 @@ function FollowContent({ type, user }) {
   } = useGetUserFollowing(user?.data?.id);
   if (isLoadingFollowers || isLoadingFollowing) return <Loading type="gif" />;
   if (isErrorFollower || isErrorFollowing) return <Nothing />;
-  console.log(user?.data.username);
   const followList = type == 'followers' ? followers?.data : following?.data;
 
   return (

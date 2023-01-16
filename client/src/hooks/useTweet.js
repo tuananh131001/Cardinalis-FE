@@ -25,7 +25,6 @@ const useDeleteTweet = () => {
   return useMutation({
     mutationFn: (id) => deleteTweet(id),
     onSuccess: () => {
-      console.log('Successfully deleted');
       queryClient.invalidateQueries({ queryKey: ['tweets'] });
     },
     onError: (error) => {

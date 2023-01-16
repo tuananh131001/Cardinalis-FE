@@ -45,7 +45,6 @@ function ExploreContent() {
       </Fragment>
     );
   };
-  console.log(data?.pages);
   return (
     <ExploreContentStyled>
       <HeaderSection content="Explore" leftType="none" />

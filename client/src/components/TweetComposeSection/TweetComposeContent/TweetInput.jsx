@@ -25,13 +25,7 @@ const TweetInput = ({ ...props }) => {
   const { mutate } = usePostTweet(reset);
 
   const onSubmitClick = (data) => {
-    console.log('Tweet', data);
     mutate(data);
-    // if (isDirty && isValid) {
-    //   console.log(data);
-    // } else {
-    //   console.log('invalid');
-    // }
   };
   return (
     <StyledForm

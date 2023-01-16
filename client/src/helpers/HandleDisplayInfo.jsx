@@ -10,12 +10,7 @@ const sanitizeWord = (word, replaceRules = irregularRules, regexRules = pluralRu
   if (replaceRules[token]) {
     return replaceRules[token];
   }
-  // if word is uncountable, return the word
-  // if (uncountableRules.includes(token)) {
-  //   console.log("first")
-  //   return token;
-  // }
-  // if word meets the plural rules, return the plural form
+
   var len = regexRules.length;
   while (len--) {
     var rule = regexRules[len];

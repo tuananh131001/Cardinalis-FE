@@ -30,7 +30,6 @@ function LoginForm({ ...props }) {
   };
 
   const user = useSelector((state) => state.user);
-  console.log(user);
   const {
     register,
     handleSubmit,

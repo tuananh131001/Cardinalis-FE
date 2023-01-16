@@ -51,19 +51,15 @@ export const TweetButtons = ({ tweet, ...props }) => {
     event.stopPropagation();
     switch (type) {
       case 'comment':
-        console.log('comment');
         openTweet();
         break;
       case 'retweet':
-        console.log('retweet');
         openTweet();
         break;
       case 'favorite':
-        console.log('favorite');
         break;
     }
   };
-  console.log(displayCountNumber(tweet.totalComment));
   return (
     <FlexContainer {...props}>
       <TweetButtonSection

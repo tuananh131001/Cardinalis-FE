@@ -31,7 +31,6 @@ const ChangePasswordForm = () => {
   const { mutate, isSuccess, isError, error } = useChangePassword(reset);
 
   const onSubmitClick = (data) => {
-    console.log(data);
     mutate(data);
   };
 

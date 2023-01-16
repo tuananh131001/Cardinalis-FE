@@ -37,7 +37,6 @@ const ProfileSubpage = ({ type, user }) => {
   if (status === 'error') {
     <ErrorDisplay />;
   }
-  console.log(`Profile @${user?.username} Sub Page: `, data);
   const renderLoading = () => {
     return (
       <Fragment>

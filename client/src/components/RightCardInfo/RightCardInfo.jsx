@@ -10,7 +10,6 @@ import Nothing from '@/components/LoadingNothing/Nothing';
 
 function RightCardInfo({ type, text, data }) {
   const navigate = useNavigate();
-  console.log(data);
   const { user } = useSelector((state) => state.user);
   const onClick = () => {
     navigate(`/${user.username + '/' + type}`);

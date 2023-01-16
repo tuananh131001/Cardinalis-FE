@@ -6,7 +6,6 @@ import UserCardSection from '@/components/UserCard/UserCardSection';
 import Divider from '@/components/Divider/Divider';
 
 const FollowList = ({ followList }) => {
-  console.log(followList);
   const renderFollowList = () => {
     return followList.map((user) => {
       return (

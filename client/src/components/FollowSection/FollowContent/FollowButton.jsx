@@ -25,8 +25,6 @@ const FollowButton = ({ id, isFollowing, ...props }) => {
   const [following, setIsFollowing] = useState(isFollowing);
   const followType = following ? 'following' : 'follow';
   const { value: isHover, onSetNewValue: onSetHover } = useChange(false);
-  console.log(followType);
-  console.log(data?.data);
   const onEnter = () => {
     if (followType == 'following') {
       onSetHover(true);
@@ -38,8 +36,6 @@ const FollowButton = ({ id, isFollowing, ...props }) => {
     }
   };
   const onClick = () => {
-    console.log(id);
-    console.log('siu');
     refetch();
     setIsFollowing(!following);
   };
