@@ -10,7 +10,7 @@ export const GOOGLE_LOGIN_ENDPOINT = 'oauth2/authorization/google';
 export const USER_ENDPOINT = import.meta.env.VITE_REACT_APP_USER_ENDPOINT || 'user';
 export const GET_USER_ENDPOINT = import.meta.env.VITE_REACT_APP_GET_USER_ENDPOINT || 'user/fetch';
 export const GET_USER_BY_EMAIL_ENDPOINT =
-  import.meta.env.VITE_REACT_APP_GET_USER_ENDPOINT || 'user/fetch';
+  import.meta.env.VITE_REACT_APP_GET_USER_ENDPOINT || 'user/fetch/';
 export const TWEET_ENDPOINT = import.meta.env.VITE_REACT_APP_TWEET_ENDPOINT || 'tweets';
 export const TWEET_DETAIL_ENDPOINT =
   import.meta.env.VITE_REACT_APP_TWEET_DETAIL_ENDPOINT || 'tweet';
