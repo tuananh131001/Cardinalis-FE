@@ -3,7 +3,9 @@ import {
   API_ORIGIN,
   TWEET_ENDPOINT,
   TWEET_DETAIL_ENDPOINT,
-  TWEET_EXPLORE_ENDPOINT
+  TWEET_EXPLORE_ENDPOINT,
+  TWEET_FAVORITE_ENDPOINT,
+  TWEET_REPLY_ENDPOINT
 } from '@/assets/constantEnv';
 const tweetApi = axios.create({
   baseURL: API_ORIGIN,
@@ -28,6 +30,12 @@ const postTweet = (tweet) => tweetApi.post(TWEET_DETAIL_ENDPOINT, tweet).then((r
 const getExploreTweets = ({ pageParam = 0 }) => {
   return tweetApi.get(`${TWEET_EXPLORE_ENDPOINT}?pageNo=${pageParam}`).then((res) => res.data);
 };
+const getFavoriteTweets = ({ pageParam = 0 }) => {
+  return tweetApi.get(`${TWEET_FAVORITE_ENDPOINT}?pageNo=${pageParam}`).then((res) => res.data);
+};
+const getReplyTweets = ({ pageParam = 0 }) => {
+  return tweetApi.get(`${TWEET_REPLY_ENDPOINT}?pageNo=${pageParam}`).then((res) => res.data);
+};
 
 const getUserTweets = ({ queryKey, pageParam = 0 }) => {
   console.log(pageParam);
@@ -48,6 +56,8 @@ const getTweet = (id) => tweetApi.get(`${TWEET_DETAIL_ENDPOINT}?id=${id}`).then(
 
 export {
   getFollowingTweets,
+  getFavoriteTweets,
+  getReplyTweets,
   updateTweet,
   deleteTweet,
   postTweet,
