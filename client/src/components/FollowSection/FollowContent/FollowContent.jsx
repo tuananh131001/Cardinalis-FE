@@ -5,6 +5,8 @@ import FollowList from './FollowList';
 import PropTypes from 'prop-types';
 import SubNav from '@/components/NavSection/SubNav';
 import { useGetUserFollowers, useGetUserFollowing } from '@/hooks/useUser';
+import Loading from '@/components/LoadingNothing/Loading';
+import Nothing from '@/components/LoadingNothing/Nothing';
 
 function FollowContent({ type, user }) {
   const {
@@ -17,8 +19,8 @@ function FollowContent({ type, user }) {
     isLoading: isLoadingFollowing,
     isError: isErrorFollowing
   } = useGetUserFollowing(user?.data?.id);
-  if (isLoadingFollowers || isLoadingFollowing) return <div>Loading...</div>;
-  if (isErrorFollower || isErrorFollowing) return <div>Error</div>;
+  if (isLoadingFollowers || isLoadingFollowing) return <Loading type="gif" />;
+  if (isErrorFollower || isErrorFollowing) return <Nothing />;
   console.log(user?.data.username);
   const followList = type == 'followers' ? followers?.data : following?.data;
 

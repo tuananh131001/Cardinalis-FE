@@ -17,14 +17,15 @@ import { RiLinksLine } from 'react-icons/ri';
 import useMediaQuery from '@/hooks/useMediaQuery';
 import { useGetUserFollowers, useGetUserFollowing } from '@/hooks/useUser';
 import { UPDATE_PROFILE_PATH } from '@/assets/Constant';
+import { MainInfoProfileStyled } from './ProfileContent.styled';
 
 const avatarSize = '9em';
 const bckHeight = '14em';
-const containerGap = '0.5em';
 const MainInfoProfile = ({ user, currentUsername }) => {
   const responsiveCondition = {
     desktop: useMediaQuery('(min-width: 1134px)')
   };
+
   const { value: isOpen, onSetTrue: handleOpen, onSetFalse: handleClose } = useChange(false);
   const navigate = useNavigate();
   const {
@@ -61,15 +62,10 @@ const MainInfoProfile = ({ user, currentUsername }) => {
     else navigate(`/${UPDATE_PROFILE_PATH}`);
   };
   return (
-    <FlexContainer
-      fd="column"
-      isHideScrollBar={true}
-      gap="1em"
-      position="relative"
-      padding={`calc(${bckHeight} + ${containerGap}) var(--horizontal-spaces) 0`}>
+    <MainInfoProfileStyled bckHeight={bckHeight}>
       <ImageProfile user={user} bckHeight={bckHeight} avatarSize={avatarSize} />
       {isYou ? (
-        <EditButtonProfile onClick={clickUpdateProfile} />
+        <EditButtonProfile text={'Edit'} onClick={clickUpdateProfile} />
       ) : (
         <FollowButton
           id={user?.id}
@@ -113,7 +109,7 @@ const MainInfoProfile = ({ user, currentUsername }) => {
           {<UpdateProfileForm user={user} isInModal={true} closeAction={handleClose} />}
         </CustomModal>
       )}
-    </FlexContainer>
+    </MainInfoProfileStyled>
   );
 };
 MainInfoProfile.propTypes = {

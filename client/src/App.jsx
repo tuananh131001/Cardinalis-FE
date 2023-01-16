@@ -24,7 +24,8 @@ import {
   LOGIN_PATH,
   REGISTER_PATH,
   TWEET_COMPOSE_PATH,
-  UPDATE_PROFILE_PATH
+  UPDATE_PROFILE_PATH,
+  CHANGE_PASSWORD_PATH
 } from '@/assets/Constant';
 import Search from '@/pages/Search';
 import Follow from '@/pages/Follow';
@@ -33,6 +34,7 @@ import TweetCompose from '@/pages/TweetCompose';
 import UpdateProfilePage from '@/pages/UpdateProfilePage';
 import TokenRecevied from '@/pages/TokenRecevied';
 import Nothing from '@/components/LoadingNothing/Nothing';
+import ChangePassword from '@/pages/ChangePassword';
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -96,6 +98,14 @@ function App() {
               element={
                 <ProtectedRoutes>
                   <UpdateProfilePage />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path={`/${CHANGE_PASSWORD_PATH}`}
+              element={
+                <ProtectedRoutes>
+                  <ChangePassword />
                 </ProtectedRoutes>
               }
             />

@@ -13,6 +13,7 @@ export const COMPOSE_PATH = 'tweet_compose';
 export const SEARCH_PATH = 'search';
 export const TWEET_COMPOSE_PATH = 'compose/tweet';
 export const UPDATE_PROFILE_PATH = 'compose/profile';
+export const CHANGE_PASSWORD_PATH = 'compose/change-password';
 
 // inside Profile
 export const PROFILE_TWEET_PATH = '';

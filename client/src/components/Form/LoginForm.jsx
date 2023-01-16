@@ -62,6 +62,15 @@ function LoginForm({ ...props }) {
       }
     });
   };
+  const toggleShowPassword = (event) => {
+    togglePassword(event);
+  };
+  const onKeyPress = (event, data) => {
+    if (event.key == 'Enter') {
+      event.preventDefault();
+      onSubmitClick(data);
+    }
+  };
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmitClick)} {...props}>
@@ -69,6 +78,7 @@ function LoginForm({ ...props }) {
         inputType="text"
         inputThemeName="loginInput"
         placeholder="Enter Email..."
+        onKeyPress={onKeyPress}
         {...register('email')}
       />
       <ErrorText errors={errors.email?.message} />
@@ -77,7 +87,8 @@ function LoginForm({ ...props }) {
         inputType="textIcon"
         inputThemeName="loginInput"
         placeholder="Enter password..."
-        onClick={togglePassword}
+        onClick={(event) => toggleShowPassword(event)}
+        onKeyPress={onKeyPress}
         {...register('password')}>
         {hidePassword ? <FaEye /> : <RiEyeCloseFill />}
       </Input>

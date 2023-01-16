@@ -2,11 +2,18 @@ import * as yup from 'yup';
 import moment from 'moment';
 import { urlRegex, phoneRegex } from '@/assets/Constant';
 export const maxTweetCharacters = 280;
+const maxPasswordSize = 10;
 export const displayErrorMessage = (type, errorType, ...args) => {
   let displayType = 'input';
   switch (type) {
     case 'confirmPassword':
       displayType = 'Confirm Password';
+      break;
+    case 'currentPassword':
+      displayType = 'Current Password';
+      break;
+    case 'oldPassword':
+      displayType = 'Old Password';
       break;
     case 'website':
       displayType = 'URL';
@@ -74,7 +81,10 @@ export const chooseInputSchema = (type) => {
   if (type == 'login') {
     return yup.object().shape({
       email: yup.string().required(displayErrorMessage('email', 'required')),
-      password: yup.string().required(displayErrorMessage('password', 'required'))
+      password: yup
+        .string()
+        .required(displayErrorMessage('password', 'required'))
+        .max(maxPasswordSize, displayErrorMessage('password', 'max', maxPasswordSize, 'string'))
     });
   } else if (type == 'register') {
     return yup.object().shape({
@@ -83,7 +93,10 @@ export const chooseInputSchema = (type) => {
         .email(displayErrorMessage('email', 'email'))
         .required(displayErrorMessage('email', 'required')),
       username: yup.string().required(displayErrorMessage('email', 'required')),
-      password: yup.string().required(displayErrorMessage('password', 'required')),
+      password: yup
+        .string()
+        .required(displayErrorMessage('password', 'required'))
+        .max(maxPasswordSize, displayErrorMessage('password', 'max', maxPasswordSize, 'string')),
       confirmPassword: yup
         .string()
         .oneOf([yup.ref('password'), null], displayErrorMessage('confirmPassword', 'oneOf'))
@@ -124,18 +137,36 @@ export const chooseInputSchema = (type) => {
         .test('empty-check', displayErrorMessage('dateOfBirth', 'min', 10), (value) => {
           return value == null || moment().diff(moment(value), 'years') >= 10;
         })
-        .default(null),
-      password: yup.string().nullable(),
-      confirmPassword: yup
-        .string()
-        .oneOf([yup.ref('password'), null], displayErrorMessage('confirmPassword', 'oneOf'))
-        .nullable()
+        .default(null)
     });
   } else if (type == 'tweet') {
     return yup.object().shape({
       tweet: yup
         .string()
         .max(maxTweetCharacters, displayErrorMessage('tweet', 'max', maxTweetCharacters, 'string'))
+    });
+  } else if (type == 'changePassword') {
+    return yup.object().shape({
+      oldPassword: yup
+        .string()
+        .required(displayErrorMessage('oldPassword', 'required'))
+        .max(maxPasswordSize, displayErrorMessage('oldPassword', 'max', maxPasswordSize, 'string')),
+      currentPassword: yup
+        .string()
+        .notOneOf([yup.ref('oldPassword'), null], displayErrorMessage('currentPassword', 'oneOf'))
+        .required(displayErrorMessage('currentPassword', 'required'))
+        .max(
+          maxPasswordSize,
+          displayErrorMessage('currentPassword', 'max', maxPasswordSize, 'string')
+        ),
+      confirmPassword: yup
+        .string()
+        .oneOf([yup.ref('confirmPassword'), null], displayErrorMessage('confirmPassword', 'oneOf'))
+        .required(displayErrorMessage('confirmPassword', 'required'))
+        .max(
+          maxPasswordSize,
+          displayErrorMessage('confirmPassword', 'max', maxPasswordSize, 'string')
+        )
     });
   } else {
     return yup.object().shape({

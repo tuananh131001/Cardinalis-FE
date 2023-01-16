@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-export const FollowSectionStyled = styled(motion.div)`
+export const ChangePasswordSectionStyled = styled(motion.div)`
   display: flex;
   margin: 0 auto;
   padding: 1em 4em;

@@ -6,7 +6,6 @@ import { StyledForm } from './Form.styled';
 import { Input } from '@/components/Input/Input';
 import { ErrorText } from '@/components/Text/ErrorText';
 import StyledButton from '@/components/Button/Button.styled';
-import Text from '@/components/Text/Text';
 import DateInput from '@/components/Input/DateInput';
 import HeaderSection from '@/components/HeaderSection/HeaderSection';
 import CustomizedSnackbars from '@/components/Snackbar/Snackbar';
@@ -21,6 +20,8 @@ import { getUserInfo } from '@/features/userSlice';
 import { useLocation } from 'react-router-dom';
 import { UPDATE_PROFILE_PATH } from '@/assets/Constant';
 import { useNavigate } from 'react-router-dom';
+import { CHANGE_PASSWORD_PATH } from '@/assets/Constant';
+import ProfileUpdateLabel from './ProfileUpdateLabel';
 
 const errorPadding = '0 0 1em 0.2em';
 const bckHeight = '15em';
@@ -48,9 +49,7 @@ function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
     location: user?.location,
     phone: user?.phone,
     notificationsCount: user?.notificationsCount,
-    gender: user?.gender,
-    password: user?.password,
-    confirmPassword: user?.password
+    gender: user?.gender
   };
   const { user: thisUser } = useSelector((state) => state.user);
   console.log('User In Update Form', thisUser);
@@ -59,7 +58,6 @@ function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
     register,
     handleSubmit,
     control,
-    getValues,
     formState: { errors }
   } = useForm({
     defaultValues: defaultValues,
@@ -70,7 +68,6 @@ function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
   const { value: showDate, onToggle: toggleShowDate } = useChange(false);
   const { value: avatarLink, onSetNewValue: changeAvatar } = useChange(defaultValues.avatar);
   const { value: bannerLink, onSetNewValue: changeBanner } = useChange(defaultValues.banner);
-  const { value: showPasswordField, onToggle: toggleShowPassword } = useChange(false);
   //   const { mutate, isError, error, isSuccess } = useSignIn(reset);
   //   const dispatch = useDispatch();
 
@@ -87,11 +84,6 @@ function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
 
   // submit function
   const onSubmitClick = (data) => {
-    // delete password and confirmPassword if user not input
-    if (data.password == null) {
-      delete data.password;
-      delete data.confirmPassword;
-    }
     console.log(data);
     dispatch(getUserInfo(data));
     mutate(data);
@@ -110,7 +102,7 @@ function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
   };
   const clickEditPassword = (event) => {
     event.preventDefault();
-    toggleShowPassword(event);
+    navigate(`/${CHANGE_PASSWORD_PATH}`);
   };
   const onChangeImageLink = (event, registerType, type) => {
     if (type === 'avatar') {
@@ -284,36 +276,11 @@ function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
 
       {/* Password */}
       <div className="flex-row">
-        <ProfileUpdateLabel className="label" text="Password" htmlFor="updateProfilePassword" />
+        <ProfileUpdateLabel className="label" text="Password" />
         <Button className="button" width="auto" buttonType="link" onClick={clickEditPassword}>
           Edit
         </Button>
       </div>
-
-      {showPasswordField && (
-        <>
-          <Input
-            id="updateProfilePassword"
-            inputType="text"
-            type="password"
-            inputThemeName={textThemeName}
-            placeholder="Password"
-            {...register('password')}
-            value={getValues('password')}
-          />
-          <ErrorText errors={errors.password?.message} padding={errorPadding} />
-          <ProfileUpdateLabel text="Confirm Password" htmlFor="updateProfileConfirmPassword" />
-          <Input
-            type="password"
-            id="updateProfileConfirmPassword"
-            inputType="text"
-            inputThemeName={textThemeName}
-            placeholder="Confirm Password"
-            {...register('confirmPassword')}
-          />
-          <ErrorText errors={errors.confirmPassword?.message} padding={errorPadding} />
-        </>
-      )}
 
       {/* Error message */}
       <CustomizedSnackbars
@@ -330,26 +297,11 @@ function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
     </StyledForm>
   );
 }
-const ProfileUpdateLabel = ({ text, htmlFor, ...props }) => (
-  <Text
-    {...props}
-    type="label"
-    textThemeName="subText"
-    text={text}
-    txtAlign="left"
-    htmlFor={htmlFor}
-  />
-);
 
 UpdateProfileForm.propTypes = {
   user: PropTypes.object,
   closeAction: PropTypes.func,
   props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string])),
   isInModal: PropTypes.bool
-};
-ProfileUpdateLabel.propTypes = {
-  text: PropTypes.string,
-  htmlFor: PropTypes.string,
-  props: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string]))
 };
 export default UpdateProfileForm;
