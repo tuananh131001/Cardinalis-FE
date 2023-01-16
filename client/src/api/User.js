@@ -75,7 +75,7 @@ const getUserInfo = (username) => {
 };
 
 const getUserByEmail = (email) => {
-  return userApi.get(`${GET_USER_ENDPOINT}?email=${email}`).then((res) => res.data);
+  return userApi.get(`${GET_USER_ENDPOINT}email=${email}`).then((res) => res.data);
 };
 
 const followUser = (id) =>

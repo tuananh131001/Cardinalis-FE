@@ -107,6 +107,6 @@ export {
   useSearchUsers,
   useGetUserFollowing,
   useGetUserFollowers,
-  useFollowUser, 
+  useFollowUser,
   useGetUserByEmailInfo
 };
