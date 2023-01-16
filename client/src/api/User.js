@@ -17,7 +17,7 @@ const userApi = axios.create({
 
 const getOauthUrl = (provider) => {
   if (provider == 'google') {
-    console.log("Oauth 2", API_ORIGIN + GOOGLE_LOGIN_ENDPOINT);
+    console.log('Oauth 2', API_ORIGIN + GOOGLE_LOGIN_ENDPOINT);
     return API_ORIGIN + GOOGLE_LOGIN_ENDPOINT;
   } else {
     return API_ORIGIN + FACEBOOK_LOGIN_ENDPOINT;
@@ -74,6 +74,10 @@ const getUserInfo = (username) => {
   return userApi.get(`${GET_USER_ENDPOINT}${username}`).then((res) => res.data);
 };
 
+const getUserByEmail = (email) => {
+  return userApi.get(`${GET_USER_ENDPOINT}email=${email}`).then((res) => res.data);
+};
+
 const followUser = (id) =>
   userApi
     .get(`/user/follow?userId=${id}`, {
@@ -117,5 +121,6 @@ export {
   searchUsers,
   getUserFollowers,
   getUserFollowing,
-  followUser
+  followUser,
+  getUserByEmail
 };

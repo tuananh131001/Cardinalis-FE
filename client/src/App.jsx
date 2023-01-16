@@ -34,7 +34,6 @@ import TweetCompose from '@/pages/TweetCompose';
 import UpdateProfilePage from '@/pages/UpdateProfilePage';
 import TokenRecevied from '@/pages/TokenRecevied';
 
-// import Text from './components/Text/Text';
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -49,7 +48,7 @@ function App() {
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             {/* Authentication */}
-            <Route path="/oauth2/:token" element={<TokenRecevied />} />
+            <Route path="oauth2/:token" element={<TokenRecevied />} />
             <Route path={`/${LOGIN_PATH}`} element={<Login />} />
             <Route path={`/${REGISTER_PATH}`} element={<Register />} />
             <Route
@@ -157,7 +156,7 @@ function App() {
                 </ProtectedRoutes>
               }
             />
-            <Route path="*" element={<StyledHeading1>Page Not Exist</StyledHeading1>} />
+            <Route path="*" element={<h1>Page Not Exist</h1>} />
           </Routes>
         </AnimatePresence>
       </ThemeProvider>

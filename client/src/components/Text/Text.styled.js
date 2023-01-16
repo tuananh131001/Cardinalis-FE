@@ -38,7 +38,7 @@ export const StyledHeading1 = styled.h1`
   ${StyledGeneralHeading}
   ${StyledHeadingFlex}
   color: ${({ theme, textThemeName }) => theme[textThemeName]?.color ?? theme.text.color};
-  ${({ isActive }) => isActive && ActiveStyling}
+  ${({ isActive }) => (isActive ? ActiveStyling : null)}
 `;
 
 export const StyledHeading2 = styled.h2`

@@ -105,7 +105,7 @@ function LoginForm({ ...props }) {
       {isError && (
         <CustomizedSnackbars
           type="error"
-          message={error?.response?.data?.errors_message ?? 'Internal Server Error'}
+          message={error?.response?.data?.message ?? 'Internal Server Error'}
         />
       )}
     </StyledForm>
