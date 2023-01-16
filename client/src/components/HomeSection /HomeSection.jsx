@@ -20,7 +20,7 @@ function HomeSection() {
   return (
     <HomeSectionStyled>
       <MainNav user={user} currentTab={currentTab} />
-      <HomeContent />
+      <HomeContent user={user} />
       <RightSection />
     </HomeSectionStyled>
   );

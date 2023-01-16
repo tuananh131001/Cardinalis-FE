@@ -30,3 +30,5 @@ export const TWEET_REPLY_ENDPOINT =
   import.meta.env.VITE_REACT_APP_REPLY_TWEET_ENDPOINT_REPLY || 'replies';
 export const CHANGE_PASSWORD =
   import.meta.env.VITE_REACT_APP_CHANGE_PASSWORD || '/user/change-password';
+export const TWEET_TIMELINE_ENDPOINT =
+  import.meta.env.VITE_REACT_APP_TWEET_TIMELINE || 'tweet/timeline';

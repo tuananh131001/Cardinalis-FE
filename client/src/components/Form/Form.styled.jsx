@@ -84,7 +84,7 @@ StyledForm.defaultProps = {
   ai: 'center',
   wrap: 'nowrap',
   width: '100%',
-  height: '50vh',
+  height: 'auto',
   gridArea: 'unset',
   alignSelf: 'unset',
   overflow: 'auto',

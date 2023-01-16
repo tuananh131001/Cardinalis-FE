@@ -63,6 +63,7 @@ export const TweetButtons = ({ tweet, ...props }) => {
         break;
     }
   };
+  console.log(displayCountNumber(tweet.totalComment));
   return (
     <FlexContainer {...props}>
       <TweetButtonSection
@@ -73,14 +74,14 @@ export const TweetButtons = ({ tweet, ...props }) => {
       <TweetButtonSection
         themeName="retweetButton"
         icon={<AiOutlineRetweet />}
-        count={displayCountNumber(tweet.totalRetweet)}
+        count={displayCountNumber(tweet.totalRetweet) ?? 0}
         onClick={(event) => onClick(event, 'retweet')}
         isActive={tweet.isRetweeted}
       />
       <TweetButtonSection
         themeName="favoriteButton"
         icon={tweet.isFavorited ? <FaHeart /> : <FaRegHeart />}
-        count={displayCountNumber(tweet.totalFav)}
+        count={displayCountNumber(tweet.totalFav) ?? 0}
         onClick={(event) => onClick(event, 'favorite')}
         isActive={tweet.isFavorited}
       />
