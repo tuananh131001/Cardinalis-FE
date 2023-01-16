@@ -46,20 +46,27 @@ export const displayErrorMessage = (type, errorType, ...args) => {
   }
 };
 const validatingImage = (name) => {
-  yup
-    .mixed()
+  // yup
+  //   .mixed()
+  //   .required(displayErrorMessage(name, 'required'))
+  //   .test('fileFormat', 'Unsupported file format', (value) => {
+  //     if (value) {
+  //       return ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type);
+  //     }
+  //     return true;
+  //   })
+  //   .test('isLink', 'Invalid URL', (value) => {
+  //     if (value && !value.type) {
+  //       return yup.string().url().isValidSync(value);
+  //     }
+  //     return true;
+  //   });
+  return yup
+    .string()
     .required(displayErrorMessage(name, 'required'))
-    .test('fileFormat', 'Unsupported file format', (value) => {
-      if (value) {
-        return ['image/jpg', 'image/jpeg', 'image/png'].includes(value.type);
-      }
-      return true;
-    })
-    .test('isLink', 'Invalid URL', (value) => {
-      if (value && !value.type) {
-        return yup.string().url().isValidSync(value);
-      }
-      return true;
+    .matches(urlRegex, {
+      message: displayErrorMessage(name, 'matches'),
+      excludeEmptyString: true
     });
 };
 
@@ -86,7 +93,7 @@ export const chooseInputSchema = (type) => {
     return yup.object().shape({
       banner: validatingImage('banner'),
       avatar: validatingImage('avatar'),
-      username: yup.string().required(displayErrorMessage('name', 'required')),
+      fullName: yup.string().nullable(),
       bio: yup
         .string()
         .min(0)
@@ -117,7 +124,12 @@ export const chooseInputSchema = (type) => {
         .test('empty-check', displayErrorMessage('dateOfBirth', 'min', 10), (value) => {
           return value == null || moment().diff(moment(value), 'years') >= 10;
         })
-        .default(null)
+        .default(null),
+      password: yup.string().nullable(),
+      confirmPassword: yup
+        .string()
+        .oneOf([yup.ref('password'), null], displayErrorMessage('confirmPassword', 'oneOf'))
+        .nullable()
     });
   } else if (type == 'tweet') {
     return yup.object().shape({

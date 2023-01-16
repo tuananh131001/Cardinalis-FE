@@ -79,7 +79,7 @@ const MainInfoProfile = ({ user, currentUsername }) => {
         />
       )}
       <ShortInfoProfile
-        name={user.username}
+        name={user.fullName || user.username}
         username={user.username}
         isHotUser={user.is_hot_user}
         padding="1em 0"

@@ -84,7 +84,7 @@ export const InlineContainer = styled.div`
 
 const generalDefaultProps = {
   overflow: 'auto',
-  position: 'relative',
+  position: 'unset',
   top: 'unset',
   left: 'unset',
   zIndex: 'unset',

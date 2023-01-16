@@ -18,21 +18,27 @@ import { useChange } from '@/hooks/useChange';
 import { useUpdateProfile } from '@/hooks/useUser';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserInfo } from '@/features/userSlice';
+import { useLocation } from 'react-router-dom';
+import { UPDATE_PROFILE_PATH } from '@/assets/Constant';
+import { useNavigate } from 'react-router-dom';
 
 const errorPadding = '0 0 1em 0.2em';
 const bckHeight = '15em';
 const avatarSize = '9em';
 const textThemeName = 'homeInput';
 function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
+  const location = useLocation();
+  const navigate = useNavigate();
   const schema = chooseInputSchema('updateProfile');
   // const {value: message, onSetNewValue: setMessage} = useChange("");
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const [message, setMessage] = useState('message');
   const defaultValues = {
-    username: user?.name,
+    username: user?.username,
     email: user?.email,
     avatar: user?.avatar,
+    banner: user?.banner,
     bio: user?.bio,
     country: user?.country,
     countryCode: user?.countryCode,
@@ -42,22 +48,29 @@ function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
     location: user?.location,
     phone: user?.phone,
     notificationsCount: user?.notificationsCount,
-    gender: user?.gender
+    gender: user?.gender,
+    password: user?.password,
+    confirmPassword: user?.password
   };
   const { user: thisUser } = useSelector((state) => state.user);
-  console.log(thisUser);
+  console.log('User In Update Form', thisUser);
   const { mutate } = useUpdateProfile();
   const {
     register,
     handleSubmit,
     control,
-    reset,
+    getValues,
     formState: { errors }
   } = useForm({
     defaultValues: defaultValues,
     resolver: yupResolver(schema)
   });
+  const { value: showAvatarLink, onToggle: toggleShowAvatar } = useChange(false);
+  const { value: showBannerLink, onToggle: toggleShowBanner } = useChange(false);
   const { value: showDate, onToggle: toggleShowDate } = useChange(false);
+  const { value: avatarLink, onSetNewValue: changeAvatar } = useChange(defaultValues.avatar);
+  const { value: bannerLink, onSetNewValue: changeBanner } = useChange(defaultValues.banner);
+  const { value: showPasswordField, onToggle: toggleShowPassword } = useChange(false);
   //   const { mutate, isError, error, isSuccess } = useSignIn(reset);
   //   const dispatch = useDispatch();
 
@@ -74,15 +87,39 @@ function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
 
   // submit function
   const onSubmitClick = (data) => {
+    // delete password and confirmPassword if user not input
+    if (data.password == null) {
+      delete data.password;
+      delete data.confirmPassword;
+    }
     console.log(data);
     dispatch(getUserInfo(data));
     mutate(data);
-    reset();
+
+    // back after finishing update
+    if (location.pathname === `/${UPDATE_PROFILE_PATH}`) {
+      navigate(-1);
+    } else {
+      closeAction();
+    }
   };
   const clickEdit = (event) => {
     event.preventDefault();
     toggleShowDate(event);
     console.log('Click Edit Date');
+  };
+  const clickEditPassword = (event) => {
+    event.preventDefault();
+    toggleShowPassword(event);
+  };
+  const onChangeImageLink = (event, registerType, type) => {
+    if (type === 'avatar') {
+      registerType.onChange(event);
+      changeAvatar(event.target.value);
+    } else {
+      registerType.onChange(event);
+      changeBanner(event.target.value);
+    }
   };
 
   return (
@@ -99,7 +136,7 @@ function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
           rightType="none"
           backgroundStyle={2}
           onClick={(event) => closeAction(event)}
-          zIndex={2}
+          zIndex={10}
         />
       )}
       {/* Image */}
@@ -108,21 +145,55 @@ function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
         bckHeight={bckHeight}
         avatarSize={avatarSize}
         isInput={true}
-        avatarName="avatar"
-        bannerName="banner"
-        register={register}
+        // for input
+        onClickAvatar={toggleShowAvatar}
+        onClickBanner={toggleShowBanner}
+        avatarContentInput={avatarLink}
+        bannerContentInput={bannerLink}
       />
 
+      {/* Avatar */}
+      {showAvatarLink && (
+        <>
+          <ProfileUpdateLabel text="Avatar Link" htmlFor="updateProfileAvatar" />
+          <Input
+            id="updateProfileAvatar"
+            inputType="text"
+            inputThemeName={textThemeName}
+            placeholder="Avatar Link"
+            {...register('avatar')}
+            onChange={(event) => onChangeImageLink(event, register('avatar'), 'avatar')}
+          />
+          <ErrorText errors={errors.avatar?.message} padding={errorPadding} />
+        </>
+      )}
+
+      {/* Banner */}
+      {showBannerLink && (
+        <>
+          <ProfileUpdateLabel text="Banner Link" htmlFor="updateProfileBanner" />
+          <Input
+            id="updateProfileBanner"
+            inputType="text"
+            inputThemeName={textThemeName}
+            placeholder="Banner Link"
+            {...register('banner')}
+            onChange={(event) => onChangeImageLink(event, register('banner'), 'banner')}
+          />
+          <ErrorText errors={errors.banner?.message} padding={errorPadding} />
+        </>
+      )}
+
       {/* Name */}
-      <ProfileUpdateLabel text="Name" htmlFor="updateProfileName" />
+      <ProfileUpdateLabel text="Full Name" htmlFor="updateProfileName" />
       <Input
         id="updateProfileName"
         inputType="text"
         inputThemeName={textThemeName}
-        placeholder="Name"
-        {...register('username')}
+        placeholder="Full Name"
+        {...register('fullName')}
       />
-      <ErrorText errors={errors.name?.message} padding={errorPadding} />
+      <ErrorText errors={errors.fullName?.message} padding={errorPadding} />
 
       {/* Gender */}
       <ProfileUpdateLabel text="Gender" padding="0.5em 0" />
@@ -210,6 +281,39 @@ function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
           <DateInput inputThemeName={textThemeName} name="dateOfBirth" control={control} />
         )}
       </div>
+
+      {/* Password */}
+      <div className="flex-row">
+        <ProfileUpdateLabel className="label" text="Password" htmlFor="updateProfilePassword" />
+        <Button className="button" width="auto" buttonType="link" onClick={clickEditPassword}>
+          Edit
+        </Button>
+      </div>
+
+      {showPasswordField && (
+        <>
+          <Input
+            id="updateProfilePassword"
+            inputType="text"
+            type="password"
+            inputThemeName={textThemeName}
+            placeholder="Password"
+            {...register('password')}
+            value={getValues('password')}
+          />
+          <ErrorText errors={errors.password?.message} padding={errorPadding} />
+          <ProfileUpdateLabel text="Confirm Password" htmlFor="updateProfileConfirmPassword" />
+          <Input
+            type="password"
+            id="updateProfileConfirmPassword"
+            inputType="text"
+            inputThemeName={textThemeName}
+            placeholder="Confirm Password"
+            {...register('confirmPassword')}
+          />
+          <ErrorText errors={errors.confirmPassword?.message} padding={errorPadding} />
+        </>
+      )}
 
       {/* Error message */}
       <CustomizedSnackbars

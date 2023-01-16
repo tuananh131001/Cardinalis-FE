@@ -2,13 +2,15 @@ import Avatar from '@/components/Image/Avatar';
 import Image from '@/components/Image/Image';
 import { InlineContainer } from '@/components/Container/Container.styled';
 import PropTypes from 'prop-types';
-import { Input } from '@/components/Input/Input';
 import { BiImageAdd } from 'react-icons/bi';
 import Icon from '@/components/Image/Icon';
+import { Fragment } from 'react';
+import { StyledFileInputContainer } from '@/components/Input/Input.styled';
 
-const FileInputIcon = ({ fontSize }) => {
+const FileInputIcon = ({ fontSize, ...props }) => {
   return (
     <Icon
+      {...props}
       iconThemeName="secondaryButton"
       position="absolute"
       top="50%"
@@ -24,15 +26,20 @@ const FileInputIcon = ({ fontSize }) => {
     </Icon>
   );
 };
+
+const defaultBannerLink =
+  'https://plus.unsplash.com/premium_photo-1669386062266-5b20b994f7cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80';
 const ImageProfile = ({
   user,
   bckHeight,
   avatarSize,
   isInput = false,
   top = 0,
-  avatarName = 'avatar',
-  bannerName = 'banner',
-  register = null
+  // for input
+  onClickAvatar = null,
+  onClickBanner = null,
+  avatarContentInput = null,
+  bannerContentInput = null
 }) => {
   return (
     <InlineContainer
@@ -44,74 +51,46 @@ const ImageProfile = ({
       overflow="visible">
       {isInput ? (
         <>
-          <Input
-            // register
-            register={register}
-            registerName={bannerName}
-            // style
-            inputType="image"
-            inputThemeName="loginInput"
-            id="updateProfileBanner"
-            width="100%"
+          <StyledFileInputContainer
             height={bckHeight}
-            isDisplay={false}>
-            {
-              <>
-                <Image
-                  src={
-                    user?.banner == null
-                      ? 'https://plus.unsplash.com/premium_photo-1669386062266-5b20b994f7cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80'
-                      : user.banner
-                  }
-                  alt="Profile Background"
-                  width="100%"
-                  height={bckHeight}
-                  top="0"
-                  left="0"
-                  zIndex="-1"
-                />
-                <FileInputIcon fontSize="var(--font-size-xl)" />
-              </>
-            }
-          </Input>
+            top="0"
+            left="0"
+            width="100%"
+            onClick={onClickBanner}>
+            <Image
+              src={bannerContentInput ? bannerContentInput : defaultBannerLink}
+              alt="Profile Background"
+              width="100%"
+              height={bckHeight}
+              top="0"
+              left="0"
+              zIndex="-1"
+            />
+            <FileInputIcon fontSize="var(--font-size-xl)" />
+          </StyledFileInputContainer>
 
-          <Input
-            // register
-            register={register}
-            registerName={avatarName}
-            // style
-            inputType="image"
-            inputThemeName="loginInput"
-            id="updateProfileAvatar"
+          <StyledFileInputContainer
+            onClick={onClickAvatar}
             width={avatarSize}
             height={avatarSize}
             display="flex"
             position="absolute"
             left="var(--horizontal-spaces)"
-            bottom={`calc(-${avatarSize} / 2)`}
-            isDisplay={false}>
-            {
-              <>
-                <Avatar
-                  src={user.avatar}
-                  size={avatarSize}
-                  position="absolute"
-                  left="0"
-                  bottom="0"
-                />
-                <FileInputIcon fontSize="var(--font-size-xl)" />
-              </>
-            }
-          </Input>
+            bottom={`calc(-${avatarSize} / 2)`}>
+            <Avatar
+              src={avatarContentInput}
+              size={avatarSize}
+              position="absolute"
+              left="0"
+              bottom="0"
+            />
+            <FileInputIcon fontSize="var(--font-size-xl)" />
+          </StyledFileInputContainer>
         </>
       ) : (
         <>
           <Image
-            src={
-              user?.banner == null
-                ? 'https://plus.unsplash.com/premium_photo-1669386062266-5b20b994f7cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80'
-                : user.banner
-            }
+            src={user?.banner == null ? defaultBannerLink : user.banner}
             alt="Profile Background"
             width="100%"
             height={bckHeight}
@@ -139,9 +118,10 @@ ImageProfile.propTypes = {
   avatarSize: PropTypes.string,
   isInput: PropTypes.bool,
   top: PropTypes.string,
-  avatarName: PropTypes.string,
-  bannerName: PropTypes.string,
-  register: PropTypes.any
+  onClickAvatar: PropTypes.func,
+  onClickBanner: PropTypes.func,
+  avatarContentInput: PropTypes.string,
+  bannerContentInput: PropTypes.string
 };
 
 export default ImageProfile;
