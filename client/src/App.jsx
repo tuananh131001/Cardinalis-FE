@@ -49,6 +49,7 @@ function App() {
         <AnimatePresence mode="wait">
           <Routes location={location} key={location.pathname}>
             {/* Authentication */}
+            <Route path="/oauth2/:token" element={<TokenRecevied />} />
             <Route path={`/${LOGIN_PATH}`} element={<Login />} />
             <Route path={`/${REGISTER_PATH}`} element={<Register />} />
             <Route
@@ -59,7 +60,6 @@ function App() {
                 </ProtectedRoutes>
               }
             />
-            <Route path="/oauth2/:type/:token" element={<TokenRecevied />} />
             <Route
               path="/explore"
               element={

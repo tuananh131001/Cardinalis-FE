@@ -8,38 +8,43 @@ import { useDispatch } from 'react-redux';
 import { login } from '@/features/userSlice';
 
 function TokenRecevied() {
-  const { type, token } = useParams();
+  const { token } = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { mutate } = useSignInOauth2();
+  // const { mutate } = useSignInOauth2();
+  console.log('Oauth2 page', token);
+  // useEffect(() => {
+  //   mutate(
+  //     { token },
+  //     {
+  //       onSuccess: () => {
+  //         const userToken = localStorage.getItem('userToken');
+  //         const username = localStorage.getItem('username');
+  //         const authData = {
+  //           user: {
+  //             username: username
+  //           },
+  //           userToken: userToken
+  //         };
+  //         dispatch(login(authData));
+  //         console.log("Oauth2 page: ", userToken, username);
+  //         // navigate(`/${HOME_PATH}`, { replace: true });
+  //       }
+  //     }
+  //   );
+  // }, []);
   useEffect(() => {
-    mutate(
-      { type, token },
-      {
-        onSuccess: () => {
-          const userToken = localStorage.getItem('userToken');
-          const username = localStorage.getItem('username');
-          const authData = {
-            user: {
-              username: username
-            },
-            userToken: userToken
-          };
-          dispatch(login(authData));
-          navigate(HOME_PATH, { replace: true });
-        }
-      }
-    );
-  }, []);
-
-  console.log('Params token:', token);
+    console.log("Oauth2 fdsfsd");
+  })
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  console.log("Oatuh2", urlParams);
 
   return (
     <div>
       <h1>Token Received</h1>
       <p>{token}</p>
-      <Loading type="gif" />
     </div>
   );
 }
