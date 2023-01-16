@@ -8,7 +8,7 @@ import { LoadingStyled } from './LoadingNothing.style';
 export default function Loading({ type = 'circular', ...props }) {
   if (type == 'circular')
     return (
-      <LoadingStyled {...props}>
+      <LoadingStyled padding="var(--vertical-nothing-spaces) 0" {...props}>
         <CircularProgress sx={{ color: 'var(--primary_color_light)' }} />
       </LoadingStyled>
     );

@@ -7,7 +7,13 @@ import Text from '@/components/Text/Text';
 
 export default function Nothing({ text, subText = 'Nothing to show', hasImage = true, ...props }) {
   return (
-    <FlexContainer height="auto" fd="column" jc="flex-start" gap="0.7em" {...props}>
+    <FlexContainer
+      height="auto"
+      fd="column"
+      jc="flex-start"
+      gap="0.7em"
+      {...props}
+      padding="var(--vertical-nothing-spaces) 0">
       {hasImage && <Image src={NothingSvg} alt="Nothing" width="17.8em" />}
       {text && <Text type="h4" jc="center" textThemeName="paragraphText" text={text} />}
       {subText && <Text type="p2" jc="center" textThemeName="subText" text={subText} width="85%" />}

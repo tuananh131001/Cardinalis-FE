@@ -6,7 +6,6 @@ import Register from '@/pages/Register';
 import Login from '@/pages/Login';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '@/styles/Theme';
-import { StyledHeading1 } from '@/components/Text/Text.styled';
 import { FORGOT_PASSWORD_PATH } from '@/assets/Constant';
 import { useContext } from 'react';
 import ForgotPassword from '@/pages/ForgotPassword';
@@ -33,7 +32,7 @@ import Tweet from '@/pages/Tweet';
 import TweetCompose from '@/pages/TweetCompose';
 import UpdateProfilePage from '@/pages/UpdateProfilePage';
 import TokenRecevied from '@/pages/TokenRecevied';
-
+import Nothing from '@/components/LoadingNothing/Nothing';
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -156,7 +155,7 @@ function App() {
                 </ProtectedRoutes>
               }
             />
-            <Route path="*" element={<h1>Page Not Exist</h1>} />
+            <Route path="*" element={<Nothing text="Page Not Found" />} />
           </Routes>
         </AnimatePresence>
       </ThemeProvider>
