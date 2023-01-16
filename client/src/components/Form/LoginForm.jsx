@@ -94,7 +94,7 @@ function LoginForm({ ...props }) {
           ]}
         />
         <OAuth2Button
-          href={getOauthUrl('facebook')}
+          href="https://cardinalis-be.live/oauth2/authorization/facebook"
           text={[
             <SiFacebook key={uuid()} style={{ fontSize: 'var(--font-size-md)' }} />,
             'Login with Facebook'
