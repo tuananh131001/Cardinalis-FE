@@ -20,7 +20,8 @@ export const StyledModalBox = styled.div`
   /* box-shadow: 100px; */
   border-radius: 30px;
 
-  overflow: hidden;
+  overflow: scroll;
+  max-width: 40em;
 `;
 StyledModalBox.defaultProps = {
   width: '50vw',

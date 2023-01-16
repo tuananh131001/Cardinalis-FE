@@ -115,7 +115,7 @@ const MainInfoProfile = ({ user, currentUsername }) => {
       </FlexContainer>
 
       {isYou && (
-        <CustomModal isOpen={isOpen} handleClose={handleClose}>
+        <CustomModal isOpen={isOpen} handleClose={handleClose} padding="5em 0">
           {<UpdateProfileForm user={user} isInModal={true} closeAction={handleClose} />}
         </CustomModal>
       )}

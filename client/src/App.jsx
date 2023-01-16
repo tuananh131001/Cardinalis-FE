@@ -11,7 +11,6 @@ import { useContext } from 'react';
 import ForgotPassword from '@/pages/ForgotPassword';
 import Explore from '@/pages/Explore';
 import Profile from '@/pages/Profile';
-import Favourite from '@/pages/Favourite';
 import { ThemeContext } from '@/hooks/ThemeContextProvider';
 import ProtectedRoutes from '@/routes/ProtectedRoutes';
 import { AnimatePresence } from 'framer-motion';
@@ -65,14 +64,6 @@ function App() {
               element={
                 <ProtectedRoutes>
                   <Explore />
-                </ProtectedRoutes>
-              }
-            />
-            <Route
-              path="/favourite"
-              element={
-                <ProtectedRoutes>
-                  <Favourite />
                 </ProtectedRoutes>
               }
             />
