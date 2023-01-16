@@ -20,8 +20,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUserInfo } from '@/features/userSlice';
 
 const errorPadding = '0 0 1em 0.2em';
-const bckHeight = '15em';
-const avatarSize = '9em';
 const textThemeName = 'homeInput';
 function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
   const schema = chooseInputSchema('updateProfile');
@@ -44,9 +42,8 @@ function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
     notificationsCount: user?.notificationsCount,
     gender: user?.gender
   };
-  const { user: thisUser } = useSelector((state) => state.user);
-  console.log(thisUser);
-  const { mutate } = useUpdateProfile();
+
+  const { mutate, isSuccess } = useUpdateProfile();
   const {
     register,
     handleSubmit,
@@ -216,7 +213,13 @@ function UpdateProfileForm({ user, closeAction, isInModal, ...props }) {
           <DateInput inputThemeName={textThemeName} name="dateOfBirth" control={control} />
         )}
       </div>
-
+      {isSuccess && (
+        <CustomizedSnackbars
+          type="success"
+          verticalPosition="top"
+          message="You have successfully updated your profile!"
+        />
+      )}
       {/* Error message */}
       <CustomizedSnackbars
         type="error"

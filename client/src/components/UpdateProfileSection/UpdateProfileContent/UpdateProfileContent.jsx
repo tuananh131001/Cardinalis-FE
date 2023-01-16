@@ -7,7 +7,7 @@ import UpdateProfileForm from '@/components/Form/UpdateProfileForm';
 function UpdateProfileContent({ user }) {
   return (
     <UpdateProfileContentStyled>
-      <HeaderSection content="Update Profile" user={user} leftType="back" />
+      <HeaderSection backDestination="/home" content="Update Profile" user={user} leftType="back" />
       <UpdateProfileForm user={user} height="auto" />
     </UpdateProfileContentStyled>
   );
