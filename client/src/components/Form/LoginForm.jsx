@@ -87,7 +87,7 @@ function LoginForm({ ...props }) {
       </StyledButton>
       <div className="flex-col">
         <OAuth2Button
-          href={getOauthUrl('google')}
+          href="https://cardinalis-be.live/oauth2/authorization/google"
           text={[
             <FcGoogle key={uuid()} style={{ fontSize: 'var(--font-size-md)' }} />,
             'Login with Google'
