@@ -76,7 +76,7 @@ export const RegisterForm = ({ ...props }) => {
       </Button>
       <div className="flex-col">
         <OAuth2Button
-          href={getOauthUrl('facebook')}
+          href={getOauthUrl('google')}
           text={[
             <FcGoogle key={uuid()} style={{ fontSize: 'var(--font-size-md)' }} />,
             'Login with Google'
