@@ -7,7 +7,7 @@ const TweetComposeModal = ({ isOpen, handleCloseModal }) => {
   return (
     <CustomModal
       height="auto"
-      padding="3em"
+      padding="1em"
       top="10%"
       transform="translateX(-50%)"
       isOpen={isOpen}

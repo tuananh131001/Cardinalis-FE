@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { DropDownSearchSectionStyled } from '../SearchSection.styled';
 import BeforeAfterSearchContent from './BeforeAfterSearchContent';
+import Button from '@/components/Button/Button';
+import { IoMdClose } from 'react-icons/io';
 
 const SearchContentModal = ({ searchInputObject, isSearchingObject, searchValueObject }) => {
   const { searchValue, setSearchValue } = searchInputObject;
@@ -18,6 +20,21 @@ const SearchContentModal = ({ searchInputObject, isSearchingObject, searchValueO
       />
       {isSearching ? (
         <DropDownSearchSectionStyled>
+          <Button
+            width="fit-content"
+            border-radius="50%"
+            padding="0.3em"
+            borderRadius="50%"
+            buttonType="primary"
+            buttonThemeName="secondaryButton"
+            fontSize="var(--font-size-base)"
+            hoverType={2}
+            onClick={() => {
+              setIsSearching(false);
+              setSearchValue('');
+            }}>
+            {<IoMdClose />}
+          </Button>
           {
             <BeforeAfterSearchContent
               isLoading={isLoading}
