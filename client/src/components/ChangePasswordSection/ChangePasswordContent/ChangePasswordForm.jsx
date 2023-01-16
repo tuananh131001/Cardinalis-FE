@@ -20,7 +20,6 @@ const ChangePasswordForm = () => {
   const {
     register,
     handleSubmit,
-    getValues,
     formState: { errors }
   } = useForm({
     defaultValues: defaultValues,
@@ -50,10 +49,9 @@ const ChangePasswordForm = () => {
         type="password"
         inputThemeName={textThemeName}
         placeholder="Old Password"
-        {...register('password')}
-        value={getValues('oldPassword')}
+        {...register('oldPassword')}
       />
-      <ErrorText errors={errors.password?.message} padding={errorPadding} />
+      <ErrorText errors={errors.oldPassword?.message} padding={errorPadding} />
 
       {/* new password */}
       <ProfileUpdateLabel text="Current Password" htmlFor="updateProfileNewPassword" />
