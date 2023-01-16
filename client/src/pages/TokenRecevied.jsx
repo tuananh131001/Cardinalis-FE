@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -44,7 +43,7 @@ function TokenRecevied() {
 
   return (
     <div>
-      <p>siu</p>
+      <p>Loading</p>
     </div>
   );
 }

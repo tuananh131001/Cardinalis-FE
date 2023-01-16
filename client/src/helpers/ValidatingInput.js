@@ -2,15 +2,15 @@ import * as yup from 'yup';
 import moment from 'moment';
 import { urlRegex, phoneRegex } from '@/assets/Constant';
 export const maxTweetCharacters = 280;
-const minPasswordSize = 10;
+const minPasswordSize = 8;
 export const displayErrorMessage = (type, errorType, ...args) => {
   let displayType = 'input';
   switch (type) {
     case 'confirmPassword':
       displayType = 'Confirm Password';
       break;
-    case 'currentPassword':
-      displayType = 'Current Password';
+    case 'newPassword':
+      displayType = 'New Password';
       break;
     case 'oldPassword':
       displayType = 'Old Password';
@@ -151,13 +151,13 @@ export const chooseInputSchema = (type) => {
         .string()
         .required(displayErrorMessage('oldPassword', 'required'))
         .min(minPasswordSize, displayErrorMessage('oldPassword', 'min', minPasswordSize, 'string')),
-      currentPassword: yup
+      newPassword: yup
         .string()
-        .notOneOf([yup.ref('oldPassword'), null], displayErrorMessage('currentPassword', 'oneOf'))
-        .required(displayErrorMessage('currentPassword', 'required'))
+        .notOneOf([yup.ref('oldPassword'), null], displayErrorMessage('New Password', 'oneOf'))
+        .required(displayErrorMessage('New Password', 'required'))
         .min(
           minPasswordSize,
-          displayErrorMessage('currentPassword', 'min', minPasswordSize, 'string')
+          displayErrorMessage('New Password', 'min', minPasswordSize, 'string')
         ),
       confirmPassword: yup
         .string()

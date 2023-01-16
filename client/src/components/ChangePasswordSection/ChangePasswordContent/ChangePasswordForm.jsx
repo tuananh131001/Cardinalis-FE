@@ -7,6 +7,8 @@ import { chooseInputSchema } from '@/helpers/ValidatingInput';
 import ProfileUpdateLabel from '@/components/Form/ProfileUpdateLabel';
 import { useForm } from 'react-hook-form';
 import StyledButton from '@/components/Button/Button.styled';
+import { useChangePassword } from '@/hooks/useUser';
+import CustomizedSnackbars from '@/components/Snackbar/Snackbar';
 
 const errorPadding = '0 0 1em 0.2em';
 const textThemeName = 'homeInput';
@@ -14,57 +16,51 @@ const ChangePasswordForm = () => {
   const schema = chooseInputSchema('changePassword');
   const defaultValues = {
     oldPassword: '',
-    currentPassword: '',
+    newPassword: '',
     confirmPassword: ''
   };
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm({
     defaultValues: defaultValues,
     resolver: yupResolver(schema)
   });
-  const onSubmitClick = (data) => {
-    // delete password and confirmPassword if user not input
-    // console.log(data);
-    // dispatch(getUserInfo(data));
-    // mutate(data);
+  const { mutate, isSuccess, isError, error } = useChangePassword(reset);
 
-    // // back after finishing update
-    // if (location.pathname === `/${UPDATE_PROFILE_PATH}`) {
-    //   navigate(-1);
-    // } else {
-    //   closeAction();
-    // }
-    console.log('Password change section', data);
+  const onSubmitClick = (data) => {
+    console.log(data);
+    mutate(data);
   };
 
   return (
-    <StyledForm
-      onSubmit={handleSubmit(onSubmitClick)}
-      padding="0 var(--horizontal-spaces)"
-      height="auto">
-      <ProfileUpdateLabel className="label" text="Old Password" htmlFor="updateProfilePassword" />
+    <StyledForm onSubmit={handleSubmit(onSubmitClick)} padding="0 var(--horizontal-spaces)">
+      <ProfileUpdateLabel
+        className="label"
+        text="Current Password"
+        htmlFor="updateProfilePassword"
+      />
       <Input
         id="updateProfilePassword"
         inputType="text"
         type="password"
         inputThemeName={textThemeName}
-        placeholder="Old Password"
+        placeholder="Current Password"
         {...register('oldPassword')}
       />
       <ErrorText errors={errors.oldPassword?.message} padding={errorPadding} />
 
       {/* new password */}
-      <ProfileUpdateLabel text="Current Password" htmlFor="updateProfileNewPassword" />
+      <ProfileUpdateLabel text="New Password" htmlFor="updateProfileNewPassword" />
       <Input
         type="password"
         id="updateProfileNewPassword"
         inputType="text"
         inputThemeName={textThemeName}
-        placeholder="Current Password"
-        {...register('currentPassword')}
+        placeholder="New Password"
+        {...register('newPassword')}
       />
       <ErrorText errors={errors.currentPassword?.message} padding={errorPadding} />
 
@@ -84,6 +80,10 @@ const ChangePasswordForm = () => {
       <StyledButton type="submit" buttonThemeName="primaryButton">
         Change Password
       </StyledButton>
+      {isSuccess && <CustomizedSnackbars type="success" message="Change password successfully" />}
+      {isError && (
+        <CustomizedSnackbars type="error" message={error?.response?.data?.errors_message} />
+      )}
     </StyledForm>
   );
 };
