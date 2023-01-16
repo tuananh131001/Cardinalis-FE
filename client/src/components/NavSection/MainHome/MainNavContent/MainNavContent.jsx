@@ -1,20 +1,13 @@
 import NavImage from './NavImage';
 import NavButton from './NavButton';
 import PropTypes from 'prop-types';
-import {
-  AiOutlineNumber,
-  AiOutlineHome,
-  AiFillHome,
-  AiOutlineHeart,
-  AiFillHeart
-} from 'react-icons/ai';
+import { AiOutlineNumber, AiOutlineHome, AiFillHome } from 'react-icons/ai';
 import { RiSearchFill, RiSearchLine } from 'react-icons/ri';
 import { IoPersonOutline, IoPerson } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 import {
   HOME_PATH,
   EXPLORE_PATH,
-  FAVOURITE_PATH,
   PROFILE_TWEET_PATH,
   SEARCH_PATH,
   TWEET_COMPOSE_PATH,
@@ -42,8 +35,6 @@ const displayCurrentTab = (tabCompare, currentTab, type) => {
         ) : (
           <AiOutlineNumber />
         );
-      case FAVOURITE_PATH:
-        return currentTab == tabCompare ? <AiFillHeart /> : <AiOutlineHeart />;
       case SEARCH_PATH:
         return currentTab == tabCompare ? <RiSearchFill /> : <RiSearchLine />;
       default:
@@ -95,10 +86,6 @@ const MainNavContent = ({ user, currentTab, ...props }) => {
       <NavButton
         {...findNavigateButtonProps(EXPLORE_PATH, currentTab, navigate)}
         text={responsiveCondition?.desktop ? 'Explore' : ''}
-      />
-      <NavButton
-        {...findNavigateButtonProps(FAVOURITE_PATH, currentTab, navigate)}
-        text={responsiveCondition?.desktop ? 'Favourite' : ''}
       />
       <NavButton
         {...findNavigateButtonProps(user.username + PROFILE_TWEET_PATH, currentTab, navigate)}

@@ -68,14 +68,6 @@ function App() {
               }
             />
             <Route
-              path="/favourite"
-              element={
-                <ProtectedRoutes>
-                  <Favourite />
-                </ProtectedRoutes>
-              }
-            />
-            <Route
               path="/search/"
               element={
                 <ProtectedRoutes>

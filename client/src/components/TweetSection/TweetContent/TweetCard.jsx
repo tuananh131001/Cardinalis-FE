@@ -42,7 +42,6 @@ const TweetCard = ({ tweet, ...props }) => {
         lineHeight="1.5em"
         gridArea="content"
       />
-      <TweetButtons tweet={tweet} gridArea="buttons" />
       <Divider gridArea="bottomDivider" />
     </TweetCardStyled>
   );
