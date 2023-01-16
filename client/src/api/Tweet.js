@@ -5,7 +5,8 @@ import {
   TWEET_DETAIL_ENDPOINT,
   TWEET_EXPLORE_ENDPOINT,
   TWEET_FAVORITE_ENDPOINT,
-  TWEET_REPLY_ENDPOINT
+  TWEET_REPLY_ENDPOINT,
+  TWEET_TIMELINE_ENDPOINT
 } from '@/assets/constantEnv';
 const tweetApi = axios.create({
   baseURL: API_ORIGIN,
@@ -40,7 +41,7 @@ const getReplyTweets = ({ pageParam = 0 }) => {
 const getUserTweets = ({ queryKey, pageParam = 0 }) => {
   console.log(pageParam);
   return tweetApi
-    .get(`${TWEET_ENDPOINT}?usermail=${queryKey[1]}&pageNo=${pageParam}`)
+    .get(`${TWEET_ENDPOINT}?email=${queryKey[1]}&pageNo=${pageParam}`)
     .then((res) => res.data);
 };
 
@@ -54,6 +55,16 @@ const getFollowingTweets = () => tweetApi.get(TWEET_ENDPOINT).then((res) => res.
 
 const getTweet = (id) => tweetApi.get(`${TWEET_DETAIL_ENDPOINT}?id=${id}`).then((res) => res.data);
 
+const getTweetsTimeLine = ({ pageParam = 0 }) =>
+  tweetApi
+    .get(`${TWEET_TIMELINE_ENDPOINT}?pageNo=${pageParam}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('userToken')}`,
+        'Content-Type': 'application/json'
+      }
+    })
+    .then((res) => res.data);
+
 export {
   getFollowingTweets,
   getFavoriteTweets,
@@ -64,5 +75,6 @@ export {
   getTweet,
   getTweetsByPage,
   getExploreTweets,
-  getUserTweets
+  getUserTweets,
+  getTweetsTimeLine
 };

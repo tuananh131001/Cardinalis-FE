@@ -10,6 +10,7 @@ import Nothing from '@/components/LoadingNothing/Nothing';
 
 function RightCardInfo({ type, text, data }) {
   const navigate = useNavigate();
+  console.log(data);
   const { user } = useSelector((state) => state.user);
   const onClick = () => {
     navigate(`/${user.username + '/' + type}`);
@@ -18,7 +19,7 @@ function RightCardInfo({ type, text, data }) {
     <RightCardInfoWrapper>
       <Text type="p" textThemeName="subText" text={text} weight="700" />
       {data?.map((user) => (
-        <UserCardSection key={data.id} user={user} sz="medium" />
+        <UserCardSection key={user.id} user={user} sz="medium" />
       ))}
       {data?.length > 3 && (
         <Button onClick={onClick} buttonType="link" fontSize={`var(--font-size-sm)`}>
