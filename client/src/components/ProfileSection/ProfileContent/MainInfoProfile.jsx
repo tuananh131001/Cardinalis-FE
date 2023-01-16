@@ -59,8 +59,7 @@ const MainInfoProfile = ({ user, currentUsername }) => {
   // event handlers
   const clickUpdateProfile = (event) => {
     event.preventDefault();
-    if (responsiveCondition?.desktop) handleOpen(event);
-    else navigate(`/${UPDATE_PROFILE_PATH}`);
+    navigate(`/${UPDATE_PROFILE_PATH}`);
   };
   const clickEditPassword = (event) => {
     event.preventDefault();

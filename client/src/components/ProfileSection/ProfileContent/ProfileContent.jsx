@@ -40,7 +40,6 @@ function ProfileContent({ pageSubType }) {
     <ProfileContentStyled>
       <HeaderSection
         content={user?.data.username}
-        subContent={displayCountNumber(10, 'Tweet')}
         leftType="back"
         backDestination={defineBackDestination(location, user)}
       />
